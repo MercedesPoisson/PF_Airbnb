@@ -1,5 +1,5 @@
 import SearchBar from "../../components/searchBar/searchBar"
-import Card from "../../components/card/card"
+import Card from "../../components/card/Card"
 import ScrollToTopButton from "../../components/scrollButton/ScrollToTopButton"
 
 function Home() {
