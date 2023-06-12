@@ -1,0 +1,32 @@
+@keyframes takeoff {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(-100px);
+    }
+  }
+  
+  .animate-takeoff {
+    animation: takeoff 1s linear;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes blink {
+    0% {
+      background-color: #FF82A9;
+    }
+    50% {
+      background-color: #ffffff;
+    }
+    100% {
+      background-color: #FF82A9;
+    }
+  }
+  
+  .animate-blink {
+    animation: blink 0.5s infinite;
+  }
