@@ -6,12 +6,10 @@ function Home() {
     
     return(
         <div>
-            <h1>Soy Home</h1>
             <SearchBar />
             <Card />
             <ScrollToTopButton/>
         </div>
-
     )
 }
 export default Home
