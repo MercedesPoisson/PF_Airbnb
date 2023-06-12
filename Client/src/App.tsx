@@ -1,15 +1,17 @@
-import { Route } from "react-router-dom";
-import Home from "./views/Home/Home";
-import SearchBar from "./components/searchBar/searchBar";
-import "./App.css"
+import './App.css'
+import SearchBar from './components/searchBar/searchBar';
+import ScrollToTopButton from './components/scrollButton/ScrollToTopButton';
+import Card from './components/card/card';
+import 'tailwindcss/tailwind.css';
+
 
 function App() {
   
   return (
     <div>
       <SearchBar />
-      <Route exact path="/" render={() => <Home />} />
-     
+      <Card />
+      <ScrollToTopButton/>
     </div>
   )
 }

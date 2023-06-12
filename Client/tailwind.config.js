@@ -1,9 +1,20 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [],
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        argentina: '#FF385C',
+      },
+      fontFamily: {
+        comfortaa: ['Comfortaa', 'cursive'],
+        'cairo-play': ['Cairo Play', 'sans-serif'],
+        cairo: ['Cairo', 'sans-serif']
+      },
+    },
   },
   plugins: [],
 }
-
