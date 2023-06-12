@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import 'tailwindcss/tailwind.css';
 import Home from "../../Client/src/views/Home/home";
 
@@ -9,13 +9,13 @@ function App() {
   
   return (
     <div>
-      <Router>
+      <Route>
         <div>
           <Switch>
             <Route exact path="/" component={Home} />
           </Switch>
         </div>
-      </Router>
+      </Route>
       {/* <Home /> */}
       {/* <Route path="/" exact component={Home} /> */}
       {/* <Route path="/property/:id" exact component={Detail} */}
