@@ -17,7 +17,6 @@ function Preview() {
                 <div className="font-cairo text-2xl">Revisá tu anuncio</div>
             <p className="font-cairo">Así es como van a verlo tus huéspedes</p>
             </div>
-            
         </div>
         
         <div className="col-span-1 font-cairo-play flex items-center justify-start mr-10">

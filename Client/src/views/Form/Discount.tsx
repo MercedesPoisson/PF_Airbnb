@@ -8,7 +8,7 @@ function Discount() {
     navigate(-1);
   };
   const handleNext = () => {
-    navigate("/post/preview"); // este no va a discount
+    navigate("/post/preview"); 
 }
     return (
         <div>
