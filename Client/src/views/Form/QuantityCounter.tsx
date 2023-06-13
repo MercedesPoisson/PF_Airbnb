@@ -11,7 +11,7 @@ const QuantityCounter = () => {
     }
 
     const handleNext = () => {
-        navigate("/post/beds");
+        navigate("/post/services");
     }
   const [ocupantes, setOcupantes] = useState(1);
   const [dormitorios, setDormitorios] = useState(1);
@@ -77,7 +77,7 @@ const QuantityCounter = () => {
       <div className="sticky top-0">
             <NavBar />
         </div>
-       <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto mt-20">
+       <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto ">
       <div>
         <div className="text-2xl">Agregá algunos datos básicos sobre tu propiedad</div>
         <p className="font-cairo">Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>

@@ -1,6 +1,23 @@
+import NavBar from "./navBar";
+import { useNavigate } from "react-router-dom";
+
 const Cloudinary = () => {
+  const navigate = useNavigate();
+
+    const handlePrevious = () => {
+        navigate(-1);
+    }
+
+    const handleNext = () => {
+        navigate("/post/title"); // lo deje aca, tengo que cambiar a la siguiente que seria el titulo
+    }
+
     return (
-      <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto">
+      <div>
+        <div className="sticky top-0">
+            <NavBar />
+        </div>
+        <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto">
         <div>
         <div className="text-2xl">Paso 2</div>
             <div className="text-2xl ">Agregá algunas fotos de tu propiedad</div>
@@ -21,9 +38,12 @@ const Cloudinary = () => {
         </div>
         </div>
         <div className="col-span-2 font-cairo-play flex justify-start ml-10">
-        <button className="border border-argentina rounded p-1 w-32 mt-4">Siguiente</button>
+        <button className="border border-argentina rounded p-1 w-32 mt-4 mr-2" onClick={handlePrevious}>Anterior</button>
+          <button className="border border-argentina rounded p-1 w-32 mt-4" onClick={handleNext}>Siguiente</button>
       </div>
       </div>
+      </div>
+      
     );
   };
   

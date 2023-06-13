@@ -9,6 +9,9 @@ import Location from '../../Client/src/views/Form/Location';
 import QuantityCounter from './views/Form/QuantityCounter';
 import ServicesCheck from './views/Form/ServicesCheck';
 import Cloudinary from './views/Form/Cloudinary';
+import Title from './views/Form/TitleAndDescription';
+import Price from './views/Form/Price';
+import Discount from './views/Form/Discount';
 
 
 function App() {
@@ -25,6 +28,9 @@ function App() {
         <Route path="/post/beds" element={<QuantityCounter/>} />
         <Route path="/post/services" element={<ServicesCheck/>} />
         <Route path="/post/pictures" element={<Cloudinary/>} />
+        <Route path="/post/title" element={<Title/>} />
+        <Route path="/post/price" element={<Price/>} />
+        <Route path="/post/discount" element={<Discount/>} />
 
 
         {/* <Route path="/property/:id" element={<Detail/>} */}

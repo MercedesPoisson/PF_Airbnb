@@ -21,7 +21,7 @@ function PropertyType() {
         </div>
            <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto">
         <div>
-           <div className=" text-2xl mt-8">Paso 1</div>
+           <div className=" text-2xl">Paso 1</div>
         <div className="text-2xl">Contanos acerca de tu propiedad</div>
         <p>En este paso, te vamos a preguntar qué tipo de propiedad tenés. <br/> Cuál es la ubicación y cuántos huéspedes pueden quedarse en el alojamiento.</p>
         <div className="text-2xl mt-4">¿Cuál de estas opciones describe mejor tu propiedad?</div> 

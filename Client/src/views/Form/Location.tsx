@@ -17,9 +17,9 @@ function Location() {
             <div className="sticky top-0">
             <NavBar />
         </div>
-            <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto h-96 mt-4">
+            <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto h-96 ">
         <div>
-          <div className="font-cairo text-2xl mt-8">¿Dónde queda tu propiedad?</div>
+          <div className="font-cairo text-2xl ">¿Dónde queda tu propiedad?</div>
           <p className="font-cairo">Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>  
         </div>
         <div className="h-[470px]">

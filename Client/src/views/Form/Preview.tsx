@@ -1,8 +1,8 @@
-function Preview = () => {
-    return(
-        <div>
-        </div>
+// function Preview = () => {
+//     return(
+//         <div>
+//         </div>
 
-    )
-}
-export default Preview
+//     )
+// }
+// export default Preview
