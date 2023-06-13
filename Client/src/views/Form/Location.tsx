@@ -1,6 +1,23 @@
+import { useNavigate } from "react-router-dom";
+import NavBar from "./navBar";
+
 function Location() {
+    const navigate = useNavigate();
+
+    const handlePrevious = () => {
+        navigate(-1);
+    }
+
+    const handleNext = () => {
+        navigate("/post/beds");
+    }
+
     return (
-      <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto h-96 mt-10">
+        <div>
+            <div className="sticky top-0">
+            <NavBar />
+        </div>
+            <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto h-96 mt-4">
         <div>
           <div className="font-cairo text-2xl mt-8">¿Dónde queda tu propiedad?</div>
           <p className="font-cairo">Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>  
@@ -15,9 +32,12 @@ function Location() {
           ></iframe>
         </div>
         <div className="col-span-2 font-cairo-play flex justify-start ml-10">
-          <button className="border border-argentina rounded p-1 w-32 mt-4">Siguiente</button>
+        <button className="border border-argentina rounded p-1 w-32 mt-4 mr-2" onClick={handlePrevious}>Anterior</button>
+          <button className="border border-argentina rounded p-1 w-32 mt-4" onClick={handleNext}>Siguiente</button>
         </div>
       </div>
+        </div>
+      
     );
   }
   

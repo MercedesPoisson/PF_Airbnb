@@ -1,6 +1,25 @@
+import { useNavigate } from "react-router-dom";
+import NavBar from "./navBar";
+
 function PropertyType() {
+    const navigate = useNavigate();
+
+    const handlePrevious = () => {
+        navigate(-1);
+    }
+
+    const handleNext = () => {
+        navigate("/post/location");
+    }
+
+
+
     return (
-      <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto">
+        <div>
+            <div className="sticky top-0">
+            <NavBar />
+        </div>
+           <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto">
         <div>
            <div className=" text-2xl mt-8">Paso 1</div>
         <div className="text-2xl">Contanos acerca de tu propiedad</div>
@@ -35,9 +54,12 @@ function PropertyType() {
           </div>
         </div>
         <div className="col-span-2 font-cairo-play flex justify-start ml-10">
-        <button className="border border-argentina rounded p-1 w-32 mt-4">Siguiente</button>
+        <button className="border border-argentina rounded p-1 w-32 mt-4 mr-2" onClick={handlePrevious}>Anterior</button>
+        <button className="border border-argentina rounded p-1 w-32 mt-4" onClick={handleNext}>Siguiente</button>
       </div>
-      </div>
+      </div> 
+        </div>
+      
     );
   }
   

@@ -6,6 +6,9 @@ import Form from "../../Client/src/views/Form/Form";
 import FirstView from "../../Client/src/views/Form/FirstView";
 import PropertyType from '../../Client/src/views/Form/PropertyType';
 import Location from '../../Client/src/views/Form/Location';
+import QuantityCounter from './views/Form/QuantityCounter';
+import ServicesCheck from './views/Form/ServicesCheck';
+import Cloudinary from './views/Form/Cloudinary';
 
 
 function App() {
@@ -19,6 +22,10 @@ function App() {
         <Route path="/post/first" element={<FirstView />} />
         <Route path="/post/types" element={<PropertyType />} />
         <Route path="/post/location" element={<Location />} />
+        <Route path="/post/beds" element={<QuantityCounter/>} />
+        <Route path="/post/services" element={<ServicesCheck/>} />
+        <Route path="/post/pictures" element={<Cloudinary/>} />
+
 
         {/* <Route path="/property/:id" element={<Detail/>} */}
         

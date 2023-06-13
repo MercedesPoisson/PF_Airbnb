@@ -3,8 +3,13 @@ const ServicesCheck = () => {
   
     
     return (
-      <section className="font-cairo border-b pb-3">
-        <h1 className="font-cairo">Servicios</h1>
+      <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto">
+        <div>
+        <div className=" text-2xl mt-8">Contale a tus huéspedes todo lo que tu propiedad tiene para ofrecer</div>
+            <p className="font-cairo">Podés agregar mas servicios luego de publicar el anuncio.</p>
+        </div>
+        <div>
+          <section >
         <div className="grid grid-cols-2 gap-2">
           <label className="flex items-center">
             <input name="Servicios" value="Wifi" type="checkbox" />
@@ -50,9 +55,14 @@ const ServicesCheck = () => {
             <input name="Servicios" value="Acceso a la playa" type="checkbox" />
             <span className="ml-2">Acceso a la playa</span>
           </label>
-          
         </div>
       </section>
+        </div>
+        <div className="col-span-2 font-cairo-play flex justify-start ml-10">
+        <button className="border border-argentina rounded p-1 w-32 mt-4">Siguiente</button>
+      </div>
+      </div>
+      
     );
   };
   

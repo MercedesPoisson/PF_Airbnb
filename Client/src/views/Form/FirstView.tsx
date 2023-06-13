@@ -1,4 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 function Intro() {
+    const navigate = useNavigate();
+
+    const handleNext = () => {
+        navigate("/post/types")
+    }
+
+
   return (
     <div className="grid grid-cols-2 gap-2 w-3/4 mx-auto">
       <div className="font-cairo-play text-2xl text-left ">
@@ -21,7 +30,7 @@ function Intro() {
         </div>
       </div>
       <div className="col-span-2 font-cairo-play flex justify-start ml-10">
-        <button className="border border-argentina rounded p-1 w-32 mt-4">Siguiente</button>
+        <button className="border border-argentina rounded p-1 w-32 mt-4" onClick={handleNext}>Siguiente</button>
       </div>
     </div>
   );
