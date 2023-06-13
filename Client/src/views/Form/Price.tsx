@@ -24,6 +24,9 @@ const Price = () => {
 
   return (
     <div className="font-cairo">
+      <div className="font-cairo text-2xl mt-8">Paso 3</div>
+            <div className="font-cairo text-2xl ">Fijá el precio por noche</div>
+            <p className="font-cairo">Podés modificarlo cuando quieras</p>
       <div className="flex items-center mr-10">
         <i className="fa-solid fa-minus border rounded-full mx-1" onClick={handleDecrement}></i>
         <input type="number" value={price} onChange={handlePriceChange} className="w-20 text-center" />

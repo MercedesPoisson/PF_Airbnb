@@ -7,6 +7,7 @@ import ScrollToTopButton from "../../components/scrollButton/ScrollToTopButton";
 import Location from "./Location";
 import Intro from "./FirstView";
 import PropertyType from "./PropertyType";
+import Discount from "./Discount";
 
 const Form = () => {
 
@@ -27,22 +28,19 @@ const Form = () => {
             </div>
           </div>
         </div>
+
         <Intro />
-        <PropertyType />
-        
-        <div className="font-cairo text-2xl mt-8">¿Dónde queda tu propiedad?</div>
-        <p className="font-cairo">Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>        
+        <PropertyType />        
+               
         <div className="h-[470px]">
             <Location />
         </div>
-        <div className="col-span-1 font-cairo-play flex items-center justify-start mr-10">
-              <button className="border border-argentina rounded p-1 w-32">Siguiente</button>
-            </div>
+        
         <div>
-            <div className="font-cairo text-2xl mt-8">Agregá algunos datos básicos sobre tu propiedad</div>
-            <p className="font-cairo">Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>
+            
             <QuantityCounter />
         </div>
+
         <div>
             <div className="font-cairo text-2xl mt-8">Contale a tus huéspedes todo lo que tu propiedad tiene para ofrecer</div>
             <p className="font-cairo">Podés agregar mas servicios luego de publicar el anuncio.</p>
@@ -65,10 +63,11 @@ const Form = () => {
             <textarea className="pl-8 w-2/4 h-20 border rounded-md mb-2" placeholder="Max 600 caracteres" maxLength={600}></textarea>
         </div>
         <div>
-            <div className="font-cairo text-2xl mt-8">Paso 3</div>
-            <div className="font-cairo text-2xl ">Fijá el precio por noche</div>
-            <p className="font-cairo">Podés modificarlo cuando quieras</p>
+            
             <Price />
+        </div>
+        <div>
+            <Discount />
         </div>
         <div>
             <div className="font-cairo text-2xl mt-8">Revisá tu anuncio</div>

@@ -1,14 +1,23 @@
 function Location() {
     return (
-        
-      <iframe
-        src="https://storage.googleapis.com/maps-solutions-cpse4u0jxa/address-selection/brph/address-selection.html"
-        width="100%"
-        height="100%"
-        style={{ border: 0 }}
-        loading="lazy"
-      ></iframe>
-      
+      <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto h-96 mt-10">
+        <div>
+          <div className="font-cairo text-2xl mt-8">¿Dónde queda tu propiedad?</div>
+          <p className="font-cairo">Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>  
+        </div>
+        <div className="h-[470px]">
+          <iframe
+            src="https://storage.googleapis.com/maps-solutions-cpse4u0jxa/address-selection/brph/address-selection.html"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div className="col-span-2 font-cairo-play flex justify-start ml-10">
+          <button className="border border-argentina rounded p-1 w-32 mt-4">Siguiente</button>
+        </div>
+      </div>
     );
   }
   
