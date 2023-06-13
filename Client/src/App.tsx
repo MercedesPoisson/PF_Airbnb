@@ -12,6 +12,7 @@ import Cloudinary from './views/Form/Cloudinary';
 import Title from './views/Form/TitleAndDescription';
 import Price from './views/Form/Price';
 import Discount from './views/Form/Discount';
+import Preview from './views/Form/Preview';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/post/title" element={<Title/>} />
         <Route path="/post/price" element={<Price/>} />
         <Route path="/post/discount" element={<Discount/>} />
+        <Route path="/post/preview" element={<Preview/>} />
 
 
         {/* <Route path="/property/:id" element={<Detail/>} */}

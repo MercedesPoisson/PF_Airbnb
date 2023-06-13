@@ -5,11 +5,10 @@
 // import Cloudinary from "./Cloudinary";
 // import PropertyType from "./PropertyType";
 // import Title from "./TitleAndDescription";
-
-import Price from "./Price";
+// import Discount from "./Discount";
+// import Price from "./Price";
 import ScrollToTopButton from "../../components/scrollButton/ScrollToTopButton";
 import Intro from "./FirstView";
-import Discount from "./Discount";
 import NavBar from "./navBar";
 
 
@@ -51,14 +50,7 @@ const Form = () => {
         {/* <div>
             <Discount />
         </div> */}
-        <div>
-            <div className="font-cairo text-2xl mt-8">Revisá tu anuncio</div>
-            <p className="font-cairo">Así es como van a verlo tus huéspedes</p>
-        </div>
         
-        <div className="col-span-1 font-cairo-play flex items-center justify-start mr-10">
-              <button className="border border-argentina rounded p-1 w-32">Finalizar</button>
-            </div>
             <div>
              <ScrollToTopButton />   
             </div>
