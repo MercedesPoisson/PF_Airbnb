@@ -1,13 +1,23 @@
 import SearchBar from "../../components/searchBar/searchBar"
-import Card from "../../components/card/Card"
+import CardsContainer from "../../components/CardContainer/CardContainer"
 import ScrollToTopButton from "../../components/scrollButton/ScrollToTopButton"
 
-function Home() {
+interface Property {
+    id_property: number,
+    title: string;
+    province: string;
+    price_per_night: number;
+    rating: number;
+    images: string[];
+  }
+
+
+function Home({properties}: { properties: Property[]}) {
     
     return(
         <div>
             <SearchBar />
-            <Card />
+            <CardsContainer properties={properties}/>
             <ScrollToTopButton/>
         </div>
     )
