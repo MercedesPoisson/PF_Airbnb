@@ -2,14 +2,36 @@ import NavBar from "./navBar";
 import ScrollToTopButton from "../../components/scrollButton/ScrollToTopButton";
 import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+import { PostProperty, Property } from '../../redux/actions';
 
 const MegaForm = () => {
-    const Dispatch = useDispatch();
-  const [propertyType, setPropertyType] = useState("");
+    const dispatch = useDispatch();
+    // const navigate = useNavigate();
 
-  const handlePropertyTypeSelect = (type: string) => {
-    setPropertyType(type);
+//-------Seccion Tipos de Propiedades --------
+    type PropertyType = {
+        casa: boolean;
+        departamento: boolean;
+        habitacion: boolean;
+    }
+
+  const [propertyType, setPropertyType] = useState({
+    casa: false,
+    departamento: false,
+    habitacion: false
+  });
+
+  const handlePropertyTypeSelect = (type: keyof PropertyType, event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setPropertyType({
+      casa: false,
+      departamento: false,
+      habitacion: false,
+      [type]: true
+    });
   };
+//-------seccion Cantidades -------
   const [ocupantes, setOcupantes] = useState(1);
   const [dormitorios, setDormitorios] = useState(1);
   const [camas, setCamas] = useState(1);
@@ -69,6 +91,41 @@ const MegaForm = () => {
     }
   };
 
+
+const [formData, setFormData] = useState({
+    id_property: 0,
+    title: '',
+    province: '',
+    location: '',
+    address: '',
+    property_type: 'House',
+    description: '',
+    price_per_night: 0,
+    images: [],
+    rating: 0,
+    ratings_amount: 0,
+    availability: [],
+    is_active: false,
+    rooms_number: 0,
+    beds_number: 0,
+    max_guests: 0,
+    allow_pets: false,
+    weekly_discount: false,
+    monthly_discount: false,
+    min_nights: 0,
+    beds_type: [],
+    bathrooms_number: 0,
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  //---------Seccion Precio ---------
   const [price, setPrice] = useState(1000);
 
   const handleInc = () => {
@@ -90,12 +147,92 @@ const MegaForm = () => {
     }
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const property: Property = {
+        id_property: formData.id_property,
+        title: formData.title,
+        province: formData.province,
+        location: formData.location,
+        address: formData.address,
+        property_type: formData.property_type,
+        description: formData.description,
+        price_per_night: formData.price_per_night,
+        images: formData.images,
+        rating: formData.rating,
+        ratings_amount: formData.ratings_amount,
+        availability: formData.availability,
+        is_active: formData.is_active,
+        rooms_number: formData.rooms_number,
+        beds_number: formData.beds_number,
+        max_guests: formData.max_guests,
+        allow_pets: formData.allow_pets,
+        weekly_discount: formData.weekly_discount,
+        monthly_discount: formData.monthly_discount,
+        min_nights: formData.min_nights,
+        beds_type: formData.beds_type,
+        bathrooms_number: formData.bathrooms_number,
+      };
+      dispatch(PostProperty(
+        property.id_property,
+        property.title,
+        property.province,
+        property.location,
+        property.address,
+        property.property_type,
+        property.description,
+        property.price_per_night,
+        property.images,
+        property.rating,
+        property.ratings_amount,
+        property.availability,
+        property.is_active,
+        property.rooms_number,
+        property.beds_number,
+        property.max_guests,
+        property.allow_pets,
+        property.weekly_discount,
+        property.monthly_discount,
+        property.min_nights,
+        property.beds_type,
+        property.bathrooms_number
+      ));
+
+      alert("La propiedad se ha creado correctamente")
+      console.log("Datos enviados:", property);
+
+      setFormData({
+      id_property: 0,
+      title: '',
+      province: '',
+      location: '',
+      address: '',
+      property_type: 'House',
+      description: '',
+      price_per_night: 0,
+      images: [],
+      rating: 0,
+      ratings_amount: 0,
+      availability: [],
+      is_active: false,
+      rooms_number: 0,
+      beds_number: 0,
+      max_guests: 0,
+      allow_pets: false,
+      weekly_discount: false,
+      monthly_discount: false,
+      min_nights: 0,
+      beds_type: [],
+      bathrooms_number: 0,
+    });
+  };
+
   return (
     <div>
       <div className="sticky top-0">
         <NavBar />
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="w-3/4 mx-auto">
           <div className="font-cairo-play text-2xl text-left mb-8">
             Te ayudamos en todo el recorrido para publicar <br />
@@ -130,11 +267,11 @@ const MegaForm = () => {
 
             <div className="grid grid-cols-3font-cairo mt-3">
               <div className="col-span-1 mb-3">
-                <button
+              <button
                   className={`flex flex-col items-center justify-center bg-transparent border rounded-md focus:outline-none w-28 ${
-                    propertyType === "Casa" ? "border-argentina" : "border-black"
+                    propertyType.casa === true ? "border-argentina" : "border-black"
                   }`}
-                  onClick={() => handlePropertyTypeSelect("Casa")}
+                  onClick={(event) => handlePropertyTypeSelect("casa", event)}
                 >
                   <span className="mb-2">
                     <i className="fa-solid fa-house text-gray-600"></i>
@@ -143,11 +280,11 @@ const MegaForm = () => {
                 </button>
               </div>
               <div className="mb-3 col-span-1">
-                <button
+              <button
                   className={`flex flex-col items-center justify-center bg-transparent border rounded-md focus:outline-none w-28 ${
-                    propertyType === "Departamento" ? "border-argentina" : "border-black"
+                    propertyType.departamento === true? "border-argentina" : "border-black"
                   }`}
-                  onClick={() => handlePropertyTypeSelect("Departamento")}
+                  onClick={(event) => handlePropertyTypeSelect("departamento", event)}
                 >
                   <span className="mb-2">
                     <i className="fa-solid fa-building text-gray-600"></i>
@@ -156,11 +293,11 @@ const MegaForm = () => {
                 </button>
               </div>
               <div className="col-span-1">
-                <button
+              <button
                   className={`flex flex-col items-center justify-center bg-transparent border rounded-md focus:outline-none w-28 ${
-                    propertyType === "Habitación" ? "border-argentina" : "border-black"
+                    propertyType.habitacion === true ? "border-argentina" : "border-black"
                   }`}
-                  onClick={() => handlePropertyTypeSelect("Habitación")}
+                  onClick={(event) => handlePropertyTypeSelect("habitacion", event)}
                 >
                   <span className="mb-2">
                     <i className="fa-solid fa-bed text-gray-600"></i>
@@ -195,7 +332,7 @@ const MegaForm = () => {
               </div>
               <div>
                 <div className="relative">
-                  <input className="pl-8 w-96 h-10 border rounded-md" type="text" placeholder="Ingrese la provincia" />
+                  <input className="pl-8 w-96 h-10 border rounded-md" type="text" placeholder="Ingrese la provincia"  />
                   <i className="fa fa-location-dot absolute left-2 top-3 text-gray-600"></i>
                 </div>
               </div>
@@ -211,13 +348,13 @@ const MegaForm = () => {
         </div>
         <div>
           <div className="flex items-center mb-2">
-            <p>Ocupantes</p>
+            <p >Ocupantes</p>
             <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("ocupantes")}></i>
-            <p>{ocupantes}</p>
+            <p >{ocupantes}</p>
             <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("ocupantes")}></i>
           </div>
           <div className="flex items-center mb-2">
-            <p>Dormitorios</p>
+            <p >Dormitorios</p>
             <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("dormitorios")}></i>
             <p>{dormitorios}</p>
             <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("dormitorios")}></i>
@@ -229,9 +366,9 @@ const MegaForm = () => {
             <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("camas")}></i>
           </div>
           <div className="flex items-center mb-2">
-            <p>Baños</p>
+            <p >Baños</p>
             <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("banos")}></i>
-            <p>{banos}</p>
+            <p >{banos}</p>
             <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("banos")}></i>
           </div>
         </div>
@@ -314,11 +451,11 @@ const MegaForm = () => {
         </div>
         <div>
           <div className="relative">
-            <input className="pl-8 w-96 h-10 border rounded-md mb-2" type="text" placeholder="Seleccione la primer imagen" />
+            <input className="pl-8 w-96 h-10 border rounded-md mb-2" type="text" placeholder="Seleccione la primer imagen"  />
             <button className="border border-black rounded p-1 w-32">Buscar</button>
           </div>
           <div className="relative">
-            <input className="pl-8 w-96 h-10 border rounded-md mb-2" type="text" placeholder="Seleccione la segunda imagen" />
+            <input className="pl-8 w-96 h-10 border rounded-md mb-2" type="text" placeholder="Seleccione la segunda imagen"/>
             <button className="border border-black rounded p-1 w-32">Buscar</button>
           </div>
           <div className="relative">
@@ -337,7 +474,7 @@ const MegaForm = () => {
           <input className="pl-8 w-3/4 h-10 border rounded-md mb-2" type="text" placeholder="Ingresa un título" maxLength={200} />
         </div>
         <div>
-          <textarea className="pl-8 w-3/4 h-20 border rounded-md mb-2" placeholder="¿Qué hace que tu propiedad sea especial? ¡Contanos!" maxLength={600}></textarea>
+          <textarea className="pl-8 w-3/4 h-20 border rounded-md mb-2" placeholder="¿Qué hace que tu propiedad sea especial? ¡Contanos!" maxLength={600} ></textarea>
         </div>
       </div>
     </div>
@@ -397,6 +534,7 @@ const MegaForm = () => {
         </div>
       </div>
     </div>
+    <button className="border border-argentina rounded p-1 w-32" type="submit">submit</button>
       </form>
 
      
