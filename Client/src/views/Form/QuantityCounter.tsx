@@ -75,46 +75,49 @@ const QuantityCounter = () => {
   return (
     <div>
       <div className="sticky top-0">
-            <NavBar />
-        </div>
-       <div className="grid grid-cols-2 font-cairo gap-2 w-3/4 mx-auto ">
-      <div>
-        <div className="text-2xl">Agregá algunos datos básicos sobre tu propiedad</div>
-        <p className="font-cairo">Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>
+        <NavBar />
       </div>
-      <div>
-        <div className="flex items-center mb-2">
-          <p>Ocupantes</p>
-          <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("ocupantes")}></i>
-          <p>{ocupantes}</p>
-          <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("ocupantes")}></i>
+      <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto">
+        <div>
+          <div className="text-2xl">Agregá algunos datos básicos sobre tu propiedad</div>
+          <p className="font-cairo">Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>
         </div>
-        <div className="flex items-center mb-2">
-          <p>Dormitorios</p>
-          <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("dormitorios")}></i>
-          <p>{dormitorios}</p>
-          <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("dormitorios")}></i>
+        <div>
+          <div className="flex items-center mb-2">
+            <p>Ocupantes</p>
+            <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("ocupantes")}></i>
+            <p>{ocupantes}</p>
+            <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("ocupantes")}></i>
+          </div>
+          <div className="flex items-center mb-2">
+            <p>Dormitorios</p>
+            <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("dormitorios")}></i>
+            <p>{dormitorios}</p>
+            <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("dormitorios")}></i>
+          </div>
+          <div className="flex items-center mb-2">
+            <p>Camas</p>
+            <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("camas")}></i>
+            <p>{camas}</p>
+            <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("camas")}></i>
+          </div>
+          <div className="flex items-center mb-2">
+            <p>Baños</p>
+            <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("banos")}></i>
+            <p>{banos}</p>
+            <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("banos")}></i>
+          </div>
         </div>
-        <div className="flex items-center mb-2">
-          <p>Camas</p>
-          <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("camas")}></i>
-          <p>{camas}</p>
-          <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("camas")}></i>
+        <div className="col-span-1 font-cairo-play flex justify-start ml-10">
+          <button className="border border-argentina rounded p-1 w-32 mt-4 mr-2" onClick={handlePrevious}>
+            Anterior
+          </button>
+          <button className="border border-argentina rounded p-1 w-32 mt-4" onClick={handleNext}>
+            Siguiente
+          </button>
         </div>
-        <div className="flex items-center mb-2">
-          <p>Baños</p>
-          <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("banos")}></i>
-          <p>{banos}</p>
-          <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("banos")}></i>
-        </div>
-      </div>
-      <div className="col-span-2 font-cairo-play flex justify-start ml-10">
-      <button className="border border-argentina rounded p-1 w-32 mt-4 mr-2" onClick={handlePrevious}>Anterior</button>
-          <button className="border border-argentina rounded p-1 w-32 mt-4" onClick={handleNext}>Siguiente</button>
       </div>
     </div>
-    </div>
-   
   );
 };
 

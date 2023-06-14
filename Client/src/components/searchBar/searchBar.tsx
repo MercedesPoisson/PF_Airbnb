@@ -3,6 +3,7 @@ import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange, RangeKeyDict } from 'react-date-range';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import Filters from '../filters/filters';
 
@@ -18,6 +19,7 @@ function SearchBar() {
     const [showModal, setShowModal] = useState(false);
     const [buttonText, setButtonText] = useState('¿Cuándo?');
     const [showFiltersModal, setShowFiltersModal] = useState(false); // Estado para controlar la visibilidad de la ventana emergente
+    const navigate = useNavigate();
   
     const handleDateButtonClick = () => {
       setShowDateRange(!showDateRange);
@@ -43,6 +45,9 @@ function SearchBar() {
     const handleFiltersModalToggle = () => {
       setShowFiltersModal(!showFiltersModal);
     };
+    const handlePostProperty = () => {
+      navigate("/post");
+    }
   
     return (
       <div className='sticky top-0'>
@@ -87,7 +92,7 @@ function SearchBar() {
           </div>
           <div className="col-span-1 flex items-center justify-end">
             
-            <button className="font-cairo-play mr-4">Publicá tu Propiedad</button>
+            <button className="font-cairo-play mr-4" onClick={handlePostProperty}>Publicá tu Propiedad</button>
             <button className="mr-4">
               <i className="fa-regular fa-circle-user text-argentina text-xl"></i>
             </button>
