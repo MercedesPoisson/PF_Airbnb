@@ -5,7 +5,10 @@ import { State, Action } from "./Types"
 
 const inictialState: State = {
     properties: [],
-    allProperties: []
+    allProperties: [],
+    detail: [],
+    services: [],
+    filteredProperties: [],
 }
 
 const rootReducer: Reducer<State, Action> = (state = inictialState, action) => {
