@@ -13,6 +13,8 @@ import Title from './views/Form/TitleAndDescription';
 import Price from './views/Form/Price';
 import Discount from './views/Form/Discount';
 import Preview from './views/Form/Preview';
+import FormFormik from './views/Form/FormFormik';
+import MegaForm from './views/Form/MegaForm';
 
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
         <Route path="/post/price" element={<Price/>} />
         <Route path="/post/discount" element={<Discount/>} />
         <Route path="/post/preview" element={<Preview/>} />
+        <Route path="/postFormik" element={<FormFormik />} />
+        <Route path="/megaform" element={<MegaForm />} />
 
 
         {/* <Route path="/property/:id" element={<Detail/>} */}
