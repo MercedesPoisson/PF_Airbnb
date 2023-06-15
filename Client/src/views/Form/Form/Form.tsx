@@ -8,11 +8,15 @@ import TitleAndDescription from "./Title&Description";
 import Price from "./Price";
 import Discount from "./discount";
 import Preview from "./Preview";
+import postServices from "../../../redux/actions/postProperties";
+import { useDispatch } from "react-redux";
+import Cloudinary from "./Cloudinary";
 
 interface FormData {
     step: number;
     property_type: string;
     address: string;
+    zip_code: string,
     location: string;
     province: string;
     max_guests: number;
@@ -20,24 +24,29 @@ interface FormData {
     beds_number: number;
     bathrooms_number: number;
     services: string[];
-    images: any[];
+    images?: any[];
     title: string;
     description: string;
     price_per_night: number;
-    availability: any[];
     allow_pets: boolean;
     weekly_discount: boolean;
     monthly_discount: boolean;
     min_nights: number;
     is_active: boolean;
+    start_date: Date|string;
+    end_date: Date|string;
+    rating?: number,
+    rating_amount?: number,
   }
 
 const Form = () => {
 
     const [ formData, setFormData] = useState<FormData>({
         step: 1,
+        id_user: "123123-4444324224-232333",
         property_type: "",
         address: "",
+        zip_code:"1234",
         location: "",
         province: "",
         max_guests: 0, 
@@ -49,12 +58,15 @@ const Form = () => {
         title: "", 
         description: "",
         price_per_night: 0,
-        availability: [],
+        start_date: "2023-01-01",
+        end_date: "2023-06-06",
         allow_pets: false,
         weekly_discount: false,
         monthly_discount: false,
         min_nights: 0,
-        is_active: false,      
+        is_active: true,
+        rating: 1,
+        rating_amount: 1,     
     });
 
     const nextStep = () => {
@@ -79,6 +91,15 @@ const Form = () => {
             [name]: value
         }))
     }
+
+    const dispatch = useDispatch();
+
+    const handlePost = () => {
+        dispatch(postServices(formData));
+        console.log("Datos enviados a la base de datos");
+        alert("Propiedad Creada")
+    }
+
     switch (formData.step) {
         case 1:
             return (
@@ -127,6 +148,15 @@ const Form = () => {
             )
             case 6:
             return (
+                <Cloudinary
+                previousStep={previousStep}
+                nextStep={nextStep}
+                setFormData={setFormData}
+                formData={formData}
+/>
+            )
+            case 7:
+            return (
                 <TitleAndDescription
                 previousStep={previousStep}
                 nextStep={nextStep}
@@ -134,7 +164,7 @@ const Form = () => {
                 formData={formData}
 />
             )
-            case 7:
+            case 8:
             return (
                 <Price
                 previousStep={previousStep}
@@ -143,7 +173,7 @@ const Form = () => {
                 setFormData={setFormData}
               />
             )
-            case 8:
+            case 9:
             return (
                 <Discount
                 previousStep={previousStep}
@@ -152,11 +182,11 @@ const Form = () => {
                 setFormData={setFormData}
               />
             )
-            case 9:
+            case 10:
             return (
                 <Preview
                 previousStep={previousStep}
-                nextStep={nextStep}
+                handlePost={handlePost}
                 formData={formData}
                 setFormData={setFormData}
               />

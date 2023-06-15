@@ -7,12 +7,20 @@ const Price = (props) => {
   const handleIncrement = () => {
     if (price < 5000) {
       setPrice((prevPrice) => prevPrice + 1);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        price_per_night: price + 1,
+      }));
     }
   };
 
   const handleDecrement = () => {
     if (price > 1) {
       setPrice((prevPrice) => prevPrice - 1);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        price_per_night: price - 1,
+      }));
     }
   };
 

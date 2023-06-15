@@ -10,7 +10,7 @@ const TitleAndDescription = (props) => {
           className="pl-8 w-3/4 h-10 border rounded-md mb-2" 
           type="text" 
           placeholder="Ingresa un título" 
-          maxLength={200}
+          maxLength={300}
           name="title"
           onChange={props.handleInputChange}
           value={props.formData.title} />
@@ -19,7 +19,7 @@ const TitleAndDescription = (props) => {
           <textarea 
           className="pl-8 w-3/4 h-20 border rounded-md mb-2" 
           placeholder="¿Qué hace que tu propiedad sea especial? ¡Contanos!" 
-          maxLength={600} 
+          maxLength={1200} 
           name="description"
           onChange={props.handleInputChange}
           value={props.formData.description}></textarea>
