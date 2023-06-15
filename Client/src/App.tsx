@@ -15,6 +15,8 @@ import Discount from './views/Form/Discount';
 import Preview from './views/Form/Preview';
 import FormFormik from './views/Form/FormFormik';
 import MegaForm from './views/Form/MegaForm';
+import Formulario from './views/Form/FormularioPrueba/Formulario';
+import Formu from "../src/views/Form/Form/Form"
 
 
 function App() {
@@ -37,6 +39,8 @@ function App() {
         <Route path="/post/preview" element={<Preview/>} />
         <Route path="/postFormik" element={<FormFormik />} />
         <Route path="/megaform" element={<MegaForm />} />
+        <Route path="/formulario" element={<Formulario />} />
+        <Route path="/postformulario" element={<Formu />} />
 
 
         {/* <Route path="/property/:id" element={<Detail/>} */}
