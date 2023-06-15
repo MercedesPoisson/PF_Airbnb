@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { AnyAction } from "redux";
 import getProperties from "../../redux/actions/getProperties";
 
+
 interface Property {
     id_property: number,
     title: string;
