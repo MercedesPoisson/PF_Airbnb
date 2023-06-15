@@ -3,7 +3,7 @@ import ScrollToTopButton from "../../components/scrollButton/ScrollToTopButton";
 import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
-import { PostProperty, Property } from '../../redux/actions';
+
 
 const MegaForm = () => {
     const dispatch = useDispatch();

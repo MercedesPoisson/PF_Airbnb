@@ -35,11 +35,7 @@ export interface Service {
 }
 
 export interface State {
-    properties: Property[]
-    allProperties: Property[]
-    detail: Property[]
     services: Service[]
-    filteredProperties: Property[]
 }
 
 export interface Action {

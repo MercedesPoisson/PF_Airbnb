@@ -1,20 +1,16 @@
 import { Reducer } from "redux";
-import { GET_PROPERTIES } from "./actions";
+import { GET_SERVICES } from "./actions/actionsType";
 import { State, Action } from "./Types"
 
 
 const inictialState: State = {
-    properties: [],
-    allProperties: [],
-    detail: [],
-    services: [],
-    filteredProperties: [],
+    services: []
 }
 
-const rootReducer: Reducer<State, Action> = (state = inictialState, action) => {
-    switch (action.type) {
-        case GET_PROPERTIES:
-            return { ...state, properties: action.payload, allProperties: action.payload };
+const rootReducer: Reducer<State, Action> = (state= inictialState, {type,payload}) => {
+    switch (type) {
+        case GET_SERVICES:
+            return { ...state, services: payload };
         
             default:
                 return state;
