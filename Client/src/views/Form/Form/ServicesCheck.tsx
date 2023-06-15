@@ -1,4 +1,35 @@
+import { useState } from "react";
+
 const ServicesCheck = (props) => {
+    const [selectedServices, setSelectedServices] = useState([]);
+  
+    const handleServiceChange = (event) => {
+      const serviceName = event.target.value;
+      const isSelected = event.target.checked;
+  
+      if (isSelected) {
+        setSelectedServices((prevSelectedServices) => [
+          ...prevSelectedServices,
+          serviceName,
+        ]);
+      } else {
+        setSelectedServices((prevSelectedServices) =>
+          prevSelectedServices.filter((service) => service !== serviceName)
+        );
+      }
+    };
+  
+    const handleNextStep = () => {
+      props.setFormData((prevFormData) => ({
+        ...prevFormData,
+        services: selectedServices,
+      }));
+      console.log("FormData:", FormData); // Ver el estado actualizado
+  
+      props.nextStep();
+    };
+  
+
     return (
         <div>
             <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto">
@@ -15,7 +46,7 @@ const ServicesCheck = (props) => {
                 id="services_wifi"
                 name="Services" 
                 value="Wifi"
-                onChange={props.handleInputChange} 
+                onChange={handleServiceChange} 
                  />
                 <span className="ml-2">Wifi</span>
               </label>
@@ -26,7 +57,7 @@ const ServicesCheck = (props) => {
                 id="services_televisor"
                 name="Services" 
                 value="Televisor"
-                onChange={props.handleInputChange} 
+                onChange={handleServiceChange}  
                  />
                 <span className="ml-2">Televisor</span>
               </label>
@@ -37,7 +68,7 @@ const ServicesCheck = (props) => {
                 id="services_cocina"
                 name="Services" 
                 value="Cocina"
-                onChange={props.handleInputChange} 
+                onChange={handleServiceChange} 
                  />
                 <span className="ml-2">Cocina</span>
               </label>
@@ -48,7 +79,7 @@ const ServicesCheck = (props) => {
                 id="services_lavarropas"
                 name="Services" 
                 value="Lavarropas"
-                onChange={props.handleInputChange} 
+                onChange={handleServiceChange}  
                  />
                 <span className="ml-2">Lavarropas</span>
               </label>
@@ -59,7 +90,7 @@ const ServicesCheck = (props) => {
                 id="services_aire_acondicionado"
                 name="Services" 
                 value="Aire acondicionado"
-                onChange={props.handleInputChange} 
+                onChange={handleServiceChange} 
                  />
                 <span className="ml-2">Aire acondicionado</span>
               </label>
@@ -70,7 +101,7 @@ const ServicesCheck = (props) => {
                 id="services_calefaccion"
                 name="Services" 
                 value="Calefaccion"
-                onChange={props.handleInputChange}
+                onChange={handleServiceChange} 
                  />
                 <span className="ml-2">Calefacción</span>
               </label>
@@ -81,7 +112,7 @@ const ServicesCheck = (props) => {
                 id="services_pileta"
                 name="Services" 
                 value="Pileta" 
-                onChange={props.handleInputChange}
+                onChange={handleServiceChange} 
                  />
                 <span className="ml-2">Pileta</span>
               </label>
@@ -92,7 +123,7 @@ const ServicesCheck = (props) => {
                 id="services_parrilla"
                 name="Services" 
                 value="Parrilla"
-                onChange={props.handleInputChange}                
+                onChange={handleServiceChange}                
                  />
                 <span className="ml-2">Parrilla</span>
               </label>
@@ -103,7 +134,7 @@ const ServicesCheck = (props) => {
                 id="services_accesibilidad"
                 name="Services" 
                 value="Accesibilidad"                
-                onChange={props.handleInputChange} />
+                onChange={handleServiceChange}  />
                 <span className="ml-2">Propiedad Accesible</span>
               </label>
 
@@ -113,7 +144,7 @@ const ServicesCheck = (props) => {
                 id="services_estacionamiento_libre"
                 name="Services"                 
                 value="Estacionamiento libre"                
-                onChange={props.handleInputChange} />
+                onChange={handleServiceChange}  />
                 <span className="ml-2">Estacionamiento libre</span>
               </label>
 
@@ -123,7 +154,7 @@ const ServicesCheck = (props) => {
                 id="services_acceso_al_lago" 
                 name="Services" 
                 value="Acceso al lago"                                 
-                onChange={props.handleInputChange} />
+                onChange={handleServiceChange}  />
                 <span className="ml-2">Acceso al lago</span>
               </label>
 
@@ -133,7 +164,7 @@ const ServicesCheck = (props) => {
                 id="services_acceso_a_la_playa"
                 name="Services" 
                 value="Acceso a la playa" 
-                onChange={props.handleInputChange} />
+                onChange={handleServiceChange}  />
                 <span className="ml-2">Acceso a la playa</span>
               </label>
 
@@ -143,7 +174,7 @@ const ServicesCheck = (props) => {
                 id="services_banera"
                 name="Services" 
                 value="Bañera" 
-                onChange={props.handleInputChange} />
+                onChange={handleServiceChange}  />
                 <span className="ml-2">Bañera</span>
               </label>
 
@@ -153,7 +184,7 @@ const ServicesCheck = (props) => {
                 id="services_jacuzzi"
                 name="Services" 
                 value="Jacuzzi" 
-                onChange={props.handleInputChange} />
+                onChange={handleServiceChange}  />
                 <span className="ml-2">Jacuzzi</span>
               </label>
 
@@ -163,9 +194,10 @@ const ServicesCheck = (props) => {
                 id="services_mascotas"
                 name="Services" 
                 value="Mascotas" 
-                onChange={props.handleInputChange} />
+                onChange={handleServiceChange}  />
                 <span className="ml-2">En esta propiedad amamos las mascotas</span>
               </label>
+
             </div>
           </section>
         </div>
@@ -173,7 +205,7 @@ const ServicesCheck = (props) => {
           <button className="border border-argentina rounded p-1 w-32 mt-4 mr-2" onClick={props.previousStep}>
             Anterior
           </button>
-          <button className="border border-argentina rounded p-1 w-32 mt-4" onClick={props.nextStep}>
+          <button className="border border-argentina rounded p-1 w-32 mt-4" onClick={handleNextStep}>
             Siguiente
           </button>
         </div>
@@ -184,4 +216,4 @@ const ServicesCheck = (props) => {
     )
 }
 
-export default ServicesCheck;
+export default ServicesCheck

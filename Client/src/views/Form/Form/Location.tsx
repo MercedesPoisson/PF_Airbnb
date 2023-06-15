@@ -7,16 +7,16 @@ const Location = (props) => {
           <p className="font-cairo">Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>
         </div>
         <div className="items-center">
-          <div className="mb-2">
+          
+          <div>
             <div className="relative">
               <input 
               className="pl-8 w-96 h-10 border rounded-md" 
               type="text" 
-              placeholder="Ingrese la dirección" 
-              name="address"
+              placeholder="Ingrese la provincia"
+              name="province"
               onChange={props.handleInputChange}
-              value={props.formData.address}
-              />
+              value={props.formData.province} />
               <i className="fa fa-location-dot absolute left-2 top-3 text-gray-600"></i>
             </div>
           </div>
@@ -32,15 +32,16 @@ const Location = (props) => {
               <i className="fa fa-location-dot absolute left-2 top-3 text-gray-600"></i>
             </div>
           </div>
-          <div>
+          <div className="mb-2">
             <div className="relative">
               <input 
               className="pl-8 w-96 h-10 border rounded-md" 
               type="text" 
-              placeholder="Ingrese la provincia"
-              name="province"
+              placeholder="Ingrese la dirección" 
+              name="address"
               onChange={props.handleInputChange}
-              value={props.formData.province} />
+              value={props.formData.address}
+              />
               <i className="fa fa-location-dot absolute left-2 top-3 text-gray-600"></i>
             </div>
           </div>

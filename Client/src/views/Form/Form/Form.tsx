@@ -4,6 +4,10 @@ import PropertyType from "./PropertyType";
 import Location from "./Location";
 import QuantityCounter from "./QuantityCounters";
 import ServicesCheck from "./ServicesCheck";
+import TitleAndDescription from "./Title&Description";
+import Price from "./Price";
+import Discount from "./discount";
+import Preview from "./Preview";
 
 const Form = () => {
 
@@ -27,7 +31,7 @@ const Form = () => {
         weekly_discount: false,
         monthly_discount: false,
         min_nights: 0,
-        is_active: false,       
+        is_active: false,      
     });
 
     const nextStep = () => {
@@ -95,7 +99,44 @@ const Form = () => {
                 previousStep={previousStep}
                 nextStep={nextStep}
                 handleInputChange={handleInputChange}
+                setFormData={setFormData}
                 />
+            )
+            case 6:
+            return (
+                <TitleAndDescription
+                previousStep={previousStep}
+                nextStep={nextStep}
+                handleInputChange={handleInputChange}
+                formData={formData}
+/>
+            )
+            case 7:
+            return (
+                <Price
+                previousStep={previousStep}
+                nextStep={nextStep}
+                formData={formData}
+                setFormData={setFormData}
+              />
+            )
+            case 8:
+            return (
+                <Discount
+                previousStep={previousStep}
+                nextStep={nextStep}
+                formData={formData}
+                setFormData={setFormData}
+              />
+            )
+            case 9:
+            return (
+                <Preview
+                previousStep={previousStep}
+                nextStep={nextStep}
+                formData={formData}
+                setFormData={setFormData}
+              />
             )
         default:
             return <div>Error</div>
