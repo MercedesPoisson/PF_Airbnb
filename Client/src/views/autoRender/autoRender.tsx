@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getServices } from "../../redux/actions/actions";
+import  getServices  from "../../redux/actions/getServices";
 import { AnyAction } from "redux";
 
 function AutoRender(){
