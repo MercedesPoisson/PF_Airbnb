@@ -35,7 +35,8 @@ export interface Service {
 }
 
 export interface State {
-    services: Service[]
+    services: Service[],
+    properties: Property[]
 }
 
 export interface Action {

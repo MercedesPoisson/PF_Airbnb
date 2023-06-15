@@ -1,10 +1,11 @@
 import { Reducer } from "redux";
-import { GET_SERVICES, POST_PROPERTIES } from "./actions/actionsType";
+import { GET_PROPERTIES, GET_SERVICES, POST_PROPERTIES } from "./actions/actionsType";
 import { State, Action } from "./Types"
 
 
 const inictialState: State = {
-    services: []
+    services: [],
+    properties: []
 }
 
 const rootReducer: Reducer<State, Action> = (state = inictialState, { type, payload }) => {
@@ -13,6 +14,8 @@ const rootReducer: Reducer<State, Action> = (state = inictialState, { type, payl
             return { ...state, services: payload };
         case POST_PROPERTIES:
             return { ...state };
+        case GET_PROPERTIES:
+            return {...state, properties: payload}
         default:
             return state;
     }

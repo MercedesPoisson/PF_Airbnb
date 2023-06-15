@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { GET_SERVICES } from "../actionsType";
+import { GET_SERVICES } from "./actionsType";
 import { AnyAction } from "redux";
 import axios from "axios";
 
