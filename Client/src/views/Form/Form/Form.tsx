@@ -9,9 +9,32 @@ import Price from "./Price";
 import Discount from "./discount";
 import Preview from "./Preview";
 
+interface FormData {
+    step: number;
+    property_type: string;
+    address: string;
+    location: string;
+    province: string;
+    max_guests: number;
+    rooms_number: number;
+    beds_number: number;
+    bathrooms_number: number;
+    services: string[];
+    images: any[];
+    title: string;
+    description: string;
+    price_per_night: number;
+    availability: any[];
+    allow_pets: boolean;
+    weekly_discount: boolean;
+    monthly_discount: boolean;
+    min_nights: number;
+    is_active: boolean;
+  }
+
 const Form = () => {
 
-    const [ formData, setFormData] = useState({
+    const [ formData, setFormData] = useState<FormData>({
         step: 1,
         property_type: "",
         address: "",
