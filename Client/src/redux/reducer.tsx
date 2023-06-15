@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { GET_SERVICES } from "./actions/actionsType";
+import { GET_SERVICES } from "./actionsType";
 import { State, Action } from "./Types"
 
 
