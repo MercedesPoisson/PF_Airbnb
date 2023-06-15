@@ -9,7 +9,11 @@ const DatosUsuario = (props) => {
             <h1>Datos Usuario</h1>
             <div>
                 <label htmlFor="">Nombre</label>
-                <input type="text" name="nombre" onChange={handleInputChange} value={props.valores.nombre} className="border border-black" />
+                <input type="text" 
+                name="nombre" 
+                onChange={handleInputChange} 
+                value={props.valores.nombre} 
+                className="border border-black" />
             </div>
             <div>
                 <label htmlFor="">Apellido</label>

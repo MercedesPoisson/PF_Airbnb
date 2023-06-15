@@ -3,6 +3,7 @@ import FirstView from "./FirstView";
 import PropertyType from "./PropertyType";
 import Location from "./Location";
 import QuantityCounter from "./QuantityCounters";
+import ServicesCheck from "./ServicesCheck";
 
 const Form = () => {
 
@@ -88,16 +89,18 @@ const Form = () => {
                 bathroomsNumber={formData.bathrooms_number}
                 />
             )
+        case 5:
+            return (
+                <ServicesCheck
+                previousStep={previousStep}
+                nextStep={nextStep}
+                handleInputChange={handleInputChange}
+                />
+            )
         default:
             return <div>Error</div>
     }
 
-
-    return(
-        <div>
-
-        </div>
-    )
 }
 
 export default Form;

@@ -1,13 +1,12 @@
-import  { useState } from "react"
+import { useState } from "react";
 
 const QuantityCounter = (props) => {
+  const [ocupantes, setOcupantes] = useState(props.maxGuests);
+  const [dormitorios, setDormitorios] = useState(props.roomsNumber);
+  const [camas, setCamas] = useState(props.bedsNumber);
+  const [banos, setBanos] = useState(props.bathroomsNumber);
 
-    const [ocupantes, setOcupantes] = useState(1);
-  const [dormitorios, setDormitorios] = useState(1);
-  const [camas, setCamas] = useState(1);
-  const [banos, setBanos] = useState(1);
-
-  const handleIncrement = (category: string) => {
+  const handleIncrement = (category) => {
     switch (category) {
       case "ocupantes":
         if (ocupantes < 10) {
@@ -34,7 +33,7 @@ const QuantityCounter = (props) => {
     }
   };
 
-  const handleDecrement = (category: string) => {
+  const handleDecrement = (category) => {
     switch (category) {
       case "ocupantes":
         if (ocupantes > 1) {
@@ -63,7 +62,6 @@ const QuantityCounter = (props) => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    props.handleInputChange(event); // Llamar a la función handleInputChange del componente Form
     if (name === "ocupantes") {
       setOcupantes(parseInt(value));
     } else if (name === "dormitorios") {
@@ -75,17 +73,53 @@ const QuantityCounter = (props) => {
     }
   };
 
-    return (
-        <div>
+  const handleSave = () => {
+    props.handleInputChange({
+      target: {
+        name: "max_guests",
+        value: ocupantes,
+      },
+    });
+    props.handleInputChange({
+      target: {
+        name: "rooms_number",
+        value: dormitorios,
+      },
+    });
+    props.handleInputChange({
+      target: {
+        name: "beds_number",
+        value: camas,
+      },
+    });
+    props.handleInputChange({
+      target: {
+        name: "bathrooms_number",
+        value: banos,
+      },
+    });
+  };
+
+  const handleNext = () => {
+    handleSave(); // Llama a la función handleSave antes de pasar al siguiente paso
+    props.nextStep();
+  };
+
+
+  return (
+    <div>
       <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto">
         <div>
-          <div className="text-2xl">Agregá algunos datos básicos sobre tu propiedad</div>
-          <p className="font-cairo">Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>
+          <h2 className="text-2xl font-semibold">Cantidad de personas</h2>
+          <p>Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>
         </div>
         <div>
           <div className="flex items-center mb-2">
             <label htmlFor="ocupantes">Ocupantes</label>
-            <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("ocupantes")}></i>
+            <i
+              className="fa-solid fa-minus border rounded-full mx-1"
+              onClick={() => handleDecrement("ocupantes")}
+            ></i>
             <input
               type="number"
               id="ocupantes"
@@ -93,11 +127,17 @@ const QuantityCounter = (props) => {
               value={ocupantes}
               onChange={handleInputChange}
             />
-            <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("ocupantes")}></i>
+            <i
+              className="fa-solid fa-plus border rounded-full mx-1"
+              onClick={() => handleIncrement("ocupantes")}
+            ></i>
           </div>
           <div className="flex items-center mb-2">
             <label htmlFor="dormitorios">Dormitorios</label>
-            <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("dormitorios")}></i>
+            <i
+              className="fa-solid fa-minus border rounded-full mx-1"
+              onClick={() => handleDecrement("dormitorios")}
+            ></i>
             <input
               type="number"
               id="dormitorios"
@@ -105,33 +145,48 @@ const QuantityCounter = (props) => {
               value={dormitorios}
               onChange={handleInputChange}
             />
-            <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("dormitorios")}></i>
+            <i
+              className="fa-solid fa-plus border rounded-full mx-1"
+              onClick={() => handleIncrement("dormitorios")}
+            ></i>
           </div>
           <div className="flex items-center mb-2">
             <label htmlFor="camas">Camas</label>
-            <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("camas")}></i>
+            <i
+              className="fa-solid fa-minus border rounded-full mx-1"
+              onClick={() => handleDecrement("camas")}
+            ></i>
             <input type="number" id="camas" name="camas" value={camas} onChange={handleInputChange} />
-            <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("camas")}></i>
+            <i
+              className="fa-solid fa-plus border rounded-full mx-1"
+              onClick={() => handleIncrement("camas")}
+            ></i>
           </div>
           <div className="flex items-center mb-2">
             <label htmlFor="banos">Baños</label>
-            <i className="fa-solid fa-minus border rounded-full mx-1" onClick={() => handleDecrement("banos")}></i>
+            <i
+              className="fa-solid fa-minus border rounded-full mx-1"
+              onClick={() => handleDecrement("banos")}
+            ></i>
             <input type="number" id="banos" name="banos" value={banos} onChange={handleInputChange} />
-            <i className="fa-solid fa-plus border rounded-full mx-1" onClick={() => handleIncrement("banos")}></i>
+            <i
+              className="fa-solid fa-plus border rounded-full mx-1"
+              onClick={() => handleIncrement("banos")}
+            ></i>
           </div>
         </div>
-      </div>
-      <div className="flex justify-between mt-8 w-3/4 mx-auto">
-        <button className="btn" onClick={props.previousStep}>
-          Atrás
+        <div className="col-span-1 font-cairo-play flex justify-start ml-10">
+        <button className="border border-argentina rounded p-1 w-32 mt-4 mr-2" onClick={props.previousStep}>
+          Anterior
         </button>
-        <button className="btn btn-primary" onClick={props.nextStep}>
+        <button className="border border-argentina rounded p-1 w-32 mt-4" onClick={handleNext}>
           Siguiente
         </button>
       </div>
+      </div>
+      
     </div>
-
-    )
-}
+  );
+};
 
 export default QuantityCounter;
