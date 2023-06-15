@@ -3,10 +3,38 @@ import FirstView from "./FirstView";
 import PropertyType from "./PropertyType";
 import Location from "./Location";
 import QuantityCounter from "./QuantityCounters";
+import ServicesCheck from "./ServicesCheck";
+import TitleAndDescription from "./Title&Description";
+import Price from "./Price";
+import Discount from "./discount";
+import Preview from "./Preview";
+
+interface FormData {
+    step: number;
+    property_type: string;
+    address: string;
+    location: string;
+    province: string;
+    max_guests: number;
+    rooms_number: number;
+    beds_number: number;
+    bathrooms_number: number;
+    services: string[];
+    images: any[];
+    title: string;
+    description: string;
+    price_per_night: number;
+    availability: any[];
+    allow_pets: boolean;
+    weekly_discount: boolean;
+    monthly_discount: boolean;
+    min_nights: number;
+    is_active: boolean;
+  }
 
 const Form = () => {
 
-    const [ formData, setFormData] = useState({
+    const [ formData, setFormData] = useState<FormData>({
         step: 1,
         property_type: "",
         address: "",
@@ -26,7 +54,7 @@ const Form = () => {
         weekly_discount: false,
         monthly_discount: false,
         min_nights: 0,
-        is_active: false,       
+        is_active: false,      
     });
 
     const nextStep = () => {
@@ -88,16 +116,55 @@ const Form = () => {
                 bathroomsNumber={formData.bathrooms_number}
                 />
             )
+        case 5:
+            return (
+                <ServicesCheck
+                previousStep={previousStep}
+                nextStep={nextStep}
+                handleInputChange={handleInputChange}
+                setFormData={setFormData}
+                />
+            )
+            case 6:
+            return (
+                <TitleAndDescription
+                previousStep={previousStep}
+                nextStep={nextStep}
+                handleInputChange={handleInputChange}
+                formData={formData}
+/>
+            )
+            case 7:
+            return (
+                <Price
+                previousStep={previousStep}
+                nextStep={nextStep}
+                formData={formData}
+                setFormData={setFormData}
+              />
+            )
+            case 8:
+            return (
+                <Discount
+                previousStep={previousStep}
+                nextStep={nextStep}
+                formData={formData}
+                setFormData={setFormData}
+              />
+            )
+            case 9:
+            return (
+                <Preview
+                previousStep={previousStep}
+                nextStep={nextStep}
+                formData={formData}
+                setFormData={setFormData}
+              />
+            )
         default:
             return <div>Error</div>
     }
 
-
-    return(
-        <div>
-
-        </div>
-    )
 }
 
 export default Form;
