@@ -1,5 +1,9 @@
 import { Reducer } from "redux";
+<<<<<<< HEAD
 import { GET_SERVICES, POST_PROPERTIES } from "./actions/actionsType";
+=======
+import { GET_SERVICES } from "./actionsType";
+>>>>>>> ccb4bb3 (action Type)
 import { State, Action } from "./Types"
 
 
