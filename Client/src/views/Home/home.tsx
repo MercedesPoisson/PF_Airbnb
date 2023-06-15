@@ -9,11 +9,10 @@ interface Property {
     price_per_night: number;
     rating: number;
     images: string[];
-  }
-
+}
 
 function Home({properties}: { properties: Property[]}) {
-    
+
     return(
         <div>
             <SearchBar />

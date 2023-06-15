@@ -17,6 +17,7 @@ import FormFormik from './views/Form/FormFormik';
 import MegaForm from './views/Form/MegaForm';
 import Formulario from './views/Form/FormularioPrueba/Formulario';
 import Formu from "../src/views/Form/Form/Form"
+import AutoRender from './views/autoRender/autoRender';
 
 
 function App() {
@@ -41,11 +42,10 @@ function App() {
         <Route path="/megaform" element={<MegaForm />} />
         <Route path="/formulario" element={<Formulario />} />
         <Route path="/postformulario" element={<Formu />} />
-
-
         {/* <Route path="/property/:id" element={<Detail/>} */}
         
       </Routes>  
+      <AutoRender/>
     </div>
   );
 }
