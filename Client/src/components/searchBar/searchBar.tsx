@@ -46,7 +46,7 @@ function SearchBar() {
       setShowFiltersModal(!showFiltersModal);
     };
     const handlePostProperty = () => {
-      navigate("/post");
+      navigate("/formulario");
     }
   
     return (

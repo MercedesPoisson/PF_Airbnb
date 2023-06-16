@@ -17,11 +17,8 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/detail/:idProperty" element={<Details />} />
-        <Route path="/post" element={<Form/>} />
-        <Route path="/formulario" element={<Formulario />} />       
-        
-        <Route path="/formulario" element={<Formulario />} />             
+        <Route path="/propiedad/:idProperty" element={<Details />} />
+        <Route path="/formulario" element={<Form/>} />             
       </Routes>  
       <AutoRender/>
     </div>
