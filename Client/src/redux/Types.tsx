@@ -34,11 +34,16 @@ export interface Service {
     icon: string
 }
 
+interface Province {
+    nombre: string
+}
+
 export interface State {
     services: Service[],
     properties: Property[],
     detail: Partial<Property>
     pages: number
+    provinces: Province[]
 }
 
 
