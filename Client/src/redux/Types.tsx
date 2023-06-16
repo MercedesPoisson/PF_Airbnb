@@ -38,6 +38,7 @@ export interface State {
     services: Service[],
     properties: Property[],
     detail: Partial<Property>
+    pages: number
 }
 
 export interface Action {

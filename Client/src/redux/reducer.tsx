@@ -7,17 +7,18 @@ import { State, Action } from "./Types"
 const inictialState: State = {
     services: [],
     properties: [],
-    detail:{} 
+    detail:{},
+    pages: 0 
 }
 
 const rootReducer: Reducer<State, Action> = (state = inictialState, { type, payload }) => {
     switch (type) {
         case GET_SERVICES:
-            return { ...state, services: payload };
+            return { ...state, services: payload};
         case POST_PROPERTIES:
             return { ...state };
         case GET_PROPERTIES:
-            return {...state, properties: payload};
+            return {...state, properties: payload.properties, pages: payload.pagesNumber};
         case GET_PROPERTY_DETAIL:
             return {...state, detail: payload}
         default:
