@@ -10,7 +10,7 @@ import CardDetails from "../../components/detail/CardDetail";
 
 const Details = () => {
     const { idProperty } = useParams();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
