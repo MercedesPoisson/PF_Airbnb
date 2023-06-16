@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 
 const CardDetails = () => {
     const properties = useSelector(state => state);
-    console.log(properties)
+    console.log(properties);
 
     return <>Hola</>
 }

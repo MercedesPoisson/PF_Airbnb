@@ -11,4 +11,4 @@ const getPropertyDetail=(id:any)=>{
     }
 }
 
-export default getPropertyDetail
+export default getPropertyDetail;
