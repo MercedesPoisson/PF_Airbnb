@@ -8,7 +8,7 @@ const inictialState: State = {
     services: [],
     properties: [],
     detail:{},
-    pages: 0 
+    pages: 0
 }
 
 const rootReducer: Reducer<State, Action> = (state = inictialState, { type, payload }) => {
