@@ -14,30 +14,30 @@ import { useDispatch } from "react-redux";
 import Cloudinary from "./Cloudinary";
 
 interface FormData {
+  [x: string]: any;
   step: number;
-  property_type: string;
-  address: string;
-  zip_code: string;
-  location: string;
-  province: string;
-  max_guests: number;
-  rooms_number: number;
-  beds_number: number;
-  bathrooms_number: number;
-  services: string[];
-  images?: any[];
-  title: string;
-  description: string;
-  price_per_night: number;
-  allow_pets: boolean;
-  weekly_discount: boolean;
-  monthly_discount: boolean;
-  min_nights: number;
-  is_active: boolean;
-  start_date: Date | string;
-  end_date: Date | string;
-  rating?: number;
-  rating_amount?: number;
+  id_user: string | any;
+  property_type: string | any;
+  address: string | any;
+  zip_code: string | any;
+  location: string | any;
+  province: string | any;
+  max_guests: number| any;
+  rooms_number: number| any;
+  beds_number: number| any;
+  bathrooms_number: number| any;
+  services: string[] | any;
+  images?: any[] | any;
+  title: string | any;
+  description: string | any;
+  price_per_night: number | any;
+  allow_pets: boolean | any;
+  weekly_discount: boolean | any;
+  monthly_discount: boolean | any;
+  min_nights: number | any;
+  is_active: boolean | any;
+  start_date: Date | string | any;
+  end_date: Date | string | any;
 }
 
 const Form = () => {
@@ -67,8 +67,6 @@ const Form = () => {
     monthly_discount: false,
     min_nights: 0,
     is_active: true,
-    rating: 1,
-    rating_amount: 1,
   });
 
   const nextStep = () => {
@@ -86,7 +84,7 @@ const Form = () => {
     }));
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -97,7 +95,36 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const handlePost = () => {
-    dispatch(postServices(formData));
+
+    const newForm = new FormData()
+    newForm.append('id_user', formData.id_user)
+    newForm.append('property_type', formData.property_type)
+    newForm.append('address', formData.address)
+    newForm.append('zip_code', formData.zip_code)
+    newForm.append('location', formData.location)
+    newForm.append('province', formData.province)
+    newForm.append('max_guests', formData.max_guests)
+    newForm.append('rooms_number', formData.rooms_number)
+    newForm.append('beds_number', formData.beds_number)
+    newForm.append('bathrooms_number', formData.bathrooms_number)
+    newForm.append('services', formData.services)
+    formData.images.forEach((image: any, index: any) => {
+      newForm.append(`image-${index}`, image);
+    })
+    newForm.append('title', formData.title)
+    newForm.append('description', formData.description)
+    newForm.append('price_per_night', formData.price_per_night)
+    newForm.append('start_date', formData.start_date)
+    newForm.append('end_date', formData.end_date)
+    newForm.append('allow_pets', formData.allow_pets)
+    newForm.append('weekly_discount', formData.weekly_discount)
+    newForm.append('monthly_discount', formData.monthly_discount)
+    newForm.append('min_nights', formData.min_nights)
+    newForm.append('is_active', formData.is_active)
+
+
+    
+    dispatch(postServices(newForm));
     console.log("Datos enviados a la base de datos");
     alert("Propiedad Creada");
   };
