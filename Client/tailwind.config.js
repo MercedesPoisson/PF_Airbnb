@@ -14,6 +14,9 @@ export default {
         'cairo-play': ['Cairo Play', 'sans-serif'],
         cairo: ['Cairo', 'sans-serif']
       },
+      height: {
+        "300": "300px",
+      },
     },
   },
   plugins: [],

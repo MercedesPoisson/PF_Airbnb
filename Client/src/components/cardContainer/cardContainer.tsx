@@ -1,4 +1,4 @@
-import Card from "../card/card";
+import Card from "../Card/card";
 
 interface Property {
   id_property: number;
@@ -12,7 +12,7 @@ interface Property {
 
 function CardsContainer({ properties }: { properties: Property[] }) {
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-5 gap-4 ml-4">
       {properties &&
         properties.map(
           ({ id_property, title, location, province, price_per_night, rating, images }) => {
