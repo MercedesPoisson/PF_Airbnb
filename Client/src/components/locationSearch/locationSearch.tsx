@@ -3,11 +3,16 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Select from 'react-select'
 import axios from 'axios';
+import { useLocation, useNavigate } from "react-router-dom";
 
 function LocationSearch() {
 
     const provinces = useSelector((state: any) => state.provinces);
     let orderProvinces = provinces.sort((a: any, b: any) => a.nombre.localeCompare(b.nombre))
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const searchParams = new URLSearchParams(location.search);
     
 
     const [prov, setProv] = useState('');
@@ -21,6 +26,14 @@ function LocationSearch() {
         setProv(selectedOption.value)
         if(selectedOption.value === '') setIsDisabled(true)
         setIsDisabled(false)
+    }
+
+    
+
+    const queryHandler = () => {
+        searchParams.set("province", prov)
+        searchParams.set("page", "0");
+        navigate(`?${searchParams.toString()}`);
     }
 
  
@@ -38,6 +51,7 @@ function LocationSearch() {
                 onChange={handleProvChange} isSearchable={true} 
                 ></Select>
             </div>
+            <button onClick={queryHandler}>Aceptar</button>
             <div>
                 
             </div>
