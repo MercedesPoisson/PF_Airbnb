@@ -26,7 +26,7 @@ const Preview = (props) => {
         </div>
         <div className="flex space-x-4">
           {props.formData.images.map((image, index) => (
-            <img className="h-60" key={index} src={image} alt={`Image ${index}`} />
+            <img className="h-60" key={index} src={URL.createObjectURL(image)} alt={`Image ${index}`} />
           ))}
         </div>
         

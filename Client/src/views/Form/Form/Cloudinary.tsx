@@ -3,7 +3,7 @@ const Cloudinary = (props) => {
     const handleInputChange = (event) => {
         const { name, files } = event.target;
         if (name === "image1" || name === "image2" || name === "image3") {
-          const imagesArray = Array.from(files).map((file) => URL.createObjectURL(file));
+          const imagesArray = Array.from(files).map((file) => file);
           props.setFormData((prevFormData) => ({
             ...prevFormData,
             images: prevFormData.images ? [...prevFormData.images, ...imagesArray] : imagesArray,
