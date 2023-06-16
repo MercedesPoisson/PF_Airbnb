@@ -20,13 +20,12 @@ function Card({title, province, price_per_night, rating, images }: CardProps) {
   return (
     <div className="mt-14">
       <button>
-      <h2>{title}</h2>
-      <h3>{province}</h3>
-      <h3>{price_per_night}</h3>
-      <p>{rating}</p>
+      <h2>Titulo: {title}</h2>
+      <h3>Provincia: {province}</h3>
+      <h3>Precio por noche: {price_per_night}</h3>
+      <p>Puntuacion: {rating}</p>
       {renderImages()} 
       </button>
-           
     </div>
   );
 }

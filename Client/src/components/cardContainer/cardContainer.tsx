@@ -1,4 +1,4 @@
-import Card from "../Card/Card";
+import Card from "../card/card";
 
 interface Property {
     id_property: number,

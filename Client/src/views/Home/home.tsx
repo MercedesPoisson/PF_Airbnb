@@ -1,7 +1,7 @@
 import SearchBar from "../../components/searchBar/searchBar"
-import CardsContainer from "../../components/CardContainer/CardContainer"
+import CardsContainer from "../../components/cardContainer/cardContainer"
 import ScrollToTopButton from "../../components/scrollButton/ScrollToTopButton"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { AnyAction } from "redux";
 import getProperties from "../../redux/actions/getProperties";
@@ -16,9 +16,10 @@ interface Property {
     images: string[];
 }
 
-function Home({properties}: { properties: Property[]}) {
+function Home() {
 
     const dispatch = useDispatch()
+    const properties = useSelector((state: any) => state.properties)
     const querys: string = "page=0"
 
     useEffect(() => {
