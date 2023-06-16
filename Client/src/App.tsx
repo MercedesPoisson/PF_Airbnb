@@ -18,6 +18,7 @@ import MegaForm from './views/Form/MegaForm';
 import Formulario from './views/Form/FormularioPrueba/Formulario';
 import Formu from "../src/views/Form/Form/Form"
 import AutoRender from './views/autoRender/autoRender';
+import Details from './views/detail/detail';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/details/:idProperty" element={<Details />} />
         <Route path="/post" element={<Form/>} />
         <Route path="/post/first" element={<FirstView />} />
         <Route path="/post/types" element={<PropertyType />} />
