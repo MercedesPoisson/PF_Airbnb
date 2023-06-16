@@ -51,7 +51,7 @@ function SearchBar() {
       setShowSearchLocation(!showSearchLocation)
     }
     const handlePostProperty = () => {
-      navigate("/post");
+      navigate("/formulario");
     }
   
     return (
