@@ -25,7 +25,7 @@ interface FormData {
   beds_number: number;
   bathrooms_number: number;
   services: string[];
-  images?: any[];
+  images?: string[];
   title: string;
   description: string;
   price_per_night: number;
@@ -171,8 +171,8 @@ const Form = () => {
           <ServicesCheck
             previousStep={previousStep}
             nextStep={nextStep}
-            handleInputChange={handleInputChange}
             setFormData={setFormData}
+            formData={formData}
           />
         )}
 
