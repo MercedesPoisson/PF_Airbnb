@@ -29,6 +29,9 @@ function Home() {
     
 
     useEffect(() => {
+        if(location.search === '') {
+            navigate(`?page=0`)
+        }
         const fetchData = async () => {
             await dispatch(getProperties(`?${searchParams.toString()}`) as unknown as AnyAction);
         };
