@@ -2,7 +2,7 @@ import SearchBar from "../../components/searchBar/searchBar"
 import CardsContainer from "../../components/cardContainer/cardContainer"
 import ScrollToTopButton from "../../components/scrollButton/ScrollToTopButton"
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AnyAction } from "redux";
 import getProperties from "../../redux/actions/getProperties";
 import { useLocation, useNavigate } from "react-router-dom";
