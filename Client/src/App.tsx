@@ -5,6 +5,7 @@ import Home from "../../Client/src/views/Home/home";
 import Formulario from './views/Form/FormularioPrueba/Formulario';
 import Form from "../src/views/Form/Form/Form"
 import AutoRender from './views/autoRender/autoRender';
+// import Detail from "./views/detail/detail";
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/post" element={<Form/>} />
         <Route path="/formulario" element={<Formulario />} />       
-        {/* <Route path="/property/:id" element={<Detail/>} */}        
+        {/* <Route path="/property/:id" element={<Detail/>} />    */}
       </Routes>  
       <AutoRender/>
     </div>
