@@ -2,7 +2,7 @@ import SearchBar from "../../components/searchBar/searchBar"
 import CardsContainer from "../../components/cardContainer/cardContainer"
 import ScrollToTopButton from "../../components/scrollButton/ScrollToTopButton"
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AnyAction } from "redux";
 import getProperties from "../../redux/actions/getProperties";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -18,15 +18,6 @@ function Home() {
     const searchParams = new URLSearchParams(location.search);
     const currentPage = parseInt(searchParams.get("page") || "0", 10);
 
-    const [querys, setQuerys] = useState(`?page=${currentPage}`);
-    let url = location.search.split('?')
-    let finalURL = ''
-    for(let i = 0; i < url.length; i++){
-        if(i === 0) finalURL += '?'
-        if(i === 1) finalURL += url[i]
-        if(i > 1) finalURL += `&${url[i]}`
-    }
-
     const changeQuery = (increment: number) => {
         // Calcular el nuevo valor de la página
         const newPage = currentPage + increment;
@@ -34,17 +25,18 @@ function Home() {
         // Actualizar el valor del parámetro "page" en la URL
         searchParams.set("page", newPage.toString());
         navigate(`?${searchParams.toString()}`);
-
-        // Actualizar el estado local
-        setQuerys(`?page=${newPage.toString()}`);
     };
+    
 
     useEffect(() => {
+        if(location.search === '') {
+            navigate(`?page=0`)
+        }
         const fetchData = async () => {
-            await dispatch(getProperties(finalURL) as unknown as AnyAction);
+            await dispatch(getProperties(`?${searchParams.toString()}`) as unknown as AnyAction);
         };
         fetchData();
-    }, [dispatch, querys]);
+    }, [dispatch, location]);
 
     return (
         <div>
@@ -53,6 +45,7 @@ function Home() {
             {currentPage > 0 && <button name="Prev" onClick={() => changeQuery(-1)}>{`<--`}</button>}
             <br />
             {currentPage < pages - 1 && <button name="Next" onClick={() => changeQuery(1)}>{`-->`}</button>}
+            <br></br>
             <ScrollToTopButton />
         </div>
     );
