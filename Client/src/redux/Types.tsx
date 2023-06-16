@@ -34,9 +34,14 @@ export interface Service {
     icon: string
 }
 
+interface Province {
+    nombre: string
+}
+
 export interface State {
     services: Service[],
-    properties: Property[]
+    properties: Property[],
+    provinces: Province[]
 }
 
 export interface Action {

@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import Filters from '../filters/filters';
+import LocationSearch from '../locationSearch/locationSearch';
 
 function SearchBar() {
     const [state, setState] = useState([
@@ -19,6 +20,7 @@ function SearchBar() {
     const [showModal, setShowModal] = useState(false);
     const [buttonText, setButtonText] = useState('¿Cuándo?');
     const [showFiltersModal, setShowFiltersModal] = useState(false); // Estado para controlar la visibilidad de la ventana emergente
+    const [showSearchLocation, setShowSearchLocation] = useState(false);
     const navigate = useNavigate();
   
     const handleDateButtonClick = () => {
@@ -45,6 +47,9 @@ function SearchBar() {
     const handleFiltersModalToggle = () => {
       setShowFiltersModal(!showFiltersModal);
     };
+    const handleSearchLocationModalToggle = () => {
+      setShowSearchLocation(!showSearchLocation)
+    }
     const handlePostProperty = () => {
       navigate("/post");
     }
@@ -64,6 +69,7 @@ function SearchBar() {
                 <div className="flex items-center justify-center rounded">
                   <button
                     className="text-black p-3 rounded-l-full bg-white w-48 h-12 border-t border-b border-l border-gray-200 shadow-md font-cairo"
+                    onClick={() => handleSearchLocationModalToggle()}
                   >
                     <i className="fas fa-map-marker-alt text-gray-300 mr-2"></i>¿A dónde vamos?
                   </button>
@@ -249,6 +255,21 @@ function SearchBar() {
           }}
         >
           <Filters />
+        </Modal>
+        <Modal
+          isOpen={showSearchLocation}
+          onRequestClose={handleSearchLocationModalToggle}
+          style={{
+            content: {
+              width: '400px',
+              height: '400px',
+              maxHeight: 'none',
+              margin: '30px auto',
+              padding: '20px'
+          }
+        }}
+        >
+          <LocationSearch/>
         </Modal>
       </div>
     );
