@@ -19,7 +19,13 @@ function Home() {
     const currentPage = parseInt(searchParams.get("page") || "0", 10);
 
     const [querys, setQuerys] = useState(`?page=${currentPage}`);
-    
+    let url = location.search.split('?')
+    let finalURL = ''
+    for(let i = 0; i < url.length; i++){
+        if(i === 0) finalURL += '?'
+        if(i === 1) finalURL += url[i]
+        if(i > 1) finalURL += `&${url[i]}`
+    }
 
     const changeQuery = (increment: number) => {
         // Calcular el nuevo valor de la página
@@ -35,7 +41,7 @@ function Home() {
 
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getProperties(querys) as unknown as AnyAction);
+            await dispatch(getProperties(finalURL) as unknown as AnyAction);
         };
         fetchData();
     }, [dispatch, querys]);
