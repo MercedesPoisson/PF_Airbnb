@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 const QuantityCounter = (props) => {
-  const [ocupantes, setOcupantes] = useState(props.maxGuests);
-  const [dormitorios, setDormitorios] = useState(props.roomsNumber);
-  const [camas, setCamas] = useState(props.bedsNumber);
-  const [banos, setBanos] = useState(props.bathroomsNumber);
+  const [ocupantes, setOcupantes] = useState(1);
+  const [dormitorios, setDormitorios] = useState(1);
+  const [camas, setCamas] = useState(1);
+  const [banos, setBanos] = useState(1);
 
   const handleIncrement = (category) => {
     switch (category) {
@@ -110,7 +110,7 @@ const QuantityCounter = (props) => {
     <div>
       <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto">
         <div>
-          <h2 className="text-2xl font-semibold">Cantidad de personas</h2>
+          <h2 className="text-2xl font-semibold">Agregá algunos datos básicos sobre tu propiedad</h2>
           <p>Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>
         </div>
         <div>

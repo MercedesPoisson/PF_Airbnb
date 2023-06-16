@@ -13,7 +13,7 @@ const FirstView = (props) => {
       </button>
       <button className="bg-transparent border-none rounded-md focus:outline-none mb-4 text-left">
         <span className="font-cairo">2) Hacé que se destaque</span>
-        <p>Agregá al menos 5 fotos más el título y la descripción.</p>
+        <p>Agregá al menos 3 fotos más el título y la descripción.</p>
       </button>
       <button className="bg-transparent border-none rounded-md focus:outline-none mb-4 text-left">
         <span className="font-cairo">3) Terminá todo y publicá el anuncio</span>

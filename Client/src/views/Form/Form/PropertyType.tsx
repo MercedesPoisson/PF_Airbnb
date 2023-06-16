@@ -21,16 +21,15 @@ const PropertyType = (props) => {
           <div className="text-2xl mt-4">
             ¿Cuál de estas opciones describe mejor tu propiedad?
           </div>
-        </div>
-        <div>
+          <div>
             <div>
           <label htmlFor="property_Type_casa">
             <input
               type="checkbox"
               id="property_type_casa"
               name="property_type"
-              value="Casa"
-              checked={props.selectedPropertyType === "Casa"}
+              value="House"
+              checked={props.selectedPropertyType === "House"}
               onChange={handlePropertyTypeChange}
             />
             Casa
@@ -42,8 +41,8 @@ const PropertyType = (props) => {
               type="checkbox"
               id="property_type_departamento"
               name="property_type"
-              value="Departamento"
-              checked={props.selectedPropertyType === "Departamento"}
+              value="Apartment"
+              checked={props.selectedPropertyType === "Apartment"}
               onChange={handlePropertyTypeChange}
             />
             Departamento
@@ -55,14 +54,16 @@ const PropertyType = (props) => {
               type="checkbox"
               id="property_type_habitacion"
               name="property_type"
-              value="Habitación"
-              checked={props.selectedPropertyType === "Habitación"}
+              value="Room"
+              checked={props.selectedPropertyType === "Room"}
               onChange={handlePropertyTypeChange}
             />
             Habitación
           </label>
         </div>
         </div>
+        </div>
+        
         
         <div className="col-span-2 font-cairo-play flex justify-start ml-10">
           <button
