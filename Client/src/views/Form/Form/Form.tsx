@@ -12,6 +12,7 @@ import Preview from "./Preview";
 import postServices from "../../../redux/actions/postProperties";
 import { useDispatch } from "react-redux";
 import Cloudinary from "./Cloudinary";
+import AvailableDates from "./AvailableDates";
 
 interface FormData {
   [x: string]: any;
@@ -60,8 +61,8 @@ const Form = () => {
     title: "",
     description: "",
     price_per_night: 0,
-    start_date: "2023-01-01",
-    end_date: "2023-06-06",
+    start_date: "",
+    end_date: "",
     allow_pets: false,
     weekly_discount: false,
     monthly_discount: false,
@@ -240,13 +241,26 @@ const Form = () => {
         )}
 
         {formData.step === 10 && (
-          <Preview
-            previousStep={previousStep}
-            handlePost={handlePost}
-            formData={formData}
-            setFormData={setFormData}
+          <AvailableDates
+          previousStep={previousStep}
+          nextStep={nextStep}
+          setFormData={setFormData}
           />
+          
         )}
+
+        {formData.step === 11 && (
+          <Preview
+          previousStep={previousStep}
+          handlePost={handlePost}
+          formData={formData}
+          setFormData={setFormData}
+          start_date={formData.start_date} 
+          end_date={formData.end_date} 
+        />
+        )}
+
+        
       </div>
     </>
   );

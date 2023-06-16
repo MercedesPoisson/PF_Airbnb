@@ -18,6 +18,7 @@ const Preview = (props) => {
             <h2>Cantidad Dormitorios: {props.formData.rooms_number}, Catidad de Camas: {props.formData.beds_number}, cantidad de Baños: {props.formData.bathrooms_number}</h2>
             <h4 className="font-bold">Precio por Noche: ${props.formData.price_per_night}</h4>
             <h3>Servicios: {props.formData.services.join(", ")}</h3>
+            <h3>Esta propiedad se encuentra disponible desde: {props.start_date} hasta {props.end_date}</h3>
             {props.formData.weekly_discount || props.formData.monthly_discount ? (
               <h4 className="font-bold font-cairo-play">
                 Esta propiedad ofrece descuentos! {props.formData.weekly_discount}, {props.formData.monthly_discount}
