@@ -5,6 +5,7 @@ import Home from "../../Client/src/views/Home/home";
 import Formulario from './views/Form/FormularioPrueba/Formulario';
 import Form from "../src/views/Form/Form/Form"
 import AutoRender from './views/autoRender/autoRender';
+// import Detail from "./views/detail/detail";
 
 import Details from './views/detail/detail';
 
