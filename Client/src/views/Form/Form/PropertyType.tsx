@@ -1,24 +1,28 @@
 // import { useState } from "react";
 import Validation from "./Validation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const PropertyType = (props) => {
   const [errors, setErrors] = useState({
     propertyType: ""
   });
 
-  const handlePropertyTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    props.handleInputChange(event);
-    props.setSelectedPropertyType(value) ;
-    props.setFormData((prevState) => ({
-      ...prevState,
-      [name]: value, 
-    }));
+  useEffect(() => {
+    // Limpia el mensaje de error cuando se realiza una selección
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: "",
-    }))
+      propertyType: ""
+    }));
+  }, [props.selectedPropertyType]);
+
+  const handlePropertyTypeChange = (event) => {
+    const { name, value } = event.target;
+    props.handleInputChange(event);
+    props.setSelectedPropertyType(value);
+    props.setFormData((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   const validateForm = () => {
@@ -53,49 +57,47 @@ const PropertyType = (props) => {
           </div>
           <div>
             <div>
-          <label htmlFor="property_Type_casa">
-            <input
-              type="checkbox"
-              id="property_type_casa"
-              name="property_type"
-              value="House"
-              checked={props.selectedPropertyType === "House"}
-              onChange={handlePropertyTypeChange}
-            />
-            Casa
-          </label>
+              <label htmlFor="property_Type_casa">
+                <input
+                  type="checkbox"
+                  id="property_type_casa"
+                  name="property_type"
+                  value="House"
+                  checked={props.selectedPropertyType === "House"}
+                  onChange={handlePropertyTypeChange}
+                />
+                Casa
+              </label>
+            </div>
+            <div>
+              <label htmlFor="property_Type_departamento">
+                <input
+                  type="checkbox"
+                  id="property_type_departamento"
+                  name="property_type"
+                  value="Apartment"
+                  checked={props.selectedPropertyType === "Apartment"}
+                  onChange={handlePropertyTypeChange}
+                />
+                Departamento
+              </label>
+            </div>
+            <div>
+              <label htmlFor="property_Type_habitacion">
+                <input
+                  type="checkbox"
+                  id="property_type_habitacion"
+                  name="property_type"
+                  value="Room"
+                  checked={props.selectedPropertyType === "Room"}
+                  onChange={handlePropertyTypeChange}
+                />
+                Habitación
+              </label>
+            </div>
+            <Validation error={errors.propertyType} />
+          </div>
         </div>
-        <div>
-          <label htmlFor="property_Type_departamento">
-            <input
-              type="checkbox"
-              id="property_type_departamento"
-              name="property_type"
-              value="Apartment"
-              checked={props.selectedPropertyType === "Apartment"}
-              onChange={handlePropertyTypeChange}
-            />
-            Departamento
-          </label>
-        </div>
-        <div>
-          <label htmlFor="property_Type_habitacion">
-            <input
-              type="checkbox"
-              id="property_type_habitacion"
-              name="property_type"
-              value="Room"
-              checked={props.selectedPropertyType === "Room"}
-              onChange={handlePropertyTypeChange}
-            />
-            Habitación
-          </label>
-        </div>
-        <Validation error={errors.propertyType} />
-        </div>
-        </div>
-        
-        
         <div className="col-span-2 font-cairo-play flex justify-start ml-10">
           <button
             className="border border-argentina rounded p-1 w-32 mt-4 mr-2"
