@@ -72,7 +72,7 @@ const Location = (props: LocationProps) => {
           </p>
         </div>
         <div className="items-center">
-          <div>
+          <div className="mb-2">
             <div className="relative">
               <input
                 className="pl-8 w-96 h-10 border rounded-md"
@@ -83,7 +83,7 @@ const Location = (props: LocationProps) => {
                 value={props.formData.province}
               />
               <i className="fa fa-location-dot absolute left-2 top-3 text-gray-600"></i>
-              <Validation error={errors.province} />
+              <i className="fa-regular fa-circle-question ml-2 cursor-pointer" title="Por ejemplo: Buenos Aires"></i>
             </div>
           </div>
           <div className="mb-2">
@@ -97,7 +97,7 @@ const Location = (props: LocationProps) => {
                 value={props.formData.location}
               />
               <i className="fa fa-location-dot absolute left-2 top-3 text-gray-600"></i>
-              <Validation error={errors.location} />
+              <i className="fa-regular fa-circle-question ml-2 cursor-pointer" title="Por ejemplo: Palermo"></i>
             </div>
           </div>
           <div className="mb-2">
@@ -111,9 +111,13 @@ const Location = (props: LocationProps) => {
                 value={props.formData.address}
               />
               <i className="fa fa-location-dot absolute left-2 top-3 text-gray-600"></i>
-              <Validation error={errors.address} />
+              <i className="fa-regular fa-circle-question ml-2 cursor-pointer"  title="Por ejemplo: Avenida SiempreViva 742"></i>
             </div>
           </div>
+          <div><Validation error={errors.province} /></div>
+          <div><Validation error={errors.location} /></div>
+          <div><Validation error={errors.address} /></div>
+                    
         </div>
         <div className="col-span-1 font-cairo-play flex justify-start ml-10">
           <button
