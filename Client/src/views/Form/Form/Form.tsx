@@ -123,7 +123,6 @@ const Form = () => {
     newForm.append('min_nights', formData.min_nights)
     newForm.append('is_active', formData.is_active)
 
-
     
     dispatch(postServices(newForm));
     console.log("Datos enviados a la base de datos");
@@ -171,6 +170,8 @@ const Form = () => {
             nextStep={nextStep}
             handleInputChange={handleInputChange}
             selectedPropertyType={formData.property_type}
+            formData={formData}
+            setFormData={setFormData}
           />
         )}
 
@@ -180,6 +181,7 @@ const Form = () => {
             nextStep={nextStep}
             handleInputChange={handleInputChange}
             formData={formData}
+            setFormData={setFormData}
           />
         )}
 
@@ -215,11 +217,11 @@ const Form = () => {
 
         {formData.step === 7 && (
           <TitleAndDescription
-            previousStep={previousStep}
-            nextStep={nextStep}
-            handleInputChange={handleInputChange}
-            formData={formData}
-          />
+          previousStep={previousStep}
+          nextStep={nextStep}
+          formData={formData}
+          setFormData={setFormData}
+        />
         )}
 
         {formData.step === 8 && (

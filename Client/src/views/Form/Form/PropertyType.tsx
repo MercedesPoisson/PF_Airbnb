@@ -1,10 +1,40 @@
 // import { useState } from "react";
+import Validation from "./Validation";
+import { useState } from "react";
 
 const PropertyType = (props) => {
-  const handlePropertyTypeChange = (event) => {
-    const { value } = event.target;
+  const [errors, setErrors] = useState({
+    propertyType: ""
+  });
+
+  const handlePropertyTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
     props.handleInputChange(event);
-    props.setSelectedPropertyType(value);
+    props.setSelectedPropertyType(value) ;
+    props.setFormData((prevState) => ({
+      ...prevState,
+      [name]: value, 
+    }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }))
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    if (props.selectedPropertyType === "") {
+      errors.propertyType = "Debes seleccionar una opción";
+    }
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleNextClick = () => {
+    const isValid = validateForm();
+    if (isValid) {
+      props.nextStep();
+    }
   };
 
   return (
@@ -61,6 +91,7 @@ const PropertyType = (props) => {
             Habitación
           </label>
         </div>
+        <Validation error={errors.propertyType} />
         </div>
         </div>
         
@@ -74,7 +105,7 @@ const PropertyType = (props) => {
           </button>
           <button
             className="border border-argentina rounded p-1 w-32 mt-4"
-            onClick={props.nextStep}
+            onClick={handleNextClick}
           >
             Siguiente
           </button>

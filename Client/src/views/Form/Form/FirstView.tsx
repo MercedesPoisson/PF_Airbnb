@@ -1,4 +1,8 @@
-const FirstView = (props) => {
+interface FirstViewProps {
+  nextStep: () => void;
+}
+
+const FirstView = (props: FirstViewProps) => {
 
     return (
         <div>

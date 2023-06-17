@@ -1,6 +1,15 @@
-const Cloudinary = (props) => {
+import { useState } from "react";
 
+const Cloudinary = (props) => {
+  const [errors, setErrors] = useState({
+        image1: "",
+        image2: "",
+        image3: "",
+       image4: "",
+        image5: "",
+      });
   const handleInputChange = (event) => {
+
     const { name, files } = event.target;
     if (name === "image1" || name === "image2" || name === "image3") {
       const imagesArray = Array.from(files).map((file) => file);
@@ -17,7 +26,7 @@ const Cloudinary = (props) => {
         <div>
           <div className="text-2xl">Paso 2</div>
           <div className="text-2xl">Agregá algunas fotos de tu propiedad</div>
-          <p>Para comenzar vas a necesitar 5 fotos. Podés agregar otras más adelante.</p>
+          <p>Para comenzar vas a necesitar al menos 5 fotos. Podés agregar otras más adelante.</p>
         </div>
         <div>
           <div className="relative">
