@@ -87,7 +87,7 @@ const handleNextClick = () => {
           name="title"
           onChange={handleInputChange}
           value={props.formData.title} />
-          
+          <i className="fa-regular fa-circle-question ml-2 cursor-pointer" title="ejemplo: Full Studio para 2 - Villa Crespo"></i>
         </div>
         
         <div>
@@ -98,7 +98,8 @@ const handleNextClick = () => {
           name="description"
           onChange={handleTextAreaChange}
           value={props.formData.description}></textarea>
-          
+          <i className="fa-regular fa-circle-question ml-2 cursor-pointer" title="ejemplo: Es un monoambiente super amplio y luminoso. Totalmente equipado. Tiene una separación que genera otro ambiente. Tal cual como se ve en las fotos. Está ubicado en Av Estado Israel a metros de Av. Córdoba, zona que está rodeada de cervecerías, centro culturales, outlet de ropa y mucho cosas mas."></i>
+  
         </div>
         <Validation error={errors.title} />
         <Validation error={errors.description} />

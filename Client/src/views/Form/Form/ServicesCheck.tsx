@@ -51,7 +51,9 @@ const ServicesCheck = (props: ServicesCheckProps) => {
             Contale a tus huéspedes todo lo que tu propiedad tiene para ofrecer
           </div>
           <p className="font-cairo">
-            Podés agregar más servicios luego de publicar el anuncio.
+            Podés agregar más servicios luego de publicar el anuncio.  
+            <i className="fa-regular fa-circle-question ml-2 cursor-pointer" title="Podeés elegir todos los servicios que tenga tu propiedad"></i>
+
           </p>
         </div>
         <div>

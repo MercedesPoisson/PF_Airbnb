@@ -117,7 +117,7 @@ const QuantityCounter = (props) => {
           <div className="flex items-center mb-2">
             <label htmlFor="ocupantes">Ocupantes</label>
             <i
-              className="fa-solid fa-minus border rounded-full mx-1"
+              className="fa-solid fa-minus border rounded-full ml-3"
               onClick={() => handleDecrement("ocupantes")}
             ></i>
             <input
@@ -126,16 +126,17 @@ const QuantityCounter = (props) => {
               name="ocupantes"
               value={ocupantes}
               onChange={handleInputChange}
+              className="border rounded-sm p-1 w-24 text-center"
             />
             <i
-              className="fa-solid fa-plus border rounded-full mx-1"
+              className="fa-solid fa-plus border rounded-full mr-3"
               onClick={() => handleIncrement("ocupantes")}
             ></i>
           </div>
           <div className="flex items-center mb-2">
             <label htmlFor="dormitorios">Dormitorios</label>
             <i
-              className="fa-solid fa-minus border rounded-full mx-1"
+              className="fa-solid fa-minus border rounded-full ml-3"
               onClick={() => handleDecrement("dormitorios")}
             ></i>
             <input
@@ -144,33 +145,47 @@ const QuantityCounter = (props) => {
               name="dormitorios"
               value={dormitorios}
               onChange={handleInputChange}
+              className="border rounded-sm p-1 w-24 text-center"
             />
             <i
-              className="fa-solid fa-plus border rounded-full mx-1"
+              className="fa-solid fa-plus border rounded-full mr-3"
               onClick={() => handleIncrement("dormitorios")}
             ></i>
           </div>
           <div className="flex items-center mb-2">
             <label htmlFor="camas">Camas</label>
             <i
-              className="fa-solid fa-minus border rounded-full mx-1"
+              className="fa-solid fa-minus border rounded-full ml-3"
               onClick={() => handleDecrement("camas")}
             ></i>
-            <input type="number" id="camas" name="camas" value={camas} onChange={handleInputChange} />
+            <input 
+            type="number" 
+            id="camas" 
+            name="camas" 
+            value={camas} 
+            onChange={handleInputChange}
+            className="border rounded-sm p-1 w-24 text-center" />
             <i
-              className="fa-solid fa-plus border rounded-full mx-1"
+              className="fa-solid fa-plus border rounded-full mr-3"
               onClick={() => handleIncrement("camas")}
             ></i>
           </div>
           <div className="flex items-center mb-2">
             <label htmlFor="banos">Baños</label>
             <i
-              className="fa-solid fa-minus border rounded-full mx-1"
+              className="fa-solid fa-minus border rounded-full ml-3"
               onClick={() => handleDecrement("banos")}
             ></i>
-            <input type="number" id="banos" name="banos" value={banos} onChange={handleInputChange} />
+            <input 
+            type="number" 
+            id="banos" 
+            name="banos" 
+            value={banos} 
+            onChange={handleInputChange} 
+            className="border rounded-sm p-1 w-24 text-center"/>
+            
             <i
-              className="fa-solid fa-plus border rounded-full mx-1"
+              className="fa-solid fa-plus border rounded-full ml-3"
               onClick={() => handleIncrement("banos")}
             ></i>
           </div>

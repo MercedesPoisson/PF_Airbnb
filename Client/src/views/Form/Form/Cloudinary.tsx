@@ -58,7 +58,8 @@ const Cloudinary = (props) => {
         <div>
           <div className="text-2xl">Paso 2</div>
           <div className="text-2xl">Agregá algunas fotos de tu propiedad</div>
-          <p>Para comenzar vas a necesitar al menos 5 fotos. Podés agregar otras más adelante.</p>
+          <p>Para comenzar vas a necesitar al menos 5 fotos. Podés agregar otras más adelante. <i className="fa-regular fa-circle-question ml-2 cursor-pointer" title="Podés subir fotos en formato .jpg"></i></p>
+
         </div>
         <div>
           <div className="relative">
