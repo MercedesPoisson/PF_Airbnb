@@ -13,6 +13,7 @@ import postServices from "../../../redux/actions/postProperties";
 import { useDispatch } from "react-redux";
 import Cloudinary from "./Cloudinary";
 import AvailableDates from "./AvailableDates";
+import Pets from "./Pets";
 
 interface FormData {
   [x: string]: any;
@@ -243,6 +244,15 @@ const Form = () => {
         )}
 
         {formData.step === 10 && (
+          <Pets
+            previousStep={previousStep}
+            nextStep={nextStep}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        )}
+
+        {formData.step === 11 && (
           <AvailableDates
           previousStep={previousStep}
           nextStep={nextStep}
@@ -251,7 +261,7 @@ const Form = () => {
           
         )}
 
-        {formData.step === 11 && (
+        {formData.step === 12 && (
           <Preview
           previousStep={previousStep}
           handlePost={handlePost}
