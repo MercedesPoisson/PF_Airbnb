@@ -1,10 +1,44 @@
 // import { useState } from "react";
+import Validation from "./Validation";
+import { useState, useEffect } from "react";
 
 const PropertyType = (props) => {
+  const [errors, setErrors] = useState({
+    propertyType: ""
+  });
+
+  useEffect(() => {
+    // Limpia el mensaje de error cuando se realiza una selección
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      propertyType: ""
+    }));
+  }, [props.selectedPropertyType]);
+
   const handlePropertyTypeChange = (event) => {
-    const { value } = event.target;
+    const { name, value } = event.target;
     props.handleInputChange(event);
     props.setSelectedPropertyType(value);
+    props.setFormData((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    if (props.selectedPropertyType === "") {
+      errors.propertyType = "Debes seleccionar una opción";
+    }
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleNextClick = () => {
+    const isValid = validateForm();
+    if (isValid) {
+      props.nextStep();
+    }
   };
 
   return (
@@ -23,48 +57,47 @@ const PropertyType = (props) => {
           </div>
           <div>
             <div>
-          <label htmlFor="property_Type_casa">
-            <input
-              type="checkbox"
-              id="property_type_casa"
-              name="property_type"
-              value="House"
-              checked={props.selectedPropertyType === "House"}
-              onChange={handlePropertyTypeChange}
-            />
-            Casa
-          </label>
+              <label htmlFor="property_Type_casa">
+                <input
+                  type="checkbox"
+                  id="property_type_casa"
+                  name="property_type"
+                  value="House"
+                  checked={props.selectedPropertyType === "House"}
+                  onChange={handlePropertyTypeChange}
+                />
+                Casa
+              </label>
+            </div>
+            <div>
+              <label htmlFor="property_Type_departamento">
+                <input
+                  type="checkbox"
+                  id="property_type_departamento"
+                  name="property_type"
+                  value="Apartment"
+                  checked={props.selectedPropertyType === "Apartment"}
+                  onChange={handlePropertyTypeChange}
+                />
+                Departamento
+              </label>
+            </div>
+            <div>
+              <label htmlFor="property_Type_habitacion">
+                <input
+                  type="checkbox"
+                  id="property_type_habitacion"
+                  name="property_type"
+                  value="Room"
+                  checked={props.selectedPropertyType === "Room"}
+                  onChange={handlePropertyTypeChange}
+                />
+                Habitación
+              </label>
+            </div>
+            <Validation error={errors.propertyType} />
+          </div>
         </div>
-        <div>
-          <label htmlFor="property_Type_departamento">
-            <input
-              type="checkbox"
-              id="property_type_departamento"
-              name="property_type"
-              value="Apartment"
-              checked={props.selectedPropertyType === "Apartment"}
-              onChange={handlePropertyTypeChange}
-            />
-            Departamento
-          </label>
-        </div>
-        <div>
-          <label htmlFor="property_Type_habitacion">
-            <input
-              type="checkbox"
-              id="property_type_habitacion"
-              name="property_type"
-              value="Room"
-              checked={props.selectedPropertyType === "Room"}
-              onChange={handlePropertyTypeChange}
-            />
-            Habitación
-          </label>
-        </div>
-        </div>
-        </div>
-        
-        
         <div className="col-span-2 font-cairo-play flex justify-start ml-10">
           <button
             className="border border-argentina rounded p-1 w-32 mt-4 mr-2"
@@ -74,7 +107,7 @@ const PropertyType = (props) => {
           </button>
           <button
             className="border border-argentina rounded p-1 w-32 mt-4"
-            onClick={props.nextStep}
+            onClick={handleNextClick}
           >
             Siguiente
           </button>

@@ -6,7 +6,7 @@ const QuantityCounter = (props) => {
   const [camas, setCamas] = useState(1);
   const [banos, setBanos] = useState(1);
 
-  const handleIncrement = (category) => {
+  const handleIncrement = (category: string) => {
     switch (category) {
       case "ocupantes":
         if (ocupantes < 10) {
@@ -33,7 +33,7 @@ const QuantityCounter = (props) => {
     }
   };
 
-  const handleDecrement = (category) => {
+  const handleDecrement = (category:string) => {
     switch (category) {
       case "ocupantes":
         if (ocupantes > 1) {
@@ -60,7 +60,7 @@ const QuantityCounter = (props) => {
     }
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === "ocupantes") {
       setOcupantes(parseInt(value));
@@ -110,7 +110,7 @@ const QuantityCounter = (props) => {
     <div>
       <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto">
         <div>
-          <h2 className="text-2xl font-semibold">Agregá algunos datos básicos sobre tu propiedad</h2>
+          <h2 className="text-2xl">Agregá algunos datos básicos sobre tu propiedad</h2>
           <p>Solo vamos a compartir tu dirección exacta una vez confirmada la reserva.</p>
         </div>
         <div>
