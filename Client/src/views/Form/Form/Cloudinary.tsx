@@ -2,21 +2,53 @@ import { useState } from "react";
 
 const Cloudinary = (props) => {
   const [errors, setErrors] = useState({
-        image1: "",
-        image2: "",
-        image3: "",
-       image4: "",
-        image5: "",
-      });
-  const handleInputChange = (event) => {
+    image1: "",
+    image2: "",
+    image3: "",
+    image4: "",
+    image5: "",
+  });
 
+  const handleInputChange = (event) => {
     const { name, files } = event.target;
-    if (name === "image1" || name === "image2" || name === "image3") {
+    if (name === "image1" || name === "image2" || name === "image3" || name === "image4" || name === "image5") {
       const imagesArray = Array.from(files).map((file) => file);
       props.setFormData((prevFormData) => ({
         ...prevFormData,
         images: prevFormData.images ? [...prevFormData.images, ...imagesArray] : imagesArray,
       }));
+    }
+  };
+
+  const handleNextStep = () => {
+    const { images } = props.formData;
+    let newErrors = {
+      image1: "",
+      image2: "",
+      image3: "",
+      image4: "",
+      image5: "",
+    };
+
+    if (images.length < 5) {
+      if (!images[0]) {
+        newErrors.image1 = "Esta imagen es requerida";
+      }
+      if (!images[1]) {
+        newErrors.image2 = "Esta imagen es requerida";
+      }
+      if (!images[2]) {
+        newErrors.image3 = "Esta imagen es requerida";
+      }
+      if (!images[3]) {
+        newErrors.image4 = "Esta imagen es requerida";
+      }
+      if (!images[4]) {
+        newErrors.image5 = "Esta imagen es requerida";
+      }
+      setErrors(newErrors);
+    } else {
+      props.nextStep();
     }
   };
 
@@ -31,7 +63,7 @@ const Cloudinary = (props) => {
         <div>
           <div className="relative">
             <input
-              className="pl-8 w-96 h-10 border rounded-md mb-2"
+              className={`pl-8 w-96 h-10 border rounded-md mb-2 ${errors.image1 && "border-red-500"}`}
               type="file"
               name="image1"
               id="image1"
@@ -39,10 +71,11 @@ const Cloudinary = (props) => {
               onChange={handleInputChange}
               multiple={false}
             />
+            {errors.image1 && <p className="text-red-500">{errors.image1}</p>}
           </div>
           <div className="relative">
             <input
-              className="pl-8 w-96 h-10 border rounded-md mb-2"
+              className={`pl-8 w-96 h-10 border rounded-md mb-2 ${errors.image2 && "border-red-500"}`}
               type="file"
               name="image2"
               id="image2"
@@ -50,10 +83,11 @@ const Cloudinary = (props) => {
               onChange={handleInputChange}
               multiple={false}
             />
+            {errors.image2 && <p className="text-red-500">{errors.image2}</p>}
           </div>
           <div className="relative">
             <input
-              className="pl-8 w-96 h-10 border rounded-md mb-2"
+              className={`pl-8 w-96 h-10 border rounded-md mb-2 ${errors.image3 && "border-red-500"}`}
               type="file"
               name="image3"
               id="image3"
@@ -61,11 +95,11 @@ const Cloudinary = (props) => {
               onChange={handleInputChange}
               multiple={false}
             />
+            {errors.image3 && <p className="text-red-500">{errors.image3}</p>}
           </div>
-
           <div className="relative">
             <input
-              className="pl-8 w-96 h-10 border rounded-md mb-2"
+              className={`pl-8 w-96 h-10 border rounded-md mb-2 ${errors.image4 && "border-red-500"}`}
               type="file"
               name="image4"
               id="image4"
@@ -73,11 +107,11 @@ const Cloudinary = (props) => {
               onChange={handleInputChange}
               multiple={false}
             />
+            {errors.image4 && <p className="text-red-500">{errors.image4}</p>}
           </div>
-
           <div className="relative">
             <input
-              className="pl-8 w-96 h-10 border rounded-md mb-2"
+              className={`pl-8 w-96 h-10 border rounded-md mb-2 ${errors.image5 && "border-red-500"}`}
               type="file"
               name="image5"
               id="image5"
@@ -85,8 +119,8 @@ const Cloudinary = (props) => {
               onChange={handleInputChange}
               multiple={false}
             />
+            {errors.image5 && <p className="text-red-500">{errors.image5}</p>}
           </div>
-
           <div className="relative">
             <input
               className="pl-8 w-96 h-10 border rounded-md mb-2"
@@ -98,7 +132,6 @@ const Cloudinary = (props) => {
               multiple={false}
             />
           </div>
-
           <div className="relative">
             <input
               className="pl-8 w-96 h-10 border rounded-md mb-2"
@@ -113,16 +146,10 @@ const Cloudinary = (props) => {
         </div>
 
         <div className="col-span-1 font-cairo-play flex justify-start ml-10">
-          <button
-            className="border border-argentina rounded p-1 w-32 mt-4 mr-2"
-            onClick={props.previousStep}
-          >
+          <button className="border border-argentina rounded p-1 w-32 mt-4 mr-2" onClick={props.previousStep}>
             Anterior
           </button>
-          <button
-            className="border border-argentina rounded p-1 w-32 mt-4"
-            onClick={props.nextStep}
-          >
+          <button className="border border-argentina rounded p-1 w-32 mt-4" onClick={handleNextStep}>
             Siguiente
           </button>
         </div>

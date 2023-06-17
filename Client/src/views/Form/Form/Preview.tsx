@@ -23,7 +23,7 @@ const Preview = (props) => {
           <h3>Esta propiedad se encuentra disponible desde: {props.start_date} hasta {props.end_date}</h3>
           {props.formData.weekly_discount || props.formData.monthly_discount ? (
             <h4 className="font-bold font-cairo-play">
-              Esta propiedad ofrece descuentos! {props.formData.weekly_discount}, {props.formData.monthly_discount}
+              Esta propiedad ofrece descuentos! {props.formData.weekly_discount} {props.formData.monthly_discount}
             </h4>
           ) : null}
         </div>

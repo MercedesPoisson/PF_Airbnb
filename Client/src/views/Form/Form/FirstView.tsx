@@ -13,11 +13,11 @@ const FirstView = (props: FirstViewProps) => {
     <div className="flex flex-col justify-center">
       <button className="bg-transparent border-none rounded-md focus:outline-none mb-4 text-left">
         <span className="font-cairo">1) Contanos acerca de tu propiedad</span>
-        <p>Compartí datos básicos, como la ubicación y huéspedes pueden quedarse en el lugar.</p>
+        <p>Compartí datos básicos, como la ubicación y cuantos huéspedes pueden quedarse en el lugar.</p>
       </button>
       <button className="bg-transparent border-none rounded-md focus:outline-none mb-4 text-left">
         <span className="font-cairo">2) Hacé que se destaque</span>
-        <p>Agregá al menos 3 fotos más el título y la descripción.</p>
+        <p>Agregá al menos 5 fotos más el título y la descripción.</p>
       </button>
       <button className="bg-transparent border-none rounded-md focus:outline-none mb-4 text-left">
         <span className="font-cairo">3) Terminá todo y publicá el anuncio</span>
