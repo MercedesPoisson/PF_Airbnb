@@ -23,7 +23,7 @@ function Card({ id_property, title, location, province, price_per_night, rating,
   const renderCarousel = () => {
     if (Array.isArray(images) && images.length > 0) {
       return (
-        <div className="carousel-container">
+        <div className="carousel-container ">
           <div >
             <Carousel
               showThumbs={false}
@@ -34,7 +34,7 @@ function Card({ id_property, title, location, province, price_per_night, rating,
             >
               {images.map((image, index) => (
                 <div key={index}>
-                  <img className="carousel-image h-72 object-cover" src={image} alt={`Image ${index}`} />
+                  <img className="carousel-image h-72 object-cover rounded-xl" src={image} alt={`Image ${index}`} />
                 </div>
               ))}
             </Carousel>
@@ -49,29 +49,50 @@ function Card({ id_property, title, location, province, price_per_night, rating,
     }
     return null;
   };
+  console.log(id_property);
 
   return (
-    <div className="mt-14 font-cairo border rounded-md w-80 sm:w-90 md:w-80 lg:w-90">
+    <div className="mt-14 font-cairo border rounded-xl w-80 sm:w-90 md:w-80 lg:w-90 hover:shadow-md ">
       <div className="w-full">
         {renderCarousel()}
-        <Link to={`/propiedad/${id_property}`}>
+        
+        <div className='p-4'>
+          <Link to={`/propiedad/${id_property}`}>
          <button className="justify-between">
-          <h2 className="mb-2 text-left">{truncateTitle(title, 25)}
-             <span>
-              <i className="ml-4 fa-regular fa-star text-argentina" />
-              {rating}
-            </span>
-          </h2>
-          <h3 className="text-left">{location}</h3>
-          <h3 className="text-left"> {province}</h3>
-          <h3 className="text-left">
+          <div className='grid grid-cols-4 w-72'>
+            <div className='col-span-3'>
+              <h2 className="mb-1 text-left">{truncateTitle(title, 25)}</h2>
+              </div>
+          <div className='col-span-1 justify-right'>
+            <i className="ml-3 fa-regular fa-heart text-argentina"></i>
+            </div>
+          </div>
+                     
+          <h3 className="text-left text-base">{location}</h3>
+          <h3 className="text-left text-sm"> {province}</h3>
+          <div className='grid grid-cols-4 w-72'>
+            <div className='col-span-3'>
+              <h3 className="text-left">
             <span className="font-bold">
               $ {price_per_night}
             </span>{" "}
-            precio por noche
+             noche
           </h3>
+            </div>
+            <div className='col-span-1 justify-right'>
+              <span>
+              
+              <i className="ml-4 fa-regular fa-star text-argentina" />
+              {rating}
+            </span>
+            </div>
+            
+          </div>
+          
         </button>
         </Link>
+        </div>
+        
        
       </div>
     </div>

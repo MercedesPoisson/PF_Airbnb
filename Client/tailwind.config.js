@@ -14,6 +14,13 @@ export default {
         'cairo-play': ['Cairo Play', 'sans-serif'],
         cairo: ['Cairo', 'sans-serif']
       },
+      borderRadius: {
+        "r30": "30px",
+      },
+      width: {
+        "w74": "74px",
+        "w76": "76px",        
+      }
     },
   },
   plugins: [],

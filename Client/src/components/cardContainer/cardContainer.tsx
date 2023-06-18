@@ -19,6 +19,7 @@ function CardsContainer({ properties }: { properties: Property[] }) {
             return (
               <div key={id_property}>
                 <Card
+                  id_property={id_property}
                   title={title}
                   location={location}
                   province={province}
