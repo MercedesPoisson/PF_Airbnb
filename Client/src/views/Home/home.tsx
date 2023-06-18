@@ -41,9 +41,9 @@ function Home() {
         <div>
             <SearchBar />
             <CardsContainer properties={properties} />
-            {currentPage > 0 && <button name="Prev" onClick={() => changeQuery(-1)}>{`<--`}</button>}
+            {currentPage > 0 && <button name="Prev" onClick={() => changeQuery(-1)}><i className="fa-solid fa-angles-left text-lg text-argentina"></i></button>}
             <br />
-            {currentPage < pages - 1 && <button name="Next" onClick={() => changeQuery(1)}>{`-->`}</button>}
+            {currentPage < pages - 1 && <button name="Next" onClick={() => changeQuery(1)}><i className="fa-solid fa-angles-right text-lg text-argentina"></i></button>}
             <br></br>
             <ScrollToTopButton />
         </div>

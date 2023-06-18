@@ -128,7 +128,7 @@ const Form = () => {
 
     
     dispatch(postServices(newForm));
-    console.log("Datos enviados a la base de datos");
+    console.log("Datos enviados a la base de datos", formData);
     alert("Propiedad Creada");
   };
 

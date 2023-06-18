@@ -213,8 +213,11 @@ function SearchBar() {
   </div> 
   <div>
                 <button className="flex flex-col items-center justify-center bg-transparent w-28 ml-8" onClick={handleFiltersModalToggle}>
-              <i className="text-argentina text-xl fa-solid fa-sort"></i>
+              <div>
+                <i className="text-argentina text-lg fa-solid a-solid fa-angles-down mr-2"></i><i class="f"></i>
               Más filtros
+              </div>
+              
             </button>
             </div>
 
@@ -247,10 +250,16 @@ function SearchBar() {
           style={{
             content: {
               width: '400px',
-              height: '400px',
+              height: '6650px',
               maxHeight: 'none',
-              margin: '30px auto',
-              padding: '20px'
+              marginTop: '130px',
+              padding: '20px',
+              left: 'calc(100% - 420px)',
+              top: 0,
+              position: "fixed",
+              backgroundColor: "white",
+              zIndex: "100",
+              overflowY: "auto",
             }
           }}
         >

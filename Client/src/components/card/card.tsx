@@ -1,5 +1,6 @@
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Link } from "react-router-dom";
 
 interface CardProps {
   title: string;
@@ -8,9 +9,10 @@ interface CardProps {
   price_per_night: number;
   rating: number;
   images: string[];
+  id_property: number;
 }
 
-function Card({ title, location, province, price_per_night, rating, images }: CardProps) {
+function Card({ id_property, title, location, province, price_per_night, rating, images }: CardProps) {
   const truncateTitle = (text: string, maxLenght: number) => {
     if (text.length > maxLenght) {
       return text.substring(0, maxLenght) + "...";
@@ -21,7 +23,7 @@ function Card({ title, location, province, price_per_night, rating, images }: Ca
   const renderCarousel = () => {
     if (Array.isArray(images) && images.length > 0) {
       return (
-        <div className="carousel-container">
+        <div className="carousel-container ">
           <div >
             <Carousel
               showThumbs={false}
@@ -32,7 +34,7 @@ function Card({ title, location, province, price_per_night, rating, images }: Ca
             >
               {images.map((image, index) => (
                 <div key={index}>
-                  <img className="carousel-image h-72 object-cover" src={image} alt={`Image ${index}`} />
+                  <img className="carousel-image h-72 object-cover rounded-xl" src={image} alt={`Image ${index}`} />
                 </div>
               ))}
             </Carousel>
@@ -47,8 +49,59 @@ function Card({ title, location, province, price_per_night, rating, images }: Ca
     }
     return null;
   };
+  console.log(id_property);
 
-  // const renderImages = () => {
+  return (
+    <div className="mt-14 font-cairo border rounded-xl w-80 sm:w-90 md:w-80 lg:w-90 hover:shadow-md ">
+      <div className="w-full">
+        {renderCarousel()}
+        
+        <div className='p-4'>
+          <Link to={`/propiedad/${id_property}`}>
+         <button className="justify-between">
+          <div className='grid grid-cols-4 w-72'>
+            <div className='col-span-3'>
+              <h2 className="mb-1 text-left">{truncateTitle(title, 25)}</h2>
+              </div>
+          <div className='col-span-1 justify-right'>
+            <i className="ml-3 fa-regular fa-heart text-argentina"></i>
+            </div>
+          </div>
+                     
+          <h3 className="text-left text-base">{location}</h3>
+          <h3 className="text-left text-sm"> {province}</h3>
+          <div className='grid grid-cols-4 w-72'>
+            <div className='col-span-3'>
+              <h3 className="text-left">
+            <span className="font-bold">
+              $ {price_per_night}
+            </span>{" "}
+             noche
+          </h3>
+            </div>
+            <div className='col-span-1 justify-right'>
+              <span>
+              
+              <i className="ml-4 fa-regular fa-star text-argentina" />
+              {rating}
+            </span>
+            </div>
+            
+          </div>
+          
+        </button>
+        </Link>
+        </div>
+        
+       
+      </div>
+    </div>
+  );
+}
+
+export default Card;
+
+// const renderImages = () => {
   //   if (Array.isArray(images) && images.length > 0) {
   //     return (
   //       <div className="flex items-center justify-center">
@@ -62,31 +115,3 @@ function Card({ title, location, province, price_per_night, rating, images }: Ca
   //   }
   //   return null;
   // };
-
-  return (
-    <div className="mt-14 font-cairo border rounded-md h-[300]">
-      <div className="w-full">
-        {renderCarousel()}
-        <button className="justify-between">
-          <h2 className="mb-2 text-left">{truncateTitle(title, 25)}
-             <span>
-              <i className="ml-4 fa-regular fa-star text-argentina" />
-              {rating}
-            </span>
-          </h2>
-          
-          <h3 className="text-left">{location}</h3>
-          <h3 className="text-left"> {province}</h3>
-          <h3 className="text-left">
-            <span className="font-bold">
-              $ {price_per_night}
-            </span>{" "}
-            precio por noche
-          </h3>
-        </button>
-      </div>
-    </div>
-  );
-}
-
-export default Card;
