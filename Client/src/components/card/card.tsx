@@ -1,5 +1,6 @@
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Link } from "react-router-dom";
 
 interface CardProps {
   title: string;
@@ -8,9 +9,10 @@ interface CardProps {
   price_per_night: number;
   rating: number;
   images: string[];
+  id_property: number;
 }
 
-function Card({ title, location, province, price_per_night, rating, images }: CardProps) {
+function Card({ id_property, title, location, province, price_per_night, rating, images }: CardProps) {
   const truncateTitle = (text: string, maxLenght: number) => {
     if (text.length > maxLenght) {
       return text.substring(0, maxLenght) + "...";
@@ -48,7 +50,37 @@ function Card({ title, location, province, price_per_night, rating, images }: Ca
     return null;
   };
 
-  // const renderImages = () => {
+  return (
+    <div className="mt-14 font-cairo border rounded-md w-80 sm:w-90 md:w-80 lg:w-90">
+      <div className="w-full">
+        {renderCarousel()}
+        <Link to={`/propiedad/${id_property}`}>
+         <button className="justify-between">
+          <h2 className="mb-2 text-left">{truncateTitle(title, 25)}
+             <span>
+              <i className="ml-4 fa-regular fa-star text-argentina" />
+              {rating}
+            </span>
+          </h2>
+          <h3 className="text-left">{location}</h3>
+          <h3 className="text-left"> {province}</h3>
+          <h3 className="text-left">
+            <span className="font-bold">
+              $ {price_per_night}
+            </span>{" "}
+            precio por noche
+          </h3>
+        </button>
+        </Link>
+       
+      </div>
+    </div>
+  );
+}
+
+export default Card;
+
+// const renderImages = () => {
   //   if (Array.isArray(images) && images.length > 0) {
   //     return (
   //       <div className="flex items-center justify-center">
@@ -62,31 +94,3 @@ function Card({ title, location, province, price_per_night, rating, images }: Ca
   //   }
   //   return null;
   // };
-
-  return (
-    <div className="mt-14 font-cairo border rounded-md h-[300]">
-      <div className="w-full">
-        {renderCarousel()}
-        <button className="justify-between">
-          <h2 className="mb-2 text-left">{truncateTitle(title, 25)}
-             <span>
-              <i className="ml-4 fa-regular fa-star text-argentina" />
-              {rating}
-            </span>
-          </h2>
-          
-          <h3 className="text-left">{location}</h3>
-          <h3 className="text-left"> {province}</h3>
-          <h3 className="text-left">
-            <span className="font-bold">
-              $ {price_per_night}
-            </span>{" "}
-            precio por noche
-          </h3>
-        </button>
-      </div>
-    </div>
-  );
-}
-
-export default Card;
