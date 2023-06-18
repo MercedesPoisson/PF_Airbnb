@@ -15,11 +15,16 @@ export default {
         cairo: ['Cairo', 'sans-serif']
       },
       borderRadius: {
-        "r30": "30px",
+        "r-30": "30px",
       },
       width: {
         "w74": "74px",
-        "w76": "76px",        
+        "w76": "76px",
+        "w300": "300px",        
+      },
+      height: {
+        "h-300": "300px"
+
       }
     },
   },

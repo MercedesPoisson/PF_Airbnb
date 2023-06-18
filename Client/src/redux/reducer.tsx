@@ -21,7 +21,7 @@ const rootReducer: Reducer<State, Action> = (state = inictialState, { type, payl
         case GET_PROPERTIES:
             return {...state, properties: payload.properties, pages: payload.pagesNumber};
         case GET_PROPERTY_DETAIL:
-            return {...state, detail: payload}
+            return {...state, detail: payload[0]}
         case GET_PROVINCES:
             return {...state, provinces: payload}
         default:
