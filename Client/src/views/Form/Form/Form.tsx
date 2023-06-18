@@ -109,7 +109,9 @@ const Form = () => {
     newForm.append('rooms_number', formData.rooms_number)
     newForm.append('beds_number', formData.beds_number)
     newForm.append('bathrooms_number', formData.bathrooms_number)
-    newForm.append('services', formData.services)
+    formData.services.forEach((service: any) => {
+      newForm.append('services', service)
+    })
     formData.images.forEach((image: any, index: any) => {
       newForm.append(`image-${index}`, image);
     })
