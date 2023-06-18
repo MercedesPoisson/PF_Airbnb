@@ -4,6 +4,7 @@ import getPropertyDetail from "../../redux/actions/getPropertyDetail";
 import { useEffect } from "react";
 import { AnyAction } from "redux";
 import CardDetails from "../../components/detail/CardDetail";
+import NavBar from "../Form/Form/navBar";
 
 
 
@@ -25,6 +26,7 @@ const Details = () => {
 
     return (
     <>
+    <NavBar />
     <CardDetails />
     </>
     )
