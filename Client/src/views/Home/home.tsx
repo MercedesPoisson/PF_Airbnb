@@ -26,16 +26,15 @@ function Home() {
         searchParams.set("page", newPage.toString());
         navigate(`?${searchParams.toString()}`);
     };
+
+    const fetchData = async () => {
+        await dispatch(getProperties(`?${searchParams.toString()}`) as unknown as AnyAction);
+    };
     
 
     useEffect(() => {
-        if(location.search === '') {
-            navigate(`?page=0`)
-        }
-        const fetchData = async () => {
-            await dispatch(getProperties(`?${searchParams.toString()}`) as unknown as AnyAction);
-        };
-        fetchData();
+        if(location.search === '') navigate(`?page=0`)
+        else fetchData()     
     }, [dispatch, location]);
 
     return (

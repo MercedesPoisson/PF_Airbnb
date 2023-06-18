@@ -6,6 +6,7 @@ import NavBar from '../../views/Form/Form/navBar';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
+
 const CardDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
