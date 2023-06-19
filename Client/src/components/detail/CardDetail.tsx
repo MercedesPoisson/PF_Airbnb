@@ -5,6 +5,7 @@ import getPropertyDetail from '../../redux/actions/getPropertyDetail';
 import NavBar from '../../views/Form/Form/navBar';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import Map from "./Map"
 
 const CardDetails = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ const CardDetails = () => {
 //     }  
 //     return null;
 //   };
+console.log('Location:', property.location);
+console.log('Province:', property.province);
+
 
   return (
     <div>
@@ -93,15 +97,7 @@ const CardDetails = () => {
           <p className='mt-3'>{property.description}</p>
         </div>
         <div>
-          <h2>Que ofrece este lugar</h2>
-          <div>
-            {property.services &&
-              property.services.map((service, index) => (
-                <i key={index} className={service.icon}>
-                  {service.name}
-                </i>
-              ))}
-          </div>
+          
           <div className='mt-2'>
           {property.allow_pets && (
             <h3 className="font-semibold">
@@ -114,7 +110,7 @@ const CardDetails = () => {
               <h3 className="font-semibold">
                 Esta propiedad ofrece descuentos{" "}
                 {property.monthly_discount && property.weekly_discount ? (
-                  "en estadías semanales y/o mensuales"
+                  "en estadías semanales y mensuales"
                 ) : property.monthly_discount ? (
                   "en estadías mensuales"
                 ) : (
@@ -124,6 +120,26 @@ const CardDetails = () => {
               </h3>
             ) : null}
           </div>
+          <div>
+          <i className="fa-solid fa-dollar-sign text-argentina mr-1"></i>{property.price_per_night} {" precio por noche"}
+          </div>
+          <div> 
+            <h2 className='mt-1'>Que ofrece esta propiedad</h2>
+            {property.services &&
+              property.services.map((service, index) => (
+                <i key={index} className={service.icon}>
+                  {service.name}
+                </i>
+              ))}
+          </div>
+
+          <div>
+        {property && property.location && property.province && (
+          <div> <Map location={property.location} province={property.province} /></div>
+        )}
+      </div>
+
+
         </div>
       </div>
     )}
