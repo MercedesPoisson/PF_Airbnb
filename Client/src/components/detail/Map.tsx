@@ -26,7 +26,7 @@ const Map = ({ location, province }) => {
     });
   }, [location, province]);
 
-  return <div ref={mapRef} style={{ width: '40%', height: 'calc(50vw / 2)' }} />;
+  return <div ref={mapRef} style={{ width: '85%', height: 'calc(50vw / 2)', borderRadius: '10px' }} />;
 };
 
 export default Map;
