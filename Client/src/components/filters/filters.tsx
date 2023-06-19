@@ -11,15 +11,15 @@ function Filters(props: any) {
   
 
   return (
-    <div>
-      <div className="grid grid-cols-3 border-b pb-1">
+    <div className="bg-white p-2">
+      <div className="grid grid-cols-3 border-b pb-1 ">
         <button className="col-span-1 flex items-center justify-start" onClick={close}>
           <i className="fa-solid fa-xmark text-argentina "></i> 
         </button>
         <h1 className="col-span-2 font-cairo-play mb-3">Filtros Avanzados</h1>
       </div>
 
-      <section className="border-b pb-3">
+      <section className="border-b pb-3 ">
         <h1 className="font-cairo mb-2">Tipo de Propiedad</h1>
         <div className="grid grid-cols-3 gap-1">
           <div className="col-span-1 mb-3">
