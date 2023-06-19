@@ -4,8 +4,8 @@ import Select from 'react-select'
 import axios from 'axios';
 import { Location, useLocation, useNavigate } from "react-router-dom";
 
-function MaxGuestModal () {
-
+function MaxGuestModal (props: any) {
+    const { close } = props
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -27,6 +27,7 @@ function MaxGuestModal () {
     const applyFilter = () => {
         searchParams.set('max_guests', `${maxGuest}`)
         navigate(`?${searchParams.toString()}`)
+        close()
     }
 
     return (
@@ -36,6 +37,7 @@ function MaxGuestModal () {
             options={guestOptions}
             value={maxGuest}
             onChange={maxGuestHandler}
+            placeholder={maxGuest}
             ></Select>
             <button onClick={applyFilter}>Aplicar</button>
         </div>

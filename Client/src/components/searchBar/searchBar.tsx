@@ -270,7 +270,7 @@ function SearchBar() {
             }
           }}
         >
-          <Filters />
+          <Filters close={handleFiltersModalToggle}/>
         </Modal>
         <Modal
           isOpen={showSearchLocation}
@@ -285,7 +285,7 @@ function SearchBar() {
           }
         }}
         >
-          <LocationSearch/>
+          <LocationSearch close={handleSearchLocationModalToggle}/>
         </Modal>
         <Modal
         isOpen={showMaxGuest}
@@ -300,7 +300,7 @@ function SearchBar() {
         }
       }}
         >
-          <MaxGuestModal/>
+          <MaxGuestModal close={handleMaxGuestToggle}/>
         </Modal>
       </div>
     );

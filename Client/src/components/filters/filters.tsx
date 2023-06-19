@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function Filters() {
+function Filters(props: any) {
+  const { close } = props
   const [range, setRange] = useState(1);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -10,7 +11,7 @@ function Filters() {
   return (
     <div>
       <div className="grid grid-cols-3 border-b pb-1">
-        <button className="col-span-1 flex items-center justify-start">
+        <button className="col-span-1 flex items-center justify-start" onClick={close}>
           <i className="fa-solid fa-xmark text-argentina "></i> 
         </button>
         <h1 className="col-span-2 font-cairo-play mb-3">Filtros Avanzados</h1>
