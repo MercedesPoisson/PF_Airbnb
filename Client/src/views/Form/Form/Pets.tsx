@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 const Pets = (props) => {
-  const [acceptsPets, setAcceptsPets] = useState(false);
+  const [allow_pets, setAllowPets] = useState(false);
 
   const handlePetsChange = (event) => {
-    setAcceptsPets(event.target.checked);
+    setAllowPets(event.target.checked);
   };
 
   const handleNextStep = () => {
     props.setFormData((prevState) => ({
       ...prevState,
-      acceptsPets: acceptsPets
+      allow_pets: allow_pets
     }));
     props.nextStep();
   };
@@ -29,7 +29,7 @@ const Pets = (props) => {
           <label className="flex items-center justify-center bg-transparent border border-black rounded-md w-96 mb-2 p-2">
             <input
               type="checkbox"
-              checked={acceptsPets}
+              checked={allow_pets}
               onChange={handlePetsChange}
               className="mr-2"
             />

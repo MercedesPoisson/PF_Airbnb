@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import Filters from '../filters/filters';
 import LocationSearch from '../locationSearch/locationSearch';
+import UserBar from './UserBar';
 
 function SearchBar() {
     const [state, setState] = useState([
@@ -100,7 +101,7 @@ function SearchBar() {
             
             <button className="font-cairo-play mr-4" onClick={handlePostProperty}>Publicá tu Propiedad</button>
             <button className="mr-4">
-              <i className="fa-regular fa-circle-user text-argentina text-xl"></i>
+              <UserBar />
             </button>
           </div>
           <div className="flex items-center col-span-5">
@@ -214,7 +215,7 @@ function SearchBar() {
   <div>
                 <button className="flex flex-col items-center justify-center bg-transparent w-28 ml-8" onClick={handleFiltersModalToggle}>
               <div>
-                <i className="text-argentina text-lg fa-solid a-solid fa-angles-down mr-2"></i><i class="f"></i>
+                <i className="text-argentina text-lg fa-solid a-solid fa-angles-down mr-2"></i>
               Más filtros
               </div>
               
