@@ -67,7 +67,7 @@ function SearchBar() {
     }
   
     return (
-      <div className='sticky top-0'>
+      <div className='sticky top-0 z-0'>
         <div className="grid grid-cols-5 gap-3 h-32 mb-1 bg-white">
           <div className="col-span-1  flex items-center justify-start">
             <div className="flex items-center">
@@ -116,132 +116,133 @@ function SearchBar() {
               <UserBar />
             </button>
           </div>
-          <div className="flex items-center col-span-5">
-  <div>
-    <button>
-      <i className="fa-solid fa-arrow-left text-gray-600 border border-gray-600 rounded-full p-1"></i>
-    </button>
-  </div>
-  <div>
-    <button className="flex flex-col items-center justify-center bg-transparent w-28">
-      <span className="mb-2">
-        <i className="fa-solid fa-house text-gray-600"></i>
-      </span>
-      <span className="text-center font-cairo">Casa</span>
-    </button>
-  </div>
-  <div>
-  <button className="flex flex-col items-center justify-center bg-transparent w-28">
-              <span className="mb-2">
-                <i className="fa-solid fa-building text-gray-600"></i>
-              </span>
-              <span className="text-center font-cairo">Departamento</span>
+          <div className="flex items-center col-span-5 -z-1">
+  
+          <div>
+            <button>
+              <i className="fa-solid fa-arrow-left text-gray-600 border border-gray-600 rounded-full p-1"></i>
             </button>
-  </div>
-  <div>
-  <button className="flex flex-col items-center justify-center bg-transparent w-28">
+          </div>
+          <div>
+            <button className="flex flex-col items-center justify-center bg-transparent w-28">
               <span className="mb-2">
-                <i className="fa-solid fa-bed text-gray-600"></i>
+                <i className="fa-solid fa-house text-gray-600"></i>
               </span>
-              <span className="text-center font-cairo">Habitación</span>
+              <span className="text-center font-cairo">Casa</span>
             </button>
-  </div>
-  <div>
-  <button className="flex flex-col items-center justify-center bg-transparent w-28">
-              <span className="mb-2">
-              <i className="fa-solid fa-umbrella-beach text-gray-600"></i>
-              </span>
-              <span className="text-center font-cairo">Playa</span>
+          </div>
+          <div>
+          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+                      <span className="mb-2">
+                        <i className="fa-solid fa-building text-gray-600"></i>
+                      </span>
+                      <span className="text-center font-cairo">Departamento</span>
+                    </button>
+          </div>
+          <div>
+          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+                      <span className="mb-2">
+                        <i className="fa-solid fa-bed text-gray-600"></i>
+                      </span>
+                      <span className="text-center font-cairo">Habitación</span>
+                    </button>
+          </div>
+          <div>
+          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+                      <span className="mb-2">
+                      <i className="fa-solid fa-umbrella-beach text-gray-600"></i>
+                      </span>
+                      <span className="text-center font-cairo">Playa</span>
+                    </button>
+          </div>
+          <div>
+          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+                      <span className="mb-2">
+                      <i className="fa-solid fa-mountain text-gray-600"></i>
+                      </span>
+                      <span className="text-center font-cairo">Montaña</span>
+                    </button>
+          </div>
+          <div>
+          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+                      <span className="mb-2">
+                      <i className="fa-solid fa-water text-gray-600"></i>
+                      </span>
+                      <span className="text-center font-cairo">Lago</span>
+                    </button>
+          </div>
+          <div>
+          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+                      <span className="mb-2">
+                      <i className="fa-solid fa-person-swimming text-gray-600"></i>
+                      </span>
+                      <span className="text-center font-cairo">Pileta</span>
+                    </button>
+          </div>
+          <div>
+          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+                      <span className="mb-2">
+                      <i className="fa-solid fa-person-skiing text-gray-600"></i>
+                      </span>
+                      <span className="text-center font-cairo">Ski</span>
+                    </button>
+          </div>
+          <div>
+          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+                      <span className="mb-2">
+                      <i className="fa-solid fa-golf-ball-tee text-gray-600"></i>
+                      </span>
+                      <span className="text-center font-cairo">Golf</span>
+                    </button>
+          </div>
+          <div>
+          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+                      <span className="mb-2">
+                      <i className="fa-solid fa-kitchen-set text-gray-600"></i>
+                      </span>
+                      <span className="text-center font-cairo">Cocina</span>
+                    </button>
+          </div>
+          <div>
+          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+                      <span className="mb-2">
+                      <i className="fa-brands fa-accessible-icon text-gray-600"></i>
+                      </span>
+                      <span className="text-center font-cairo">Accesibilidad</span>
+                    </button>
+          </div>
+          <div>
+          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+                      <span className="mb-2">
+                      <i className="fa-solid fa-paw text-gray-600"></i>
+                      </span>
+                      <span className="text-center font-cairo ">Mascotas</span>
+                    </button>
+                    
+          </div>
+          <div>
+            <button>
+              <i className="fa-solid fa-arrow-right text-gray-600 mr-4 border border-gray-600 rounded-full p-1"></i>
             </button>
-  </div>
-  <div>
-  <button className="flex flex-col items-center justify-center bg-transparent w-28">
-              <span className="mb-2">
-              <i className="fa-solid fa-mountain text-gray-600"></i>
-              </span>
-              <span className="text-center font-cairo">Montaña</span>
-            </button>
-  </div>
-  <div>
-  <button className="flex flex-col items-center justify-center bg-transparent w-28">
-              <span className="mb-2">
-              <i className="fa-solid fa-water text-gray-600"></i>
-              </span>
-              <span className="text-center font-cairo">Lago</span>
-            </button>
-  </div>
-  <div>
-  <button className="flex flex-col items-center justify-center bg-transparent w-28">
-              <span className="mb-2">
-              <i className="fa-solid fa-person-swimming text-gray-600"></i>
-              </span>
-              <span className="text-center font-cairo">Pileta</span>
-            </button>
-  </div>
-  <div>
-  <button className="flex flex-col items-center justify-center bg-transparent w-28">
-              <span className="mb-2">
-              <i className="fa-solid fa-person-skiing text-gray-600"></i>
-              </span>
-              <span className="text-center font-cairo">Ski</span>
-            </button>
-  </div>
-  <div>
-  <button className="flex flex-col items-center justify-center bg-transparent w-28">
-              <span className="mb-2">
-              <i className="fa-solid fa-golf-ball-tee text-gray-600"></i>
-              </span>
-              <span className="text-center font-cairo">Golf</span>
-            </button>
-  </div>
-  <div>
-  <button className="flex flex-col items-center justify-center bg-transparent w-28">
-              <span className="mb-2">
-              <i className="fa-solid fa-kitchen-set text-gray-600"></i>
-              </span>
-              <span className="text-center font-cairo">Cocina</span>
-            </button>
-  </div>
-  <div>
-  <button className="flex flex-col items-center justify-center bg-transparent w-28">
-              <span className="mb-2">
-              <i className="fa-brands fa-accessible-icon text-gray-600"></i>
-              </span>
-              <span className="text-center font-cairo">Accesibilidad</span>
-            </button>
-  </div>
-  <div>
-  <button className="flex flex-col items-center justify-center bg-transparent w-28">
-              <span className="mb-2">
-              <i className="fa-solid fa-paw text-gray-600"></i>
-              </span>
-              <span className="text-center font-cairo ">Mascotas</span>
-            </button>
-            
-  </div>
-  <div>
-    <button>
-      <i className="fa-solid fa-arrow-right text-gray-600 mr-4 border border-gray-600 rounded-full p-1"></i>
-    </button>
-  </div> 
-  <div >
-  <button className="flex flex-col items-center justify-center bg-transparent w-28 ml-8" onClick={handleMoreFilters}>
-    <div>
-      <i className="text-argentina text-lg fa-solid a-solid fa-angles-down mr-2"></i>
-      Más filtros
-    </div>
-  </button>
-</div>
-<div className='flex right-0 z-50 mt-24 '>
-  {showFilters && (
-  <div className="absolute right-0 mr-16">
-    <Filters close={handleMoreFilters} />
-  </div>
-)}
-</div>
+          </div> 
+          <div >
+          <button className="flex flex-col items-center justify-center bg-transparent w-28 ml-8" onClick={handleMoreFilters}>
+            <div>
+              <i className="text-argentina text-lg fa-solid a-solid fa-angles-down mr-2"></i>
+              Más filtros
+            </div>
+          </button>
+        </div>
+        <div className='flex right-0 z-50 mt-24 '>
+          {showFilters && (
+          <div className="absolute right-0 mr-16">
+            <Filters close={handleMoreFilters} />
+          </div>
+        )}
+        </div>
 
-</div>
-</div>
+        </div>
+        </div>
 
         <Modal
           isOpen={showModal}
@@ -252,7 +253,9 @@ function SearchBar() {
               height: '400px',
               maxHeight: 'none',
               margin: '30px auto',
-              padding: '20px'
+              padding: '20px',
+              zIndex: "100",
+              marginTop: "100px",
             }
           }}
         >
@@ -261,8 +264,10 @@ function SearchBar() {
             onChange={handleDateRangeChange}
             moveRangeOnFirstSelection={false}
             ranges={state}
+            
           />
         </Modal>
+
         <Modal
           isOpen={showFiltersModal} // Mostrar la ventana emergente de los filtros si showFiltersModal es true
           onRequestClose={handleFiltersModalToggle}
@@ -277,8 +282,10 @@ function SearchBar() {
               top: 0,
               position: "fixed",
               backgroundColor: "white",
-              zIndex: "100",
+              zIndex: "9999",
               overflowY: "auto",
+              
+              
             }
           }}
         >
@@ -293,7 +300,9 @@ function SearchBar() {
               height: '400px',
               maxHeight: 'none',
               margin: '30px auto',
-              padding: '20px'
+              padding: '20px',
+              zIndex: "9999",
+              marginTop: "100px",
           }
         }}
         >
@@ -308,7 +317,9 @@ function SearchBar() {
             height: '400px',
             maxHeight: 'none',
             margin: '30px auto',
-            padding: '20px'
+            padding: '20px',
+            zIndex: "9999",
+            marginTop: "100px",
         }
       }}
         >
