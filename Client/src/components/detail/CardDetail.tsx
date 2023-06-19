@@ -1,18 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import getPropertyDetail from '../../redux/actions/getPropertyDetail';
-import NavBar from '../../views/Form/Form/navBar';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Map from "./Map"
 import Reservas from "./Reservas";
+import UserNavLoged from '../searchBar/UserNavLoged';
 
 const CardDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const property = useSelector((state: any) => state.detail);
   const [ isSaved, SetIsSaved ] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNavigateToHome = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     console.log(id);
@@ -46,7 +51,29 @@ console.log('Province:', property.province);
 
   return (
     <div>
-      <NavBar />
+      <div className="sticky top-0">
+        <div className="grid grid-cols-2 gap-3 h-16 mb-1 bg-white">
+          <div className="col-span-1 flex items-center justify-start">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={handleNavigateToHome}
+            >
+              <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
+              <span className="ml-1 text-argentina font-comfortaa text-lg">
+                argentina
+              </span>
+            </div>
+          </div>
+          <div className="col-span-1 font-cairo-play flex items-center justify-end mr-10">
+            <button className="mr-4">
+              <UserNavLoged />
+            </button>
+            {/* <button className="border border-argentina rounded p-1 w-32">
+              Guardar y Salir
+            </button> */}
+          </div>
+        </div>
+      </div>
 
       <div className='flex items-start justify-between font-cairo ml-10 mr-20'>
   <div>
