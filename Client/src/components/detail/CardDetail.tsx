@@ -127,8 +127,8 @@ console.log('Province:', property.province);
           
           <div> 
             <h2 className='mt-1'>Que ofrece esta propiedad</h2>
-            {property.services &&
-              property.services.map((service, index) => (
+            {property.Services &&
+              property.Services.map((service, index) => (
                 <i key={index} className={service.icon}>
                   {service.name}
                 </i>
