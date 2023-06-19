@@ -20,6 +20,7 @@ function LocationSearch() {
     const [isDisabled, setIsDisabled] = useState(true)
     const [searchValue, setSearchValue] = useState('')
     const [options, setOptions]: any = useState([])
+    
 
 
     const optionProvs = [{ value: '', label: 'Todas las provincias'}, ...orderProvinces.map((prov: any) => {
@@ -29,7 +30,7 @@ function LocationSearch() {
     const handleProvChange = (selectedProv: any) => {
         setProv(selectedProv.value)
         if(selectedProv.value === '') setIsDisabled(true)
-        setIsDisabled(false)
+        else setIsDisabled(false)
     }
 
     const handleCityChange = (selectedCity: any) => {
@@ -95,6 +96,7 @@ function LocationSearch() {
                 options={options}
                 onInputChange={handleInputChange}
                 onChange={handleCityChange}
+                placeholder={city}
                 ></Select>
             </div>
             <button onClick={queryHandler}>Aceptar</button>
