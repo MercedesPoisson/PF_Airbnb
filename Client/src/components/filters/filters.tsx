@@ -8,6 +8,8 @@ function Filters(props: any) {
     setRange(Number(event.target.value));
   };
 
+  
+
   return (
     <div>
       <div className="grid grid-cols-3 border-b pb-1">
