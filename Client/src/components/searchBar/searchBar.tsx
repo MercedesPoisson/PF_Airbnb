@@ -214,7 +214,7 @@ function SearchBar() {
   <div>
                 <button className="flex flex-col items-center justify-center bg-transparent w-28 ml-8" onClick={handleFiltersModalToggle}>
               <div>
-                <i className="text-argentina text-lg fa-solid a-solid fa-angles-down mr-2"></i><i class="f"></i>
+                <i className="text-argentina text-lg fa-solid a-solid fa-angles-down mr-2"></i>
               Más filtros
               </div>
               
