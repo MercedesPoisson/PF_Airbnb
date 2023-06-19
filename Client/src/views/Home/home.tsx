@@ -1,6 +1,6 @@
-import SearchBar from "../../components/searchBar/searchBar"
-import CardsContainer from "../../components/cardContainer/cardContainer"
-import ScrollToTopButton from "../../components/scrollButton/ScrollToTopButton"
+import SearchBar from "../../components/searchBar/searchBar";
+import CardsContainer from "../../components/cardContainer/cardContainer";
+import ScrollToTopButton from "../../components/scrollButton/ScrollToTopButton";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { AnyAction } from "redux";
@@ -39,10 +39,10 @@ function Home() {
 
     return (
         <div>
-            <div style={{ position: 'relative', zIndex: '2' }}>
+            <div style={{ position: 'relative', zIndex: '10000' }}>
                 <SearchBar />
             </div>
-            <div style={{ position: 'relative', zIndex: '1' }}>
+            <div style={{ position: 'relative', zIndex: '-1' }}>
                 <CardsContainer properties={properties} />
             </div>
             {currentPage > 0 && <button name="Prev" onClick={() => changeQuery(-1)}><i className="fa-solid fa-angles-left text-lg text-argentina"></i></button>}
