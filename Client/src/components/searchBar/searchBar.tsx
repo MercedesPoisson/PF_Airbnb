@@ -8,6 +8,7 @@ import Modal from 'react-modal';
 import Filters from '../filters/filters';
 import LocationSearch from '../locationSearch/locationSearch';
 import UserBar from './UserBar';
+import MaxGuestModal from './maxGuestModal';
 
 function SearchBar() {
     const [state, setState] = useState([
@@ -22,6 +23,7 @@ function SearchBar() {
     const [buttonText, setButtonText] = useState('¿Cuándo?');
     const [showFiltersModal, setShowFiltersModal] = useState(false); // Estado para controlar la visibilidad de la ventana emergente
     const [showSearchLocation, setShowSearchLocation] = useState(false);
+    const [showMaxGuest, setShowMaxGuest] = useState(false)
     const navigate = useNavigate();
   
     const handleDateButtonClick = () => {
@@ -50,6 +52,9 @@ function SearchBar() {
     };
     const handleSearchLocationModalToggle = () => {
       setShowSearchLocation(!showSearchLocation)
+    }
+    const handleMaxGuestToggle = () => {
+      setShowMaxGuest(!showMaxGuest)
     }
     const handlePostProperty = () => {
       navigate("/formulario");
@@ -86,7 +91,8 @@ function SearchBar() {
                     {buttonText}
                   </button>
                   <span className="w-px h-6 bg-gray-200"></span>
-                  <button className="text-black p-3 bg-white w-48 h-12 border-t border-b border-gray-200 shadow-md font-cairo">
+                  <button className="text-black p-3 bg-white w-48 h-12 border-t border-b border-gray-200 shadow-md font-cairo"
+                  onClick={() => {handleMaxGuestToggle()}}>
                     <i className="fas fa-users text-gray-300 mr-2 "></i>¿Cuántos somos?
                   </button>
                   <span className="w-px h-6 bg-gray-200"></span>
@@ -280,6 +286,21 @@ function SearchBar() {
         }}
         >
           <LocationSearch/>
+        </Modal>
+        <Modal
+        isOpen={showMaxGuest}
+        onRequestClose={handleMaxGuestToggle}
+        style={{
+          content: {
+            width: '400px',
+            height: '400px',
+            maxHeight: 'none',
+            margin: '30px auto',
+            padding: '20px'
+        }
+      }}
+        >
+          <MaxGuestModal/>
         </Modal>
       </div>
     );
