@@ -22,17 +22,17 @@ const CardDetails = () => {
   const carouselImages = property && property.images ? property.images : [];
   const previewImages = property && property.images ? property.images.slice(0, 4) : [];
 
- const renderServices = () => {
-    if (property && property.services && Array.isArray(property.services)) {
-      return property.services.map((service, index) => (
-        <div key={index} className="flex items-center">
-          <i className={`fa-solid ${service.icon} mr-1`} style={{ fontSize: '0.8em' }} />
-          {service.name}
-        </div>
-      ));
-    }  
-    return null;
-  };
+//  const renderServices = () => {
+//     if (property && property.services && Array.isArray(property.services)) {
+//       return property.services.map((service, index) => (
+//         <div key={index} className="flex items-center">
+//           <i className={`fa-solid ${service.icon} mr-1`} style={{ fontSize: '0.8em' }} />
+//           {service.name}
+//         </div>
+//       ));
+//     }  
+//     return null;
+//   };
 
   return (
     <div>
@@ -89,7 +89,17 @@ const CardDetails = () => {
               <div>
                 <p className=''>{property.description}</p>
               </div>
-              <div>{renderServices()}</div>
+              <div>
+                <h2>Que ofrece este lugar</h2>
+                <div>
+                  {property.services &&
+                    property.services.map((service, index) => (
+                      <i key={index} className={service.icon}>
+                        {service.name}
+                      </i>
+                    ))}
+                </div>
+              </div>
             </div>
           )}
         </div>
