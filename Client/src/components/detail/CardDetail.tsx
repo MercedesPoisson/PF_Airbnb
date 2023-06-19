@@ -1,18 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import getPropertyDetail from '../../redux/actions/getPropertyDetail';
-import NavBar from '../../views/Form/Form/navBar';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Map from "./Map"
 import Reservas from "./Reservas";
+import UserNavLoged from '../searchBar/UserNavLoged';
 
 const CardDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const property = useSelector((state: any) => state.detail);
   const [ isSaved, SetIsSaved ] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNavigateToHome = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     console.log(id);
@@ -46,7 +51,29 @@ console.log('Province:', property.province);
 
   return (
     <div>
-      <NavBar />
+      <div className="sticky top-0">
+        <div className="grid grid-cols-2 gap-3 h-16 mb-1 bg-white">
+          <div className="col-span-1 flex items-center justify-start">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={handleNavigateToHome}
+            >
+              <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
+              <span className="ml-1 text-argentina font-comfortaa text-lg">
+                argentina
+              </span>
+            </div>
+          </div>
+          <div className="col-span-1 font-cairo-play flex items-center justify-end mr-10">
+            <button className="mr-4">
+              <UserNavLoged />
+            </button>
+            {/* <button className="border border-argentina rounded p-1 w-32">
+              Guardar y Salir
+            </button> */}
+          </div>
+        </div>
+      </div>
 
       <div className='flex items-start justify-between font-cairo ml-10 mr-20'>
   <div>
@@ -124,63 +151,63 @@ console.log('Province:', property.province);
               </h3>
             ) : null}
           </div>
-          
-          <div> 
-            <h2 className='mt-1'>Que ofrece esta propiedad</h2>
+          <div className='mt-3'>Servicios incluidos:</div>
+          <div className="grid grid-cols-3 gap-4 mb-2">
             {property.Services &&
               property.Services.map((service, index) => (
-                <i key={index} className={service.icon}>
-                  {service.name}
-                </i>
+                <div key={index} className="flex items-center">
+                  <i className={`${service.icon} mr-2`}></i>
+                  <span>{service.name}</span>
+                </div>
               ))}
           </div>
 
           <div className="flex">
-  <div className="w-1/2">
-    <div className="mt-4">
-      {property && property.location && property.province && (
-        <div>
-          <Map location={property.location} province={property.province} />
-        </div>
-      )}
-    </div>
-  </div>
-  <div className="w-1/2">
-  <div className="border rounded-xl w-96 mt-4 flex items-center justify-center">
-    <div>
-      <div>
-        <i className="fa-solid fa-dollar-sign text-argentina mr-1"></i>
-        {property.price_per_night} {" noche"}
-      </div>
-      <div>
-        <i className="fa-regular fa-star text-argentina" />
-        {property.rating}
-      </div>
-      <div className='mt-3'>
-        <Reservas />
-      </div>
-      <div>
-        <select className='border h-10 w-80 rounded-xl mt-3'>
-          <option disabled selected hidden>Viajeros: 1 huésped</option>
-        </select>
-        <div>
-          <button className="border border-argentina rounded p-1 w-32 mt-3">
-            Reservar
-          </button>
-          <button className="border border-argentina rounded p-1 w-32 mt-3 ml-3">
-            Pagar
-          </button>
-        </div>
-        <div className='text-sm'>No vamos a cobrarte ningún cargo por el momento</div>
+          <div className="w-1/2">
+            <div className="mt-4">
+              {property && property.location && property.province && (
+                <div>
+                  <Map location={property.location} province={property.province} />
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="w-1/2">
+          <div className="border rounded-xl w-96 mt-4 flex items-center justify-center">
+            <div>
+              <div>
+                <i className="fa-solid fa-dollar-sign text-argentina mr-1"></i>
+                {property.price_per_night} {" noche"}
+              </div>
+              <div>
+                <i className="fa-regular fa-star text-argentina" />
+                {property.rating}
+              </div>
+              <div className='mt-3'>
+                <Reservas />
+              </div>
+              <div>
+                <select className='border h-10 w-80 rounded-xl mt-3'>
+                  <option disabled selected hidden>Viajeros: 1 huésped</option>
+                </select>
+                <div>
+                  <button className="border border-argentina rounded p-1 w-32 mt-3">
+                    Reservar
+                  </button>
+                  <button className="border border-argentina rounded p-1 w-32 mt-3 ml-3">
+                    Pagar
+                  </button>
+                </div>
+                <div className='text-sm'>No vamos a cobrarte ningún cargo por el momento</div>
 
-        <div className='mt-6'>espacio para previsualizar, precio* cantidad de noches = total</div>
-        <div>aplican promociones, si o no, total del descuento</div>
-        <div className='mb-16'>muestro total a pagar de cantidad de noches - descuentos</div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+                <div className='mt-6'>espacio para previsualizar, precio* cantidad de noches = total</div>
+                <div>aplican promociones, si o no, total del descuento</div>
+                <div className='mb-16'>muestro total a pagar de cantidad de noches - descuentos</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
           
         </div>
       </div>

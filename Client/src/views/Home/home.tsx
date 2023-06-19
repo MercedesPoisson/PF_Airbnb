@@ -39,8 +39,12 @@ function Home() {
 
     return (
         <div>
-            <SearchBar />
-            <CardsContainer properties={properties} />
+            <div style={{ position: 'relative', zIndex: '2' }}>
+                <SearchBar />
+            </div>
+            <div style={{ position: 'relative', zIndex: '1' }}>
+                <CardsContainer properties={properties} />
+            </div>
             {currentPage > 0 && <button name="Prev" onClick={() => changeQuery(-1)}><i className="fa-solid fa-angles-left text-lg text-argentina"></i></button>}
             <br />
             {currentPage < pages - 1 && <button name="Next" onClick={() => changeQuery(1)}><i className="fa-solid fa-angles-right text-lg text-argentina"></i></button>}

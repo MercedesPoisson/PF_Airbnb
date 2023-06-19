@@ -19,16 +19,22 @@ function SearchBar() {
       }
     ]);
     const [showDateRange, setShowDateRange] = useState(false);
+    const [showFilters, setShowFilters] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [buttonText, setButtonText] = useState('¿Cuándo?');
     const [showFiltersModal, setShowFiltersModal] = useState(false); // Estado para controlar la visibilidad de la ventana emergente
     const [showSearchLocation, setShowSearchLocation] = useState(false);
     const [showMaxGuest, setShowMaxGuest] = useState(false)
+    
     const navigate = useNavigate();
   
     const handleDateButtonClick = () => {
       setShowDateRange(!showDateRange);
     };
+
+    const handleMoreFilters = ()  => {
+      setShowFilters((prevShowFilters) => !prevShowFilters);
+    }
   
     const handleDateRangeChange = (rangesByKey: RangeKeyDict) => {
       const transformedState = Object.values(rangesByKey).map((range) => ({
@@ -218,19 +224,25 @@ function SearchBar() {
       <i className="fa-solid fa-arrow-right text-gray-600 mr-4 border border-gray-600 rounded-full p-1"></i>
     </button>
   </div> 
-  <div>
-                <button className="flex flex-col items-center justify-center bg-transparent w-28 ml-8" onClick={handleFiltersModalToggle}>
-              <div>
-                <i className="text-argentina text-lg fa-solid a-solid fa-angles-down mr-2"></i>
-              Más filtros
-              </div>
-              
-            </button>
-            </div>
-
- 
+  <div >
+  <button className="flex flex-col items-center justify-center bg-transparent w-28 ml-8" onClick={handleMoreFilters}>
+    <div>
+      <i className="text-argentina text-lg fa-solid a-solid fa-angles-down mr-2"></i>
+      Más filtros
+    </div>
+  </button>
 </div>
-        </div>
+<div className='flex right-0 z-50 mt-24 '>
+  {showFilters && (
+  <div className="absolute right-0 mr-16">
+    <Filters close={handleMoreFilters} />
+  </div>
+)}
+</div>
+
+</div>
+</div>
+
         <Modal
           isOpen={showModal}
           onRequestClose={handleModalToggle}

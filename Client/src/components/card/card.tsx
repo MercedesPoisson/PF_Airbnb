@@ -52,7 +52,7 @@ function Card({ id_property, title, location, province, price_per_night, rating,
   console.log(id_property);
 
   return (
-    <div className="mt-14 font-cairo border rounded-xl w-80 sm:w-90 md:w-80 lg:w-90 hover:shadow-md ">
+    <div className="mt-14 font-cairo border rounded-xl w-80 sm:w-90 md:w-80 lg:w-90 hover:shadow-md z-0">
       <div className="w-full">
         {renderCarousel()}
         
