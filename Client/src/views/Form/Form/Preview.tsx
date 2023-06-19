@@ -1,4 +1,11 @@
+const propertyTypeMapping = {
+  House: "Casa",
+  Apartment: "Departamento",
+  Room: "Habitación"
+};
+
 const Preview = (props) => {
+  const translatedPropertyType = propertyTypeMapping[props.formData.property_type];
   return (
     <div>
       <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto">
@@ -10,12 +17,12 @@ const Preview = (props) => {
           <h1 className="font-bold font-cairo-play ">{props.formData.title}</h1>
           <h5>{props.formData.location}, {props.formData.province}</h5>
           <h3>{props.formData.description}</h3>
-          <h3>Tipo de Propiedad: {props.formData.property_type}</h3>
+          <h3>Tipo de Propiedad: {translatedPropertyType}</h3>
           <h2>Cantidad de Huespedes: {props.formData.max_guests}</h2>
           <h2>Cantidad Dormitorios: {props.formData.rooms_number}, Catidad de Camas: {props.formData.beds_number}, cantidad de Baños: {props.formData.bathrooms_number}</h2>
           <h4 className="font-bold">Precio por Noche: ${props.formData.price_per_night}</h4>
           <h3>Servicios: {props.formData.services.join(", ")}</h3>
-          {props.formData.acceptsPets && (
+          {props.formData.allow_pets && (
             <h3 className="font-semibold">
               Podes venir a disfrutar con tu mascota <i className="fa-solid fa-paw ml-2 text-argentina"></i>
             </h3>
