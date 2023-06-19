@@ -5,8 +5,8 @@ import Select from 'react-select'
 import axios from 'axios';
 import { useLocation, useNavigate } from "react-router-dom";
 
-function LocationSearch() {
-
+function LocationSearch(props: any) {
+    const { close } = props
     const provinces = useSelector((state: any) => state.provinces);
     let orderProvinces = provinces.sort((a: any, b: any) => a.nombre.localeCompare(b.nombre))
     const location = useLocation();
@@ -46,6 +46,7 @@ function LocationSearch() {
         if(city.length) searchParams.set("location", city)
         else searchParams.delete("location")
         navigate(`?${searchParams.toString()}`);
+        close()
     }
 
     const fetchData = async () => {
