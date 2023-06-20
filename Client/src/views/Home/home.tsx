@@ -42,7 +42,7 @@ function Home() {
             <div style={{ position: 'relative', zIndex: '10000' }}>
                 <SearchBar />
             </div>
-            <div style={{ position: 'relative', zIndex: '-1' }}>
+            <div style={{ position: 'relative', zIndex: '0' }}>
                 <CardsContainer properties={properties} />
             </div>
             {currentPage > 0 && <button name="Prev" onClick={() => changeQuery(-1)}><i className="fa-solid fa-angles-left text-lg text-argentina"></i></button>}
