@@ -25,9 +25,21 @@ function SearchBar() {
     const [showFiltersModal, setShowFiltersModal] = useState(false); // Estado para controlar la visibilidad de la ventana emergente
     const [showSearchLocation, setShowSearchLocation] = useState(false);
     const [showMaxGuest, setShowMaxGuest] = useState(false)
+    const [orderPrice, setOrderPrice] = useState('');
+
     
     const navigate = useNavigate();
-  
+    
+    const handleOrderClick = (event:any) => {
+      const value = event.target.value;
+      if (value !== undefined) {
+        setOrderPrice(value);
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        urlSearchParams.set('order_price', value);
+        navigate(`?${urlSearchParams.toString()}`);
+      }
+    };
+
     const handleDateButtonClick = () => {
       setShowDateRange(!showDateRange);
     };
@@ -125,8 +137,8 @@ function SearchBar() {
           </div>
 
           <div>
-              <button className="flex flex-col items-center justify-center bg-transparent ml-10 w-28">
-                <span className="mb-2">
+              <button onClick={(event) => handleOrderClick(event)} value="asc" className="flex flex-col items-center justify-center bg-transparent ml-10 w-28">
+                <span  className="mb-2">
                 <i className="fa-solid fa-arrow-down-short-wide text-gray-600"></i>
                 </span>
                 <span className="text-center font-cairo">Menor Precio</span>
@@ -137,7 +149,7 @@ function SearchBar() {
           </div>
 
           <div>
-            <button className="flex flex-col items-center justify-center bg-transparent w-28">
+            <button onClick={(event) => handleOrderClick(event)} value="des" className="flex flex-col items-center justify-center bg-transparent w-28">
               <span className="text-center font-cairo">
             <i className="fa-solid fa-arrow-down-wide-short text-gray-600"></i>
             </span>
