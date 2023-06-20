@@ -11,7 +11,7 @@ const Account = () => {
   };
 
   
-  const handleItemClick = (item) => {
+  const handleItemClick = (item:string) => {
     setSelectedItem(item);
   };
 
@@ -109,19 +109,24 @@ const Account = () => {
         <div className="row-span-4 rounded-xl p-2 border border-argentina hover:shadow">
           <div className="grid grid-cols-2 w-1/4">
             <div ><i className="fa-solid fa-image-portrait text-9xl text-gray-200 mt-2"></i></div>
-            <div className="mt-2 w-3/4 ml-12 ">
-              <p>Nombre y Apellido:</p>
-              <p>Ubicación:</p>
+            <div className="mt-2 w-72 ml-14 ">
+              <p>Nombre y Apellido: Jane Doe</p>
+              <p>Ubicación: Palermo, Buenos Aires</p>
               <p>Teléfono:</p>
               <i className="fa-solid fa-circle-plus text-argentina"></i>
              </div>
           </div>
           </div>
         <div className="bg-gray-300 row-span-6 rounded-xl p-2">Favoritos Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem maxime ut nesciunt accusantium. Nihil quo debitis, maxime beatae eos ipsam nostrum similique voluptatibus ab. Corporis aut dolor iusto tenetur sequi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque a quos voluptatibus impedit est consectetur eum, nisi ipsam inventore eos possimus illo, veniam rem unde velit libero sint mollitia aut. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima a esse delectus quod illum quae nisi odio est quaerat velit, sapiente nostrum nam animi deleniti labore exercitationem voluptatum eius omnis.</div>
-        <div className="bg-gray-200 row-span-2 rounded-xl p-2">Anuncios</div>
+        <div className="bg-gray-200 row-span-2 rounded-xl p-2">
+          <h1 className=" uppercase font-bold ">Anuncios</h1>
+          </div>
         <div className="bg-gray-300 row-span-2 rounded-xl p-2">pagos</div>
         <div className="bg-gray-100 row-span-2 rounded-xl p-2">viajes</div>
-        <div className="bg-gray-400 row-span-2 rounded-xl p-2">mensajes</div>
+        <div className="bg-gray-300 row-span-2 rounded-xl p-2">
+          <h1 className=" uppercase font-bold ">mensajes</h1>
+          <h3>(no tenes mensajes nuevos)</h3>
+          </div>
         </div>
     </div>
   );

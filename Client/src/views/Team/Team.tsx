@@ -1,12 +1,12 @@
-import UserBar from "../../components/searchBar/UserBar";
-import { useNavigate } from "react-router-dom";
+// import UserBar from "../../components/searchBar/UserBar";
+// import { useNavigate } from "react-router-dom";
 import Perfil from "./perfil.png";
 
 const Team = () => {
-    const navigate = useNavigate();
-    const handleNavigateToHome = () => {
-        navigate("/");
-      };
+    // const navigate = useNavigate();
+    // const handleNavigateToHome = () => {
+    //     navigate("/");
+    //   };
     
     return (
         <div>
