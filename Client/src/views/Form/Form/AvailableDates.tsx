@@ -78,6 +78,7 @@ const AvailableDates = (props) => {
 
     const startDate = `${selectedStartYear}-${selectedStartMonth}-${selectedStartDay}`;
     const endDate = `${selectedEndYear}-${selectedEndMonth}-${selectedEndDay}`;
+
     props.setFormData((prevFormData) => ({
       ...prevFormData,
       start_date: startDate,
