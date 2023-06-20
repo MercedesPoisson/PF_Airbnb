@@ -35,7 +35,7 @@ function AutoRender(){
             await dispatch(getProvinces() as unknown as AnyAction);
         };
         fetchData();
-    }, [dispatch, isAuthenticated]);
+    }, [dispatch, isAuthenticated, userId]);
 
     
     return(
