@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { GET_PROPERTIES, GET_PROPERTY_DETAIL, GET_SERVICES, POST_PROPERTIES, GET_PROVINCES } from "./actions/actionsType";
+import { GET_USER, CREATE_USER, GET_PROPERTIES, GET_PROPERTY_DETAIL, GET_SERVICES, POST_PROPERTIES, GET_PROVINCES } from "./actions/actionsType";
 import { State, Action } from "./Types"
 
 
@@ -9,7 +9,8 @@ const inictialState: State = {
     properties: [],
     detail:{},
     pages: 0,
-    provinces: []
+    provinces: [],
+    user: {}
 }
 
 const rootReducer: Reducer<State, Action> = (state = inictialState, { type, payload }) => {
@@ -24,6 +25,10 @@ const rootReducer: Reducer<State, Action> = (state = inictialState, { type, payl
             return {...state, detail: payload[0]}
         case GET_PROVINCES:
             return {...state, provinces: payload}
+        case GET_USER:
+            return {...state, user: payload}
+        case CREATE_USER:
+            return {...state, user: payload}
         default:
             return state;
     }

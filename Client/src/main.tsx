@@ -5,14 +5,29 @@ import App from './App.tsx'
 import './index.css'
 import store from './redux/store.tsx';
 import { Provider } from "react-redux"
+import { Auth0Provider } from '@auth0/auth0-react'
+
+const domain = 'dev-hnmu75yme6gkbvl6.us.auth0.com'
+const clientId = 'CiDF3NCMSgGw2p521DbnysBwaglhJywi'
+
+const currentUrl = window.location.href;
+
 
 ReactDOM.render(
     <BrowserRouter>
-      <Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>
+    <Auth0Provider
+    domain={domain}
+    clientId={clientId}
+    authorizationParams={{
+      redirect_uri: currentUrl
+    }}
+    >
+        <Provider store={store}>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </Provider>
+      </Auth0Provider>
   </BrowserRouter>,
     
   document.getElementById('root')
