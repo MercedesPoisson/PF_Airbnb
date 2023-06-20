@@ -14,7 +14,8 @@ import { useDispatch } from "react-redux";
 import Cloudinary from "./Cloudinary";
 import AvailableDates from "./AvailableDates";
 import Pets from "./Pets";
-import UserNavLoged from "../../../components/searchBar/UserNavLoged";
+import UserMenu from "../../../components/searchBar/UserMenu";
+import { useSelector } from "react-redux";
 
 interface FormData {
   [x: string]: any;
@@ -48,7 +49,7 @@ const Form = () => {
 
   const [formData, setFormData] = useState<FormData>({
     step: 1,
-    id_user: "123123-4444324224-232333",
+    id_user: "",
     property_type: "",
     address: "",
     zip_code: "1234",
@@ -71,6 +72,8 @@ const Form = () => {
     min_nights: 0,
     is_active: true,
   });
+
+  const userId = useSelector((state:any) => state.user.id_user)
 
   const nextStep = () => {
     setFormData((prevFormData) => ({
@@ -100,7 +103,7 @@ const Form = () => {
   const handlePost = () => {
 
     const newForm = new FormData()
-    newForm.append('id_user', formData.id_user)
+    newForm.append('id_user', userId)
     newForm.append('property_type', formData.property_type)
     newForm.append('address', formData.address)
     newForm.append('zip_code', formData.zip_code)
@@ -154,7 +157,7 @@ const Form = () => {
           </div>
           <div className="col-span-1 font-cairo-play flex items-center justify-end mr-10">
             <button className="mr-4">
-            <UserNavLoged />
+            <UserMenu />
             </button>
             <button className="border border-argentina rounded p-1 w-32">
               Guardar y Salir

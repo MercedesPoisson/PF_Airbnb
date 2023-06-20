@@ -1,18 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const UserBar = () => {
-  const navigate = useNavigate();
+const UserBar = ({ handleNavigateToTeam }) => {
+  // const navigate = useNavigate();
+  const { loginWithRedirect } = useAuth0();
   const [showUserBar, setShowUserBar] = useState(false);
-  const { loginWithRedirect, isAuthenticated, logout } = useAuth0()
 
   const handleUserBar = () => {
     setShowUserBar((prevShowUserBar) => !prevShowUserBar);
-  };
-
-  const handleNavigateToTeam = () => {
-    navigate("/ayuda");
   };
 
 
@@ -37,26 +33,20 @@ const UserBar = () => {
             minWidth: "200px",
           }}
         >
-          { !isAuthenticated && 
           <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
-          <a onClick={() => loginWithRedirect()}>Iniciá Sesión</a>
-          </li>}
-          { !isAuthenticated &&
-            <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
+            <a onClick={() => loginWithRedirect()}>Iniciá Sesión</a>
+          </li>
+          <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
             <a href="#">Registrate</a>
-            </li>
-          }
+          </li>
           <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
             <a href="#">Publicá tu Propiedad</a>
           </li>
           <li style={{ padding: "0.5rem 0" }}>
-            <a href="#" onClick={handleNavigateToTeam}>Ayuda</a>
+            <a href="#" onClick={handleNavigateToTeam}>
+              Ayuda
+            </a>
           </li>
-          { isAuthenticated &&
-            <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
-            <a onClick={() => logout({ logoutParams: { returnTo: 'http://localhost:5173'}})}>Cerrar Sesión</a>
-            </li>
-          }
         </ul>
       )}
     </div>

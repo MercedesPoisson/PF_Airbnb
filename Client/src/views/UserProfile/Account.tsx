@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UserNavLoged from "../../components/searchBar/UserNavLoged";
+import UserMenu from "../../components/searchBar/UserMenu";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -97,7 +97,7 @@ const Account = () => {
           </div>
           <div className="col-span-1 font-cairo-play flex items-center justify-end mr-10">
             <button className="mr-4">
-              <UserNavLoged />
+              <UserMenu />
             </button>
             {/* <button className="border border-argentina rounded p-1 w-32">
               Guardar y Salir

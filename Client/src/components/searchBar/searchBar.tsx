@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import Filters from '../filters/filters';
 import LocationSearch from '../locationSearch/locationSearch';
-import UserBar from './UserBar';
+import UserMenu from './UserMenu';
 import MaxGuestModal from './maxGuestModal';
 
 function SearchBar() {
@@ -125,7 +125,7 @@ function SearchBar() {
             
             <button className="font-cairo-play mr-4" onClick={handlePostProperty}>Publicá tu Propiedad</button>
             <button className="mr-4">
-              <UserBar />
+              <UserMenu />
             </button>
           </div>
           <div className="flex items-center col-span-5 -z-1">
