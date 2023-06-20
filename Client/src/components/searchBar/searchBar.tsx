@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import Filters from '../filters/filters';
 import LocationSearch from '../locationSearch/locationSearch';
-import UserBar from './UserBar';
+import UserMenu from './UserMenu';
 import MaxGuestModal from './maxGuestModal';
+import { useAuth0 } from "@auth0/auth0-react";
 
 function SearchBar() {
     const [state, setState] = useState([
@@ -26,6 +27,7 @@ function SearchBar() {
     const [showSearchLocation, setShowSearchLocation] = useState(false);
     const [showMaxGuest, setShowMaxGuest] = useState(false)
     const [orderPrice, setOrderPrice] = useState('');
+    const { loginWithRedirect, isAuthenticated } = useAuth0();
 
     
     const navigate = useNavigate();
@@ -75,8 +77,12 @@ function SearchBar() {
       setShowMaxGuest(!showMaxGuest)
     }
     const handlePostProperty = () => {
-      navigate("/formulario");
-    }
+      if(isAuthenticated) {
+        navigate("/formulario");
+      } else {
+        loginWithRedirect();
+      }
+    };
   
     return (
       <div className='sticky top-0 z-0'>
@@ -125,7 +131,7 @@ function SearchBar() {
             
             <button className="font-cairo-play mr-4" onClick={handlePostProperty}>Publicá tu Propiedad</button>
             <button className="mr-4">
-              <UserBar />
+              <UserMenu />
             </button>
           </div>
           <div className="flex items-center col-span-5 -z-1">

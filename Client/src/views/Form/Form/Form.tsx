@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Cloudinary from "./Cloudinary";
 import AvailableDates from "./AvailableDates";
 import Pets from "./Pets";
-import UserNavLoged from "../../../components/searchBar/UserNavLoged";
+import UserMenu from "../../../components/searchBar/UserMenu";
 
 interface FormData {
   [x: string]: any;
@@ -155,7 +155,7 @@ const Form = () => {
           </div>
           <div className="col-span-1 font-cairo-play flex items-center justify-end mr-10">
             <button className="mr-4">
-            <UserNavLoged />
+            <UserMenu />
             </button>
             <button className="border border-argentina rounded p-1 w-32">
               Guardar y Salir

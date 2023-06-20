@@ -1,23 +1,21 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const UserNavLoged = () => {
+const UserNavLoged = ({ handleNavigateToAccount }) => {
   const [showUserBar, setShowUserBar] = useState(false);
-  const navigate = useNavigate();
+ 
+  const { logout } = useAuth0();
 
   const handleUserLoged = () => {
     setShowUserBar((prevShowUserBar) => !prevShowUserBar);
     console.log("boton clickeado");
   };
 
-  const handleNavigateToAccount = () => {
-    navigate("/usuario/perfil");
-  }
-
   return (
     <div style={{ position: "relative" }}>
       <button className="mr-4" onClick={handleUserLoged}>
-      <i className="fa-regular fa-circle-user text-argentina text-xl"></i>
+        <i className="fa-regular fa-circle-user text-argentina text-xl"></i>
       </button>
 
       {showUserBar && (
@@ -48,13 +46,17 @@ const UserNavLoged = () => {
             <a href="#">Administra tu Anuncio</a>
           </li>
           <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
-            <a href="#" onClick={handleNavigateToAccount}>Cuenta</a>
+            <a href="#" onClick={handleNavigateToAccount}>
+              Cuenta
+            </a>
           </li>
-          <li style={{  padding: "0.5rem 0" }}>
+          <li style={{ padding: "0.5rem 0" }}>
             <a href="#">Ayuda</a>
           </li>
           <li style={{ padding: "0.5rem 0" }}>
-            <a href="#">Cerrar Sessión</a>
+            <a onClick={() => logout({ returnTo: "http://localhost:5173" })}>
+              Cerrar Sesión
+            </a>
           </li>
         </ul>
       )}
