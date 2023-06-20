@@ -123,6 +123,28 @@ function SearchBar() {
               <i className="fa-solid fa-arrow-left text-gray-600 border border-gray-600 rounded-full p-1"></i>
             </button>
           </div>
+
+          <div>
+              <button className="flex flex-col items-center justify-center bg-transparent ml-10 w-28">
+                <span className="mb-2">
+                <i className="fa-solid fa-arrow-down-short-wide text-gray-600"></i>
+                </span>
+                <span className="text-center font-cairo">Menor Precio</span>
+              
+            </button>
+            
+            
+          </div>
+
+          <div>
+            <button className="flex flex-col items-center justify-center bg-transparent w-28">
+              <span className="text-center font-cairo">
+            <i className="fa-solid fa-arrow-down-wide-short text-gray-600"></i>
+            </span>
+          <span className="mt-2 text-center font-cairo">Mayor Precio</span>
+            </button>
+            </div>       
+
           <div>
             <button className="flex flex-col items-center justify-center bg-transparent w-28">
               <span className="mb-2">
@@ -131,14 +153,16 @@ function SearchBar() {
               <span className="text-center font-cairo">Casa</span>
             </button>
           </div>
+
           <div>
           <button className="flex flex-col items-center justify-center bg-transparent w-28">
-                      <span className="mb-2">
-                        <i className="fa-solid fa-building text-gray-600"></i>
-                      </span>
-                      <span className="text-center font-cairo">Departamento</span>
-                    </button>
+              <span className="mb-2">
+                <i className="fa-solid fa-building text-gray-600"></i>
+              </span>
+              <span className="text-center font-cairo">Departamento</span>
+            </button>
           </div>
+
           <div>
           <button className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
@@ -179,22 +203,22 @@ function SearchBar() {
                       <span className="text-center font-cairo">Pileta</span>
                     </button>
           </div>
-          <div>
+          {/* <div>
           <button className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
                       <i className="fa-solid fa-person-skiing text-gray-600"></i>
                       </span>
                       <span className="text-center font-cairo">Ski</span>
                     </button>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
           <button className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
                       <i className="fa-solid fa-golf-ball-tee text-gray-600"></i>
                       </span>
                       <span className="text-center font-cairo">Golf</span>
                     </button>
-          </div>
+          </div> */}
           <div>
           <button className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
@@ -203,14 +227,14 @@ function SearchBar() {
                       <span className="text-center font-cairo">Cocina</span>
                     </button>
           </div>
-          <div>
+          {/* <div>
           <button className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
                       <i className="fa-brands fa-accessible-icon text-gray-600"></i>
                       </span>
                       <span className="text-center font-cairo">Accesibilidad</span>
                     </button>
-          </div>
+          </div> */}
           <div>
           <button className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">

@@ -9,8 +9,8 @@ export default {
     extend: {
       colors: {
         argentina: '#FF385C',
-        dark_purple: "#000235",
-        btn_primary: "#7e7ee3",
+        dark_purple: "#0B2447",
+        btn_primary: "#576CBC",
         heading_color: "#abd9d9"
       },
       fontFamily: {
