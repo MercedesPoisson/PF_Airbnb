@@ -21,13 +21,10 @@ function AutoRender(){
             if(!userId){
                 dispatch(createUser({
                     id_user: user?.sub?.split('|')[1],
-                    name: user?.name,
+                    name: user?.given_name,
                     surname: user?.family_name,
                     email: user?.email,
-                    address: user?.address,
-                    number: 1128018970,
                     image: user?.picture,
-                    gender: 'Male',
                     user_type: 'User',
                     is_active: true
                 }) as unknown as AnyAction)
