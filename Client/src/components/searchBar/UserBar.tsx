@@ -1,11 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserBar = () => {
+  const navigate = useNavigate();
   const [showUserBar, setShowUserBar] = useState(false);
 
   const handleUserBar = () => {
     setShowUserBar((prevShowUserBar) => !prevShowUserBar);
   };
+
+  const handleNavigateToTeam = () => {
+    navigate("/ayuda");
+  };
+
 
   return (
     <div style={{ position: "relative" }}>
@@ -38,7 +45,7 @@ const UserBar = () => {
             <a href="#">Publicá tu Propiedad</a>
           </li>
           <li style={{ padding: "0.5rem 0" }}>
-            <a href="#">Ayuda</a>
+            <a href="#" onClick={handleNavigateToTeam}>Ayuda</a>
           </li>
         </ul>
       )}

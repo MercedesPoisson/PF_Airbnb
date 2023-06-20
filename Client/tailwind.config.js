@@ -9,11 +9,15 @@ export default {
     extend: {
       colors: {
         argentina: '#FF385C',
+        dark_purple: "#000235",
+        btn_primary: "#7e7ee3",
+        heading_color: "#abd9d9"
       },
       fontFamily: {
         comfortaa: ['Comfortaa', 'cursive'],
         'cairo-play': ['Cairo Play', 'sans-serif'],
-        cairo: ['Cairo', 'sans-serif']
+        cairo: ['Cairo', 'sans-serif'],
+        Poppins: "Poppins",
       },
       borderRadius: {
         "r-30": "30px",

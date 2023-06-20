@@ -10,6 +10,7 @@ const Account = () => {
     navigate("/");
   };
 
+  
   const handleItemClick = (item) => {
     setSelectedItem(item);
   };
@@ -105,13 +106,14 @@ const Account = () => {
         </div>
       </div>
       <div className="grid grid-cols-3 grid-rows-6 gap-3 w-4/5 mx-auto font-cairo">
-        <div className="row-span-4 rounded-xl p-2 border border-argentina">
+        <div className="row-span-4 rounded-xl p-2 border border-argentina hover:shadow">
           <div className="grid grid-cols-2 w-1/4">
             <div ><i className="fa-solid fa-image-portrait text-9xl text-gray-200 mt-2"></i></div>
             <div className="mt-2 w-3/4 ml-12 ">
               <p>Nombre y Apellido:</p>
               <p>Ubicación:</p>
               <p>Teléfono:</p>
+              <i className="fa-solid fa-circle-plus text-argentina"></i>
              </div>
           </div>
           </div>
