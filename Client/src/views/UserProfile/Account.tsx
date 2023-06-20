@@ -105,7 +105,7 @@ const Account = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 grid-rows-6 gap-3 w-4/5 mx-auto font-cairo">
+      <div className="grid grid-cols-3 grid-rows-6 gap-3 w-4/5 mx-auto font-cairo mt-10">
         <div className="row-span-4 rounded-xl p-2 border border-argentina hover:shadow">
           <div className="grid grid-cols-2 w-1/4">
             <div ><i className="fa-solid fa-image-portrait text-9xl text-gray-200 mt-2"></i></div>
