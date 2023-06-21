@@ -2,7 +2,7 @@ import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const UserNavLoged = ({ handleNavigateToAccount }) => {
+const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam }) => {
   const [showUserBar, setShowUserBar] = useState(false);
  
   const { logout } = useAuth0();
@@ -51,7 +51,7 @@ const UserNavLoged = ({ handleNavigateToAccount }) => {
             </a>
           </li>
           <li style={{ padding: "0.5rem 0" }}>
-            <a href="#">Ayuda</a>
+            <a href="#" onClick={handleNavigateToTeam}>Ayuda</a>
           </li>
           <li style={{ padding: "0.5rem 0" }}>
             <a onClick={() => logout({ returnTo: "http://localhost:5173" })}>

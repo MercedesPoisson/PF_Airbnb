@@ -33,6 +33,7 @@ const UserMenu = () => {
           showUserMenu={showUserMenu}
           handleNavigateToAccount={handleNavigateToAccount}
           handleLogout={handleLogout}
+          handleNavigateToTeam={handleNavigateToTeam}
         />
       ) : (
         <UserBar
