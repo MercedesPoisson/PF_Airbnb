@@ -49,7 +49,10 @@ const UserNavBar = () => {
                     ? "border-b-2 border-red-500"
                     : "hover:border-b-2 hover:border-red-500"
                 }`}
-                onClick={() => handleItemClick("perfil")}
+                onClick={() => {
+                  handleItemClick("perfil");
+                }}
+                  
               >
                 <a>Mis Viajes</a>
               </li>
@@ -69,7 +72,10 @@ const UserNavBar = () => {
                     ? "border-b-2 border-red-500"
                     : "hover:border-b-2 hover:border-red-500"
                 }`}
-                onClick={() => handleItemClick("perfil")}
+                onClick={() => {
+                  handleItemClick("perfil");
+                  navigate("/usuario/anuncios");
+                }}
               >
                 <a>Mis Anuncios</a>
               </li>
