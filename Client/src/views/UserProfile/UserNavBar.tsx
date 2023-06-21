@@ -10,7 +10,6 @@ const UserNavBar = () => {
     navigate("/");
   };
 
-  
   const handleItemClick = (item:string) => {
     setSelectedItem(item);
   };
@@ -32,15 +31,18 @@ const UserNavBar = () => {
           <div className="col-span-1 flex items-center font-cairo ">
             <ul className="flex gap-6">
             <li
-                className={`cursor-pointer ${
-                  selectedItem === "perfil"
-                    ? "border-b-2 border-red-500"
-                    : "hover:border-b-2 hover:border-red-500"
-                }`}
-                onClick={() => handleItemClick("perfil")}
-              >
-                <a>Perfil</a>
-              </li>
+            className={`cursor-pointer ${
+              selectedItem === "perfil"
+                ? "border-b-2 border-red-500"
+                : "hover:border-b-2 hover:border-red-500"
+            }`}
+            onClick={() => {
+              handleItemClick("perfil");
+              navigate("/usuario/profile");
+            }}
+>
+  <a>Perfil</a>
+</li>
               <li
                 className={`cursor-pointer ${
                   selectedItem === "perfil"
