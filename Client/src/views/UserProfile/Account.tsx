@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const Account = () => {
   const user = useSelector((state:any) => state.user);
   const properties = useSelector((state:any) => state.properties)
-  const userProperties = properties.filter((properties:any) => properties.id_user === user.id_user);
+  const userProperties = properties && properties.filter((property: any) => property.id_user === user.id_user);
 
   return (
     <div>
@@ -33,9 +33,9 @@ const Account = () => {
         <div className="bg-gray-300 row-span-6 rounded-xl p-2">Favoritos Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem maxime ut nesciunt accusantium. Nihil quo debitis, maxime beatae eos ipsam nostrum similique voluptatibus ab. Corporis aut dolor iusto tenetur sequi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque a quos voluptatibus impedit est consectetur eum, nisi ipsam inventore eos possimus illo, veniam rem unde velit libero sint mollitia aut. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima a esse delectus quod illum quae nisi odio est quaerat velit, sapiente nostrum nam animi deleniti labore exercitationem voluptatum eius omnis.</div>
         <div className="border hover:border-argentina row-span-2 rounded-xl p-2">
           <h1 className="uppercase font-bold">Anuncios <i className="fa-solid fa-pen-to-square text-argentina"></i></h1>
-          {userProperties.map((properties:any, index:number) => (
-            <p key={properties.id}>{`${index+1} ${properties.title}`}</p>
-          ))}
+          {userProperties && userProperties.map((properties:any, index:number) => (
+          <p key={properties.id}>{`${index+1} ${properties.title}`}</p>
+        ))}
         </div>
         <div className="bg-gray-300 row-span-2 rounded-xl p-2">pagos</div>
         <div className="bg-gray-100 row-span-2 rounded-xl p-2">viajes</div>
