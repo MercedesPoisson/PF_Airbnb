@@ -10,13 +10,12 @@ const UserNavBar = () => {
     navigate("/");
   };
 
-  
   const handleItemClick = (item:string) => {
     setSelectedItem(item);
   };
     return(
         <div>
-            <div className="sticky top-0">
+            <div className="sticky top-0 z-99">
         <div className="grid grid-cols-3 gap-3 h-16 mb-1 bg-white">
           <div className="col-span-1 flex items-center justify-start">
             <div
@@ -32,22 +31,28 @@ const UserNavBar = () => {
           <div className="col-span-1 flex items-center font-cairo ">
             <ul className="flex gap-6">
             <li
-                className={`cursor-pointer ${
-                  selectedItem === "perfil"
-                    ? "border-b-2 border-red-500"
-                    : "hover:border-b-2 hover:border-red-500"
-                }`}
-                onClick={() => handleItemClick("perfil")}
-              >
-                <a>Perfil</a>
-              </li>
+            className={`cursor-pointer ${
+              selectedItem === "perfil"
+                ? "border-b-2 border-red-500"
+                : "hover:border-b-2 hover:border-red-500"
+            }`}
+            onClick={() => {
+              handleItemClick("perfil");
+              navigate("/usuario/profile");
+            }}
+>
+  <a>Perfil</a>
+</li>
               <li
                 className={`cursor-pointer ${
                   selectedItem === "perfil"
                     ? "border-b-2 border-red-500"
                     : "hover:border-b-2 hover:border-red-500"
                 }`}
-                onClick={() => handleItemClick("perfil")}
+                onClick={() => {
+                  handleItemClick("perfil");
+                }}
+                  
               >
                 <a>Mis Viajes</a>
               </li>
@@ -67,7 +72,10 @@ const UserNavBar = () => {
                     ? "border-b-2 border-red-500"
                     : "hover:border-b-2 hover:border-red-500"
                 }`}
-                onClick={() => handleItemClick("perfil")}
+                onClick={() => {
+                  handleItemClick("perfil");
+                  navigate("/usuario/anuncios");
+                }}
               >
                 <a>Mis Anuncios</a>
               </li>

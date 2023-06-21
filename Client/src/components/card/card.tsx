@@ -10,6 +10,7 @@ interface CardProps {
   rating: number;
   images: string[];
   id_property: number;
+  // showLink:boolean;
 }
 
 function Card({ id_property, title, location, province, price_per_night, rating, images }: CardProps) {
