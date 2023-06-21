@@ -12,15 +12,13 @@ const DateRangePicker = () => {
   const currentDate: Date = new Date();
   const reservedDates: any = [];
 
-  start.setDate(start.getDate() + 1);
-  end.setDate(end.getDate() + 1);
-
   if (start < currentDate) start = currentDate;
 
   for (let i = 0; i < Rents?.length; i++) {
     const rent = Rents[i];
     const startDate = new Date(rent.start_date);
     const endDate = new Date(rent.end_date);
+    endDate.setDate(endDate.getDate() + 1);
     const dateRange = { start: startDate, end: endDate };
 
     reservedDates.push(dateRange);
