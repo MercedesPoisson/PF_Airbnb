@@ -34,7 +34,7 @@ function Home() {
 
     useEffect(() => {
         if(location.search === '') navigate(`?page=0`)
-        else fetchData()     
+        if(location.search.includes("page")) fetchData()    
     }, [dispatch, location]);
 
     return (

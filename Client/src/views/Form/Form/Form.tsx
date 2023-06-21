@@ -10,11 +10,11 @@ import Price from "./Price";
 import Discount from "./discount";
 import Preview from "./Preview";
 import postServices from "../../../redux/actions/postProperties";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Cloudinary from "./Cloudinary";
 import AvailableDates from "./AvailableDates";
 import Pets from "./Pets";
-import UserNavLoged from "../../../components/searchBar/UserNavLoged";
+import UserMenu from "../../../components/searchBar/UserMenu";
 
 interface FormData {
   [x: string]: any;
@@ -45,10 +45,11 @@ interface FormData {
 
 const Form = () => {
   const navigate = useNavigate();
+  const userId = useSelector((state:any) => state.user.id_user);
 
   const [formData, setFormData] = useState<FormData>({
     step: 1,
-    id_user: "123123-4444324224-232333",
+    id_user: userId,
     property_type: "",
     address: "",
     zip_code: "1234",
@@ -154,7 +155,7 @@ const Form = () => {
           </div>
           <div className="col-span-1 font-cairo-play flex items-center justify-end mr-10">
             <button className="mr-4">
-            <UserNavLoged />
+            <UserMenu />
             </button>
             <button className="border border-argentina rounded p-1 w-32">
               Guardar y Salir
