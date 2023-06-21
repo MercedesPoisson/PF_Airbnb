@@ -30,21 +30,9 @@ const CardDetails = () => {
     SetIsSaved(!isSaved)
   }
 
-  // Separar el array de imágenes para el carrusel y la previsualización
   const carouselImages = property && property.images ? property.images : [];
   const previewImages = property && property.images ? property.images.slice(0, 4) : [];
 
-//  const renderServices = () => {
-//     if (property && property.services && Array.isArray(property.services)) {
-//       return property.services.map((service, index) => (
-//         <div key={index} className="flex items-center">
-//           <i className={`fa-solid ${service.icon} mr-1`} style={{ fontSize: '0.8em' }} />
-//           {service.name}
-//         </div>
-//       ));
-//     }  
-//     return null;
-//   };
 console.log('Location:', property.location);
 console.log('Province:', property.province);
 
@@ -165,48 +153,20 @@ console.log('Province:', property.province);
           <div className="flex">
           <div className="w-1/2">
             <div className="mt-4">
-              {property && property.location && property.province && (
+              
+              {property && property.location && property.province && (               
                 <div>
                   <Map location={property.location} province={property.province} />
                 </div>
               )}
             </div>
           </div>
-          <div className="w-1/2">
-          <div className="border rounded-xl w-96 mt-4 flex items-center justify-center">
-            <div>
-              <div>
-                <i className="fa-solid fa-dollar-sign text-argentina mr-1"></i>
-                {property.price_per_night} {" noche"}
-              </div>
-              <div>
-                <i className="fa-regular fa-star text-argentina" />
-                {property.rating}
-              </div>
-              <div className='mt-3'>
-                <Reservas />
-              </div>
-              <div>
-                <select className='border h-10 w-80 rounded-xl mt-3'>
-                  <option disabled selected hidden>Viajeros: 1 huésped</option>
-                </select>
-                <div>
-                  <button className="border border-argentina rounded p-1 w-32 mt-3">
-                    Reservar
-                  </button>
-                  <button className="border border-argentina rounded p-1 w-32 mt-3 ml-3">
-                    Pagar
-                  </button>
-                </div>
-                <div className='text-sm'>No vamos a cobrarte ningún cargo por el momento</div>
-
-                <div className='mt-6'>espacio para previsualizar, precio* cantidad de noches = total</div>
-                <div>aplican promociones, si o no, total del descuento</div>
-                <div className='mb-16'>muestro total a pagar de cantidad de noches - descuentos</div>
-              </div>
+          <div>
+            <Reservas />
             </div>
-          </div>
-        </div>
+
+
+          
         </div>
           
         </div>
