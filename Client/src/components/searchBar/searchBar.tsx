@@ -31,12 +31,12 @@ function SearchBar() {
 
     
     const navigate = useNavigate();
+    const urlSearchParams = new URLSearchParams(window.location.search);
     
     const handleOrderClick = (event:any) => {
       const value = event.target.value;
       if (value !== undefined) {
         setOrderPrice(value);
-        const urlSearchParams = new URLSearchParams(window.location.search);
         urlSearchParams.set('order_price', value);
         navigate(`?${urlSearchParams.toString()}`);
       }
@@ -61,6 +61,9 @@ function SearchBar() {
       const startDateFormatted = transformedState[0].startDate.toLocaleDateString();
       const endDateFormatted = transformedState[0].endDate.toLocaleDateString();
       setButtonText(`${startDateFormatted} - ${endDateFormatted}`);
+      urlSearchParams.set('start_date', transformedState[0].startDate.toISOString().slice(0, 10))
+      urlSearchParams.set('end_date', transformedState[0].endDate.toISOString().slice(0, 10))
+      navigate(`?${urlSearchParams.toString()}`);
     };
   
     const handleModalToggle = () => {
@@ -306,7 +309,8 @@ function SearchBar() {
             onChange={handleDateRangeChange}
             moveRangeOnFirstSelection={false}
             ranges={state}
-            
+            minDate={new Date()}
+            maxDate={new Date('2026-01-01')}
           />
         </Modal>
 
