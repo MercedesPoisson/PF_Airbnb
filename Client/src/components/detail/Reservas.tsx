@@ -1,27 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "react-redux";
 
 const DateRangePicker = () => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
+  const { start_date, end_date, Rents } = useSelector((state: any) => state.detail);
+  let start: Date = new Date(start_date);
+  const end: Date = new Date(end_date);
+  const currentDate: Date = new Date();
+  const reservedDates: any = [];
+
+  if (start < currentDate) start = currentDate;
+
+  for (let i = 0; i < Rents?.length; i++) {
+    const rent = Rents[i];
+    const startDate = new Date(rent.start_date);
+    const endDate = new Date(rent.end_date);
+    endDate.setDate(endDate.getDate() + 1);
+    const dateRange = { start: startDate, end: endDate };
+
+    reservedDates.push(dateRange);
+  }
+
+  useEffect(() => {
+    if (startDate) {
+      setEndDate(null);
+    }
+  }, [startDate]);
+
+  useEffect(() => {
+    if (startDate && endDate) {
+      const selectedRange = { start: startDate, end: endDate };
+      const isReserved = reservedDates.some(
+        (reservedRange: any) =>
+          selectedRange.start <= reservedRange.end && selectedRange.end >= reservedRange.start
+      );
+
+      if (isReserved) {
+        alert("Las fechas seleccionadas ya están reservadas.");
+        setStartDate(null);
+        setEndDate(null);
+      }
+    }
+  }, [startDate, endDate, reservedDates, start, end]);
 
   return (
     <div>
-      <div className="w-1/2">
-          <div className="border rounded-xl w-96 mt-4 flex items-center justify-center">
-            <div>
-              <div>
-                <i className="fa-solid fa-dollar-sign text-argentina mr-1"></i>
-                {property.price_per_night} {" noche"}
-              </div>
-              <div>
-                <i className="fa-regular fa-star text-argentina" />
-                {property.rating}
-              </div>
-              <div className='mt-3'>
-                <DatePicker
+      <DatePicker
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         selectsStart
@@ -45,29 +72,6 @@ const DateRangePicker = () => {
         className="border rounded-md h-10 ml-2"
         excludeDateIntervals={reservedDates}
       />
-              </div>
-              <div>
-                <select className='border h-10 w-80 rounded-xl mt-3'>
-                  <option disabled selected hidden>Viajeros: 1 huésped</option>
-                </select>
-                <div>
-                  <button className="border border-argentina rounded p-1 w-32 mt-3">
-                    Reservar
-                  </button>
-                  <button className="border border-argentina rounded p-1 w-32 mt-3 ml-3">
-                    Pagar
-                  </button>
-                </div>
-                <div className='text-sm'>No vamos a cobrarte ningún cargo por el momento</div>
-
-                <div className='mt-6'>espacio para previsualizar, precio* cantidad de noches = total</div>
-                <div>aplican promociones, si o no, total del descuento</div>
-                <div className='mb-16'>muestro total a pagar de cantidad de noches - descuentos</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      
     </div>
   );
 };
