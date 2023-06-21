@@ -20,7 +20,7 @@ const UserMenu = () => {
   const handleNavigateToAccount = () => {
     navigate("/usuario/perfil");
   };
-
+  
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
   };

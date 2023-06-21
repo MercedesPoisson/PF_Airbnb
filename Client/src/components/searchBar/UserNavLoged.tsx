@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 interface UserNavProps {
@@ -11,10 +11,15 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam }: UserNav
   const [showUserBar, setShowUserBar] = useState(false);
  
   const { logout } = useAuth0();
+  const navigate = useNavigate();
 
   const handleUserLoged = () => {
     setShowUserBar((prevShowUserBar) => !prevShowUserBar);
     console.log("boton clickeado");
+  };
+
+  const handleNavigateToAdd = () => {
+    navigate("/usuario/anuncios");
   };
 
   return (
@@ -48,7 +53,7 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam }: UserNav
             <a href="#">Favoritos</a>
           </li>
           <li style={{ padding: "0.5rem 0" }}>
-            <a href="#">Administra tu Anuncio</a>
+            <a href="#" onClick={handleNavigateToAdd}>Administra tu Anuncio</a>
           </li>
           <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
             <a href="#" onClick={handleNavigateToAccount}>
