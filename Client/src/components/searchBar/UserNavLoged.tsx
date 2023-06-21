@@ -2,7 +2,12 @@ import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam }) => {
+interface UserNavProps {
+  handleNavigateToAccount: () => void;
+  handleNavigateToTeam: () => void;
+}
+
+const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam }: UserNavProps) => {
   const [showUserBar, setShowUserBar] = useState(false);
  
   const { logout } = useAuth0();

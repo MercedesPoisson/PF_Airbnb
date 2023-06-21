@@ -6,7 +6,7 @@ import UserNavLoged from "./UserNavLoged";
 
 const UserMenu = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, logout } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   const handleUserMenu = () => {
@@ -21,24 +21,24 @@ const UserMenu = () => {
     navigate("/usuario/perfil");
   };
 
-  const handleLogout = () => {
-    logout({ returnTo: window.location.origin });
-  };
+//   const handleLogout = () => {
+//     logout({ returnTo: window.location.origin });
+//   };
 
   return (
     <div style={{ position: "relative" }}>
       {isAuthenticated ? (
         <UserNavLoged
-          handleUserMenu={handleUserMenu}
-          showUserMenu={showUserMenu}
+        //   handleUserMenu={handleUserMenu}
+        //   showUserMenu={showUserMenu}
+        //   handleLogout={handleLogout}
           handleNavigateToAccount={handleNavigateToAccount}
-          handleLogout={handleLogout}
           handleNavigateToTeam={handleNavigateToTeam}
         />
       ) : (
         <UserBar
-          handleUserMenu={handleUserMenu}
-          showUserMenu={showUserMenu}
+        //   handleUserMenu={handleUserMenu}
+        //   showUserMenu={showUserMenu}
           handleNavigateToTeam={handleNavigateToTeam}
         />
       )}

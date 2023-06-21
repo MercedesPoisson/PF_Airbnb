@@ -69,7 +69,7 @@ function Filters(props: any) {
         <h1 className="font-cairo mb-2">Tipo de Propiedad</h1>
         <div className="grid grid-cols-3 gap-1">
           <div className="col-span-1 mb-3">
-            <button className={`flex flex-col items-center justify-center bg-transparent border rounded-md focus:outline-none w-28 ${filters.property_type === 'House' ? 'border-red-600' : 'border-black'}`}
+            <button className={`flex flex-col items-center justify-center bg-transparent border rounded-md focus:outline-none w-28 ${filters.property_type === 'House' ? 'border-red-600' : 'border'}`}
             value="House"
             onClick={() => propTypeHandler('House')}>
               <span className="mb-2">
@@ -79,7 +79,7 @@ function Filters(props: any) {
             </button>
           </div>
           <div className="col-span-1">
-            <button className={`flex flex-col items-center justify-center bg-transparent border rounded-md focus:outline-none w-28 ${filters.property_type === 'Apartment' ? 'border-red-600' : 'border-black'}`}
+            <button className={`flex flex-col items-center justify-center bg-transparent border rounded-md focus:outline-none w-28 ${filters.property_type === 'Apartment' ? 'border-red-600' : 'border'}`}
             value="Apartment"
             onClick={() => propTypeHandler('Apartment')}>
               <span className="mb-2">
@@ -89,7 +89,7 @@ function Filters(props: any) {
             </button>
           </div>
           <div className="col-span-1">
-            <button className={`flex flex-col items-center justify-center bg-transparent border rounded-md focus:outline-none w-28 ${filters.property_type === 'Room' ? 'border-red-600' : 'border-black'}`}
+            <button className={`flex flex-col items-center justify-center bg-transparent border rounded-md focus:outline-none w-28 ${filters.property_type === 'Room' ? 'border-red-600' : 'border'}`}
             value="Room"
             onClick={() => propTypeHandler('Room')}>
               <span className="mb-2">
@@ -105,8 +105,8 @@ function Filters(props: any) {
         <div className="flex flex-col mb-3">
           <h1 className="font-cairo mb-1">Rango de Precios</h1>
           <div className="flex items-center justify-left gap-4">
-            <div className="flex gap-1"><label>Min</label><input className="border border-black rounded-xl w-12" onChange={(e) => minMaxHandler('Min', e)}/></div>
-            <div className="flex gap-1"><label>Max</label><input className="border border-black rounded-xl w-12" onChange={(e) => minMaxHandler('Max', e)}/></div>
+            <div className="flex gap-1"><label>Min</label><input className="border rounded-xl w-16" onChange={(e) => minMaxHandler('Min', e)}/></div>
+            <div className="flex gap-1"><label>Max</label><input className="border rounded-xl w-16" onChange={(e) => minMaxHandler('Max', e)}/></div>
           </div>
         </div>
       </section>
@@ -116,34 +116,34 @@ function Filters(props: any) {
         <div>
           <div>Dormitorios</div>
           <div className="flex items-center">
-            <button className="border border-black rounded-xl focus:outline-none w-24 mr-2">cualquiera</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">1</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">2</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">3</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">4</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">5+</button>
+            <button className="border rounded-xl focus:outline-none w-24 mr-2">cualquiera</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">1</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">2</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">3</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">4</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">5+</button>
           </div>
         </div>
         <div>
           <div>Camas</div>
           <div className="flex items-center">
-            <button className="border border-black rounded-xl focus:outline-none w-24 mr-2">cualquiera</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">1</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">2</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">3</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">4</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">5+</button>
+            <button className="border rounded-xl focus:outline-none w-24 mr-2">cualquiera</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">1</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">2</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">3</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">4</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">5+</button>
           </div>
         </div>
         <div>
           <div>Baños</div>
           <div className="flex items-center mb-3">
-            <button className="border border-black rounded-xl focus:outline-none w-24 mr-2">cualquiera</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">1</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">2</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">3</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">4</button>
-            <button className="border border-black rounded-xl focus:outline-none w-6 mr-2">5+</button>
+            <button className="border rounded-xl focus:outline-none w-24 mr-2">cualquiera</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">1</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">2</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">3</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">4</button>
+            <button className="border rounded-xl focus:outline-none w-6 mr-2">5+</button>
           </div>
         </div>
       </section>
@@ -206,6 +206,7 @@ function Filters(props: any) {
 
       <div className="pt-2">
         <button className="border border-argentina rounded-md focus:outline-none w-32 font-cairo" onClick={setQuery}>Aplicar Filtros</button>
+        <button className="border border-argentina rounded-md focus:outline-none w-32 font-cairo ml-4" >Limpiar</button>
       </div>
     </div>
   );
