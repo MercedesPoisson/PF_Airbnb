@@ -50,7 +50,11 @@ const Profile  = () => {
     return (
         <div className="font-cairo">
       <UserNavBar />
-      <div className="ml-10 mt-10 font-cairo-play">Hola, {name} bienvenida/o/x a tu perfil de usuaria/o/x</div>
+      <div className="ml-10 mt-10 font-cairo-play">
+      <div className="ml-10 mt-10 font-cairo-play">
+        {name ? `Hola, ${name}!` : "PERFIL"}
+      </div>
+      </div>
       <div className="grid grid-cols-12 gap-1 w-3/6 ml-10 mt-8">
         <div className="col-span-3 flex items-center justify-center">
           {user.image ? (
