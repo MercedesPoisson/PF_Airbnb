@@ -2,8 +2,8 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange, RangeKeyDict } from 'react-date-range';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Modal from 'react-modal';
 import Filters from '../filters/filters';
 import LocationSearch from '../locationSearch/locationSearch';
@@ -31,7 +31,22 @@ function SearchBar() {
 
     
     const navigate = useNavigate();
+    const location = useLocation();
     const urlSearchParams = new URLSearchParams(window.location.search);
+
+    useEffect(() => {
+      const urlSearchParams = new URLSearchParams(window.location.search);
+      const startDate = urlSearchParams.get('start_date');
+      const endDate = urlSearchParams.get('end_date');
+      if (!startDate || !endDate) {
+        setButtonText('¿Cuándo?');
+        setState([{ startDate: new Date(), endDate: new Date(), key: 'selection' }]);
+      } else {
+        const startDateFormatted = new Date(startDate).toLocaleDateString();
+        const endDateFormatted = new Date(endDate).toLocaleDateString();
+        setButtonText(`${startDateFormatted} - ${endDateFormatted}`);
+      }
+    }, [location]);
     
     const handleOrderClick = (event:any) => {
       console.log("Hace click");
