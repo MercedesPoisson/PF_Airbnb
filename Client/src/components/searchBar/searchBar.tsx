@@ -34,6 +34,8 @@ function SearchBar() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     
     const handleOrderClick = (event:any) => {
+      console.log("Hace click");
+      
       const value = event.target.value;
       if (value !== undefined) {
         setOrderPrice(value);
