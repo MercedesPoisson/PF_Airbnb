@@ -27,6 +27,12 @@ const Location = (props: LocationProps) => {
   const [selectedProvince, setSelectedProvince] = useState<{ value: string; label: string } | null>(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [searchValue, setSearchValue] = useState("");
+  const [errors, setErrors] = useState({
+    province: "",
+    location: "",
+    address: "",
+    zip_code: "",
+  });
 
   useEffect(() => {
     const fetchProvinces = async () => {
@@ -90,6 +96,42 @@ const Location = (props: LocationProps) => {
     }));
   };
 
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = { ...errors };
+  
+    if (!selectedProvince) {
+      newErrors.province = "Debes seleccionar una provincia";
+      valid = false;
+    } else {
+      newErrors.province = "";
+    }
+  
+    if (!selectedLocation) {
+      newErrors.location = "Debes seleccionar una localidad";
+      valid = false;
+    } else {
+      newErrors.location = "";
+    }
+  
+    if (!props.formData.address) {
+      newErrors.address = "Debes ingresar una dirección";
+      valid = false;
+    } else {
+      newErrors.address = "";
+    }
+  
+    if (!props.formData.zip_code) {
+      newErrors.zip_code = "Debes ingresar un código postal";
+      valid = false;
+    } else {
+      newErrors.zip_code = "";
+    }
+  
+    setErrors(newErrors);
+    return valid;
+  };
+
   return (
     <div>
       <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto ">
@@ -101,6 +143,7 @@ const Location = (props: LocationProps) => {
           </p>
         </div>
         <div className="items-center">
+        
           <div className="mb-2">
             <div className="relative">
               <Select
@@ -110,6 +153,9 @@ const Location = (props: LocationProps) => {
                 placeholder="Selecciona una provincia"
               />
             </div>
+            {errors.province && (
+              <div className="text-red-500 text-sm">{errors.province}</div>
+            )}
           </div>
           <div className="mb-2">
             <div className="relative">
@@ -123,6 +169,9 @@ const Location = (props: LocationProps) => {
                 placeholder="Selecciona una localidad"
               />
             </div>
+            {errors.location && (
+              <div className="text-red-500 text-sm">{errors.location}</div>
+            )}
           </div>
           <div className="mb-2">
             <input
@@ -135,6 +184,9 @@ const Location = (props: LocationProps) => {
                 address: e.target.value,
               }))}
             />
+            {errors.address && (
+              <div className="text-red-500 text-sm">{errors.address}</div>
+            )}
           </div>
           <div className="mb-2">
             <input
@@ -149,6 +201,9 @@ const Location = (props: LocationProps) => {
               }))
             }
             />
+            {errors.zip_code && (
+              <div className="text-red-500 text-sm">{errors.zip_code}</div>
+            )}
           </div>
         </div>
         <div className="col-span-1 font-cairo-play flex justify-start ml-10">
@@ -160,8 +215,12 @@ const Location = (props: LocationProps) => {
           </button>
           <button
             className="border border-argentina rounded p-1 w-32 mt-4"
-            onClick={props.nextStep}
-          >
+            onClick={() => {
+            if (validateForm()) {
+            props.nextStep();
+              }
+            }}
+            >
             Siguiente
           </button>
         </div>
