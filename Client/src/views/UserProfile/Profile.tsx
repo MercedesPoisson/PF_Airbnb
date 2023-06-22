@@ -1,11 +1,19 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserNavBar from "./UserNavBar";
 import updateUser from "../../redux/actions/updateUser";
+import getProvinces from "../../redux/actions/getProvinces";
+
 
 const Profile  = () => {
+  const dispatch = useDispatch();
     const user = useSelector((state:any) => state.user);
-    const dispatch = useDispatch();
+    const provinces = useSelector((state:any) => state.provinces)
+
+    useEffect(() => {
+      dispatch(getProvinces());
+    }, [dispatch])
+    
     const [ name, setName ] = useState(user.name);
     const [ surname, setSurname ] = useState(user.surname);
     const [ email, setEmail ] = useState(user.email);
@@ -14,6 +22,16 @@ const Profile  = () => {
     const [ date, setDate ] = useState(user.Date);
     const [ gender, setGender ] =useState(user.gender)
     const [ isEditing, setIsEditing ] = useState(false);
+    const [filteredProvinces, setFilteredProvinces] = useState([]);
+
+    const handleAddressChange = (event) => {
+      const inputValue = event.target.value.toLowerCase();
+      const filteredOptions = provinces.filter((province) =>
+        province.toLowerCase().includes(inputValue)
+      );
+      setFilteredProvinces(filteredOptions);
+      setAddress(event.target.value);
+    }
 
     const handleSave = () => {
         const updatedUser = {...user, name, surname, email, address, Date, gender};
@@ -32,7 +50,11 @@ const Profile  = () => {
     return (
         <div className="font-cairo">
       <UserNavBar />
-      <div className="ml-10 mt-10 font-cairo-play">Hola, {name} bienvenida/o/x a tu perfil de usuaria/o/x</div>
+      <div className="ml-10 mt-10 font-cairo-play">
+      <div className="ml-10 mt-10 font-cairo-play">
+        {name ? `Hola, ${name}!` : "PERFIL"}
+      </div>
+      </div>
       <div className="grid grid-cols-12 gap-1 w-3/6 ml-10 mt-8">
         <div className="col-span-3 flex items-center justify-center">
           {user.image ? (
@@ -83,33 +105,27 @@ const Profile  = () => {
             <input
               type="text"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={!isEditing}
+              disabled
               className="ml-2 border rounded-md w-w250"
             />
-            {!isEditing && (
-              <i
-                className="fa-solid fa-pen-to-square text-argentina ml-2"
-                onClick={() => setIsEditing(!isEditing)}
-              ></i>
-            )}
+            
           </p >
           <p className="mb-2">
-            Ubicación: 
-            <input 
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            disabled={!isEditing}
-            className="ml-2 border rounded-md w-w250"
-             />
-             {!isEditing && (
-              <i
-                className="fa-solid fa-pen-to-square text-argentina ml-2"
-                onClick={() => setIsEditing(!isEditing)}
-              ></i>
-            )}
+              Ubicación: 
+              <select
+                value={address}
+                onChange={handleAddressChange}
+                disabled={!isEditing}
+                className="ml-2 border rounded-md w-w250"
+              >
+                {filteredProvinces.map((province, index) => (
+                  <option key={index} value={province.nombre}>
+                    {province.nombre}
+                  </option>
+                ))}
+              </select>
             </p>
+
           <p className="mb-2">
             Teléfono: 
             <input 
@@ -144,13 +160,16 @@ const Profile  = () => {
           </p>
           <p className="mb-2">
             Género: 
-          <input 
-            type="text"
+          <select 
             value={gender}
             onChange={(e) => setGender(e.target.value)}
             disabled={!isEditing}
             className="ml-2 border rounded-md w-w250"
-             />
+             >
+              <option value="Male">Masculino</option>
+              <option value="Female">Femenino</option>
+              <option value="Other">Otro</option>
+             </select>
              {!isEditing && (
               <i
                 className="fa-solid fa-pen-to-square text-argentina ml-2"
@@ -175,4 +194,3 @@ const Profile  = () => {
 };
     
     export default Profile;
-
