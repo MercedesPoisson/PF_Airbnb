@@ -32,8 +32,6 @@ const Anuncio = () => {
       const [title, setTitle] = useState(property.title);
       const [inputTitle, setInputTitle] = useState(property.title);
       const [address, setAddress] = useState(property.address);
-    //   const [location, setLocation] = useState(property.location);
-    //   const [province, setProvince] = useState(property.province);
       const [description, setDescription] = useState(property.description);
       const [type, setType] = useState(translatedPropertyType);
       const [guests, setGuests] = useState(property.max_guests);
@@ -41,12 +39,9 @@ const Anuncio = () => {
       const [beds, setBeds] = useState(property.beds_number);
       const [bath, setBath] = useState(property.bathrooms_number);
       const [price, setPrice] = useState(property.price_per_night);
-      const [servicios, setServicios] = useState(property.services);
-      const [pets, setPets] = useState(property.allow_pets);
+      const [servicios, setServicios] = useState(property.services);     
       const [startDate, setStartDate] = useState(property.start_date);
-      const [endDate, setEndDate] = useState(property.end_date);
-      const [weeklyDisc, setWeeklyDisc] = useState(property.weekly_discount);
-      const [monthlyDisc, setMonthlyDisc] = useState(property.monthly_discount);
+      const [endDate, setEndDate] = useState(property.end_date);     
       const [images, setImages] = useState(property.images);
       const [isEditing, setIsEditing] = useState(false);
       const [propertyState, setPropertyState] = useState(property);
