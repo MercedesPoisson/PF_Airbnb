@@ -5,14 +5,14 @@ import axios from "axios";
 const updateUser = (user: any) => {
   return async (dispatch: Dispatch<AnyAction>) => {
     try {
-      const { id_user, name, surname, email, location, number, Date, gender } = user;
+      const { id_user, name, surname, email, address, number, Date, gender } = user;
 
       const updatedUser = {
         id_user,
         ...(name && { name }),
         ...(surname && { surname }),
         ...(email && { email }),
-        ...(location && { location }),
+        ...(address && { address }),
         ...(number && { number }),
         ...(Date && { Date }),
         ...(gender && { gender }),
