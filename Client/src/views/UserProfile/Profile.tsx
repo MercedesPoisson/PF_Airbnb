@@ -18,8 +18,7 @@ const Profile = () => {
   const [date, setDate] = useState(user.date);
   const [gender, setGender] = useState(user.gender);
   const [isEditing, setIsEditing] = useState(false);
-  const [filteredProvinces, setFilteredProvinces] = useState([]);
-
+  
   const handleAddressChange = (event) => {
     // const inputValue = event.target.value.toLowerCase();
     // const filteredOptions = provinces.filter((province) =>
