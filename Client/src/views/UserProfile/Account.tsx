@@ -48,10 +48,9 @@ const Account = () => {
           <h1 className="uppercase font-bold">
             Anuncios <i className="fa-solid fa-pen-to-square text-argentina"></i>
           </h1>
-          {user.Properties &&
-            user.Properties.map((property: any, index: number) => (
-              <p key={property.id}>{`${index + 1} ${property.title}`}</p>
-            ))}
+          {user.Properties && user.Properties.map((property: any) => (
+  <p key={property.id}>{property.title}</p>
+))}
         </div>
         <div className="bg-gray-300 row-span-2 rounded-xl p-2">Mis Vacaciones</div>
         <div className="bg-gray-300 row-span-1 rounded-xl p-2">Pagos y Cobros</div>

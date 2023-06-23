@@ -40,9 +40,9 @@ const UserNavBar = () => {
               handleItemClick("perfil");
               navigate("/usuario/profile");
             }}
->
-  <a>Perfil</a>
-</li>
+            >
+              <a>Perfil</a>
+            </li>
               <li
                 className={`cursor-pointer ${
                   selectedItem === "perfil"
