@@ -52,7 +52,7 @@ const Form = () => {
     id_user: userId,
     property_type: "",
     address: "",
-    zip_code: "1234",
+    zip_code: "",
     location: "",
     province: "",
     max_guests: 0,

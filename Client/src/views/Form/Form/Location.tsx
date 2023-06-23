@@ -1,64 +1,135 @@
-import Validation from "./Validation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Select from "react-select";
+import axios from "axios";
 
 interface LocationProps {
   formData: {
     province: string;
     location: string;
     address: string;
+    zip_code: string
   };
-  setFormData: React.Dispatch<React.SetStateAction<{
-    province: string;
-    location: string;
-    address: string;
-  }>>;
+  setFormData: React.Dispatch<
+    React.SetStateAction<{
+      province: string;
+      location: string;
+      address: string;
+      zip_code: string
+    }>
+  >;
   nextStep: () => void;
   previousStep: () => void;
 }
+
 const Location = (props: LocationProps) => {
+  const [provinces, setProvinces] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [selectedProvince, setSelectedProvince] = useState<{ value: string; label: string } | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
   const [errors, setErrors] = useState({
     province: "",
     location: "",
     address: "",
+    zip_code: "",
   });
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+  useEffect(() => {
+    const fetchProvinces = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/locations");
+        const data = response.data;
+        const options = data.map((province: any) => ({
+          value: province.nombre,
+          label: province.nombre,
+        }));
+        options.sort((a: any, b: any) => a.label.localeCompare(b.label));
+        setProvinces(options);
+      } catch (error) {
+        console.log("Error fetching provinces:", error);
+      }
+    };
+    fetchProvinces();
+  }, []);
+
+  useEffect(() => {
+    if(searchValue.length > 0){
+      const fetchLocations = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:3001/locations/${selectedProvince?.value}?city=${searchValue}`
+          );
+          const data = response.data[0];
+          const options = data.ciudades.map((location: any) => ({
+            value: location.nombre,
+            label: location.nombre,
+          }));
+          setLocations(options);
+        } catch (error) {
+          console.log("Error fetching locations:", error);
+        }
+      };
+      if (selectedProvince) {
+        fetchLocations();
+      } else {
+        setLocations([]);
+      }
+    }
+  }, [selectedProvince, searchValue]);
+
+  const handleProvinceChange = (selectedOption: any) => {
+    setSelectedProvince(selectedOption);
+    setSelectedLocation(null);
+    setSearchValue("");
     props.setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      province: selectedOption.value,
+      location: "",
     }));
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: "", 
+  };
+
+  const handleLocationChange = (selectedOption: any) => {
+    setSelectedLocation(selectedOption);
+    props.setFormData((prevState) => ({
+      ...prevState,
+      location: selectedOption.value,
     }));
   };
 
   const validateForm = () => {
-    const { province, location, address } = props.formData;
-    const errors = {};
-
-    if (!province) {
-      errors.province = "La provincia es requerida";
+    let valid = true;
+    const newErrors = { ...errors };
+  
+    if (!selectedProvince) {
+      newErrors.province = "Debes seleccionar una provincia";
+      valid = false;
+    } else {
+      newErrors.province = "";
     }
-
-    if (!location) {
-      errors.location = "La localidad es requerida";
+  
+    if (!selectedLocation) {
+      newErrors.location = "Debes seleccionar una localidad";
+      valid = false;
+    } else {
+      newErrors.location = "";
     }
-
-    if (!address) {
-      errors.address = "La dirección es requerida";
+  
+    if (!props.formData.address) {
+      newErrors.address = "Debes ingresar una dirección";
+      valid = false;
+    } else {
+      newErrors.address = "";
     }
-
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  const handleNextClick = () => {
-    const isValid = validateForm();
-    if (isValid) {
-      props.nextStep();
+  
+    if (!props.formData.zip_code) {
+      newErrors.zip_code = "Debes ingresar un código postal";
+      valid = false;
+    } else {
+      newErrors.zip_code = "";
     }
+  
+    setErrors(newErrors);
+    return valid;
   };
 
   return (
@@ -72,52 +143,68 @@ const Location = (props: LocationProps) => {
           </p>
         </div>
         <div className="items-center">
+        
           <div className="mb-2">
             <div className="relative">
-              <input
-                className="pl-8 w-96 h-10 border rounded-md"
-                type="text"
-                placeholder="Ingrese la provincia"
-                name="province"
-                onChange={handleInputChange}
-                value={props.formData.province}
+              <Select
+                options={provinces}
+                value={selectedProvince}
+                onChange={handleProvinceChange}
+                placeholder="Selecciona una provincia"
               />
-              <i className="fa fa-location-dot absolute left-2 top-3 text-gray-600"></i>
-              <i className="fa-regular fa-circle-question ml-2 cursor-pointer" title="Por ejemplo: Buenos Aires"></i>
             </div>
+            {errors.province && (
+              <div className="text-red-500 text-sm">{errors.province}</div>
+            )}
           </div>
           <div className="mb-2">
             <div className="relative">
-              <input
-                className="pl-8 w-96 h-10 border rounded-md"
-                type="text"
-                placeholder="Ingrese la localidad"
-                name="location"
-                onChange={handleInputChange}
-                value={props.formData.location}
+              <Select
+                options={locations}
+                value={selectedLocation}
+                onChange={handleLocationChange}
+                onInputChange={(newValue) => {
+                  setSearchValue(newValue);
+                }}
+                placeholder="Selecciona una localidad"
               />
-              <i className="fa fa-location-dot absolute left-2 top-3 text-gray-600"></i>
-              <i className="fa-regular fa-circle-question ml-2 cursor-pointer" title="Por ejemplo: Palermo"></i>
             </div>
+            {errors.location && (
+              <div className="text-red-500 text-sm">{errors.location}</div>
+            )}
           </div>
           <div className="mb-2">
-            <div className="relative">
-              <input
-                className="pl-8 w-96 h-10 border rounded-md"
-                type="text"
-                placeholder="Ingrese la dirección"
-                name="address"
-                onChange={handleInputChange}
-                value={props.formData.address}
-              />
-              <i className="fa fa-location-dot absolute left-2 top-3 text-gray-600"></i>
-              <i className="fa-regular fa-circle-question ml-2 cursor-pointer"  title="Por ejemplo: Avenida SiempreViva 742"></i>
-            </div>
+            <input
+              type="text"
+              placeholder="Dirección"
+              className="border border-gray-400 rounded w-full py-2 px-3"
+              value={props.formData.address}
+              onChange={(e) => props.setFormData((prevState) => ({
+                ...prevState,
+                address: e.target.value,
+              }))}
+            />
+            {errors.address && (
+              <div className="text-red-500 text-sm">{errors.address}</div>
+            )}
           </div>
-          <div><Validation error={errors.province} /></div>
-          <div><Validation error={errors.location} /></div>
-          <div><Validation error={errors.address} /></div>
-                    
+          <div className="mb-2">
+            <input
+            type="text"
+            placeholder="Código postal"
+            className="border border-gray-400 rounded w-full py-2 px-3"
+            value={props.formData.zip_code}
+            onChange={(e) =>
+            props.setFormData((prevState) => ({
+            ...prevState,
+            zip_code: e.target.value,
+              }))
+            }
+            />
+            {errors.zip_code && (
+              <div className="text-red-500 text-sm">{errors.zip_code}</div>
+            )}
+          </div>
         </div>
         <div className="col-span-1 font-cairo-play flex justify-start ml-10">
           <button
@@ -128,8 +215,12 @@ const Location = (props: LocationProps) => {
           </button>
           <button
             className="border border-argentina rounded p-1 w-32 mt-4"
-            onClick={handleNextClick}
-          >
+            onClick={() => {
+            if (validateForm()) {
+            props.nextStep();
+              }
+            }}
+            >
             Siguiente
           </button>
         </div>
