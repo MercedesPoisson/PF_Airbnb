@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 interface Service {
@@ -11,16 +11,37 @@ interface ServicesCheckProps {
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   nextStep: () => void;
   previousStep: () => void;
+  formData: FormData;
 }
 
 const ServicesCheck = (props: ServicesCheckProps) => {
+  const storedFormData = localStorage.getItem('servicesFormData');
+  const initialFormData = storedFormData ? JSON.parse(storedFormData) : {};
+  
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const services: Service[] = useSelector((state: any) => state.services);
+ 
+
+  useEffect(() => {
+    localStorage.setItem(
+      "servicesFormData",
+      JSON.stringify({
+        ...props.formData,
+      })
+    );
+  }, []); 
+
+  useEffect(() => {
+    const storedServices = localStorage.getItem('selectedServices');
+    if (storedServices) {
+      setSelectedServices(JSON.parse(storedServices));
+    }
+  }, []);
 
   const handleServiceChange = (event: ChangeEvent<HTMLInputElement>) => {
     const serviceName = event.target.value;
     const isSelected = event.target.checked;
-
+  
     if (isSelected) {
       setSelectedServices((prevSelectedServices) => [
         ...prevSelectedServices,
@@ -31,6 +52,9 @@ const ServicesCheck = (props: ServicesCheckProps) => {
         prevSelectedServices.filter((service) => service !== serviceName)
       );
     }
+  
+    // Guardar las selecciones actualizadas en el localStorage
+    localStorage.setItem('selectedServices', JSON.stringify(selectedServices));
   };
 
   const handleNextStep = () => {
@@ -38,7 +62,7 @@ const ServicesCheck = (props: ServicesCheckProps) => {
       ...prevFormData,
       services: selectedServices,
     }));
-    console.log("FormData:", FormData); // Ver el estado actualizado
+    console.log("FormData:", props.formData); // Ver el estado actualizado
 
     props.nextStep();
   };

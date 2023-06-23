@@ -1,77 +1,152 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const QuantityCounter = (props) => {
-  const [ocupantes, setOcupantes] = useState(1);
-  const [dormitorios, setDormitorios] = useState(1);
-  const [camas, setCamas] = useState(1);
-  const [banos, setBanos] = useState(1);
+  const storedFormData = localStorage.getItem('locationFormData');
+  const initialFormData = storedFormData ? JSON.parse(storedFormData) : {};
+
+  const [ocupantes, setOcupantes] = useState(initialFormData.max_guests || 1);
+  const [dormitorios, setDormitorios] = useState(initialFormData.rooms_number || 1);
+  const [camas, setCamas] = useState(initialFormData.beds_number || 1);
+  const [banos, setBanos] = useState(initialFormData.bathrooms_number || 1);
+
+useEffect(() => {
+      localStorage.setItem(
+        "locationFormData",
+        JSON.stringify({
+          ...props.formData,
+          max_guests: ocupantes,
+          rooms_number: dormitorios,
+          beds_number: camas,
+          bathrooms_number: banos
+        })
+      );
+      console.log("FormData salvada:", props.formData);
+    }, [ocupantes, dormitorios, camas, banos]);
+    
+  useEffect(() => {
+    const storedFormData = localStorage.getItem('locationFormData');
+    if (storedFormData) {
+      const parsedFormData = JSON.parse(storedFormData);
+      setOcupantes(parsedFormData.max_guests || 1);
+      setDormitorios(parsedFormData.rooms_number || 1);
+      setCamas(parsedFormData.beds_number || 1);
+      setBanos(parsedFormData.bathrooms_number || 1);
+      console.log(parsedFormData);
+    }
+  }, []);
 
   const handleIncrement = (category: string) => {
     switch (category) {
       case "ocupantes":
         if (ocupantes < 10) {
-          setOcupantes(ocupantes + 1);
+          const newOcupantes = ocupantes + 1;
+          setOcupantes(newOcupantes);
+          localStorage.setItem(
+            "locationFormData",
+            JSON.stringify({ ...props.formData, max_guests: newOcupantes })
+          );
         }
         break;
       case "dormitorios":
         if (dormitorios < 10) {
-          setDormitorios(dormitorios + 1);
+          const newDormitorios = dormitorios + 1;
+          setDormitorios(newDormitorios);
+          localStorage.setItem(
+            "locationFormData",
+            JSON.stringify({ ...props.formData, rooms_number: newDormitorios })
+          );
         }
         break;
       case "camas":
         if (camas < 10) {
-          setCamas(camas + 1);
+          const newCamas = camas + 1;
+          setCamas(newCamas);
+          localStorage.setItem(
+            "locationFormData",
+            JSON.stringify({ ...props.formData, beds_number: newCamas })
+          );
         }
         break;
       case "banos":
         if (banos < 10) {
-          setBanos(banos + 1);
+          const newBanos = banos + 1;
+          setBanos(newBanos);
+          localStorage.setItem(
+            "locationFormData",
+            JSON.stringify({ ...props.formData, bathrooms_number: newBanos })
+          );
         }
         break;
       default:
         break;
     }
   };
-
-  const handleDecrement = (category:string) => {
+  
+  const handleDecrement = (category: string) => {
     switch (category) {
       case "ocupantes":
         if (ocupantes > 1) {
-          setOcupantes(ocupantes - 1);
+          const newOcupantes = ocupantes - 1;
+          setOcupantes(newOcupantes);
+          localStorage.setItem(
+            "locationFormData",
+            JSON.stringify({ ...props.formData, max_guests: newOcupantes })
+          );
         }
         break;
       case "dormitorios":
         if (dormitorios > 1) {
-          setDormitorios(dormitorios - 1);
+          const newDormitorios = dormitorios - 1;
+          setDormitorios(newDormitorios);
+          localStorage.setItem(
+            "locationFormData",
+            JSON.stringify({ ...props.formData, rooms_number: newDormitorios })
+          );
         }
         break;
       case "camas":
         if (camas > 1) {
-          setCamas(camas - 1);
+          const newCamas = camas - 1;
+          setCamas(newCamas);
+          localStorage.setItem(
+            "locationFormData",
+            JSON.stringify({ ...props.formData, beds_number: newCamas })
+          );
         }
         break;
       case "banos":
         if (banos > 1) {
-          setBanos(banos - 1);
+          const newBanos = banos - 1;
+          setBanos(newBanos);
+          localStorage.setItem(
+            "locationFormData",
+            JSON.stringify({ ...props.formData, bathrooms_number: newBanos })
+          );
         }
         break;
       default:
         break;
     }
   };
-
+  
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === "ocupantes") {
-      setOcupantes(parseInt(value));
+      const newOcupantes = parseInt(value);
+      setOcupantes(newOcupantes);
     } else if (name === "dormitorios") {
-      setDormitorios(parseInt(value));
+      const newDormitorios = parseInt(value);
+      setDormitorios(newDormitorios);
     } else if (name === "camas") {
-      setCamas(parseInt(value));
+      const newCamas = parseInt(value);
+      setCamas(newCamas);
     } else if (name === "banos") {
-      setBanos(parseInt(value));
+      const newBanos = parseInt(value);
+      setBanos(newBanos);
     }
-  };
+  }
+  
+    
 
   const handleSave = () => {
     props.handleInputChange({
@@ -102,6 +177,12 @@ const QuantityCounter = (props) => {
 
   const handleNext = () => {
     handleSave(); // Llama a la función handleSave antes de pasar al siguiente paso
+    console.log("Data to be passed to the next step:", {
+      max_guests: ocupantes,
+      rooms_number: dormitorios,
+      beds_number: camas,
+      bathrooms_number: banos
+    });
     props.nextStep();
   };
 

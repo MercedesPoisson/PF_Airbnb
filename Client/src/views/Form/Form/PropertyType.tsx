@@ -3,6 +3,7 @@ import Validation from "./Validation";
 import { useState, useEffect } from "react";
 
 const PropertyType = (props) => {
+  const { handleInputChange, selectedPropertyType, setFormData, setSelectedPropertyType } = props;
   const [errors, setErrors] = useState({
     propertyType: ""
   });
@@ -17,9 +18,9 @@ const PropertyType = (props) => {
 
   const handlePropertyTypeChange = (event) => {
     const { name, value } = event.target;
-    props.handleInputChange(event);
-    props.setSelectedPropertyType(value);
-    props.setFormData((prevState) => ({
+    handleInputChange(event);
+    setSelectedPropertyType(value);
+    setFormData((prevState) => ({
       ...prevState,
       [name]: value
     }));
@@ -27,7 +28,7 @@ const PropertyType = (props) => {
 
   const validateForm = () => {
     const errors = {};
-    if (props.selectedPropertyType === "") {
+    if (selectedPropertyType === "") {
       errors.propertyType = "Debes seleccionar una opción";
     }
     setErrors(errors);

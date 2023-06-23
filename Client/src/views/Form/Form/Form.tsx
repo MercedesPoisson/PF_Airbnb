@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import FirstView from "./FirstView";
 import PropertyType from "./PropertyType";
@@ -88,6 +88,28 @@ const Form = () => {
     }));
   };
 
+  // Almacenar los datos en el local storage cuando cambie el formulario
+  useEffect(() => {
+    localStorage.setItem("formData", JSON.stringify(formData));
+  }, [formData]);
+
+  // Obtener los datos del local storage cuando se monta el componente
+  useEffect(() => {
+    const storedFormData = localStorage.getItem("formData");
+    if (storedFormData) {
+      setFormData(JSON.parse(storedFormData));
+    }
+  }, []);
+
+  const updateFormData = (newData) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      ...newData,
+    }));
+  
+    localStorage.setItem("formData", JSON.stringify(formData));
+  };
+
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
@@ -95,6 +117,7 @@ const Form = () => {
       [name]: value,
     }));
   };
+
 
   const dispatch = useDispatch();
 
@@ -177,6 +200,7 @@ const Form = () => {
             selectedPropertyType={formData.property_type}
             formData={formData}
             setFormData={setFormData}
+            updateFormData={updateFormData}
           />
         )}
 
@@ -187,6 +211,7 @@ const Form = () => {
             handleInputChange={handleInputChange}
             formData={formData}
             setFormData={setFormData}
+            updateFormData={updateFormData}
           />
         )}
 
@@ -199,6 +224,7 @@ const Form = () => {
             roomsNumber={formData.rooms_number}
             bedsNumber={formData.beds_number}
             bathroomsNumber={formData.bathrooms_number}
+            updateFormData={updateFormData}
           />
         )}
 
@@ -208,6 +234,7 @@ const Form = () => {
             nextStep={nextStep}
             handleInputChange={handleInputChange}
             setFormData={setFormData}
+            updateFormData={updateFormData}
           />
         )}
 
@@ -217,6 +244,7 @@ const Form = () => {
             nextStep={nextStep}
             setFormData={setFormData}
             formData={formData}
+            updateFormData={updateFormData}
           />
         )}
 
@@ -226,6 +254,7 @@ const Form = () => {
           nextStep={nextStep}
           formData={formData}
           setFormData={setFormData}
+          updateFormData={updateFormData}
         />
         )}
 
@@ -235,6 +264,7 @@ const Form = () => {
             nextStep={nextStep}
             formData={formData}
             setFormData={setFormData}
+            updateFormData={updateFormData}
           />
         )}
 
@@ -244,6 +274,7 @@ const Form = () => {
             nextStep={nextStep}
             formData={formData}
             setFormData={setFormData}
+            updateFormData={updateFormData}
           />
         )}
 
@@ -253,6 +284,7 @@ const Form = () => {
             nextStep={nextStep}
             formData={formData}
             setFormData={setFormData}
+            updateFormData={updateFormData}
           />
         )}
 
@@ -261,6 +293,7 @@ const Form = () => {
           previousStep={previousStep}
           nextStep={nextStep}
           setFormData={setFormData}
+          updateFormData={updateFormData}
           />
           
         )}
@@ -273,6 +306,7 @@ const Form = () => {
           setFormData={setFormData}
           start_date={formData.start_date} 
           end_date={formData.end_date} 
+          updateFormData={updateFormData}
         />
         )}
 

@@ -5,17 +5,17 @@ import { useParams } from "react-router-dom";
 import getPropertyDetail from "../../redux/actions/getPropertyDetail";
 import updateProperty from "../../redux/actions/updateProperty";
 
-const propertyTypeMapping = {
-  House: "Casa",
-  Apartment: "Departamento",
-  Room: "Habitación",
-};
-
 interface Service {
   service_id: string;
   name: string;
   icon: string;
 }
+
+const propertyTypeMapping: Record<string, string> = {
+  House: "Casa",
+  Apartment: "Departamento",
+  Room: "Habitación",
+};
 
 const Anuncio = () => {
   const property = useSelector((state: any) => state.detail);
@@ -30,7 +30,7 @@ const Anuncio = () => {
     dispatch(getPropertyDetail(id));
   }, [dispatch, id]);
 
-  const [title, setTitle] = useState(property.title || "");
+const [title, setTitle] = useState(property.title || "");
 const [address, setAddress] = useState(property.address || "");
 const [description, setDescription] = useState(property.description || "");
 const [type, setType] = useState(translatedPropertyType);
@@ -39,7 +39,7 @@ const [rooms, setRooms] = useState(property.rooms_number || 1);
 const [beds, setBeds] = useState(property.beds_number || 1);
 const [bath, setBath] = useState(property.bathrooms_number || 1);
 const [price, setPrice] = useState(property.price_per_night || 1);
-const [servicios, setServicios] = useState(property.services || "");
+const [servicios, setServicios] = useState(property.services || []);
 const [startDate, setStartDate] = useState(property.start_date || "");
 const [endDate, setEndDate] = useState(property.end_date || "");
 const [images, setImages] = useState([]);
@@ -49,16 +49,25 @@ const [isCheckboxVisible, setIsCheckboxVisible] = useState(property.allow_pets);
 const [weeklyDiscount, setWeeklyDiscount] = useState(property.weekly_discount || 1);
 const [monthlyDiscount, setMonthlyDiscount] = useState(property.monthly_discount || 1);
 
-const handleServiceChange = (e) => {
-    const selectedServiceId = e.target.value;
-    const isChecked = e.target.checked;
-  
-    const updatedServicios = isChecked
-      ? [...servicios, selectedServiceId]
-      : servicios.filter((serviceId) => serviceId !== selectedServiceId);
-  
-    setServicios(updatedServicios);
-  };
+const handleServiceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const selectedServiceId = event.target.value;
+  const isChecked = event.target.checked;
+
+  let updatedServicios = [...servicios]; // Copia el array existente
+
+  if (isChecked) {
+    // Agrega el servicio si está marcado
+    updatedServicios.push(selectedServiceId);
+  } else {
+    // Elimina el servicio si está desmarcado
+    updatedServicios = updatedServicios.filter(
+      (serviceId: string) => serviceId !== selectedServiceId
+    );
+  }
+  console.log("updatedServicios:", updatedServicios);
+
+  setServicios(updatedServicios);
+};
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -98,12 +107,10 @@ const handleServiceChange = (e) => {
     }
     dispatch(updateProperty(updatedProperty))
     .then(() => {
-      // Después de la actualización, obtén los datos actualizados llamando a getPropertyDetail
       dispatch(getPropertyDetail(id));
       setIsEditing(false);
     })
-    .catch((error) => {
-      // Manejar el error en caso de que ocurra
+    .catch((error: Error) => {
       console.log("Error updating property:", error);
     });
   };
@@ -272,11 +279,13 @@ const handleServiceChange = (e) => {
             <p>Servicios Incluidos:</p>
             {isEditing ? (
               services.map((service) => (
-                <div key={service.service_id} className="flex items-center">
-                  <label>
+                <div>
+                  <label key={service.service_id} className="flex items-center">
                     <input
                       type="checkbox"
-                      value={service.service_id}
+                      id={`services_${service.service_id}`}
+                      value={service.name}
+                      name="Services"
                       checked={servicios && servicios.includes(service.service_id)}
                       onChange={handleServiceChange}
                     />
@@ -357,13 +366,13 @@ const handleServiceChange = (e) => {
             ))}
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex gap-4">
           {isEditing ? (
             <>
               <button className="bg-argentina text-white py-2 px-4 rounded" onClick={handleSaveClick}>
                 Guardar Cambios
               </button>
-              <button className="bg-red-500 text-white py-2 px-4 rounded" onClick={() => setIsEditing(false)}>
+              <button className="bg-argentina text-white py-2 px-4 rounded" onClick={() => setIsEditing(false)}>
                 Cancelar
               </button>
             </>
