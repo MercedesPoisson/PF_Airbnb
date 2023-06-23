@@ -1,14 +1,11 @@
 import Card from "../../components/Card/card";
 import UserNavBar from "./UserNavBar";
 import { useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
 
 const MisAnuncios = () => {
-    const properties = useSelector((state:any) => state.properties);
     const user = useSelector((state:any) => state.user);
+    const myProperties = user.Properties;
 
-    const myProperties = properties.filter((property:any) => property.id_user === user.id_user);
-    
     return(
         <div>
             <div>

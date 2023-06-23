@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import getPropertyDetail from "../../redux/actions/getPropertyDetail";
+import updateProperty from "../../redux/actions/updateProperty";
 
 const propertyTypeMapping = {
   House: "Casa",
@@ -29,44 +30,82 @@ const Anuncio = () => {
     dispatch(getPropertyDetail(id));
   }, [dispatch, id]);
 
-  const [title, setTitle] = useState(property.title);
-  const [inputTitle, setInputTitle] = useState(property.title);
-  const [address, setAddress] = useState(property.address);
-  const [description, setDescription] = useState(property.description);
-  const [type, setType] = useState(translatedPropertyType);
-  const [guests, setGuests] = useState(property.max_guests);
-  const [rooms, setRooms] = useState(property.rooms_number);
-  const [beds, setBeds] = useState(property.beds_number);
-  const [bath, setBath] = useState(property.bathrooms_number);
-  const [price, setPrice] = useState(property.price_per_night);
-  const [servicios, setServicios] = useState(property.services);
-  const [startDate, setStartDate] = useState(property.start_date);
-  const [endDate, setEndDate] = useState(property.end_date);
-  const [images, setImages] = useState(property.images);
-  const [isEditing, setIsEditing] = useState(false);
-  const [propertyState, setPropertyState] = useState(property);
-  const [isCheckboxVisible, setIsCheckboxVisible] = useState(property.allow_pets);
-  const [weeklyDiscount, setWeeklyDiscount] = useState(property.weekly_discount);
-  const [monthlyDiscount, setMonthlyDiscount] = useState(property.monthly_discount);
+  const [title, setTitle] = useState(property.title || "");
+const [address, setAddress] = useState(property.address || "");
+const [description, setDescription] = useState(property.description || "");
+const [type, setType] = useState(translatedPropertyType);
+const [guests, setGuests] = useState(property.max_guests || 1);
+const [rooms, setRooms] = useState(property.rooms_number || 1);
+const [beds, setBeds] = useState(property.beds_number || 1);
+const [bath, setBath] = useState(property.bathrooms_number || 1);
+const [price, setPrice] = useState(property.price_per_night || 1);
+const [servicios, setServicios] = useState(property.services || "");
+const [startDate, setStartDate] = useState(property.start_date || "");
+const [endDate, setEndDate] = useState(property.end_date || "");
+const [images, setImages] = useState([]);
+const [isEditing, setIsEditing] = useState(false);
+const [propertyState, setPropertyState] = useState(property);
+const [isCheckboxVisible, setIsCheckboxVisible] = useState(property.allow_pets);
+const [weeklyDiscount, setWeeklyDiscount] = useState(property.weekly_discount || 1);
+const [monthlyDiscount, setMonthlyDiscount] = useState(property.monthly_discount || 1);
 
-  const handleServiceChange = (e) => {
+const handleServiceChange = (e) => {
     const selectedServiceId = e.target.value;
-    const updatedServicios = servicios.includes(selectedServiceId)
-      ? servicios.filter((service_Id) => service_Id !== selectedServiceId)
-      : [...servicios, selectedServiceId];
+    const isChecked = e.target.checked;
+  
+    const updatedServicios = isChecked
+      ? [...servicios, selectedServiceId]
+      : servicios.filter((serviceId) => serviceId !== selectedServiceId);
+  
     setServicios(updatedServicios);
   };
 
   const handleEditClick = () => {
     setIsEditing(true);
-    setIsPetsAllowed(property.allow_pets || false);
-    setIsCheckboxVisible(true);
-    setWeeklyDiscount(property.weekly_discount);
-    setMonthlyDiscount(property.monthly_discount);
+    // setIsPetsAllowed(property.allow_pets || false);
+    // setIsCheckboxVisible(true);
+    // setWeeklyDiscount(property.weekly_discount);
+    // setMonthlyDiscount(property.monthly_discount);
   };
 
   const handleSaveClick = () => {
-    setIsEditing(false);
+    const updatedProperty = {
+        id_property: property.id_property,
+        id_user: property.id_user,
+        title: title || property.title,
+        address: address || property.address,
+        // zip_code: zip_code || property.zip_code,
+        property_type: type || property.property_type,
+        description: description || property.description,
+        price_per_night: price || property.price_per_night, 
+        images: images.length > 0 ? images : property.images,
+        start_date: startDate || property.start_date,
+        end_date: endDate || property.end_date,
+        rooms_number: rooms || property.rooms_number,
+        bathrooms_number: bath || property.bathroms_number,
+        beds_number: beds || property.beds_number,
+        max_guests: guests || property.max_guests,
+        allow_pets: propertyState.allowPets || property.allow_pets,
+        weekly_discount: weeklyDiscount || property.weekly_discount,
+        monthly_discount: monthlyDiscount || property.monthly_discount,
+        isEditing: isEditing || false,
+        propertyState: propertyState || property,
+        isCheckboxVisible: isCheckboxVisible || property.allow_pets,
+        weeklyDiscount: weeklyDiscount || property.weekly_discount,
+        monthlyDiscount: monthlyDiscount || property.monthly_discount,
+        // min_nights,
+        // accessibility
+    }
+    dispatch(updateProperty(updatedProperty))
+    .then(() => {
+      // Después de la actualización, obtén los datos actualizados llamando a getPropertyDetail
+      dispatch(getPropertyDetail(id));
+      setIsEditing(false);
+    })
+    .catch((error) => {
+      // Manejar el error en caso de que ocurra
+      console.log("Error updating property:", error);
+    });
   };
 
   return (
@@ -239,7 +278,7 @@ const Anuncio = () => {
                       type="checkbox"
                       value={service.service_id}
                       checked={servicios && servicios.includes(service.service_id)}
-                      onChange={(e) => handleServiceChange(e.target.value)}
+                      onChange={handleServiceChange}
                     />
                     <i className={`${service.icon} mr-2 ml-3`}></i>
                     <span>{service.name}</span>

@@ -1,5 +1,5 @@
 import { Dispatch, AnyAction } from "redux";
-import { PUT_PROPERTY } from "./actionsType";
+// import { PUT_PROPERTY } from "./actionsType";
 import axios from "axios";
 
 const updateProperty = (property: any) => {
@@ -59,7 +59,7 @@ const updateProperty = (property: any) => {
         }
 
         await axios.put(`http://localhost:3001/property/update/${id_property}`, updatedProperty)
-        dispatch({type:PUT_PROPERTY, payload: updatedProperty})
+        // dispatch({type:PUT_PROPERTY, payload: updatedProperty})
         
     } catch (error) {
         console.log("Error al actualizar la propiedad:", error)
