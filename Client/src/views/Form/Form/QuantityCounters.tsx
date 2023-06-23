@@ -115,7 +115,7 @@ const QuantityCounter = (props) => {
         </div>
         <div>
           <div className="flex items-center mb-2">
-            <label htmlFor="ocupantes">Ocupantes</label>
+            <label htmlFor="ocupantes">Huéspedes</label>
             <i
               className="fa-solid fa-minus border rounded-full ml-3"
               onClick={() => handleDecrement("ocupantes")}

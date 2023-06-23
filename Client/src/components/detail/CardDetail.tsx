@@ -34,17 +34,6 @@ const CardDetails = () => {
   const carouselImages = property && property.images ? property.images : [];
   const previewImages = property && property.images ? property.images.slice(0, 4) : [];
 
-//  const renderServices = () => {
-//     if (property && property.services && Array.isArray(property.services)) {
-//       return property.services.map((service, index) => (
-//         <div key={index} className="flex items-center">
-//           <i className={`fa-solid ${service.icon} mr-1`} style={{ fontSize: '0.8em' }} />
-//           {service.name}
-//         </div>
-//       ));
-//     }  
-//     return null;
-//   };
 console.log('Location:', property.location);
 console.log('Province:', property.province);
 
