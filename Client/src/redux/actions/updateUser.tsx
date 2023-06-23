@@ -5,20 +5,20 @@ import axios from "axios";
 const updateUser = (user: any) => {
   return async (dispatch: Dispatch<AnyAction>) => {
     try {
-      const { id_user, name, surname, email, location, number, Date, gender } = user;
+      const { id_user, name, surname, email, address, number, date, gender } = user;
 
       const updatedUser = {
         id_user,
         ...(name && { name }),
         ...(surname && { surname }),
         ...(email && { email }),
-        ...(location && { location }),
+        ...(address && { address }),
         ...(number && { number }),
-        ...(Date && { Date }),
+        ...(date && { date }),
         ...(gender && { gender }),
       };
 
-      await axios.post(`http://localhost:3001/users/update/${id_user}`, updatedUser);
+      await axios.put(`http://localhost:3001/users/update/${id_user}`, updatedUser);
       dispatch({ type: PUT_USER, payload: updatedUser });
     } catch (error) {
       console.log("Error al actualizar el usuario:", error);

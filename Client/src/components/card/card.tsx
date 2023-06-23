@@ -52,13 +52,23 @@ function Card({ id_property, title, location, province, price_per_night, rating,
   };
   console.log(id_property);
 
+  const isHomePage = window.location.pathname === "/";
+
+  const getLinkPath = () => {
+    if(isHomePage) {
+      return `/propiedad/${id_property}`;
+    } else {
+      return `/usuario/anuncio/${id_property}`
+    }
+  }
+
   return (
     <div className="mt-14 font-cairo border rounded-xl w-80 sm:w-90 md:w-80 lg:w-90 hover:shadow-md z-0">
       <div className="w-full">
         {renderCarousel()}
         
         <div className='p-4'>
-          <Link to={`/propiedad/${id_property}`}>
+          <Link to={getLinkPath()}>
          <button className="justify-between">
           <div className='grid grid-cols-4 w-72'>
             <div className='col-span-3'>

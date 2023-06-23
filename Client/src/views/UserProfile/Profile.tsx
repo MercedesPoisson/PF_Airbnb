@@ -1,42 +1,73 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserNavBar from "./UserNavBar";
 import updateUser from "../../redux/actions/updateUser";
 
-const Profile  = () => {
-    const user = useSelector((state:any) => state.user);
-    const dispatch = useDispatch();
-    const [ name, setName ] = useState(user.name);
-    const [ surname, setSurname ] = useState(user.surname);
-    const [ email, setEmail ] = useState(user.email);
-    const [ address, setAddress ] = useState(user.address);
-    const [ number, setNumber ] = useState(user.number);
-    const [ date, setDate ] = useState(user.Date);
-    const [ gender, setGender ] =useState(user.gender)
-    const [ isEditing, setIsEditing ] = useState(false);
+const Profile = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state: any) => state.user);
+  const provinces = useSelector((state: any) => state.provinces);
 
-    const handleSave = () => {
-        const updatedUser = {...user, name, surname, email, address, Date, gender};
-        console.log(updatedUser);
+  console.log(provinces);
 
-        if(name) updatedUser.name = name;
-        if(surname) updatedUser.surname = surname;
-        if(email) updatedUser.email = email;
-        if(address) updatedUser.address = address;
-        if(Date) updatedUser.Date = Date;
-        if(gender) updatedUser.gender = gender;
-        
-        dispatch(updateUser(updatedUser))
-    }
+  const [name, setName] = useState(user.name);
+  const [surname, setSurname] = useState(user.surname);
+  const [email, setEmail] = useState(user.email);
+  const [address, setAddress] = useState(user.address);
+  const [number, setNumber] = useState(user.number);
+  const [date, setDate] = useState(user.date);
+  const [gender, setGender] = useState(user.gender);
+  const [isEditing, setIsEditing] = useState(false);
+  
+  const handleAddressChange = (event) => {
+    // const inputValue = event.target.value.toLowerCase();
+    // const filteredOptions = provinces.filter((province) =>
+    //   province.toLowerCase().includes(inputValue)
+    // );
+    // setFilteredProvinces(filteredOptions);
+    setAddress(event.target.value);
+    console.log(event.target);
+  };
 
-    return (
-        <div className="font-cairo">
+  const handleSave = () => {
+    const updatedUser = {
+      ...user,
+      name,
+      surname,
+      email,
+      address,
+      number,
+      date,
+      gender,
+    };
+
+    // if(name) updatedUser.name = name;
+    // if(surname) updatedUser.surname = surname;
+    // if(email) updatedUser.email = email;
+    // if(address) updatedUser.address = address;
+    // if(number) updatedUser.number = number;
+    // if(date) updatedUser.date = date;
+    // if(gender) updatedUser.gender = gender;
+    console.log(updatedUser);
+    dispatch(updateUser(updatedUser));
+  };
+
+  return (
+    <div className="font-cairo">
       <UserNavBar />
-      <div className="ml-10 mt-10 font-cairo-play">Hola, {name} bienvenida/o/x a tu perfil de usuaria/o/x</div>
+      <div className="ml-10 mt-10 font-cairo-play">
+        <div className="ml-10 mt-10 font-cairo-play">
+          {name ? `Hola, ${name}!` : "PERFIL"}
+        </div>
+      </div>
       <div className="grid grid-cols-12 gap-1 w-3/6 ml-10 mt-8">
         <div className="col-span-3 flex items-center justify-center">
           {user.image ? (
-            <img src={user.image} alt="User Avatar" className="text-9xl text-gray-200 " />
+            <img
+              src={user.image}
+              alt="User Avatar"
+              className="text-9xl text-gray-200 "
+            />
           ) : (
             <i className="fa-solid fa-image-portrait text-9xl text-gray-200"></i>
           )}
@@ -77,13 +108,40 @@ const Profile  = () => {
             )}
           </p>
 
-
           <p className="mb-2">
             E-mail:
             <input
               type="text"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              disabled
+              className="ml-2 border rounded-md w-w250"
+            />
+          </p>
+          <p className="mb-2">
+            Ubicación:
+            <select
+              value={address}
+              disabled={!isEditing}
+              className="ml-2 border rounded-md w-w250"
+            >
+              {provinces.map((province, index) => (
+                <option
+                  key={index}
+                  value={province.nombre}
+                  onChange={handleAddressChange}
+                >
+                  {province.nombre}
+                </option>
+              ))}
+            </select>
+          </p>
+
+          <p className="mb-2">
+            Teléfono:
+            <input
+              type="text"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
               disabled={!isEditing}
               className="ml-2 border rounded-md w-w250"
             />
@@ -93,33 +151,17 @@ const Profile  = () => {
                 onClick={() => setIsEditing(!isEditing)}
               ></i>
             )}
-          </p >
+          </p>
           <p className="mb-2">
-            Ubicación: 
-            <input 
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            disabled={!isEditing}
-            className="ml-2 border rounded-md w-w250"
-             />
-             {!isEditing && (
-              <i
-                className="fa-solid fa-pen-to-square text-argentina ml-2"
-                onClick={() => setIsEditing(!isEditing)}
-              ></i>
-            )}
-            </p>
-          <p className="mb-2">
-            Teléfono: 
-            <input 
-            type="text"
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
-            disabled={!isEditing}
-            className="ml-2 border rounded-md w-w250"
-             />
-             {!isEditing && (
+            Fecha de Nacimiento:
+            <input
+              type="text"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              disabled={!isEditing}
+              className="ml-2 border rounded-md w-w250"
+            />
+            {!isEditing && (
               <i
                 className="fa-solid fa-pen-to-square text-argentina ml-2"
                 onClick={() => setIsEditing(!isEditing)}
@@ -127,36 +169,24 @@ const Profile  = () => {
             )}
           </p>
           <p className="mb-2">
-            Fecha de Nacimiento: 
-            <input 
-            type="text"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            disabled={!isEditing}
-            className="ml-2 border rounded-md w-w250"
-             />
-             {!isEditing && (
+            Género:
+            <select
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              disabled={!isEditing}
+              className="ml-2 border rounded-md w-w250"
+            >
+              <option value="Male">Masculino</option>
+              <option value="Female">Femenino</option>
+              <option value="Other">Otro</option>
+            </select>
+            {!isEditing && (
               <i
                 className="fa-solid fa-pen-to-square text-argentina ml-2"
                 onClick={() => setIsEditing(!isEditing)}
               ></i>
             )}
           </p>
-          <p className="mb-2">
-            Género: 
-          <input 
-            type="text"
-            value={gender}
-            onChange={(e) => setGender(e.target.value)}
-            disabled={!isEditing}
-            className="ml-2 border rounded-md w-w250"
-             />
-             {!isEditing && (
-              <i
-                className="fa-solid fa-pen-to-square text-argentina ml-2"
-                onClick={() => setIsEditing(!isEditing)}
-              ></i>
-            )}</p>
         </div>
       </div>
 
@@ -173,6 +203,5 @@ const Profile  = () => {
     </div>
   );
 };
-    
-    export default Profile;
 
+export default Profile;
