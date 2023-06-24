@@ -8,10 +8,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        argentina: '#FF385C',
+        // argentina: '#FF385C',
+        // argentina: "#4CD3C2",
+        argentina: "#E96479",
         dark_purple: "#0B2447",
         btn_primary: "#576CBC",
-        heading_color: "#abd9d9"
+        heading_color: "#abd9d9",
+        primero: "#7DB9B6",
+        segundo: "#4D455D",
+        tercero: "#E96479"
       },
       fontFamily: {
         comfortaa: ['Comfortaa', 'cursive'],
