@@ -8,7 +8,7 @@ import Details from './components/detail/CardDetail';
 import Account from "./views/UserProfile/Account";
 import Team from './views/Team/Team';
 import Profile from './views/UserProfile/Profile';
-import Anuncio from './views/UserProfile/Anuncio';
+import Anuncio from './views/UserProfile/Anuncio/Anuncio';
 import MisAnuncios from './views/UserProfile/MisAnuncios';
 
 

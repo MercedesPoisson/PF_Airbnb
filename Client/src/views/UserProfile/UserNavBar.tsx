@@ -15,7 +15,7 @@ const UserNavBar = () => {
   };
     return(
         <div>
-            <div className="sticky top-0 z-99">
+            <div>
         <div className="grid grid-cols-3 gap-3 h-16 mb-1 bg-white">
           <div className="col-span-1 flex items-center justify-start">
             <div

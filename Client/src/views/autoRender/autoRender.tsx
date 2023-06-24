@@ -29,6 +29,7 @@ function AutoRender(){
                     is_active: true
                 }) as unknown as AnyAction)
             }
+            localStorage.setItem('userId', id);
         }
         const fetchData = async () => {
             await dispatch(getServices() as unknown as AnyAction);
