@@ -1,5 +1,5 @@
 import './App.css'
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Outlet } from "react-router-dom";
 import 'tailwindcss/tailwind.css';
 import Home from "../../Client/src/views/Home/home";
 import Form from "../src/views/Form/Form/Form"
@@ -10,6 +10,13 @@ import Team from './views/Team/Team';
 import Profile from './views/UserProfile/Profile';
 import Anuncio from './views/UserProfile/Anuncio';
 import MisAnuncios from './views/UserProfile/MisAnuncios';
+import Layout from "./views/DashBoard/shared/Layout";
+import DashUsers from './views/DashBoard/DashUsers';
+import DashProperties from './views/DashBoard/DashProperties';
+import DashAdmin from './views/DashBoard/DashAdmin';
+import DashRent from './views/DashBoard/DashRent';
+import DashBoard from './views/DashBoard/Dashboard';
+// import DashLogin from './views/DashBoard/DashLogin';
 
 
 function App() {
@@ -25,7 +32,17 @@ function App() {
         <Route path="/ayuda" element={<Team />} />
         <Route path="/usuario/profile" element={<Profile />} />
         <Route path="/usuario/anuncios" element={<MisAnuncios />} />
-        <Route path="/usuario/anuncio/:id" element={<Anuncio />} />            
+        <Route path="/usuario/anuncio/:id" element={<Anuncio />} />
+        <Route path="/dashboard/*" element={<Layout />}>
+          <Route index element={<DashBoard />} />
+          <Route path="users" element={<DashUsers />} />
+          <Route path="properties" element={<DashProperties />} />
+          <Route path="admin" element={<DashAdmin />} />
+          <Route path="rent" element={<DashRent />} />
+        </Route>
+        <Route path="/dashboard/login" element={<div>aca va un login </div> } />
+        
+
       </Routes>  
       <AutoRender/>
     </div>
