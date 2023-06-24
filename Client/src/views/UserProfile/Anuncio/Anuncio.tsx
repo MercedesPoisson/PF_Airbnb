@@ -49,6 +49,7 @@ const [propertyState, setPropertyState] = useState(property);
 const [isCheckboxVisible, setIsCheckboxVisible] = useState(property.allow_pets);
 const [weeklyDiscount, setWeeklyDiscount] = useState(property.weekly_discount || 1);
 const [monthlyDiscount, setMonthlyDiscount] = useState(property.monthly_discount || 1);
+const [allowPets, setAllowPets] = useState(property.allow_pets);
 
 const handleServiceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   const selectedServiceId = event.target.value;
@@ -96,7 +97,7 @@ const handleServiceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         bathrooms_number: bath || property.bathroms_number,
         beds_number: beds || property.beds_number,
         max_guests: guests || property.max_guests,
-        allow_pets: propertyState.allowPets || property.allow_pets,
+        allow_pets: allowPets,
         weekly_discount: weeklyDiscount || property.weekly_discount,
         monthly_discount: monthlyDiscount || property.monthly_discount,
         isEditing: isEditing || false,
@@ -312,8 +313,8 @@ const handleServiceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
             <div className="flex items-center">
               <input
                 type="checkbox"
-                checked={propertyState.allow_pets}
-                onChange={() => setPropertyState({ ...propertyState, allow_pets: !propertyState.allow_pets })}
+                checked={allowPets}
+                onChange={() => setAllowPets(!allowPets)}
                 className="mr-2"
               />
               <h3 className="font-semibold">
