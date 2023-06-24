@@ -1,11 +1,22 @@
-import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import getProperties from "../../../redux/actions/getProperties";
-// import { AnyAction } from "redux";
+
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const PropertiesDash = () => {
-//   const dispatch = useDispatch();
-  const properties = useSelector((state: any) => state.properties); // Corregir el nombre de la variable
+    const [properties, setProperties] = useState([]);
+
+    useEffect(() => {
+      async function fetchProperties() {
+        try {
+          const response = await axios.get("http://localhost:3001/property/all"); // Ajusta la URL de la solicitud según corresponda
+          setProperties(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+  
+      fetchProperties();
+    }, []);
 
  console.log(properties);
 
@@ -27,10 +38,10 @@ const PropertiesDash = () => {
           </thead>
           <tbody>
             {properties && properties.map((property: any) => (
-              <tr key={property.id_property_}>
-                <td>{property.id_property_}</td>
+              <tr key={property.id_property} className="text-center">
+                <td >{property.id_property}</td>
                 <td>{property.id_user}</td>
-                <td>{property.is_active}</td>
+                <td>{property.is_active ? "True" : "False"}</td>
                 <td>{property.province}</td>
                 <td>{property.location}</td>
                 <td>{property.property_type}</td>
