@@ -5,6 +5,18 @@ const propertyTypeMapping = {
 };
 
 const Preview = (props) => {
+  
+  const { start_date, end_date } = props.formData;
+
+  const formatDate = (dateString) => {
+    const dateObj = new Date(dateString);
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+
   const translatedPropertyType = propertyTypeMapping[props.formData.property_type];
   return (
     <div>
@@ -19,7 +31,7 @@ const Preview = (props) => {
           <h3>{props.formData.description}</h3>
           <h3>Tipo de Propiedad: {translatedPropertyType}</h3>
           <h2>Cantidad de Huespedes: {props.formData.max_guests}</h2>
-          <h2>Cantidad Dormitorios: {props.formData.rooms_number}, Catidad de Camas: {props.formData.beds_number}, cantidad de Baños: {props.formData.bathrooms_number}</h2>
+          <h2>Cantidad Dormitorios: {props.formData.rooms_number}, Cantidad de Camas: {props.formData.beds_number}, cantidad de Baños: {props.formData.bathrooms_number}</h2>
           <h4 className="font-bold">Precio por Noche: ${props.formData.price_per_night}</h4>
           <h3>Servicios: {props.formData.services.join(", ")}</h3>
           {props.formData.allow_pets && (
@@ -27,7 +39,7 @@ const Preview = (props) => {
               Podes venir a disfrutar con tu mascota <i className="fa-solid fa-paw ml-2 text-argentina"></i>
             </h3>
           )}
-          <h3>Esta propiedad se encuentra disponible desde: {props.start_date} hasta {props.end_date}</h3>
+          <h3>Esta propiedad se encuentra disponible desde: {formatDate(start_date)} hasta {formatDate(end_date)}</h3>
           {props.formData.weekly_discount || props.formData.monthly_discount ? (
             <h4 className="font-bold font-cairo-play">
               Esta propiedad ofrece descuentos! {props.formData.weekly_discount} {props.formData.monthly_discount}

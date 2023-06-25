@@ -14,7 +14,7 @@ const MisAnuncios = () => {
             <div>
                 <UserNavBar />
             </div>
-            <div className="ml-10 mt-10 font-cairo">
+            <div className="ml-10 mt-20 font-cairo">
                 <div className="uppercase font-bold mb-3">
                    mis anuncios 
                 </div>

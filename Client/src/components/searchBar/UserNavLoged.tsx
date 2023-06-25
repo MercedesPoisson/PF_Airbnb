@@ -1,3 +1,5 @@
+// este UserNavLoged muestra el icono de user con el menu desplegable con las opciones cuando estas loguedo
+
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -5,9 +7,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 interface UserNavProps {
   handleNavigateToAccount: () => void;
   handleNavigateToTeam: () => void;
+  handleNavigateToAnuncios: () => void;
+  handleNavigateToFavoritos: () => void;
 }
 
-const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam }: UserNavProps) => {
+const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam, handleNavigateToAnuncios, handleNavigateToFavoritos }: UserNavProps) => {
   const [showUserBar, setShowUserBar] = useState(false);
  
   const { logout } = useAuth0();
@@ -17,8 +21,10 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam }: UserNav
     console.log("boton clickeado");
   };
 
+
+
   return (
-    <div style={{ position: "relative" }}>
+    <div className="font-cairo-play text-base " style={{ position: "relative" }}>
       <button className="mr-4" onClick={handleUserLoged}>
         <i className="fa-regular fa-circle-user text-argentina text-xl"></i>
       </button>
@@ -45,10 +51,10 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam }: UserNav
             <a href="#">Viajes</a>
           </li>
           <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
-            <a href="#">Favoritos</a>
+            <a href="#" onClick={handleNavigateToFavoritos}>Favoritos</a>
           </li>
           <li style={{ padding: "0.5rem 0" }}>
-            <a href="#">Administra tu Anuncio</a>
+            <a href="#" onClick={handleNavigateToAnuncios}>Administra tu Anuncio</a>
           </li>
           <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
             <a href="#" onClick={handleNavigateToAccount}>

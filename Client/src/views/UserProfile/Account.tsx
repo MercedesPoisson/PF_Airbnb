@@ -17,7 +17,7 @@ const Account = () => {
   return (
     <div>
       <UserNavBar />
-      <div className="grid grid-cols-3 grid-rows-6 gap-3 w-4/5 mx-auto font-cairo mt-10">
+      <div className="grid grid-cols-3 grid-rows-6 gap-3 w-4/5 mx-auto font-cairo mt-20">
         <div className="row-span-2 rounded-xl p-2 border hover:border-argentina hover:animate-lightup">
           <div className="grid grid-cols-2 w-1/4">
             <div>

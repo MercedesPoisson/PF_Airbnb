@@ -10,27 +10,27 @@ const Price = (props) => {
 
   const handleIncrement = () => {
     if (price < 5000) {
-      setPrice((prevPrice) => prevPrice + 1);
+      setPrice((prevPrice) => prevPrice + 100);
       setFormData((prevFormData) => ({
         ...prevFormData,
-        price_per_night: price + 1,
+        price_per_night: price + 100,
       }));
     }
   };
 
   const handleDecrement = () => {
-    if (price > 1) {
-      setPrice((prevPrice) => prevPrice - 1);
+    if (price > 100) {
+      setPrice((prevPrice) => prevPrice - 100);
       setFormData((prevFormData) => ({
         ...prevFormData,
-        price_per_night: price - 1,
+        price_per_night: price - 100,
       }));
     }
   };
 
   const handlePriceChange = (event, name) => {
     const newPrice = parseInt(event.target.value, 10);
-    if (!isNaN(newPrice) && newPrice >= 1 && newPrice <= 5000) {
+    if (!isNaN(newPrice) && newPrice > 0 && newPrice <= 5000) {
       setPrice(newPrice);
       setFormData((prevFormData) => ({
         ...prevFormData,
