@@ -12,30 +12,25 @@ const AvailableDates = (props) => {
   const [selectedEndDay, setSelectedEndDay] = useState("");
   const [selectedEndMonth, setSelectedEndMonth] = useState("");
   const [selectedEndYear, setSelectedEndYear] = useState("");
-  const [errors, setErrors] = useState({
-    end_date: ""
-  });
+  const [errors, setErrors] = useState({end_date: ""});
 
-  // NO permir fechas anteriores a la actual
-  const dayOptions = [];
-  for (let i = currentDay; i <= 31; i++) {
-    dayOptions.push(
-      <option key={i} value={i}>
-        {i}
+  // NO permitir fechas anteriores a la actual
+  const dayOptions = Array.from({ length: 31 }, (_, index) => {
+    const day = index + 1;
+    return (
+      <option key={day} value={day}>
+        {day}
       </option>
     );
-  }
+  });
 
   const monthOptions = Array.from({ length: 12 }, (_, index) => {
     const month = index + 1;
-    if (currentMonth <= month) {
-      return (
-        <option key={month} value={month}>
-          {month}
-        </option>
-      );
-    }
-    return null;
+    return (
+      <option key={month} value={month}>
+        {month}
+      </option>
+    );
   });
 
   const yearOptions = Array.from({ length: 4 }, (_, index) => {
@@ -57,7 +52,7 @@ const AvailableDates = (props) => {
   });
 
   useEffect(() => {
-    // si se seleccionaron valores para end_date borrar error
+    // Si se seleccionaron valores para end_date, borrar error
     if (selectedEndDay && selectedEndMonth && selectedEndYear) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -67,7 +62,7 @@ const AvailableDates = (props) => {
   }, [selectedEndDay, selectedEndMonth, selectedEndYear]);
 
   const handleSaveDates = () => {
-    // validacion antes de guardar
+    // Validación antes de guardar
     if (!selectedEndDay || !selectedEndMonth || !selectedEndYear) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -75,15 +70,25 @@ const AvailableDates = (props) => {
       }));
       return;
     }
-
-    const startDate = `${selectedStartYear}-${selectedStartMonth}-${selectedStartDay}`;
-    const endDate = `${selectedEndYear}-${selectedEndMonth}-${selectedEndDay}`;
-
+  
+    const startDate = new Date(`${selectedStartYear}-${selectedStartMonth}-${selectedStartDay}`);
+    const endDate = new Date(`${selectedEndYear}-${selectedEndMonth}-${selectedEndDay}`);
+  
+    if (startDate > endDate) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        end_date: "La fecha de finalización debe ser posterior a la fecha de inicio"
+      }));
+      return;
+    }
+  
     props.setFormData((prevFormData) => ({
       ...prevFormData,
-      start_date: startDate,
-      end_date: endDate
+      start_date: startDate.toISOString(),
+      end_date: endDate.toISOString()
     }));
+  
+    // Continuar con el siguiente paso
     props.nextStep();
   };
 
@@ -127,7 +132,15 @@ const AvailableDates = (props) => {
             onChange={(e) => setSelectedEndDay(e.target.value)}
           >
             <option value="">Día</option>
-            {dayOptions}
+            {currentMonth === Number(selectedStartMonth) ? (
+              dayOptions
+            ) : (
+              Array.from({ length: 31 }, (_, index) => (
+                <option key={index + 1} value={index + 1}>
+                  {index + 1}
+                </option>
+              ))
+            )}
           </select>
           <select
             className="w-20 border rounded p-1"
@@ -135,7 +148,15 @@ const AvailableDates = (props) => {
             onChange={(e) => setSelectedEndMonth(e.target.value)}
           >
             <option value="">Mes</option>
-            {monthOptions}
+            {currentYear === Number(selectedStartYear) ? (
+              monthOptions
+            ) : (
+              Array.from({ length: 12 }, (_, index) => (
+                <option key={index + 1} value={index + 1}>
+                  {index + 1}
+                </option>
+              ))
+            )}
           </select>
           <select
             className="w-20 border rounded p-1"
@@ -161,7 +182,6 @@ const AvailableDates = (props) => {
 };
 
 export default AvailableDates;
-
 
 // import 'react-date-range/dist/styles.css';
 // import 'react-date-range/dist/theme/default.css';

@@ -2,7 +2,7 @@
 import Validation from "./Validation";
 import { useState, useEffect } from "react";
 
-const PropertyType = (props) => {
+const PropertyType = (props:any) => {
   const [errors, setErrors] = useState({
     propertyType: ""
   });
@@ -15,11 +15,11 @@ const PropertyType = (props) => {
     }));
   }, [props.selectedPropertyType]);
 
-  const handlePropertyTypeChange = (event) => {
+  const handlePropertyTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
     props.handleInputChange(event);
     props.setSelectedPropertyType(value);
-    props.setFormData((prevState) => ({
+    props.setFormData((prevState:any) => ({
       ...prevState,
       [name]: value
     }));
