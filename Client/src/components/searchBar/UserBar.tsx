@@ -1,3 +1,5 @@
+// este UserBar solo tiene el circulo del usuario. y muestra menu desplegable cuando no estas logueado
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -26,7 +28,7 @@ const UserBar = ({ handleNavigateToTeam }: UserBarProps) => {
 
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className="font-cairo-play" style={{ position: "relative"}}>
       <button className="mr-4" onClick={handleUserBar}>
         <i className="fa-regular fa-circle-user text-argentina text-xl"></i>
       </button>
@@ -46,15 +48,14 @@ const UserBar = ({ handleNavigateToTeam }: UserBarProps) => {
             minWidth: "200px",
           }}
         >
-          <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
+          <li className="cursor-pointer" style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
             <a onClick={() => loginWithRedirect()}>Iniciá Sesión</a>
           </li>
-          {/* <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
-            <a href="#">Registrate</a>
-          </li> */}
+          
           <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
             <a href="#" onClick={handlePostProperty}>Publicá tu Propiedad</a>
           </li>
+
           <li style={{ padding: "0.5rem 0" }}>
             <a href="#" onClick={handleNavigateToTeam}>
               Ayuda

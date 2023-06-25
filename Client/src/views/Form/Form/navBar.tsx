@@ -23,7 +23,7 @@ function NavBar() {
               </button>
               </div>
             
-              <button className="border border-argentina rounded p-1 w-32">Guardar y Salir</button>
+              {/* <button className="border border-argentina rounded p-1 w-32">Guardar y Salir</button> */}
             </div>
           </div>
         </div>

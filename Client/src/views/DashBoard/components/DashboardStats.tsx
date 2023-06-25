@@ -2,7 +2,7 @@ import { HiHome, HiUsers, HiShoppingCart } from "react-icons/hi";
 
 const DashBoardStats = () => {
     return(
-        <div className="flex gap-4 w-full">
+        <div className="flex gap-4 ">
             <BoxWrapper>
                 <div className="rounded-full h-12 w-12 flex items-center justify-center bg-primero">
                 <HiHome className="text 2xl text-white"/>
