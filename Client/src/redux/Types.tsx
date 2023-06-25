@@ -45,6 +45,7 @@ export interface State {
     pages: number
     provinces: Province[]
     user: Partial<UserAttributes>
+    favorites: Property[]
 }
 
 interface UserAttributes {
