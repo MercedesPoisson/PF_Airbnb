@@ -1,7 +1,7 @@
-
 import DashBoardStats from "./components/DashboardStats";
 import TransactionChart from "./components/TransactionsChart";
 import PropertiesDash from "./components/PropertiesDash";
+import UsersDash from "./components/UsersDash";
 
 const DashBoard = () => {
     return(
@@ -12,6 +12,9 @@ const DashBoard = () => {
             </div>
             <div className="flex flex-row gap-4 w-full">
                 <PropertiesDash />
+            </div>
+            <div className="flex flex-row gap-4 w-full">
+                <UsersDash />
             </div>
             
             
