@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 const Account = () => {
   const user = useSelector((state: any) => state.user);
+  const properties = useSelector((state:any) => state.properties)
+  const userProperties = properties && properties.filter((property: any) => property.id_user === user.id_user);
   const navigate = useNavigate();
 
   const handleNavigateToProfile = () => {
@@ -13,6 +15,14 @@ const Account = () => {
   const handleNavigateToAnuncio = () => {
     navigate("/usuario/anuncios");
   };
+
+  const handleNavigateToReservas = () => {
+    navigate("/usuario/reservas");
+  }
+
+  const handleNavigateToVacaciones = () => {
+    navigate("/usuario/viajes");
+  }
 
   return (
     <div>
@@ -36,7 +46,7 @@ const Account = () => {
               <p>Teléfono: {user.number}</p>
               <p>Fecha de Nacimiento: {user.Date}</p>
               <p>Género: {user.gender}</p>
-              <h5>
+              <h5 className="uppercase font-bold">
                 PERFIL <i className="fa-solid fa-circle-plus text-argentina"></i>
               </h5>
             </div>
@@ -48,13 +58,28 @@ const Account = () => {
           <h1 className="uppercase font-bold">
             Anuncios <i className="fa-solid fa-pen-to-square text-argentina"></i>
           </h1>
-          {user.Properties && user.Properties.map((property: any) => (
-  <p key={property.id}>{property.title}</p>
-))}
-        </div>
-        <div className="bg-gray-300 row-span-2 rounded-xl p-2">Mis Vacaciones</div>
+          {userProperties && userProperties.map((properties:any, index:number) => (
+          <p key={properties.id}>{`${index+1}) ${properties.title}`}</p>
+        ))}
+        </div >
+        <div className="border hover:border-argentina row-span-2 rounded-xl p-2 cursor-pointer" onClick={handleNavigateToVacaciones}>
+          <h1 className="uppercase font-bold">Mis viajes <i className="fa-solid fa-plane-departure text-argentina"></i>
+            </h1>
+            {user.Rents && user.Rents.map((rent:any, index: number) => (
+              <p key={rent.id}>{`${index+1}) Me voy de vacaciones desde el ${rent.start_date} hasta el ${rent.end_date}`}</p>
+            ))}
+            </div>
+
         <div className="bg-gray-300 row-span-1 rounded-xl p-2">Pagos y Cobros</div>
-        <div className="bg-gray-100 row-span-2 rounded-xl p-2">Reservaron mi Propiedad</div>
+
+        <div className="border hover:border-argentina row-span-2 rounded-xl p-2 cursor-pointer" onClick={handleNavigateToReservas}>
+  <h1 className="uppercase font-bold">Reservaron mi Propiedad <i className="fa-regular fa-calendar-check text-argentina"></i></h1>
+  {properties && properties.map((property: any) => (
+    property.Rents && property.Rents.map((rent: any, index: number) => (
+      <p key={rent.id}>{`${index+1}) Reservada desde el ${rent.start_date} hasta el ${rent.end_date}`}</p>
+    ))
+  ))}
+</div>
         <div className="bg-gray-300 row-span-1 rounded-xl p-2">
           <h1 className="uppercase font-bold">mensajes</h1>
           <h3>(no tenes mensajes nuevos)</h3>

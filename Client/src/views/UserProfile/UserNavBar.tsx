@@ -68,6 +68,7 @@ const userNavBar = () => {
               }`}
               onClick={() => {
                 handleItemClick("Mis Viajes");
+                navigate("/usuario/viajes")
               }}
             >
               <a href="#">Mis Viajes</a>
@@ -109,6 +110,7 @@ const userNavBar = () => {
               }`}
               onClick={() => {
                 handleItemClick("Reservas");
+                navigate("/usuario/reservas");
               }}
             >
               <a href="#">Reservas</a>
