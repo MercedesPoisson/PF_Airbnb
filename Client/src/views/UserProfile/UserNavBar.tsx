@@ -142,7 +142,10 @@ const userNavBar = () => {
                   ? "border-b-2 border-argentina"
                   : "hover:border-b-2 hover:border-argentina"
               }`}
-              onClick={() => handleItemClick("Mi Cuenta")}
+              onClick={() => 
+                {handleItemClick("Mi Cuenta"),
+                navigate("/usuario/perfil")
+            }}
             >
               <a href="#">Mi Cuenta</a>
             </li>

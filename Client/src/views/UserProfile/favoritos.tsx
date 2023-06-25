@@ -2,7 +2,7 @@ import UserNavBar from "./UserNavBar";
 
 const Favoritos = () => {
     return(
-        <div className="mt-20">
+        <div>
             <UserNavBar />
              soy favoritos
         </div>

@@ -28,7 +28,7 @@ const UserBar = ({ handleNavigateToTeam }: UserBarProps) => {
 
 
   return (
-    <div className="font-cairo-play" style={{ position: "relative"}}>
+    <div className="font-cairo-play text-base " style={{ position: "relative"}}>
       <button className="mr-4" onClick={handleUserBar}>
         <i className="fa-regular fa-circle-user text-argentina text-xl"></i>
       </button>
