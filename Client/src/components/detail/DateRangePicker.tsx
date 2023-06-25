@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "react-redux";
 
 const DateRangePicker = (props: any) => {
-  const { dateHandler } = props
+  const { handleDateChange } = props
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const { start_date, end_date, Rents } = useSelector((state: any) => state.detail);
@@ -43,17 +43,20 @@ const DateRangePicker = (props: any) => {
         alert("Las fechas seleccionadas ya están reservadas.");
         setStartDate(null);
         setEndDate(null);
-      }
-
-      dateHandler(startDate, endDate)
+      }    
     }
   }, [startDate, endDate, reservedDates, start, end]);
+
+  
 
   return (
     <div>
       <DatePicker
         selected={startDate}
-        onChange={(date) => setStartDate(date)}
+        onChange={(date) => {
+          handleDateChange(date, endDate);
+          setStartDate(date);
+        }}
         selectsStart
         startDate={startDate}
         endDate={endDate}
@@ -66,7 +69,10 @@ const DateRangePicker = (props: any) => {
       />
       <DatePicker
         selected={endDate}
-        onChange={(date) => setEndDate(date)}
+        onChange={(date) => {
+          handleDateChange(startDate, date);
+          setEndDate(date);
+        }}
         selectsEnd
         startDate={startDate}
         endDate={endDate}

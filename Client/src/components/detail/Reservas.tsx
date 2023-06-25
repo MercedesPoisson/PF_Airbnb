@@ -1,12 +1,18 @@
-import DateRangePicker from "./DateRangePicker"
-import { useState, useEffect } from "react"
-import { useSelector } from "react-redux"
+import DateRangePicker from "./DateRangePicker";
+import { useState, useEffect, useMemo } from "react";
+import { useSelector } from "react-redux";
+import { initMercadoPago, Payment } from "@mercadopago/sdk-react";
+import axios from "axios";
+
 
 const Reservas = (props: any) => {
 
-    const { property } = props
-    const id_user: string = useSelector((state: any) => state.user.id_user)
-    let maxGuest: number[] = []
+    initMercadoPago('TEST-f65903bb-9487-4457-8fe9-9114c375cc8a')
+
+    const { property } = props;
+    const id_user: string = useSelector((state: any) => state.user.id_user);
+    let maxGuest: number[] = [];
+
     const [bookForm, setBookForm] = useState({
         id_user,
         id_property: undefined,
@@ -14,14 +20,19 @@ const Reservas = (props: any) => {
         end_date: "",
         guests_number: 1,
         amount: 0,
-        payment_status: false,
+        payment_status: true,
         creation_date: new Date(),
         active: true
     })
+    
     const [discount, setDiscount] = useState({
         monthly: false,
         weekly: false
     })
+
+    const [bookingSuccess, setBookingSuccess] = useState(false);
+    const [bookingError, setBookingError] = useState(false);
+
 
     useEffect(() => {
         setBookForm({
@@ -64,6 +75,7 @@ const Reservas = (props: any) => {
                 amount
             });
         }
+        
 
     }, [bookForm.start_date, bookForm.end_date, property.price_per_night])
 
@@ -73,11 +85,11 @@ const Reservas = (props: any) => {
         maxGuest.push(i)
     }
 
-    const dateHandler = (start_date: Date, end_date: Date) => {
+    const handleDateChange = (start_date: Date, end_date: Date) => {
         setBookForm({
             ...bookForm,
-            start_date: start_date.toISOString().slice(0, 10),
-            end_date: end_date.toISOString().slice(0, 10),
+            start_date: start_date?.toISOString().slice(0, 10),
+            end_date: end_date?.toISOString().slice(0, 10),
         })
     }
 
@@ -88,13 +100,74 @@ const Reservas = (props: any) => {
         })
     }
 
+    const paymentComponent = useMemo(() => {
+        if (bookForm.amount > 0) {
+            return (
+                <>
+                    {bookingSuccess ? (
+                        <p>Reserva realizada con éxito</p>
+                    ) : bookingError ? (
+                        <p>Error al procesar el pago</p>
+                    ) : (
+                        <Payment
+                            initialization={{
+                                amount: bookForm.amount,
+                            }}
+                            onSubmit={async (form) =>  {
+                                console.log(form)
+                                return new Promise((resolve, reject) => {
+                                    fetch("http://localhost:3001/process_payment", {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        body: JSON.stringify(form),
+                                    })
+                                    .then((response) => response.json())
+                                    .then((response) => {
+                                        // recibir el resultado del pago
+                                        if(response.status === 'approved' && response.status_detail === 'accredited'){
+                                            axios.post('http://localhost:3001/rent', bookForm)
+                                            .then((response) => {
+                                                console.log(response)
+                                                setBookingSuccess(true);
+                                            })
+                                            .catch((error) => {
+                                                console.log(error)
+                                                setBookingError(true);
+                                            })
+                                        }
+                                        resolve(form);
+                                    })
+                                    .catch((error) => {
+                                        // manejar la respuesta de error al intentar crear el pago
+                                        console.log(error)
+                                        setBookingError(true);
+                                        reject();
+                                    });
+                                });
+                            }}
+                            customization={{
+                                paymentMethods: {
+                                    creditCard: "all",
+                                    debitCard: "all"
+                                },
+                            }}
+                        />
+                    )}
+                </>
+            );
+        }
+        return null;
+      }, [bookForm.amount]);
+
 
     return (
         <div className="w-1/2">
             <div className="border rounded-xl w-96 mt-4 flex items-center justify-center">
             <div>
               <div className='mt-3'>
-                <DateRangePicker dateHandler={dateHandler}/>
+                <DateRangePicker handleDateChange={handleDateChange}/>
               </div>
               <div>
                 <select className='border h-10 w-80 rounded-xl mt-3' onChange={guestHandler}>
@@ -120,11 +193,7 @@ const Reservas = (props: any) => {
                 </div>
                  : <></>}
                 <div className='mt-6'>Precio: {bookForm.amount}</div>
-                <div>
-                  <button className="border border-argentina rounded p-1 w-32 mt-3">
-                    Reservar
-                  </button>
-                </div>
+                {paymentComponent}
               </div>
             </div>
           </div>
