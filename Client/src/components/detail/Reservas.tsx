@@ -76,7 +76,6 @@ const Reservas = (props: any) => {
             });
         }
         
-
     }, [bookForm.start_date, bookForm.end_date, property.price_per_night])
 
     
@@ -193,7 +192,9 @@ const Reservas = (props: any) => {
                 </div>
                  : <></>}
                 <div className='mt-6'>Precio: {bookForm.amount}</div>
-                {paymentComponent}
+                {!bookingSuccess && !bookingError && paymentComponent}
+                {bookingSuccess && <div>Reserva realizada con exito</div>}
+                {bookingError && <div>Hubo un error con el pago</div>}
               </div>
             </div>
           </div>
