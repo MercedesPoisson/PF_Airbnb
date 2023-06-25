@@ -11,8 +11,8 @@ import Profile from './views/UserProfile/Profile';
 import Anuncio from './views/UserProfile/Anuncio';
 import MisAnuncios from './views/UserProfile/MisAnuncios';
 import Layout from "./views/DashBoard/shared/Layout";
-import DashUsers from './views/DashBoard/DashUsers';
-import DashProperties from './views/DashBoard/DashProperties';
+import Users from './views/DashBoard/Users';
+import Properties from './views/DashBoard/Properties';
 import DashAdmin from './views/DashBoard/DashAdmin';
 import DashRent from './views/DashBoard/DashRent';
 import DashBoard from './views/DashBoard/Dashboard';
@@ -35,8 +35,8 @@ function App() {
         <Route path="/usuario/anuncio/:id" element={<Anuncio />} />
         <Route path="/dashboard/*" element={<Layout />}>
           <Route index element={<DashBoard />} />
-          <Route path="users" element={<DashUsers />} />
-          <Route path="properties" element={<DashProperties />} />
+          <Route path="users" element={<Users />} />
+          <Route path="properties" element={<Properties />} />
           <Route path="admin" element={<DashAdmin />} />
           <Route path="rent" element={<DashRent />} />
         </Route>
