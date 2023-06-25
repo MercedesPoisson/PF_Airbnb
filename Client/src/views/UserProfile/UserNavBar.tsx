@@ -1,119 +1,164 @@
+//Aca tengo la barra de navegación para el perfil del usuario y se renderiza el icono usuario de UserMenu para ver quien se tiene que desplegar
+// menu logueado o sin loguear
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserMenu from "../../components/searchBar/UserMenu";
 
-const UserNavBar = () => {
-    const navigate = useNavigate();
+const userNavBar = () => {
+  const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState("");
 
   const handleNavigateToHome = () => {
     navigate("/");
   };
 
-  const handleItemClick = (item:string) => {
+  const handleItemClick = (item: string) => {
     setSelectedItem(item);
   };
-    return(
-        <div>
-            <div className="sticky top-0 z-99">
-        <div className="grid grid-cols-3 gap-3 h-16 mb-1 bg-white">
-          <div className="col-span-1 flex items-center justify-start">
-            <div
-              className="flex items-center cursor-pointer"
-              onClick={handleNavigateToHome}
-            >
-              <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
-              <span className="ml-1 text-argentina font-comfortaa text-lg">
-                argentina
-              </span>
-            </div>
-          </div>
-          <div className="col-span-1 flex items-center font-cairo ">
-            <ul className="flex gap-6">
+
+  return (
+    <div>
+      <header className="fixed w-full flex justify-between items-center px-4 md:px-12 h-20 bg-white">
+        <a href="#" onClick={handleNavigateToHome}>
+          <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
+          <span className="text-argentina font-comfortaa text-xl">argentina</span>
+        </a>
+        <nav className="font-cairo text-sm">
+          <button className="md:hidden">
+            <i className="fa-solid fa-bars h-8 w-8 text-xl"></i>
+          </button>
+          <ul className="
+            fixed 
+            left-0 
+            right-0 
+            min-h-screen 
+            space-y-4 
+            p-4
+            font-comfortaa
+            tarnsform 
+            translate-x-full 
+            md:relative 
+            md:flex 
+            md:min-h-0 
+            md:space-y-0
+            md:space-x-6
+            md:p-0
+            md:translate-x-0
+          ">
             <li
-            className={`cursor-pointer ${
-              selectedItem === "perfil"
-                ? "border-b-2 border-red-500"
-                : "hover:border-b-2 hover:border-red-500"
-            }`}
-            onClick={() => {
-              handleItemClick("perfil");
-              navigate("/usuario/profile");
+              className={`cursor-pointer ${
+                selectedItem === "perfil"
+                  ? "border-b-2 border-argentina"
+                  : "hover:border-b-2 hover:border-argentina"
+              }`}
+              onClick={() => {
+                handleItemClick("perfil");
+                navigate("/usuario/profile");
+              }}
+            >
+              <a href="#">Perfil</a>
+            </li>
+
+            <li
+              className={`cursor-pointer ${
+                selectedItem === "Mis Viajes"
+                  ? "border-b-2 border-argentina"
+                  : "hover:border-b-2 hover:border-argentina"
+              }`}
+              onClick={() => {
+                handleItemClick("Mis Viajes");
+              }}
+            >
+              <a href="#">Mis Viajes</a>
+            </li>
+
+            <li
+              className={`cursor-pointer ${
+                selectedItem === "Favoritos"
+                  ? "border-b-2 border-argentina"
+                  : "hover:border-b-2 hover:border-argentina"
+              }`}
+              onClick={() => {
+                handleItemClick("Favoritos");
+                navigate("/usuario/favoritos");
+              }}
+            >
+              <a href="#">Favoritos</a>
+            </li>
+
+            <li
+              className={`cursor-pointer ${
+                selectedItem === "Mis Anuncios"
+                  ? "border-b-2 border-argentina"
+                  : "hover:border-b-2 hover:border-argentina"
+              }`}
+              onClick={() => {
+                handleItemClick("Mis Anuncios");
+                navigate("/usuario/anuncios");
+              }}
+            >
+              <a href="#">Mis Anuncios</a>
+            </li>
+
+            <li
+              className={`cursor-pointer ${
+                selectedItem === "Reservas"
+                  ? "border-b-2 border-argentina"
+                  : "hover:border-b-2 hover:border-argentina"
+              }`}
+              onClick={() => {
+                handleItemClick("Reservas");
+              }}
+            >
+              <a href="#">Reservas</a>
+            </li>
+
+            <li
+              className={`cursor-pointer ${
+                selectedItem === "Transacciones"
+                  ? "border-b-2 border-argentina"
+                  : "hover:border-b-2 hover:border-argentina"
+              }`}
+              onClick={() => handleItemClick("Transacciones")}
+            >
+              <a href="#">Transacciones</a>
+            </li>
+
+            <li
+              className={`cursor-pointer ${
+                selectedItem === "Mensajes"
+                  ? "border-b-2 border-argentina"
+                  : "hover:border-b-2 hover:border-argentina"
+              }`}
+              onClick={() => handleItemClick("Mensajes")}
+            >
+              <a href="#">Mensajes</a>
+            </li>
+
+            <li
+              className={`cursor-pointer ${
+                selectedItem === "Mi Cuenta"
+                  ? "border-b-2 border-argentina"
+                  : "hover:border-b-2 hover:border-argentina"
+              }`}
+              onClick={() => 
+                {handleItemClick("Mi Cuenta"),
+                navigate("/usuario/perfil")
             }}
             >
-              <a>Perfil</a>
+              <a href="#">Mi Cuenta</a>
             </li>
-              <li
-                className={`cursor-pointer ${
-                  selectedItem === "perfil"
-                    ? "border-b-2 border-red-500"
-                    : "hover:border-b-2 hover:border-red-500"
-                }`}
-                onClick={() => {
-                  handleItemClick("perfil");
-                }}
-                  
-              >
-                <a>Mis Viajes</a>
-              </li>
-              <li
-                className={`cursor-pointer ${
-                  selectedItem === "perfil"
-                    ? "border-b-2 border-red-500"
-                    : "hover:border-b-2 hover:border-red-500"
-                }`}
-                onClick={() => handleItemClick("perfil")}
-              >
-                <a>Favoritos</a>
-              </li>
-              <li
-                className={`cursor-pointer ${
-                  selectedItem === "perfil"
-                    ? "border-b-2 border-red-500"
-                    : "hover:border-b-2 hover:border-red-500"
-                }`}
-                onClick={() => {
-                  handleItemClick("perfil");
-                  navigate("/usuario/anuncios");
-                }}
-              >
-                <a>Mis Anuncios</a>
-              </li>
-              <li
-                className={`cursor-pointer ${
-                  selectedItem === "perfil"
-                    ? "border-b-2 border-red-500"
-                    : "hover:border-b-2 hover:border-red-500"
-                }`}
-                onClick={() => handleItemClick("perfil")}
-              >
-                <a>Pagos y Cobros</a>
-              </li>
-              <li
-                className={`cursor-pointer ${
-                  selectedItem === "perfil"
-                    ? "border-b-2 border-red-500"
-                    : "hover:border-b-2 hover:border-red-500"
-                }`}
-                onClick={() => handleItemClick("perfil")}
-              >
-                <a>Mensajes</a>
-              </li>
-            </ul>
-           
-          </div>
-          <div className="col-span-1 font-cairo-play flex items-center justify-end mr-10">
-            <button className="mr-4">
-              <UserMenu />
-            </button>
-            {/* <button className="border border-argentina rounded p-1 w-32">
-              Guardar y Salir
-            </button> */}
-          </div>
-        </div>
-      </div>
 
-        </div>
-    )
-}
-export default UserNavBar
+            <li>
+              <UserMenu />
+            </li>
+          </ul>
+        </nav>
+      </header>
+      nueva barra responsive
+    </div>
+  );
+};
+
+export default userNavBar;

@@ -16,10 +16,12 @@ import Properties from './views/DashBoard/Properties';
 import DashAdmin from './views/DashBoard/DashAdmin';
 import DashRent from './views/DashBoard/DashRent';
 import DashBoard from './views/DashBoard/Dashboard';
+import Favoritos from "./views/UserProfile/favoritos";
 // import DashLogin from './views/DashBoard/DashLogin';
 
 
 function App() {
+  
   console.log("esto se ve?");
   
   return (
@@ -33,6 +35,9 @@ function App() {
         <Route path="/usuario/profile" element={<Profile />} />
         <Route path="/usuario/anuncios" element={<MisAnuncios />} />
         <Route path="/usuario/anuncio/:id" element={<Anuncio />} />
+        <Route path="/usuario/favoritos" element={<Favoritos />} />
+
+
         <Route path="/dashboard/*" element={<Layout />}>
           <Route index element={<DashBoard />} />
           <Route path="users" element={<Users />} />

@@ -157,9 +157,9 @@ const Form = () => {
             <button className="mr-4">
             <UserMenu />
             </button>
-            <button className="border border-argentina rounded p-1 w-32">
+            {/* <button className="border border-argentina rounded p-1 w-32">
               Guardar y Salir
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

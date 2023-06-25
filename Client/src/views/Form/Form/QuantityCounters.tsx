@@ -6,6 +6,13 @@ const QuantityCounter = (props) => {
   const [camas, setCamas] = useState(1);
   const [banos, setBanos] = useState(1);
 
+  // useEffect(() => {
+  //   setOcupantes(props.ocupantes);
+  //   setDormitorios(props.dormitorios)
+  //   setCamas(props.camas)
+  //   setBanos(props.banos)
+  // }, [props.ocupantes, props.dormitorios, props.camas, props.banos])
+
   const handleIncrement = (category: string) => {
     switch (category) {
       case "ocupantes":
