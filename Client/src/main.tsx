@@ -19,7 +19,7 @@ ReactDOM.render(
     domain={domain}
     clientId={clientId}
     authorizationParams={{
-      redirect_uri: "https://backofback-production.up.railway.app/?page=0"
+      redirect_uri: "https://backofback-production.up.railway.app/"
     }}
     >
         <Provider store={store}>
