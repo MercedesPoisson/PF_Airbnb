@@ -4,7 +4,7 @@ const Rent = () => {
     return(
         <div>
             <UserNavBar />
-             soy favoritos
+             propiedades reservadas
         </div>
     )
 }
