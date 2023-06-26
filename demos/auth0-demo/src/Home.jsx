@@ -11,7 +11,7 @@ function Homepage() {
     useEffect(() => {
         if(isAuthenticated) {
             let id = (user.sub.split('|')[1]);
-            axios.get(`http://localhost:3000/user/${id}`)
+            axios.get(`https://backofback-production.up.railway.app/user/${id}`)
         }
     }, [isAuthenticated])
 
