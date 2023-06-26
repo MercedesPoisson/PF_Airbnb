@@ -1,5 +1,7 @@
 import { Reducer } from "redux";
-import { GET_USER, CREATE_USER, GET_PROPERTIES, GET_PROPERTY_DETAIL, GET_SERVICES, POST_PROPERTIES, GET_PROVINCES, PUT_USER, PUT_PROPERTY, PUT_PROPERTY_STATUS, GET_FAVORITES, POST_FAVORITES, DELETE_FAVORITES } from "./actions/actionsType";
+
+import {GET_ALL_USERS, GET_USER, CREATE_USER, GET_PROPERTIES, GET_PROPERTY_DETAIL, GET_SERVICES, POST_PROPERTIES, GET_PROVINCES, PUT_USER, PUT_PROPERTY, PUT_PROPERTY_STATUS, GET_FAVORITES, POST_FAVORITES, DELETE_FAVORITES } from "./actions/actionsType";
+
 import { State, Action } from "./Types"
 
 
@@ -42,6 +44,8 @@ const rootReducer: Reducer<State, Action> = (state = inictialState, { type, payl
             return {...state}
         case DELETE_FAVORITES:
             return {...state}
+        case GET_ALL_USERS:
+            return {...state, properties: payload}
         default:
             return state;
     }

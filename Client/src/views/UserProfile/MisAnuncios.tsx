@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
 
 const MisAnuncios = () => {
-    // const properties = useSelector((state:any) => state.properties);
+    const properties = useSelector((state:any) => state.properties);
     const user = useSelector((state:any) => state.user);
 
-    // const myProperties = properties.filter((property:any) => property.id_user === user.id_user);
+    const myProperties = properties.filter((property:any) => property.id_user === user.id_user);
     
     return(
         <div>
@@ -19,7 +19,7 @@ const MisAnuncios = () => {
                    mis anuncios 
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 ml-4 z-0">
-                    {user.Properties && user.Properties.map((property:any) => (
+                    {myProperties && myProperties.map((property:any) => (
                         <Card
                             key={property.id_property}
                             title={property.title}
