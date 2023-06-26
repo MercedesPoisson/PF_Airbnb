@@ -74,7 +74,7 @@ const Account = () => {
 
         <div className="border hover:border-argentina row-span-2 rounded-xl p-2 cursor-pointer" onClick={handleNavigateToReservas}>
   <h1 className="uppercase font-bold">Reservaron mi Propiedad <i className="fa-regular fa-calendar-check text-argentina"></i></h1>
-  {properties && properties.map((property: any) => (
+  {userProperties && userProperties.map((property: any) => (
     property.Rents && property.Rents.map((rent: any, index: number) => (
       <p key={rent.id}>{`${index+1}) Reservada desde el ${rent.start_date} hasta el ${rent.end_date}`}</p>
     ))
