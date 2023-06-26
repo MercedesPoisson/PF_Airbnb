@@ -1,5 +1,4 @@
 
-
 const Proyecto = () => {
     return(
         <div className="flex justify-center items-center h-screen bg-segundo ">
@@ -13,6 +12,8 @@ const Proyecto = () => {
                     <span className="animate-scroll font-bold">bnb</span>
                 </div>
                 <i className="fa-solid fa-arrow-right text-argentina"></i>
+            </div>
+            <div>
             </div>
         </div>
     )

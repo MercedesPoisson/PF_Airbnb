@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import UserNavBar from "./UserNavBar";
+import Rating from "../../components/Rating/Rating";
 
 const Vacaciones = () => {
   const user = useSelector((state: any) => state.user);
@@ -48,6 +49,9 @@ const Vacaciones = () => {
             </tbody>
           </table>
         </div>
+      </div>
+      <div>
+        <Rating />
       </div>
     </div>
   );
