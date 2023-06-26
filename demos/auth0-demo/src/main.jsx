@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     domain={domain} 
     clientId={clientId} 
     authorizationParams={{
-      redirect_uri: 'proyectofinalairbnb-iryiq0a3r-mercedespoisson.vercel.app/home'
+      redirect_uri: 'https://proyectofinalairbnb.vercel.app/home'
     }}
   >
     <App/>

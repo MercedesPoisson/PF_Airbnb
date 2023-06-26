@@ -6,7 +6,7 @@ function Logout() {
     const { logout } = useAuth0();
 
     return (
-        <button onClick={() => logout({ logoutParams: { returnTo: 'proyectofinalairbnb-iryiq0a3r-mercedespoisson.vercel.app'}})}>
+        <button onClick={() => logout({ logoutParams: { returnTo: 'https://proyectofinalairbnb.vercel.app/'}})}>
             Log Out
         </button>
     )
