@@ -1,6 +1,12 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Link } from "react-router-dom";
+import postFavorites from '../../redux/actions/postFavorites';
+import { AnyAction } from 'redux';
+import deleteFavorites from '../../redux/actions/deleteFavorites';
+import getFavorites from '../../redux/actions/getFavorites';
 
 interface CardProps {
   title: string;
@@ -20,6 +26,26 @@ function Card({ id_property, title, location, province, price_per_night, rating,
     }
     return text;
   }
+  const {id_user} = useSelector((state:any)=> state.user )
+  const favorites = useSelector((state:any)=> state.favorites)
+  const dispatch = useDispatch()
+
+  const [ isSaved, SetIsSaved ] = useState(favorites.some((property:any)=> property.id_property === id_property));
+  console.log(favorites);
+
+  const handleSaveClick = async() => {
+      SetIsSaved(!isSaved)
+      if(!isSaved){
+        await dispatch(postFavorites(id_user,id_property)as unknown as AnyAction)
+      }
+      else{
+        await dispatch(deleteFavorites(id_user,id_property)as unknown as AnyAction)
+        await dispatch(getFavorites(id_user)as unknown as AnyAction)
+      }
+        
+  }
+
+  
   
   const renderCarousel = () => {
     if (Array.isArray(images) && images.length > 0) {
@@ -67,6 +93,9 @@ function Card({ id_property, title, location, province, price_per_night, rating,
       <div className="w-full">
         {renderCarousel()}
         
+          <div className='col-span-1 justify-right'>
+          <i className={`ml-3 mr-1 cursor-pointer ${isSaved ? 'fa-solid fa-heart' : 'fa-regular fa-heart'} text-argentina`} onClick={handleSaveClick} ></i>
+            </div>
         <div className='p-4'>
           <Link to={getLinkPath()}>
          <button className="justify-between">
@@ -74,9 +103,6 @@ function Card({ id_property, title, location, province, price_per_night, rating,
             <div className='col-span-3'>
               <h2 className="mb-1 text-left">{truncateTitle(title, 25)}</h2>
               </div>
-          <div className='col-span-1 justify-right'>
-            <i className="ml-3 fa-regular fa-heart text-argentina"></i>
-            </div>
           </div>
                      
           <h3 className="text-left text-base">{location}</h3>
