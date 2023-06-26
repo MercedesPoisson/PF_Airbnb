@@ -16,7 +16,7 @@ const Rating = () => {
   };
 
   return (
-    <div className="font-cairo m-0 items-center justify-center bg-white w-80 mt-4 ml-10">
+    <div className="font-cairo m-0 items-center justify-center bg-white w-80 mt-4 mr-10">
       <p className="uppercase font-bold text-white bg-segundo py-2 px-3 mb-2">Contanos tu experiencia</p>
 
       <div id="stars-limpieza" className="relative p-2 text-base items-center">
