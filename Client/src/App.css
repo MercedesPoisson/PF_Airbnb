@@ -1,0 +1,8 @@
+.app-container {
+    /* Estilos base */
+  }
+  
+  .app-container.dark-mode {
+    background-color: black;
+    color: white;
+  }
