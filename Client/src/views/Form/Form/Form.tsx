@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import FirstView from "./FirstView";
 import PropertyType from "./PropertyType";
@@ -10,6 +10,7 @@ import Price from "./Price";
 import Discount from "./discount";
 import Preview from "./Preview";
 import postServices from "../../../redux/actions/postProperties";
+import getUser from "../../../redux/actions/getUser";
 import { useDispatch, useSelector } from "react-redux";
 import Cloudinary from "./Cloudinary";
 import AvailableDates from "./AvailableDates";
@@ -130,10 +131,21 @@ const Form = () => {
 
     
     dispatch(postServices(newForm));
-    console.log("Datos enviados a la base de datos", formData);
+    console.log("Datos enviados a la base de datos", formData);   
     alert("Propiedad Creada");
   };
 
+  useEffect(() => {
+    if(formData.id_user) {
+      dispatch(getUser(formData.id_user))
+    }
+  }, [dispatch, formData.id_user])
+
+  useEffect(() => {
+    console.log("usuario Actualizado", formData);
+  }, [formData])
+ 
+    
   const handleNavigateToHome = () => {
     navigate("/");
   };

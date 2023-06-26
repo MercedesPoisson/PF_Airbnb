@@ -17,6 +17,8 @@ import DashAdmin from './views/DashBoard/DashAdmin';
 import DashRent from './views/DashBoard/DashRent';
 import DashBoard from './views/DashBoard/Dashboard';
 import Favoritos from "./views/UserProfile/favoritos";
+import Rent from './views/UserProfile/Rent';
+import Vacaciones from './views/UserProfile/Vacaciones';
 // import DashLogin from './views/DashBoard/DashLogin';
 
 
@@ -36,6 +38,9 @@ function App() {
         <Route path="/usuario/anuncios" element={<MisAnuncios />} />
         <Route path="/usuario/anuncio/:id" element={<Anuncio />} />
         <Route path="/usuario/favoritos" element={<Favoritos />} />
+        <Route path="/usuario/reservas" element={<Rent />} />
+        <Route path="/usuario/viajes" element={<Vacaciones />} />
+
 
 
         <Route path="/dashboard/*" element={<Layout />}>
