@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import getPropertyDetail from '../../redux/actions/getPropertyDetail';
+import { AnyAction } from 'redux';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Map from "./Map"
@@ -22,7 +23,7 @@ const CardDetails = () => {
 
   useEffect(() => {
     console.log(id);
-    dispatch(getPropertyDetail(id));
+    dispatch(getPropertyDetail(id) as unknown as AnyAction);
   }, [dispatch, id]);
 
   console.log(property);

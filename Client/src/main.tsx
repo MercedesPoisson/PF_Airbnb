@@ -7,20 +7,17 @@ import store from './redux/store.tsx';
 import { Provider } from "react-redux"
 import { Auth0Provider } from '@auth0/auth0-react'
 
-const domain = 'dev-hnmu75yme6gkbvl6.us.auth0.com'
-const clientId = 'CiDF3NCMSgGw2p521DbnysBwaglhJywi'
-
-const currentUrl = window.location.href;
-
+const domain = 'dev-yura723kkk8s5a14.us.auth0.com'
+const clientId = '3VrGMPPJBmJR1V5slCMSlYjZ3NsWCGct'
 
 ReactDOM.render(
     <BrowserRouter>
-    <Auth0Provider
-    domain={domain}
-    clientId={clientId}
-    authorizationParams={{
-      redirect_uri: "http://localhost:5173/?page=0"
-    }}
+      <Auth0Provider
+        domain={domain}
+        clientId={clientId}
+        authorizationParams={{
+          redirect_uri: window.location.origin
+        }}
     >
         <Provider store={store}>
           <React.StrictMode>

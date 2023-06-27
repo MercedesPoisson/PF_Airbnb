@@ -28,7 +28,7 @@ const Account = () => {
     <div>
       <UserNavBar />
       
-      <div className="relative flex justify-center mt-20 -z-1 ">
+      <div className="relative flex justify-center mt-20 -z-1" style={{ zIndex: '-1' }}>
         <div className="row-span-2 border hover:border-segundo hover:animate-lightup w-[450px] ml-10 mb-10">
         <h5 className="flex items-center justify-between uppercase font-bold bg-segundo text-white px-2 py-2">
         PERFIL <i className="fa-solid fa-circle-plus text-white"></i>
@@ -77,7 +77,7 @@ const Account = () => {
       </div>
 
 
-      <div className="relative flex justify-center">
+      <div className="relative flex justify-center" style={{ zIndex: -1 }}>
         
 <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10" onClick={handleNavigateToAnuncio}>
         <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
