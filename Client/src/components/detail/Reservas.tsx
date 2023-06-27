@@ -3,9 +3,34 @@ import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { initMercadoPago, Payment } from "@mercadopago/sdk-react";
 import axios from "axios";
+// import Modal from "react-modal";
 
+// const modalStyles = {
+//     content: {
+//         top: "50%",
+//         left: "50%",
+//         right: "auto",
+//         bottom: "auto",
+//         transform: "translate(-50%, -50%)",
+//         boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
+//         padding: "20px",
+//         maxWidth: "500px",
+//         width: "90%",
+//     }
+// }
 
 const Reservas = (props: any) => {
+    // const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [modalContent, setModalContent] = useState("");
+
+    // const openModal = (content) => {
+    //     setIsModalOpen(true);
+    //     setModalContent(content);
+    // }
+
+    // const closeModal = () => {
+    //     setIsModalOpen(false);
+    // }
 
     initMercadoPago('TEST-f65903bb-9487-4457-8fe9-9114c375cc8a')
 
@@ -130,10 +155,12 @@ const Reservas = (props: any) => {
                                             .then((response) => {
                                                 console.log(response)
                                                 setBookingSuccess(true);
+                                                // openModal("Reserva realizada con éxito")
                                             })
                                             .catch((error) => {
                                                 console.log(error)
                                                 setBookingError(true);
+                                                // openModal("Error al procesar el pago")
                                             })
                                         }
                                         resolve(form);
@@ -195,6 +222,9 @@ const Reservas = (props: any) => {
                 {!bookingSuccess && !bookingError && paymentComponent}
                 {bookingSuccess && <div>Reserva realizada con exito</div>}
                 {bookingError && <div>Hubo un error con el pago</div>}
+                {/* <Modal>
+
+                </Modal> */}
               </div>
             </div>
           </div>
