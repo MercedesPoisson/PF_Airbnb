@@ -7,7 +7,9 @@ const MisAnuncios = () => {
     const properties = useSelector((state:any) => state.properties);
     const user = useSelector((state:any) => state.user);
 
-    const myProperties = properties.filter((property:any) => property.id_user === user.id_user);
+    const myProperties = Array.isArray(properties)
+    ? properties.filter((property: any) => property.id_user === user.id_user)
+    : [];
     
     return(
         <div>

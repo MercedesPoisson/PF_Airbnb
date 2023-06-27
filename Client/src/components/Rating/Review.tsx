@@ -1,6 +1,6 @@
 const Review = () => {
     return (
-      <section className="h-screen flex justify-center items-center gap-x-16 text-white">
+      <section className="flex justify-center items-center gap-x-16 text-white mt-4 w-96">
         <div className="w-[420px] h-[300px] bg-transparent cursor-pointer group perspective">
           <div className="relative preserve-3d group-hover:my-rotate-y-180 w-full h-full duration-1000">
             <div className="absolute backface-hidden border-2 flex items-center justify-center p-2">
