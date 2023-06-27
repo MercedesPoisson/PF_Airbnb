@@ -4,9 +4,21 @@ import UserNavBar from "./UserNavBar";
 import Modal from 'react-modal'
 import Rating from "../../components/Rating/Rating";
 
+const modalStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    transform: 'translate(-50%, -50%)',
+    borderRadius: '4px',
+    boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
+  },
+};
 
 
 const Vacaciones = () => {
+
   const user = useSelector((state: any) => state.user);
   const properties = useSelector((state: any) => state.properties);
   
@@ -56,6 +68,8 @@ const Vacaciones = () => {
                         isOpen={ratingIsOpen}
                         onRequestClose={() => setRatingIsOpen(false)}
                         contentLabel="Contanos tu experiencia"
+                        style={modalStyles}
+                        
                         ><Rating id_property={rent.Property.id_property} id_user={user.id_user} onRequestClose={() => setRatingIsOpen(false)}/>
                         </Modal>
                       </td>
