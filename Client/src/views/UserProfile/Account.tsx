@@ -1,11 +1,13 @@
 import UserNavBar from "./UserNavBar";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Favoritos from "./favoritos";
 
 const Account = () => {
   const user = useSelector((state: any) => state.user);
   const properties = useSelector((state:any) => state.properties)
   const userProperties = properties && properties.filter((property: any) => property.id_user === user.id_user);
+  const favorites = useSelector((state: any) => state.favorites);
   const navigate = useNavigate();
 
   const handleNavigateToProfile = () => {
@@ -69,10 +71,11 @@ const Account = () => {
         MIS FAVORITOS <i className="fa-solid fa-circle-plus text-white"></i>
         </h5>
         <div className="h-40">
-        {user.Rents && user.Rents.map((rent:any, index: number) => (
-              <p key={rent.id}>{`${index+1}) Me voy de vacaciones desde el ${rent.start_date} hasta el ${rent.end_date}`}</p>
-            ))}
-            </div>
+  {favorites &&
+    favorites.map((property: any, index: number) => (
+      <p key={property.id}>{`${index + 1}) Me encanta esta propiedad: ${property.title}, ${property.location}`}</p>
+    ))}
+</div>
       </div>
       </div>
 
@@ -109,9 +112,7 @@ const Account = () => {
         PAGOS Y COBROS <i className="fa-solid fa-circle-plus text-white"></i>
         </h5>
         <div className="h-40">
-        {user.Rents && user.Rents.map((rent:any, index: number) => (
-              <p key={rent.id}>{`${index+1}) Me voy de vacaciones desde el ${rent.start_date} hasta el ${rent.end_date}`}</p>
-            ))}
+        Aca va la logica para traer los pagos realizados y los cobros recibidos
             </div>
       </div>
       </div>
