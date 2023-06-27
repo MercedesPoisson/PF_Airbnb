@@ -24,7 +24,7 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam, handleNav
 
 
   return (
-    <div className="font-cairo-play text-base " style={{ position: "relative" }}>
+    <div className="font-cairo-play text-base " style={{ position: "relative" }} >
       <button className="mr-4" onClick={handleUserLoged}>
         <i className="fa-regular fa-circle-user text-argentina text-xl"></i>
       </button>
