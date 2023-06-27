@@ -1,12 +1,19 @@
+import { useState } from 'react'
 import { useSelector } from "react-redux";
 import UserNavBar from "./UserNavBar";
+import Modal from 'react-modal'
 import Rating from "../../components/Rating/Rating";
-import Review from "../../components/Rating/Review";
+
+
 
 const Vacaciones = () => {
   const user = useSelector((state: any) => state.user);
   const properties = useSelector((state: any) => state.properties);
-  const userProperties = properties && properties.filter((property: any) => property.id_user === user.id_user);
+  
+  const [ratingIsOpen, setRatingIsOpen] = useState(false);
+
+
+  
 
   return (
     <div>
@@ -24,35 +31,44 @@ const Vacaciones = () => {
                 <th>Localidad</th>
                 <th>Provincia</th>
                 <th>Propiedad</th>
-                <th>Status</th>
+                <th>Estado</th>
+                <th>Conta tu experiencia</th>
               </tr>
             </thead>
             <tbody>
               {user.Rents && user.Rents.map((rent: any, index:number) => {
-                const property = properties.find((p: any) => p.Rents && p.Rents.find((r: any) => r.id === rent.id));
 
-                if (property) {
                   return (
                     <tr key={rent.id} className="text-center">
                       <td >#{index + 1}</td>
                       <td>{rent.start_date} - {rent.end_date}</td>
                       <td>${rent.amount}</td>
-                      <td>{property.address}</td>
-                      <td>{property.location}</td>
-                      <td>{property.province}</td>
-                      <td>{property.title}</td>
-                      <td>{rent.active ? "Tu vieja esta por empezar" : "Califica tu experiencia"}</td>
+                      <td>{rent.Property.address}</td>
+                      <td>{rent.Property.location}</td>
+                      <td>{rent.Property.province}</td>
+                      <td>{rent.Property.title}</td>
+                      <td>{rent.active ? "Tu viaje esta por empezar" : "Califica tu experiencia"}</td>
+                      <td>
+                        {user?.Ratings?.find((rating: any) => rating.id_property === rent.Property.id_property) 
+                        ? 'Gracias por tu valoración' 
+                        : <button onClick={() => setRatingIsOpen(true)} className="border border-red-500 px-4 rounded-md">Clickea aqui</button>}
+                        <Modal
+                        isOpen={ratingIsOpen}
+                        onRequestClose={() => setRatingIsOpen(false)}
+                        contentLabel="Contanos tu experiencia"
+                        ><Rating id_property={rent.Property.id_property} id_user={user.id_user} onRequestClose={() => setRatingIsOpen(false)}/>
+                        </Modal>
+                      </td>
                     </tr>
                   );
-                }
-                return null;
+                
               })}
             </tbody>
           </table>
         </div>
       </div>
       <div>
-        <Rating />
+      
       </div>
     </div>
   );
