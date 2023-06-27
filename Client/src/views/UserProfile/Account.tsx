@@ -28,8 +28,8 @@ const Account = () => {
     <div>
       <UserNavBar />
       
-      <div className="relative flex justify-center mt-20 ">
-<div className="row-span-2 border hover:border-segundo hover:animate-lightup w-[450px] ml-10 mb-10">
+      <div className="relative flex justify-center mt-20 -z-1 ">
+        <div className="row-span-2 border hover:border-segundo hover:animate-lightup w-[450px] ml-10 mb-10">
         <h5 className="flex items-center justify-between uppercase font-bold bg-segundo text-white px-2 py-2">
         PERFIL <i className="fa-solid fa-circle-plus text-white"></i>
         </h5>
