@@ -1,13 +1,27 @@
 import Card from "../../components/Card/card";
 import UserNavBar from "./UserNavBar";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from "axios";
 // import { Link } from "react-router-dom";
 
 const MisAnuncios = () => {
-    const properties = useSelector((state:any) => state.properties);
+    
     const user = useSelector((state:any) => state.user);
+    const [properties, setProperties] = useState([])
 
-    const myProperties = properties.filter((property:any) => property.id_user === user.id_user);
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+    async function fetchData() {
+        try {
+            const response = await axios.get(`http://localhost:3001/users/${user.id_user}`)
+            setProperties(response.data.properties)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     
     return(
         <div>
@@ -19,7 +33,7 @@ const MisAnuncios = () => {
                    mis anuncios 
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 ml-4 z-0">
-                    {myProperties && myProperties.map((property:any) => (
+                    {properties && properties.map((property:any) => (
                         <Card
                             key={property.id_property}
                             title={property.title}
