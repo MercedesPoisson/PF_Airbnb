@@ -1,13 +1,21 @@
+import { useEffect } from "react";
 import Card from "../../components/Card/card";
 import UserNavBar from "./UserNavBar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import getProperties from "../../redux/actions/getProperties";
 // import { Link } from "react-router-dom";
+import { AnyAction } from "redux";
 
 const MisAnuncios = () => {
     const properties = useSelector((state:any) => state.properties);
     const user = useSelector((state:any) => state.user);
+    const dispatch = useDispatch()
 
     const myProperties = properties.filter((property:any) => property.id_user === user.id_user);
+
+    useEffect(()=>{
+        dispatch(getProperties("?page") as unknown as AnyAction)
+    },[dispatch])
     
     return(
         <div>
