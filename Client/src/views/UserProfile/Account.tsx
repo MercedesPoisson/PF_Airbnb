@@ -78,7 +78,7 @@ const Account = () => {
       </div>
       </div>
 
-      <div className="relative flex justify-center" style={{ zIndex: -1 }}>
+      <div className="flex justify-center">
         
 <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10" onClick={handleNavigateToAnuncio}>
         <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
