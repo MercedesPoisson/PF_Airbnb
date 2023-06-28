@@ -28,12 +28,13 @@ const updateProperty = (property: any) => {
             weekly_discount,
             monthly_discount,
             min_nights,
-            accessibility
+            accessibility,
+            services
         } = property
     try {
         const updatedProperty ={
-            id_property,
-            id_user,
+            ...(id_property && {id_property}),
+            ...(id_user && {id_user}),
             ...(title && {title}),
             ...(province && {province}),
             ...(location && {location}),
@@ -51,13 +52,15 @@ const updateProperty = (property: any) => {
             ...(bathrooms_number && {bathrooms_number}),
             ...(beds_number && {beds_number}),
             ...(max_guests && {max_guests}), 
-            ...(allow_pets && {allow_pets}),
-            ...(weekly_discount && {weekly_discount}),
-            ...(monthly_discount && {monthly_discount}),
+            ...({allow_pets}),
+            ...({weekly_discount}),
+            ...({monthly_discount}),
             ...(min_nights && {min_nights}),
-            ...(accessibility && {accessibility})
+            ...(accessibility && {accessibility}),
+            ...(services && {services})
         }
-
+        console.log(updatedProperty);
+        
         await axios.put(`http://localhost:3001/property/update/${id_property}`, updatedProperty)
         // dispatch({type:PUT_PROPERTY, payload: updatedProperty})
         
