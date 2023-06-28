@@ -3,11 +3,6 @@ import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { initMercadoPago, Payment } from "@mercadopago/sdk-react";
 import axios from "axios";
-<<<<<<< HEAD
-import Modal from "react-modal";
-=======
-import { Link } from "react-router-dom";
->>>>>>> 3a55044... Intro Chat
 
 const modalStyles = {
     content: {
@@ -244,43 +239,8 @@ const Reservas = (props: any) => {
             )}
             {discount.weekly ? (
               <div>
-<<<<<<< HEAD
                 <div className="line-through">{Math.floor(bookForm.amount / 0.9)}</div>
                 <div>10% de descuento aplicado </div>
-=======
-                <select className='border h-10 w-80 rounded-xl mt-3' onChange={guestHandler}>
-                    <option value={1} selected>Viajeros: 1 huésped</option>
-                    {
-                    maxGuest.map((guest: number) => <option value={guest}>{`Viajeros: ${guest} huéspedes`}</option>) 
-                  }
-                </select>
-                <div>
-                    <i className="fa-solid fa-dollar-sign text-argentina mr-1"></i>
-                    {property.price_per_night} {" noche"}
-                </div>
-                {discount.monthly ?
-                <div>
-                 <div className="line-through">{Math.floor(bookForm.amount / 0.8)}</div>
-                 <div>20% de descuento aplicado </div>
-                </div>
-                 : <></>}
-                 {discount.weekly ?
-                <div>
-                 <div className="line-through">{Math.floor(bookForm.amount / 0.9)}</div>
-                 <div>10% de descuento aplicado </div>
-                </div>
-                 : <></>}
-                <div className='mt-6'>Precio: {bookForm.amount}</div>
-                {!bookingSuccess && !bookingError && paymentComponent}
-                {bookingSuccess &&
-                    <div>
-                        <p>Reserva realizada con exito</p>
-                        <Link to='/usuario/mensajes'>
-                        <button>Chatear</button>
-                        </Link>
-                    </div>}
-                {bookingError && <div>Hubo un error con el pago</div>}
->>>>>>> 3a55044... Intro Chat
               </div>
             ) : (
               <></>
