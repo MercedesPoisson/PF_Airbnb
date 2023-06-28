@@ -23,7 +23,10 @@ const Favoritos = () => {
     return(
         isAuthenticated && 
         <div>
-            <UserNavBar />
+            <UserNavBar />   
+            <div className="mt-20 ml-10 font-cairo font-bold">
+                MIS FAVORITOS
+                </div>   
             <CardsContainer properties={favorites} />
         </div>
     )

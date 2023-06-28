@@ -1,14 +1,16 @@
+import { Dialog } from '@headlessui/react';
+
 const propertyTypeMapping = {
   House: "Casa",
   Apartment: "Departamento",
   Room: "Habitación"
 };
 
-const Preview = (props) => {
-  
+const Preview = (props:any) => {
+  const { previousStep, handlePost, formData, isDialogOpen, closeDialog } = props;  
   const { start_date, end_date } = props.formData;
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString:any) => {
     const dateObj = new Date(dateString);
     const year = dateObj.getFullYear();
     const month = String(dateObj.getMonth() + 1).padStart(2, '0');
@@ -57,6 +59,27 @@ const Preview = (props) => {
           </button>
           <button className="border border-argentina rounded p-1 w-32 mt-4" onClick={props.handlePost}>Finalizar</button>
         </div>
+
+        <Dialog
+        open={isDialogOpen}
+        onClose={closeDialog}
+        className="fixed inset-0 flex items-center justify-center z-50"
+      >
+        <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+
+        <div className="bg-white p-4 max-w-sm mx-auto">
+          <Dialog.Title className="text-lg font-bold">Propiedad cargada correctamente</Dialog.Title>
+
+          <div className="mt-2">
+            <button
+              className="bg-argentina text-white px-4 py-2 rounded"
+              onClick={closeDialog}
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </Dialog>
       </div>
     </div>
   );

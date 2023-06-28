@@ -7,6 +7,7 @@ import postFavorites from '../../redux/actions/postFavorites';
 import { AnyAction } from 'redux';
 import deleteFavorites from '../../redux/actions/deleteFavorites';
 import getFavorites from '../../redux/actions/getFavorites';
+import { useAuth0 } from '@auth0/auth0-react';
 
 interface CardProps {
   title: string;
@@ -26,15 +27,20 @@ function Card({ id_property, title, location, province, price_per_night, rating,
     }
     return text;
   }
+  const {isAuthenticated} = useAuth0()
   const {id_user} = useSelector((state:any)=> state.user )
   const favorites = useSelector((state:any)=> state.favorites)
   const dispatch = useDispatch()
+  
+  console.log(isAuthenticated);
+  
 
   const [ isSaved, SetIsSaved ] = useState(favorites.some((property:any)=> property.id_property === id_property));
   console.log(favorites);
 
   const handleSaveClick = async() => {
-      SetIsSaved(!isSaved)
+    if(isAuthenticated){
+      await SetIsSaved(!isSaved)
       if(!isSaved){
         await dispatch(postFavorites(id_user,id_property)as unknown as AnyAction)
       }
@@ -42,10 +48,9 @@ function Card({ id_property, title, location, province, price_per_night, rating,
         await dispatch(deleteFavorites(id_user,id_property)as unknown as AnyAction)
         await dispatch(getFavorites(id_user)as unknown as AnyAction)
       }
-        
+    }    
   }
 
-  
   
   const renderCarousel = () => {
     if (Array.isArray(images) && images.length > 0) {
@@ -88,23 +93,27 @@ function Card({ id_property, title, location, province, price_per_night, rating,
     }
   }
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      SetIsSaved(favorites.some((property: any) => property.id_property === id_property));
+    }
+  }, [isAuthenticated, favorites, id_property]);
+
   return (
     <div className="mt-14 font-cairo border rounded-xl w-80 sm:w-90 md:w-80 lg:w-90 hover:shadow-md z-0">
       <div className="w-full">
         {renderCarousel()}
-        
           <div className='col-span-1 justify-right'>
           <i className={`ml-3 mr-1 cursor-pointer ${isSaved ? 'fa-solid fa-heart' : 'fa-regular fa-heart'} text-argentina`} onClick={handleSaveClick} ></i>
             </div>
         <div className='p-4'>
           <Link to={getLinkPath()}>
-         <button className="justify-between">
+          <button className="justify-between">
           <div className='grid grid-cols-4 w-72'>
             <div className='col-span-3'>
               <h2 className="mb-1 text-left">{truncateTitle(title, 25)}</h2>
               </div>
-          </div>
-                     
+          </div>                     
           <h3 className="text-left text-base">{location}</h3>
           <h3 className="text-left text-sm"> {province}</h3>
           <div className='grid grid-cols-4 w-72'>
@@ -113,7 +122,7 @@ function Card({ id_property, title, location, province, price_per_night, rating,
             <span className="font-bold">
               $ {price_per_night}
             </span>{" "}
-             noche
+            noche
           </h3>
             </div>
             <div className='col-span-1 justify-right'>

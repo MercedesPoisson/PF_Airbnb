@@ -10,17 +10,14 @@ import { Auth0Provider } from '@auth0/auth0-react'
 const domain = 'dev-yura723kkk8s5a14.us.auth0.com'
 const clientId = '3VrGMPPJBmJR1V5slCMSlYjZ3NsWCGct'
 
-const currentUrl = window.location.href;
-
-
 ReactDOM.render(
     <BrowserRouter>
-    <Auth0Provider
-    domain={domain}
-    clientId={clientId}
-    authorizationParams={{
-      redirect_uri: "http://localhost:5173/?page=0"
-    }}
+      <Auth0Provider
+        domain={domain}
+        clientId={clientId}
+        authorizationParams={{
+          redirect_uri: "http://localhost:5173/?page=0"
+        }}
     >
         <Provider store={store}>
           <React.StrictMode>

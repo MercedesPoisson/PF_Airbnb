@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import getPropertyDetail from '../../redux/actions/getPropertyDetail';
-import { Carousel } from 'react-responsive-carousel';
+import { AnyAction } from 'redux';
+// import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Map from "./Map"
 import UserMenu from '../searchBar/UserMenu';
 import Reservas from './Reservas';
+import Images from './Images';
 
 const CardDetails = () => {
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ const CardDetails = () => {
 
   useEffect(() => {
     console.log(id);
-    dispatch(getPropertyDetail(id));
+    dispatch(getPropertyDetail(id) as unknown as AnyAction);
   }, [dispatch, id]);
 
   console.log(property);
@@ -31,8 +33,8 @@ const CardDetails = () => {
   }
 
   // Separar el array de imágenes para el carrusel y la previsualización
-  const carouselImages = property && property.images ? property.images : [];
-  const previewImages = property && property.images ? property.images.slice(0, 4) : [];
+  // const carouselImages = property && property.images ? property.images : [];
+  // const previewImages = property && property.images ? property.images.slice(0, 4) : [];
 
 console.log('Location:', property.location);
 console.log('Province:', property.province);
@@ -64,8 +66,9 @@ console.log('Province:', property.province);
         </div>
       </div>
 
+
       <div className='flex items-start justify-between font-cairo ml-10 mr-20'>
-  <div>
+  {/* <div>
     {carouselImages.length > 0 && (
       <div className="max-w-2xl mx-auto rounded-r-30">
         <div className="max-w-sm mx-auto">
@@ -85,8 +88,8 @@ console.log('Province:', property.province);
         </div>
       </div>
     )}
-  </div>
-  <div className='ml-4 flex-grow'>
+  </div> */}
+  <div className='w-full max-w-5xl mx-auto flex-grow'>
     {property && (
       <div>
         <h1 className='text-2xl'>{property.title}</h1>
@@ -111,7 +114,10 @@ console.log('Province:', property.province);
           <div>{property.bathrooms_number} {property.bathrooms_number === 1 ? 'baño' : 'baños'}</div>
         </div>
         <div>
-          <p className='mt-3'>{property.description}</p>
+          <Images />
+        </div>
+        <div>
+          <p >{property.description}</p>
         </div>
         <div>
           
@@ -151,24 +157,21 @@ console.log('Province:', property.province);
               ))}
           </div>
 
-          <div className="flex">
-          <div className="w-1/2">
-            <div className="mt-4">
-              {property && property.location && property.province && (
-                <div>
-                  <Map location={property.location} province={property.province} />
-                </div>
-              )}
+          <div className="w-full max-w-5xl mx-auto flex-grow justify-center">
+          <div className="mt-4 flex justify-center flex-wrap">
+            {property && property.location && property.province && (
+              <div className="w-1/2">
+                <Map location={property.location} province={property.province} />
+              </div>
+            )}
+            <div className="w-1/2">
+              <Reservas property={property} />
             </div>
           </div>
-          <Reservas property={property}/>
-          
-        
         </div>
         </div>
           
         </div>
-   
     )}
     </div>
   </div>
