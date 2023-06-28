@@ -1,4 +1,4 @@
-import Card from "../../components/Card/card";
+import Card from "../../components/card/card";
 import UserNavBar from "./UserNavBar";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
