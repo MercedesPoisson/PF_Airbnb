@@ -58,7 +58,7 @@ const updateProperty = (property: any) => {
             ...(accessibility && {accessibility})
         }
 
-        await axios.put(`https://backofback-production.up.railway.app/property/update/${id_property}`, updatedProperty)
+        await axios.put(`http://localhost:3001/property/update/${id_property}`, updatedProperty)
         // dispatch({type:PUT_PROPERTY, payload: updatedProperty})
         
     } catch (error) {
