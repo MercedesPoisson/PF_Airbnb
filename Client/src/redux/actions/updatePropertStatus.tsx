@@ -14,3 +14,5 @@ const updatePropertyStatus = (property: any) => {
     }
 }
 
+export default updatePropertyStatus
+
