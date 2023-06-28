@@ -1,4 +1,5 @@
 const Review = ({ rating }) => {
+  
   const renderStars = (ratingValue) => {
     const fullStars = ratingValue >= 1 && ratingValue <= 5 ? Math.floor(ratingValue) : 0;
     const halfStar = ratingValue % 1 !== 0;
@@ -46,7 +47,7 @@ const Review = ({ rating }) => {
               <i className="fa-solid fa-star text-argentina mr-2"></i>
                 {rating.total_rating} - {rating.date_rating}
               </p>
-              <p className="text-gray-800 text-sm">
+              <p className="text-gray-800 text-sm w-[350px]">
                 {rating.description} - {rating.User.name} {rating.User.surname}
               </p>
             </div>

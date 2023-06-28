@@ -126,7 +126,7 @@ const Rating = (props: RatingProps) => {
 
       <div className="relative p-2 text-base items-center">
         <p>Opinión:</p>
-        <textarea className="w-[290px] h-20 border" onChange={handleDescriptionChange}></textarea>
+        <textarea className="w-[290px] h-20 border" maxLength={200} placeholder="Ingresa hasta 200 caracteres" onChange={handleDescriptionChange}></textarea>
       </div>
       {error && <p className="text-red-500">Debe calificar en todas las categorías</p>}
       <button className="border border-red-500 px-4 rounded-md" onClick={handleSendRating}>Enviar</button>
