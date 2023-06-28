@@ -7,11 +7,10 @@ import { AnyAction } from "redux";
 interface RatingProps {
   id_property: number
   id_user: string
-  onRequestClose: Function
 }
 
 const Rating = (props: RatingProps) => {
-  const { id_property, id_user, onRequestClose } = props
+  const { id_property, id_user } = props
   const dispatch = useDispatch();
 
   const [ratings, setRatings] = useState({
@@ -61,7 +60,6 @@ const Rating = (props: RatingProps) => {
       }
       const response = await axios.post('http://localhost:3001/rating', ratings);
       dispatch(getUser(id_user) as unknown as AnyAction);
-      onRequestClose()
       console.log(response.data);
     } catch (error) {
       console.log(error);
