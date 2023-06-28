@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { initMercadoPago, Payment } from "@mercadopago/sdk-react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 const Reservas = (props: any) => {
@@ -193,7 +194,13 @@ const Reservas = (props: any) => {
                  : <></>}
                 <div className='mt-6'>Precio: {bookForm.amount}</div>
                 {!bookingSuccess && !bookingError && paymentComponent}
-                {bookingSuccess && <div>Reserva realizada con exito</div>}
+                {bookingSuccess &&
+                    <div>
+                        <p>Reserva realizada con exito</p>
+                        <Link to='/usuario/mensajes'>
+                        <button>Chatear</button>
+                        </Link>
+                    </div>}
                 {bookingError && <div>Hubo un error con el pago</div>}
               </div>
             </div>

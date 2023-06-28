@@ -20,6 +20,7 @@ import Favoritos from "./views/UserProfile/favoritos";
 import Rent from './views/UserProfile/Rent';
 import Vacaciones from './views/UserProfile/Vacaciones';
 import Proyecto from './views/MiniProyecto/Proyecto';
+import Mensajes from './views/UserProfile/mensajes';
 // import DashLogin from './views/DashBoard/DashLogin';
 
 
@@ -42,7 +43,7 @@ function App() {
         <Route path="/usuario/reservas" element={<Rent />} />
         <Route path="/usuario/viajes" element={<Vacaciones />} />
         <Route path="/proyecto" element={<Proyecto />} />
-
+        <Route path="/usuario/mensajes" element={<Mensajes />} />  
 
 
         <Route path="/dashboard/*" element={<Layout />}>
