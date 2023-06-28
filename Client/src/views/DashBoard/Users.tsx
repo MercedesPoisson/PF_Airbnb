@@ -1,15 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
-const Hola = ({ user, setHola }: any) => {
+/////////////////////esta componente deberia estar en otro lado/////////
+/////*********************************//////////////////////////////////
+const ShowUpdate = ({ user, setOpen }: any) => {
     const [updateUser, setUpdateUser]: any = useState({
         name: user.name,
         surname: user.surname,
         isactive: user.isactive
     })
-
-
+///////////////////////////////////////////////
     const handlerOnchange = (e: any) => {
         const { value, name } = e.target;
         console.log(value)
@@ -18,22 +18,16 @@ const Hola = ({ user, setHola }: any) => {
             [name]: value
         })
     }
-
-
+    ////////////////////////////////////////////
     const sendUpdateUser = async () => {
-        console.log(user.id_user)
-        console.log(updateUser)
-        await axios.put("http://localhost:3001/users/update/" + user.id_user,
-            updateUser);
+        await axios.put("http://localhost:3001/users/update/" + user.id_user, updateUser);
         alert("user creado correctamente")
-        setHola(false)
+        setOpen(false)
     }
-
-
-
+    //////////////////////////////////////////
     return (
         <div>
-            <button onClick={() => setHola(false)}>X</button>
+            <button onClick={() => setOpen(false)}>X</button>
             <h1>User edit</h1>
             <div>
                 <span>name: </span>
@@ -47,14 +41,15 @@ const Hola = ({ user, setHola }: any) => {
     )
 }
 
-
-
+/////////*******************************************////////////////////
+////////////////////////////////////////////////////////////////////////
 
 
 
 const DashUsers = () => {
+
     const [dataUser, setDataUser] = useState([]);
-    const [hola, setHola] = useState(false)
+    const [open, setOpen] = useState(false)
     const [dataUpdate, setDataUpdat] = useState()
 
     useEffect(() => {
@@ -66,19 +61,14 @@ const DashUsers = () => {
                 console.error(error);
             }
         }
-
         fetchProperties();
-    }, [hola]);
-
-
-
+    }, [open]);
 
     const handlerTest = (e: any, user: any) => {
         e.preventDefault()
-        setHola((s) => !s)
+        setOpen((s) => !s)
         setDataUpdat(user)
     }
-
 
     return (
         <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
@@ -110,10 +100,9 @@ const DashUsers = () => {
                         ))}
                     </tbody>
                 </table>
-
             </div>
             {
-                hola ? <Hola user={dataUpdate} setHola={setHola} /> : null
+                open ? <ShowUpdate user={dataUpdate} setOpen={setOpen} /> : null
             }
         </div>
     );
