@@ -5,7 +5,7 @@ import axios from "axios";
 
 const getUser = (id: string) => {
   return async (dispatch: Dispatch<AnyAction>) => {
-    const data = await axios.get(`http://localhost:3001/users/${id}`);
+    const data = await axios.get(`https://backofback-production.up.railway.app/users/${id}`);
     const user = data.data;
     dispatch({ type: GET_USER, payload: user });
   };
