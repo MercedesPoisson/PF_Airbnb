@@ -86,7 +86,10 @@ module.exports = {
       },
       animation: {
         scroll: "scroll 8s infinite"
-      }
+      },
+      darkMode: [
+        "className", "[data-mode='dark']"
+      ],
     }
   },
   plugins: [Myclass],

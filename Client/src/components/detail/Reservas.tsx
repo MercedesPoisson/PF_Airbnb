@@ -190,51 +190,76 @@ const Reservas = (props: any) => {
         return null;
       }, [bookForm.amount]);
 
+      
+
 
     return (
         <div className="w-1/2">
-            <div className="border rounded-xl w-96 mt-4 flex items-center justify-center">
+      <div className="border rounded-xl w-96 flex items-center justify-center text-cairo">
+        <div>
+          <div>
+            <h1 className="font-bold mt-2 ">$ {property.price_per_night} x noche</h1>
+          </div>
+          <div>
+            <h4>
+              <i className="fa-solid fa-star text-argentina"></i> {property.rating} -{" "}
+              {property.ratings_amount === 0 ? null : (
+                <>
+                  {property.ratings_amount}{" "}
+                  {property.ratings_amount === 1 ? "evaluación" : "evaluaciones"}
+                </>
+              )}
+            </h4>
+          </div>
+
+          <div className="mt-3">
+            <DateRangePicker handleDateChange={handleDateChange} />
+          </div>
+          <div>
+            <select className="border h-10 w-80 rounded-xl mt-3" onChange={guestHandler}>
+              <option value={1} selected>
+                Viajeros: 1 huésped
+              </option>
+              {maxGuest.map((guest: number) => (
+                <option value={guest}>{`Viajeros: ${guest} huéspedes`}</option>
+              ))}
+            </select>
             <div>
-              <div className='mt-3'>
-                <DateRangePicker handleDateChange={handleDateChange}/>
-              </div>
+              
+            <div>
+            $ {property.price_per_night} x noche * numero de noches
+            </div>
+            </div>
+            {discount.monthly ? (
               <div>
-                <select className='border h-10 w-80 rounded-xl mt-3' onChange={guestHandler}>
-                    <option value={1} selected>Viajeros: 1 huésped</option>
-                    {
-                    maxGuest.map((guest: number) => <option value={guest}>{`Viajeros: ${guest} huéspedes`}</option>) 
-                  }
-                </select>
-                <div>
-                    <i className="fa-solid fa-dollar-sign text-argentina mr-1"></i>
-                    {property.price_per_night} {" noche"}
-                </div>
-                {discount.monthly ?
-                <div>
-                 <div className="line-through">{Math.floor(bookForm.amount / 0.8)}</div>
-                 <div>20% de descuento aplicado </div>
-                </div>
-                 : <></>}
-                 {discount.weekly ?
-                <div>
-                 <div className="line-through">{Math.floor(bookForm.amount / 0.9)}</div>
-                 <div>10% de descuento aplicado </div>
-                </div>
-                 : <></>}
-                <div className='mt-6'>Precio: {bookForm.amount}</div>
-                <div>
-                    {!bookingSuccess && !bookingError && paymentComponent} 
-                    {isModalOpen && (
-                        <Modal isOpen={isModalOpen} style={modalStyles} onRequestClose={closeModal}>
-                            {bookingSuccess && <div>Reserva realizada con exito</div>}
-                            {bookingError && <div>Hubo un error con el pago</div>}
-                        </Modal>
-                     )}
-                </div>
+                <div className="line-through">{Math.floor(bookForm.amount / 0.8)}</div>
+                <div>20% de descuento aplicado </div>
               </div>
+            ) : (
+              <></>
+            )}
+            {discount.weekly ? (
+              <div>
+                <div className="line-through">{Math.floor(bookForm.amount / 0.9)}</div>
+                <div>10% de descuento aplicado </div>
+              </div>
+            ) : (
+              <></>
+            )}
+            <div className="mt-6 mb-2 font-bold">Total: {bookForm.amount}</div>
+            <div>
+              {!bookingSuccess && !bookingError && paymentComponent}
+              {isModalOpen && (
+                <Modal isOpen={isModalOpen} style={modalStyles} onRequestClose={closeModal}>
+                  {bookingSuccess && <div>Reserva realizada con exito</div>}
+                  {bookingError && <div>Hubo un error con el pago</div>}
+                </Modal>
+              )}
             </div>
           </div>
         </div>
+      </div>
+    </div>
     )
 }
 

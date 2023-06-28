@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import getPropertyDetail from '../../redux/actions/getPropertyDetail';
 import { AnyAction } from 'redux';
-import { Carousel } from 'react-responsive-carousel';
+// import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Map from "./Map"
 import UserMenu from '../searchBar/UserMenu';
@@ -157,24 +157,21 @@ console.log('Province:', property.province);
               ))}
           </div>
 
-          <div className="flex">
-          <div className="w-1/2">
-            <div className="mt-4">
-              {property && property.location && property.province && (
-                <div>
-                  <Map location={property.location} province={property.province} />
-                </div>
-              )}
+          <div className="w-full max-w-5xl mx-auto flex-grow justify-center">
+          <div className="mt-4 flex justify-center flex-wrap">
+            {property && property.location && property.province && (
+              <div className="w-1/2">
+                <Map location={property.location} province={property.province} />
+              </div>
+            )}
+            <div className="w-1/2">
+              <Reservas property={property} />
             </div>
           </div>
-          <Reservas property={property}/>
-          
-        
         </div>
         </div>
           
         </div>
-   
     )}
     </div>
   </div>
