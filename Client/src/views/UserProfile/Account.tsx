@@ -1,7 +1,6 @@
 import UserNavBar from "./UserNavBar";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Favoritos from "./favoritos";
 
 const Account = () => {
   const user = useSelector((state: any) => state.user);
@@ -73,7 +72,7 @@ const Account = () => {
         <div className="h-40">
   {favorites &&
     favorites.map((property: any, index: number) => (
-      <p key={property.id}>{`${index + 1}) Me encanta esta propiedad: ${property.title}, ${property.location}`}</p>
+      <p key={property.id}>{`${index + 1}) ${property.title}, ${property.location}`}</p>
     ))}
 </div>
       </div>
