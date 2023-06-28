@@ -16,6 +16,7 @@ import Cloudinary from "./Cloudinary";
 import AvailableDates from "./AvailableDates";
 import Pets from "./Pets";
 import UserMenu from "../../../components/searchBar/UserMenu";
+// import { Dialog } from '@headlessui/react';
 
 interface FormData {
   [x: string]: any;
@@ -47,7 +48,7 @@ interface FormData {
 const Form = () => {
   const navigate = useNavigate();
   const userId = useSelector((state:any) => state.user.id_user);
-
+  
   const [formData, setFormData] = useState<FormData>({
     step: 1,
     id_user: userId,
@@ -99,6 +100,16 @@ const Form = () => {
 
   const dispatch = useDispatch();
 
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+    navigate("/");
+  };
+
   const handlePost = () => {
 
     const newForm = new FormData()
@@ -132,7 +143,7 @@ const Form = () => {
     
     dispatch(postServices(newForm));
     console.log("Datos enviados a la base de datos", formData);   
-    alert("Propiedad Creada");
+    openDialog();
   };
 
   useEffect(() => {
@@ -149,6 +160,8 @@ const Form = () => {
   const handleNavigateToHome = () => {
     navigate("/");
   };
+
+  
 
   return (
     <>
@@ -285,6 +298,8 @@ const Form = () => {
           setFormData={setFormData}
           start_date={formData.start_date} 
           end_date={formData.end_date} 
+          isDialogOpen={isDialogOpen}
+          closeDialog={closeDialog}
         />
         )}
 
