@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { initMercadoPago, Payment } from "@mercadopago/sdk-react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const modalStyles = {
     content: {
