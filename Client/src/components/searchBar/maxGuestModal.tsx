@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function MaxGuestModal(props:any) {
-  const { close } = props;
+  const { close, maxGuestBtn } = props;
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -28,6 +28,7 @@ function MaxGuestModal(props:any) {
   const applyFilter = () => {
     searchParams.set('max_guests', `${maxGuest}`);
     navigate(`?${searchParams.toString()}`);
+    maxGuestBtn(`${maxGuest}`)
     close();
   };
 

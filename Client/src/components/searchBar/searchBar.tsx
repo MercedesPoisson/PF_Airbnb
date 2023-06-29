@@ -24,7 +24,8 @@ function SearchBar() {
     const [showModal, setShowModal] = useState(false);
     const [locationText, setlocationText] = useState('¿A dónde vamos?');
     const [buttonText, setButtonText] = useState('¿Cuándo?');
-    const [guestText, setGuestText] = useState('¿Cuántos somos?');
+    const [btnLocation, setBtnLocation] = useState('¿A dónde vamos?')
+    const [btnGuest, setBtnGuest] = useState('¿Cuántos somos?')
     const [showFiltersModal, setShowFiltersModal] = useState(false); // Estado para controlar la visibilidad de la ventana emergente
     const [showSearchLocation, setShowSearchLocation] = useState(false);
     const [showMaxGuest, setShowMaxGuest] = useState(false)
@@ -83,7 +84,7 @@ function SearchBar() {
         key: range.key || 'selection'
       }));
       setState(transformedState);
-  
+      
       const startDateFormatted = transformedState[0].startDate.toLocaleDateString();
       const endDateFormatted = transformedState[0].endDate.toLocaleDateString();
       setButtonText(`${startDateFormatted} - ${endDateFormatted}`);
@@ -91,17 +92,28 @@ function SearchBar() {
       urlSearchParams.set('end_date', transformedState[0].endDate.toISOString().slice(0, 10))
       navigate(`?${urlSearchParams.toString()}`);
     };
-  
+    
     const handleModalToggle = () => {
       setShowModal(!showModal);
     };
-  
+    
     const handleFiltersModalToggle = () => {
       setShowFiltersModal(!showFiltersModal);
     };
+    
+    const locations = (prov: string, city: string) => {
+      setBtnLocation(`${prov}, ${city}`)
+    };
+
+    const maxGuestBtn = (value: string) => {
+      setBtnGuest(value)
+    };
+
     const handleSearchLocationModalToggle = () => {
       setShowSearchLocation(!showSearchLocation)
+      
     }
+
     const handleMaxGuestToggle = () => {
       setShowMaxGuest(!showMaxGuest)
     }
@@ -131,8 +143,7 @@ function SearchBar() {
                     className="text-black p-3 rounded-l-full bg-white w-auto min-w-[12rem] h-12 border-t border-b border-l border-gray-200 shadow-md font-cairo"
                     onClick={() => handleSearchLocationModalToggle()}
                   >
-                    <i className="fas fa-map-marker-alt text-gray-300 mr-2"></i>
-                    {locationText}
+                    <i className="fas fa-map-marker-alt text-gray-300 mr-2"></i>¿A dónde vamos?
                   </button>
                   <span className="w-px h-6 bg-gray-200 justify"></span>
                   <button
@@ -148,8 +159,7 @@ function SearchBar() {
                   <span className="w-px h-6 bg-gray-200"></span>
                   <button className="text-black p-3 bg-white w-48 h-12 border-t border-b border-gray-200 shadow-md font-cairo"
                   onClick={() => {handleMaxGuestToggle()}}>
-                    <i className="fas fa-users text-gray-300 mr-2 "></i>
-                    {guestText}
+                    <i className="fas fa-users text-gray-300 mr-2 "></i>¿Cuántos somos?
                   </button>
                   <span className="w-px h-6 bg-gray-200"></span>
                   <button className="text-black p-3 rounded-r-full bg-white w-14 h-12 border-t border-b border-r border-gray-200 shadow-md">
@@ -366,7 +376,7 @@ function SearchBar() {
           }
         }}
         >
-          <LocationSearch close={handleSearchLocationModalToggle}/>
+          <LocationSearch close={handleSearchLocationModalToggle} locations={locations}/>
         </Modal>
         <Modal
         isOpen={showMaxGuest}
@@ -383,7 +393,7 @@ function SearchBar() {
         }
       }}
         >
-          <MaxGuestModal close={handleMaxGuestToggle}/>
+          <MaxGuestModal close={handleMaxGuestToggle} maxGuestBtn={maxGuestBtn} />
         </Modal>
       </div>
     );

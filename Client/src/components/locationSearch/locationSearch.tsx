@@ -6,7 +6,8 @@ import axios from 'axios';
 import { useLocation, useNavigate } from "react-router-dom";
 
 function LocationSearch(props: any) {
-    const { close } = props
+    const { close, locations } = props
+    
     const provinces = useSelector((state: any) => state.provinces);
     let orderProvinces = provinces.sort((a: any, b: any) => a.nombre.localeCompare(b.nombre))
     const location = useLocation();
@@ -21,7 +22,6 @@ function LocationSearch(props: any) {
     const [searchValue, setSearchValue] = useState('')
     const [options, setOptions]: any = useState([])
     
-
 
     const optionProvs = [{ value: '', label: 'Todas las provincias'}, ...orderProvinces.map((prov: any) => {
         return { value: prov.nombre, label: prov.nombre }
@@ -45,6 +45,7 @@ function LocationSearch(props: any) {
         else searchParams.delete("province")
         if(city.length) searchParams.set("location", city)
         else searchParams.delete("location")
+        locations(`${prov}`, `${city}`)
         navigate(`?${searchParams.toString()}`);
         close()
     }
