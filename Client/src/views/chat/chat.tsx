@@ -1,10 +1,7 @@
 import {io} from 'socket.io-client'
 import { useState, useEffect } from "react"
 
-const socket = io('http://localhost:3001', {
-    autoConnect: false,
-    withCredentials: true
-})
+const socket = io('http://localhost:3000')
 
 const Chat = (props: any) => {
 
