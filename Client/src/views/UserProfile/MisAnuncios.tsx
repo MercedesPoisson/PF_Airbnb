@@ -18,7 +18,7 @@ const MisAnuncios = () => {
 
     async function fetchData() {
         try {
-            const response = await axios.get(`pfback-production-a519.up.railway.app/users/${user.id_user}`)
+            const response = await axios.get(`https://pfback-production-a519.up.railway.app/users/${user.id_user}`)
             setProperties(response.data.properties.filter((properties:any)=> properties.is_active))
         } catch (error) {
             console.log(error)
