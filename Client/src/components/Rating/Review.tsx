@@ -32,10 +32,10 @@ const Review = ({ rating }) => {
   };
 
   return (
-    <section className="flex justify-center items-center gap-x-16 text-white mt-10 mb-10">
-      <div className="w-[420px] h-[150px] bg-white border cursor-pointer group perspective">
+    <section className="flex justify-start items-center gap-x-16 text-white mt-10 mb-10">
+      <div className="w-[420px] h-[150px] bg-white border cursor-pointer group perspective overflow-hidden">
         <div className="relative preserve-3d group-hover:my-rotate-y-180 w-full h-full duration-1000">
-          <div className="absolute backface-hidden flex items-center justify-center p-2">
+          <div className="absolute backface-hidden flex items-start justify-center p-2 overflow-hidden">
           {rating.User.image ? (
               <img src={rating.User.image} className="rounded-full w-12 h-12" alt="User" />
             ) : (
