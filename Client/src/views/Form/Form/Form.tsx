@@ -224,6 +224,7 @@ const Form = () => {
             roomsNumber={formData.rooms_number}
             bedsNumber={formData.beds_number}
             bathroomsNumber={formData.bathrooms_number}
+            setFormData={setFormData}
           />
         )}
 

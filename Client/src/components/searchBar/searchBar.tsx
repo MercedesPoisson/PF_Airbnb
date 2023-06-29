@@ -222,7 +222,7 @@ function SearchBar() {
                       <span className="text-center font-cairo">Habitación</span>
                     </button>
           </div>
-          <div>
+          {/* <div>
           <button className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
                       <i className="fa-solid fa-umbrella-beach text-gray-600"></i>
@@ -245,7 +245,7 @@ function SearchBar() {
                       </span>
                       <span className="text-center font-cairo">Lago</span>
                     </button>
-          </div>
+          </div> */}
           <div>
           <button className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
@@ -254,22 +254,7 @@ function SearchBar() {
                       <span className="text-center font-cairo">Pileta</span>
                     </button>
           </div>
-          {/* <div>
-          <button className="flex flex-col items-center justify-center bg-transparent w-28">
-                      <span className="mb-2">
-                      <i className="fa-solid fa-person-skiing text-gray-600"></i>
-                      </span>
-                      <span className="text-center font-cairo">Ski</span>
-                    </button>
-          </div> */}
-          {/* <div>
-          <button className="flex flex-col items-center justify-center bg-transparent w-28">
-                      <span className="mb-2">
-                      <i className="fa-solid fa-golf-ball-tee text-gray-600"></i>
-                      </span>
-                      <span className="text-center font-cairo">Golf</span>
-                    </button>
-          </div> */}
+          
           <div>
           <button className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
