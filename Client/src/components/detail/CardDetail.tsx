@@ -9,6 +9,7 @@ import Map from "./Map"
 import UserMenu from '../searchBar/UserMenu';
 import Reservas from './Reservas';
 import Images from './Images';
+import Review from '../Rating/Review';
 
 const CardDetails = () => {
   const dispatch = useDispatch();
@@ -167,11 +168,15 @@ console.log('Province:', property.province);
             <div className="w-1/2">
               <Reservas property={property} />
             </div>
+            <div>
+            {property.Ratings && property.Ratings.map((rating, index) => (
+              <Review key={index} rating={rating} />
+            ))}
+            </div>
           </div>
         </div>
         </div>
-          
-        </div>
+       </div>
     )}
     </div>
   </div>
