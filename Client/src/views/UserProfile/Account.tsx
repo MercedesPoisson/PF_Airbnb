@@ -1,13 +1,30 @@
 import UserNavBar from "./UserNavBar";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Account = () => {
   const user = useSelector((state: any) => state.user);
-  const properties = useSelector((state:any) => state.properties)
+  const [properties, setProperties] = useState([]);
+  // const properties = useSelector((state:any) => state.properties)
   const userProperties = properties && properties.filter((property: any) => property.id_user === user.id_user);
   const favorites = useSelector((state: any) => state.favorites);
   const navigate = useNavigate();
+  
+
+  useEffect(() => {
+    async function fetchProperties() {
+      try {
+        const response = await axios.get("http://localhost:3001/property/all"); // Ajusta la URL de la solicitud según corresponda
+        setProperties(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchProperties();
+  }, []);
 
   const handleNavigateToProfile = () => {
     navigate("/usuario/profile");
