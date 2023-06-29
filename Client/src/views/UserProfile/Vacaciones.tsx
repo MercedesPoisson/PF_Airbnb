@@ -1,31 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react';
 import { useSelector } from "react-redux";
 import UserNavBar from "./UserNavBar";
-import Modal from 'react-modal'
 import Rating from "../../components/Rating/Rating";
 
-const modalStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    transform: 'translate(-50%, -50%)',
-    borderRadius: '4px',
-    boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
-  },
-};
-
-
 const Vacaciones = () => {
-
   const user = useSelector((state: any) => state.user);
-  const properties = useSelector((state: any) => state.properties);
-  
-  const [ratingIsOpen, setRatingIsOpen] = useState(false);
+  const [selectedPropertyIds, setSelectedPropertyIds]: any = useState({});
 
+  const handleRatingClick = (propertyId: any) => {
+    setSelectedPropertyIds((prevSelectedPropertyIds: any) => ({
+      ...prevSelectedPropertyIds,
+      [propertyId]: !prevSelectedPropertyIds[propertyId]
+    }));
+  };
 
-  
 
   return (
     <div>
@@ -49,40 +37,40 @@ const Vacaciones = () => {
             </thead>
             <tbody>
               {user.Rents && user.Rents.map((rent: any, index:number) => {
+                const isSelected = selectedPropertyIds[rent.id_property];
 
-                  return (
-                    <tr key={rent.id} className="text-center">
-                      <td >#{index + 1}</td>
-                      <td>{rent.start_date} - {rent.end_date}</td>
-                      <td>${rent.amount}</td>
-                      <td>{rent.Property.address}</td>
-                      <td>{rent.Property.location}</td>
-                      <td>{rent.Property.province}</td>
-                      <td>{rent.Property.title}</td>
-                      <td>{rent.active ? "Tu viaje esta por empezar" : "Califica tu experiencia"}</td>
-                      <td>
-                        {user?.Ratings?.find((rating: any) => rating.id_property === rent.Property.id_property) 
+                return (
+                  <tr key={rent.id} className="text-center">
+                    <td>#{index + 1}</td>
+                    <td>{rent.start_date} - {rent.end_date}</td>
+                    <td>${rent.amount}</td>
+                    <td>{rent.Property.address}</td>
+                    <td>{rent.Property.location}</td>
+                    <td>{rent.Property.province}</td>
+                    <td>{rent.Property.title}</td>
+                    <td>{rent.active ? "Tu viaje esta por empezar" : "Califica tu experiencia"}</td>
+                    <td>
+                      {user?.Ratings?.find((rating: any) => rating.id_property === rent.id_property) 
                         ? 'Gracias por tu valoración' 
-                        : <button onClick={() => setRatingIsOpen(true)} className="border border-red-500 px-4 rounded-md">Clickea aqui</button>}
-                        <Modal
-                        isOpen={ratingIsOpen}
-                        onRequestClose={() => setRatingIsOpen(false)}
-                        contentLabel="Contanos tu experiencia"
-                        style={modalStyles}
-                        
-                        ><Rating id_property={rent.Property.id_property} id_user={user.id_user} onRequestClose={() => setRatingIsOpen(false)}/>
-                        </Modal>
-                      </td>
-                    </tr>
-                  );
-                
+                        : (
+                          <div>
+                            <button
+                              className={`border border-red-500 px-4 rounded-md rating-button ${isSelected ? 'selected' : ''}`}
+                              onClick={() => handleRatingClick(rent.id_property)}
+                            >
+                              Clickea aquí
+                            </button>
+                            {isSelected && <Rating id_property={rent.id_property} id_user={user.id_user} />}
+                          </div>
+                        )
+                      }
+                    </td>
+                  </tr>
+                );
               })}
             </tbody>
           </table>
         </div>
-      </div>
-      <div>
-      
       </div>
     </div>
   );

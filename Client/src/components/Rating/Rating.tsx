@@ -7,11 +7,10 @@ import { AnyAction } from "redux";
 interface RatingProps {
   id_property: number
   id_user: string
-  onRequestClose: Function
 }
 
 const Rating = (props: RatingProps) => {
-  const { id_property, id_user, onRequestClose } = props
+  const { id_property, id_user } = props
   const dispatch = useDispatch();
 
   const [ratings, setRatings] = useState({
@@ -61,7 +60,6 @@ const Rating = (props: RatingProps) => {
       }
       const response = await axios.post('http://localhost:3001/rating', ratings);
       dispatch(getUser(id_user) as unknown as AnyAction);
-      onRequestClose()
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -126,7 +124,7 @@ const Rating = (props: RatingProps) => {
 
       <div className="relative p-2 text-base items-center">
         <p>Opinión:</p>
-        <textarea className="w-[290px] h-20 border" onChange={handleDescriptionChange}></textarea>
+        <textarea className="w-[290px] h-20 border" maxLength={200} placeholder="Ingresa hasta 200 caracteres" onChange={handleDescriptionChange}></textarea>
       </div>
       {error && <p className="text-red-500">Debe calificar en todas las categorías</p>}
       <button className="border border-red-500 px-4 rounded-md" onClick={handleSendRating}>Enviar</button>

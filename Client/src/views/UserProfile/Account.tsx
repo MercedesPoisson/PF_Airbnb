@@ -1,13 +1,30 @@
 import UserNavBar from "./UserNavBar";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Account = () => {
   const user = useSelector((state: any) => state.user);
-  const properties = useSelector((state:any) => state.properties)
+  const [properties, setProperties] = useState([]);
+  // const properties = useSelector((state:any) => state.properties)
   const userProperties = properties && properties.filter((property: any) => property.id_user === user.id_user);
   const favorites = useSelector((state: any) => state.favorites);
   const navigate = useNavigate();
+  
+
+  useEffect(() => {
+    async function fetchProperties() {
+      try {
+        const response = await axios.get("http://localhost:3001/property/all"); // Ajusta la URL de la solicitud según corresponda
+        setProperties(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchProperties();
+  }, []);
 
   const handleNavigateToProfile = () => {
     navigate("/usuario/profile");
@@ -42,7 +59,7 @@ const Account = () => {
         <i className="fa-solid fa-image-portrait text-9xl text-gray-200 mt-2"></i>
       )}
     </div>
-    <div className="w-72 ml-14 cursor-pointer h-40" onClick={handleNavigateToProfile}>
+    <div className="w-72 ml-14 cursor-pointer h-40 overflow-hidden" onClick={handleNavigateToProfile}>
       <p>Nombre y Apellido: {user.name} {user.surname}</p>
       <p>E-mail: {user.email}</p>
       <p>Ubicación: {user.location}</p>
@@ -57,7 +74,7 @@ const Account = () => {
         <h5 className="flex items-center justify-between uppercase font-bold bg-primero text-white px-2 py-2">
         MIS VIAJES <i className="fa-solid fa-circle-plus text-white"></i>
         </h5>
-        <div className="h-40">
+        <div className="h-40 overflow-hidden">
         {user.Rents && user.Rents.map((rent:any, index: number) => (
               <p key={rent.id}>{`${index+1}) Me voy de vacaciones desde el ${rent.start_date} hasta el ${rent.end_date}`}</p>
             ))}
@@ -69,7 +86,7 @@ const Account = () => {
         <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
         MIS FAVORITOS <i className="fa-solid fa-circle-plus text-white"></i>
         </h5>
-        <div className="h-40">
+        <div className="h-40 overflow-hidden">
   {favorites &&
     favorites.map((property: any, index: number) => (
       <p key={property.id}>{`${index + 1}) ${property.title}, ${property.location}`}</p>
@@ -84,7 +101,7 @@ const Account = () => {
         <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
         MIS ANUNCIOS <i className="fa-solid fa-circle-plus text-white"></i>
         </h5>
-        <div className="ml-1">
+        <div className="ml-1 overflow-hidden">
         {userProperties && userProperties.map((properties:any, index:number) => (
           <p key={properties.id}>{`${index+1}) ${properties.title}`}</p>
         ))}
@@ -95,7 +112,7 @@ const Account = () => {
         <h5 className="flex items-center justify-between uppercase font-bold bg-primero text-white px-2 py-2">
         RESERVARON MI PROPIEDAD <i className="fa-solid fa-circle-plus text-white"></i>
         </h5>
-        <div className="h-40">
+        <div className="h-40 overflow-hidden">
         {userProperties && userProperties.map((property: any) => (
     property.Rents && property.Rents.map((rent: any, index: number) => (
       <p key={rent.id}>{`${index+1}) Reservada desde el ${rent.start_date} hasta el ${rent.end_date}`}</p>
@@ -109,7 +126,7 @@ const Account = () => {
         <h5 className="flex items-center justify-between uppercase font-bold bg-segundo text-white px-2 py-2">
         PAGOS Y COBROS <i className="fa-solid fa-circle-plus text-white"></i>
         </h5>
-        <div className="h-40">
+        <div className="h-40  overflow-hidden">
         Aca va la logica para traer los pagos realizados y los cobros recibidos
             </div>
       </div>

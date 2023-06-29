@@ -36,7 +36,7 @@ const UserMenu = () => {
   }
 
   return (
-    <div style={{ position: "relative" }}>
+    <div >
       {isAuthenticated ? (
         <UserNavLoged
           handleUserMenu={handleUserMenu}
