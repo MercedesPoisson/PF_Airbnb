@@ -51,7 +51,7 @@ function LocationSearch(props: any) {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/locations/${prov}?city=${searchValue}`)
+            const response = await axios.get(`pfback-production-a519.up.railway.app/locations/${prov}?city=${searchValue}`)
             const data = response.data[0];
             const newOptions: any = [{ value: '', label: 'Todas las ciudades'}, ... data.ciudades.map((city: any) => ({
                 value: city.nombre,

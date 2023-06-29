@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
-import { AnyAction } from "redux";
+// import { AnyAction } from "redux";
 
 const MisAnuncios = () => {
     
@@ -18,7 +18,7 @@ const MisAnuncios = () => {
 
     async function fetchData() {
         try {
-            const response = await axios.get(`http://localhost:3001/users/${user.id_user}`)
+            const response = await axios.get(`pfback-production-a519.up.railway.app/users/${user.id_user}`)
             setProperties(response.data.properties.filter((properties:any)=> properties.is_active))
         } catch (error) {
             console.log(error)

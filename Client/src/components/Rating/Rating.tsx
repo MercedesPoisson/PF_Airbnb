@@ -58,7 +58,7 @@ const Rating = (props: RatingProps) => {
         setError(true);
         return;
       }
-      const response = await axios.post('http://localhost:3001/rating', ratings);
+      const response = await axios.post('pfback-production-a519.up.railway.app/rating', ratings);
       dispatch(getUser(id_user) as unknown as AnyAction);
       console.log(response.data);
     } catch (error) {

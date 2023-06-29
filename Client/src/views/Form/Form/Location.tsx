@@ -37,7 +37,7 @@ const Location = (props: LocationProps) => {
   useEffect(() => {
     const fetchProvinces = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/locations");
+        const response = await axios.get("pfback-production-a519.up.railway.app/locations");
         const data = response.data;
         const options = data.map((province: any) => ({
           value: province.nombre,
@@ -57,7 +57,7 @@ const Location = (props: LocationProps) => {
       const fetchLocations = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:3001/locations/${selectedProvince?.value}?city=${searchValue}`
+            `pfback-production-a519.up.railway.app/locations/${selectedProvince?.value}?city=${searchValue}`
           );
           const data = response.data[0];
           const options = data.ciudades.map((location: any) => ({
