@@ -155,13 +155,13 @@ function SearchBar() {
               <UserMenu />
             </button>
           </div>
-          <div className="flex items-center col-span-5 -z-1">
+          <div className="flex justify-center items-center col-span-5 -z-1">
   
-          <div>
+          {/* <div>
             <button>
               <i className="fa-solid fa-arrow-left text-gray-600 border border-gray-600 rounded-full p-1"></i>
             </button>
-          </div>
+          </div> */}
 
           <div>
               <button onClick={(event) => handleOrderClick(event)} value="asc" className="flex flex-col items-center justify-center bg-transparent ml-10 w-28">
@@ -268,11 +268,11 @@ function SearchBar() {
                     </button>
                     
           </div>
-          <div>
+          {/* <div>
             <button>
               <i className="fa-solid fa-arrow-right text-gray-600 mr-4 border border-gray-600 rounded-full p-1"></i>
             </button>
-          </div> 
+          </div>  */}
           <div >
           <button className="flex flex-col items-center justify-center bg-transparent w-28 ml-8" onClick={handleMoreFilters}>
             <div>
