@@ -146,7 +146,7 @@ const userNavBar = () => {
               }`}
               onClick={() => 
                 {handleItemClick("Mi Cuenta"),
-                navigate("/usuario/perfil")
+                navigate("/usuario")
             }}
             >
               <a href="#">Mi Cuenta</a>

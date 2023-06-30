@@ -1,9 +1,9 @@
-import UserNavBar from "./UserNavBar";
+// import UserNavBar from "./UserNavBar";
 
 const Rent = () => {
   return (
     <div>
-      <UserNavBar />
+      {/* <UserNavBar /> */}
       <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1 mt-20 font-cairo">
         <strong className="text-gray-700 uppercase font-bold">
           Mis Propiedades Reservadas

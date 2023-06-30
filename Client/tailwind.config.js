@@ -33,9 +33,12 @@ module.exports = {
         dark_purple: "#0B2447",
         btn_primary: "#576CBC",
         heading_color: "#abd9d9",
-        primero: "#7DB9B6",
-        segundo: "#4D455D",
-        tercero: "#E96479"
+        // primero: "#7DB9B6",
+        // segundo: "#4D455D",
+        // tercero: "#E96479"
+        primero: "#AFD3E2",
+        segundo: "#D25380",
+        tercero: "#146C94"
       },
       fontFamily: {
         comfortaa: ['Comfortaa', 'cursive'],

@@ -1,4 +1,4 @@
-import UserNavBar from "./UserNavBar";
+// import UserNavBar from "./UserNavBar";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -45,7 +45,7 @@ const Account = () => {
 
   return (
     <div>
-      <UserNavBar />
+      {/* <UserNavBar /> */}
 
       <div className="flex justify-center mt-20" style={{ zIndex: "0" }}>
         <div className="row-span-2 border hover:border-segundo hover:animate-lightup w-[450px] ml-10 mb-10">
