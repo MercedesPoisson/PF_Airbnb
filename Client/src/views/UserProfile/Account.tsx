@@ -106,8 +106,8 @@ const Account = () => {
           <div className="h-40 overflow-hidden">
             {favorites &&
               favorites.map((property: any, index: number) => (
-                <p key={property.id}>{`${index + 1}) ${property.title}, ${
-                  property.location
+                <p key={property.id_property}>{`${index + 1}) ${property.Property.title}, ${
+                  property.Property.location
                 }`}</p>
               ))}
           </div>
