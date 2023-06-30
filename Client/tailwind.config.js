@@ -36,8 +36,8 @@ module.exports = {
         // primero: "#7DB9B6",
         // segundo: "#4D455D",
         // tercero: "#E96479"
-        primero: "#AFD3E2",
-        segundo: "#D25380",
+        primero: "#E96479",
+        segundo: "#ADE4DB",
         tercero: "#146C94"
       },
       fontFamily: {
