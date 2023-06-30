@@ -60,11 +60,16 @@ const Rating = (props: RatingProps) => {
       veracity_rating,
     } = ratings;
     const average =
-      (cleaning_rating +
-        communication_rating +
-        price_quality_rating +
-        veracity_rating) /
-      4;
+      parseFloat(
+        (
+          (cleaning_rating +
+            communication_rating +
+            price_quality_rating +
+            veracity_rating) /
+          4
+        ).toFixed(2)
+        // le agregue el toFixed para que permita dos decimales
+      );
     setRatings((prevRatings) => ({
       ...prevRatings,
       total_rating: average,
