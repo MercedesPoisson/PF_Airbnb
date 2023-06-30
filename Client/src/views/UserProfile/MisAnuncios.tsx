@@ -1,10 +1,10 @@
 import Card from "../../components/card/card";
-import UserNavBar from "./UserNavBar";
+// import UserNavBar from "./UserNavBar";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
-import { AnyAction } from "redux";
+// import { AnyAction } from "redux";
 
 const MisAnuncios = () => {
     
@@ -28,7 +28,7 @@ const MisAnuncios = () => {
     return(
         <div>
             <div>
-                <UserNavBar />
+                {/* <UserNavBar /> */}
             </div>
             <div className="ml-10 mt-20 font-cairo">
                 <div className="uppercase font-bold mb-3">

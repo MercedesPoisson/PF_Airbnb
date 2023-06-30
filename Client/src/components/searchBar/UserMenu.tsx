@@ -20,7 +20,7 @@ const UserMenu = () => {
   };
 
   const handleNavigateToAccount = () => {
-    navigate("/usuario/perfil");
+    navigate("/usuario");
   };
 
   const handleNavigateToAnuncios = () => {

@@ -1,4 +1,4 @@
-import UserNavBar from "./UserNavBar";
+// import UserNavBar from "./UserNavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -138,7 +138,7 @@ const handleServiceChange = async (e) => {
     
   return (
     <div>
-      <UserNavBar />
+      {/* <UserNavBar /> */}
       <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto mt-20">
         <div>
           <div className="text-2xl">Revisá y editá tu anuncio</div>

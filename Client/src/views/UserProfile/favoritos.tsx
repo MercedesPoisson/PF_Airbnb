@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import UserNavBar from "./UserNavBar";
+// import UserNavBar from "./UserNavBar";
 import { useDispatch, useSelector } from "react-redux";
 import getFavorites from "../../redux/actions/getFavorites";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -23,7 +23,7 @@ const Favoritos = () => {
     return(
         isAuthenticated && 
         <div>
-            <UserNavBar />   
+            {/* <UserNavBar />    */}
             <div className="mt-20 ml-10 font-cairo font-bold">
                 MIS FAVORITOS
                 </div>   

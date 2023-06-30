@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import UserNavBar from "./UserNavBar";
+// import UserNavBar from "./UserNavBar";
 import updateUser from "../../redux/actions/updateUser";
 
 const Profile = () => {
@@ -54,7 +54,7 @@ const Profile = () => {
 
   return (
     <div className="font-cairo">
-      <UserNavBar />
+      {/* <UserNavBar /> */}
       <div >
         <div className="ml-10 mt-20 font-cairo-play">
         <div className="ml-10 mt-10 font-cairo-play">
