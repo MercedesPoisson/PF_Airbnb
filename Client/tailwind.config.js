@@ -28,7 +28,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        argentina: "#E96479",
+        // argentina: "#E96479",
+        argentina: "#0081B4",
         dark_purple: "#0B2447",
         btn_primary: "#576CBC",
         heading_color: "#abd9d9",

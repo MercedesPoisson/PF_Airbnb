@@ -109,8 +109,9 @@ function SearchBar() {
         <div className="grid grid-cols-5 gap-3 h-32 mb-1 bg-white">
           <div className="col-span-1  flex items-center justify-start">
             <div className="flex items-center">
-              <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
-              <span className="ml-1 text-argentina font-comfortaa text-lg">argentina</span>
+            {/* <i className="fa-regular fa-sun text-argentina ml-4 text-2xl"></i> */}
+              <i className="fa fa-sun text-argentina ml-4 text-3xl"></i>
+              <span className="ml-1 text-argentina font-comfortaa text-lg">airebnb</span>
             </div>
           </div>
           <div className="col-span-3 ">
