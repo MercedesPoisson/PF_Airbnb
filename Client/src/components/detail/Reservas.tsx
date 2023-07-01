@@ -1,9 +1,11 @@
 import DateRangePicker from "./DateRangePicker";
 import { useState, useEffect, useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { initMercadoPago, Payment } from "@mercadopago/sdk-react";
 import axios from "axios";
 import Modal from "react-modal";
+import getUser from "../../redux/actions/getUser";
+import { AnyAction } from "redux";
 
 const modalStyles = {
     content: {
@@ -23,6 +25,7 @@ const Reservas = (props: any) => {
 
     initMercadoPago('TEST-f65903bb-9487-4457-8fe9-9114c375cc8a')
 
+    const dispatch = useDispatch()
     const { property } = props;
     const id_user: string = useSelector((state: any) => state.user.id_user);
     let maxGuest: number[] = [];
@@ -158,6 +161,7 @@ const Reservas = (props: any) => {
                                             .then((response) => {
                                                 console.log(response)
                                                 setBookingSuccess(true);
+                                                dispatch(getUser(id_user) as unknown as AnyAction)
                                                 // openModal("Reserva realizada con éxito")
                                             })
                                             .catch((error) => {

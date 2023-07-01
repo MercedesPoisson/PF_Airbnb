@@ -1,21 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 // import UserNavBar from "./UserNavBar";
 import Rating from "../../components/Rating/Rating";
 
 const Vacaciones = () => {
   const user = useSelector((state: any) => state.user);
-  const [selectedPropertyIds, setSelectedPropertyIds]: any = useState({});
+  const [selectedRentId, setSelectedRentId]: any = useState(null);
+
   
 
-  const handleRatingClick = (propertyId: any) => {
-    const rent = user.Rents.find((rent: any) => rent.id_property === propertyId);
-    if (rent && rent.review_status === false) {
-      setSelectedPropertyIds((prevSelectedPropertyIds: any) => ({
-        ...prevSelectedPropertyIds,
-        [propertyId]: !prevSelectedPropertyIds[propertyId]
-      }));
-    }
+  const handleRatingClick = (rentId: any) => {
+    setSelectedRentId(rentId)
   };
 
   const [ isOpen, setIsOpen ] = useState(false);
@@ -24,7 +19,11 @@ const Vacaciones = () => {
    setIsOpen(true);
   } 
 
- 
+  function closeModal() {
+    setIsOpen(false);
+    setSelectedRentId(null);
+  }
+
   return (
     <div>
       {/* <UserNavBar /> */}
@@ -46,9 +45,9 @@ const Vacaciones = () => {
               </tr>
             </thead>
             <tbody>
-            {user.Rents && user.Rents.map((rent: any, index:number) => {
-            const isSelected = selectedPropertyIds[rent.id_property];
-            const enableRating = rent.review_status === false;
+            {user.Rents && user.Rents.map((rent: any, index: number) => {
+                const isSelected = selectedRentId === rent.rent_id;
+                const enableRating = rent.review_status === false;
 
                 return (
                   <tr key={rent.id} className="text-center">
@@ -61,22 +60,22 @@ const Vacaciones = () => {
                     <td>{rent.Property.title}</td>
                     <td>{rent.active ? "Tu viaje esta por empezar" : "Califica tu experiencia"}</td>
                     <td>
-                    {user?.Ratings?.find((rating: any) => rating.id_property === rent.id_property) 
+                    {rent.review_status
                       ? 'Gracias por tu valoración' 
                       : (
                         <div className='relative'>
                           <button
                             className={`border border-red-500 px-4 rounded-md rating-button ${isSelected ? 'selected' : ''}`}
-                            onClick={() => 
-                              {handleRatingClick(rent.id_property);
-                              openModal()}                        
-                            }
+                            onClick={() => {
+                              handleRatingClick(rent.rent_id);
+                              openModal();
+                            }}
                             
                             disabled={!enableRating}
                           >
                             Clickea aquí
                           </button>
-                          {isSelected && <Rating isOpen={isOpen} setIsOpen={setIsOpen} id_property={rent.id_property} id_user={user.id_user} rent_id={rent.rent_id} />}
+                          {isSelected && <Rating isOpen={isOpen} setIsOpen={closeModal} id_property={rent.id_property} id_user={user.id_user} rent_id={rent.rent_id} />}
                         </div>
                       )
                     }

@@ -22,7 +22,9 @@ function SearchBar() {
     const [showDateRange, setShowDateRange] = useState(false);
     const [showFilters, setShowFilters] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [locationText, setlocationText] = useState('¿A dónde vamos?');
     const [buttonText, setButtonText] = useState('¿Cuándo?');
+    const [guestText, setGuestText] = useState('¿Cuántos somos?');
     const [showFiltersModal, setShowFiltersModal] = useState(false); // Estado para controlar la visibilidad de la ventana emergente
     const [showSearchLocation, setShowSearchLocation] = useState(false);
     const [showMaxGuest, setShowMaxGuest] = useState(false)
@@ -38,6 +40,8 @@ function SearchBar() {
       const urlSearchParams = new URLSearchParams(window.location.search);
       const startDate = urlSearchParams.get('start_date');
       const endDate = urlSearchParams.get('end_date');
+      const province = urlSearchParams.get('province');
+      const guests = urlSearchParams.get('max_guests')
       if (!startDate || !endDate) {
         setButtonText('¿Cuándo?');
         setState([{ startDate: new Date(), endDate: new Date(), key: 'selection' }]);
@@ -46,6 +50,11 @@ function SearchBar() {
         const endDateFormatted = new Date(endDate).toLocaleDateString();
         setButtonText(`${startDateFormatted} - ${endDateFormatted}`);
       }
+      if(!province) setlocationText('¿A dónde vamos?')
+      else setlocationText(province)
+      if(!guests) setGuestText('¿Cuántos somos?')
+      else setGuestText(guests)
+      
     }, [location]);
     
     const handleOrderClick = (event:any) => {
@@ -119,10 +128,11 @@ function SearchBar() {
               <div className="container mx-auto p-3 flex items-center justify-center sticky top-0 z-10">
                 <div className="flex items-center justify-center rounded">
                   <button
-                    className="text-black p-3 rounded-l-full bg-white w-48 h-12 border-t border-b border-l border-gray-200 shadow-md font-cairo"
+                    className="text-black p-3 rounded-l-full bg-white w-auto min-w-[12rem] h-12 border-t border-b border-l border-gray-200 shadow-md font-cairo"
                     onClick={() => handleSearchLocationModalToggle()}
                   >
-                    <i className="fas fa-map-marker-alt text-gray-300 mr-2"></i>¿A dónde vamos?
+                    <i className="fas fa-map-marker-alt text-gray-300 mr-2"></i>
+                    {locationText}
                   </button>
                   <span className="w-px h-6 bg-gray-200 justify"></span>
                   <button
@@ -138,7 +148,8 @@ function SearchBar() {
                   <span className="w-px h-6 bg-gray-200"></span>
                   <button className="text-black p-3 bg-white w-48 h-12 border-t border-b border-gray-200 shadow-md font-cairo"
                   onClick={() => {handleMaxGuestToggle()}}>
-                    <i className="fas fa-users text-gray-300 mr-2 "></i>¿Cuántos somos?
+                    <i className="fas fa-users text-gray-300 mr-2 "></i>
+                    {guestText}
                   </button>
                   <span className="w-px h-6 bg-gray-200"></span>
                   <button className="text-black p-3 rounded-r-full bg-white w-14 h-12 border-t border-b border-r border-gray-200 shadow-md">
