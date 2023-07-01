@@ -20,6 +20,7 @@ import Favoritos from "./views/UserProfile/favoritos";
 import Rent from './views/UserProfile/Rent';
 import Vacaciones from './views/UserProfile/Vacaciones';
 import Proyecto from './views/MiniProyecto/Proyecto';
+import Mensajes from './views/UserProfile/mensajes';
 import LayoutUser from './views/UserProfile/LayoutUser';
 // import DashLogin from './views/DashBoard/DashLogin';
 

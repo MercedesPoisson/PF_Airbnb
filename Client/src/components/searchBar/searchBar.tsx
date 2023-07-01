@@ -143,7 +143,7 @@ function SearchBar() {
                     className="text-black p-3 rounded-l-full bg-white w-auto min-w-[12rem] h-12 border-t border-b border-l border-gray-200 shadow-md font-cairo"
                     onClick={() => handleSearchLocationModalToggle()}
                   >
-                    <i className="fas fa-map-marker-alt text-gray-300 mr-2"></i>¿A dónde vamos?
+                    <i className="fas fa-map-marker-alt text-gray-300 mr-2"></i>{!showSearchLocation ? btnLocation : '¿A dónde vamos?'}
                   </button>
                   <span className="w-px h-6 bg-gray-200 justify"></span>
                   <button
@@ -159,7 +159,7 @@ function SearchBar() {
                   <span className="w-px h-6 bg-gray-200"></span>
                   <button className="text-black p-3 bg-white w-48 h-12 border-t border-b border-gray-200 shadow-md font-cairo"
                   onClick={() => {handleMaxGuestToggle()}}>
-                    <i className="fas fa-users text-gray-300 mr-2 "></i>¿Cuántos somos?
+                    <i className="fas fa-users text-gray-300 mr-2 "></i>{!showMaxGuest ? `${btnGuest}`  : '¿Cuántos somos?'}
                   </button>
                   <span className="w-px h-6 bg-gray-200"></span>
                   <button className="text-black p-3 rounded-r-full bg-white w-14 h-12 border-t border-b border-r border-gray-200 shadow-md">
