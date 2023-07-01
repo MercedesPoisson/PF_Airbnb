@@ -5,11 +5,12 @@ import axios from "axios";
 interface ReviewProps {
   isOpen: boolean;
   setIsOpen: any;
-  SelectedRatingId: any;
+  SelectedRating: any;
+  
 }
 
 const Report = (props: ReviewProps) => {
-  const { setIsOpen, isOpen, SelectedRatingId  } = props;
+  const { setIsOpen, isOpen, SelectedRating  } = props;
   const [reportText, setReportText] = useState("");
 
   function closeModal() {
@@ -19,7 +20,7 @@ const Report = (props: ReviewProps) => {
   const handleReportSubmit = () => {
     console.log("Despachando PUT"); 
     axios
-      .put(`http://localhost:3001/rating/${SelectedRatingId}`, {
+      .put(`http://localhost:3001/rating/${SelectedRating}`, {
         report_reason: reportText,
         is_reported: true,
       })

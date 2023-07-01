@@ -12,7 +12,7 @@ import Images from "./Images";
 import Review from "../Rating/Review";
 import { useAuth0 } from "@auth0/auth0-react";
 import Report from "./Report";
-import Rating from "../Rating/Rating";
+// import Rating from "../Rating/Rating";
 
 const CardDetails = () => {
   const dispatch = useDispatch();
@@ -23,15 +23,16 @@ const CardDetails = () => {
   const [isSaved, SetIsSaved] = useState(false);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedRatingId, setSelectedRatingId] = useState(null);
+  const [selectedRating, setSelectedRating] = useState(null);
 
   function openModal(ratingId) {
-    setSelectedRatingId(ratingId);
+    console.log("SelectedRatingId:", ratingId);
+    setSelectedRating(ratingId);
     setIsOpen(true);
   }
 
   function closeModal() {
-    setSelectedRatingId(null);
+    setSelectedRating(null);
     setIsOpen(false);
   }
 
@@ -69,7 +70,7 @@ const CardDetails = () => {
             >
               <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
               <span className="ml-1 text-argentina font-comfortaa text-lg">
-                argentina
+                airebnb
               </span>
             </div>
           </div>
@@ -216,14 +217,11 @@ const CardDetails = () => {
                           <div key={i} className="relative">
                             {isReportable && (
                               <button
-                                onClick={() => 
-                                  {console.log("SelectedRatingId:", rating.id);
-                                  openModal(rating.id)}}
-                                
-                                className="text-argentina absolute -top-1 right-0"
-                              >
-                                Reportar
-                              </button>
+                              onClick={() => openModal(rating.rating_id)}
+                              className="text-argentina absolute -top-1 right-0"
+                            >
+                              Reportar
+                            </button>
                             )}
                             <Review rating={rating} />
                           </div>
@@ -233,9 +231,9 @@ const CardDetails = () => {
                   ))}
               </div>
               <Report
-                isOpen={isOpen && selectedRatingId !== null}
+                isOpen={isOpen && selectedRating  !== null}
                 setIsOpen={closeModal}
-                SelectedRatingId={selectedRatingId}
+                SelectedRating={selectedRating}
               />
                   </div>
                 </div>
