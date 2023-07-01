@@ -27,6 +27,10 @@ const UserMenu = () => {
     navigate("/usuario/anuncios");
   };
 
+  const handleNavigateToMensajes = () => {
+    navigate("/usuario/mensajes");
+  };
+
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
   };
@@ -46,6 +50,7 @@ const UserMenu = () => {
           handleNavigateToTeam={handleNavigateToTeam}
           handleNavigateToAnuncios={handleNavigateToAnuncios}
           handleNavigateToFavoritos={handleNavigateToFavoritos}
+          handleNavigateToMensajes={handleNavigateToMensajes}
         />
       ) : (
         <UserBar
