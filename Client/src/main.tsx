@@ -6,9 +6,16 @@ import './index.css'
 import store from './redux/store.tsx';
 import { Provider } from "react-redux"
 import { Auth0Provider } from '@auth0/auth0-react'
+import io from "socket.io-client";
 
 const domain = 'dev-yura723kkk8s5a14.us.auth0.com'
 const clientId = '3VrGMPPJBmJR1V5slCMSlYjZ3NsWCGct'
+
+const socket = io("http://localhost:3001"); //esta es la conexion en si con el back - aca podemos escuchar y enviar eventos
+socket.on("connect", () => {
+  console.log("conectado al servidor socket");
+  
+})
 
 ReactDOM.render(
     <BrowserRouter>

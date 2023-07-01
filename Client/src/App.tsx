@@ -23,6 +23,7 @@ import Proyecto from './views/MiniProyecto/Proyecto';
 import Privacidad from './components/Footer/Privacidad';
 import Terminos from './components/Footer/Terminos';
 import LayoutUser from './views/UserProfile/LayoutUser';
+import Socketio from './views/UserProfile/Socketio/Socketio';
 // import DashLogin from './views/DashBoard/DashLogin';
 
 
@@ -37,6 +38,8 @@ function App() {
         <Route path="/propiedad/:id" element={<Details />} />
         <Route path="/formulario" element={<Form/>} />
         <Route path="/ayuda" element={<Team />} />
+        <Route path="/chat" element={<Socketio />} />
+
 
         <Route path="usuario/*" element={<LayoutUser />}>
           <Route index element={<Account />} />
