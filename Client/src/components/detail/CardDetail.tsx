@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import getPropertyDetail from "../../redux/actions/getPropertyDetail";
 import { AnyAction } from "redux";
@@ -10,13 +10,30 @@ import UserMenu from "../searchBar/UserMenu";
 import Reservas from "./Reservas";
 import Images from "./Images";
 import Review from "../Rating/Review";
+import { useAuth0 } from "@auth0/auth0-react";
+import Report from "./Report";
+import Rating from "../Rating/Rating";
 
 const CardDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const property = useSelector((state: any) => state.detail);
+  const currentUser = useSelector((state: any) => state.user);
+  const { isAuthenticated } = useAuth0();
   const [isSaved, SetIsSaved] = useState(false);
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedRatingId, setSelectedRatingId] = useState(null);
+
+  function openModal(ratingId) {
+    setSelectedRatingId(ratingId);
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setSelectedRatingId(null);
+    setIsOpen(false);
+  }
 
   const handleNavigateToHome = () => {
     navigate("/");
@@ -36,7 +53,7 @@ const CardDetails = () => {
   console.log("Location:", property.location);
   console.log("Province:", property.province);
 
-  const chunk = (arr:any, size:any) =>
+  const chunk = (arr: any, size: any) =>
     Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
       arr.slice(i * size, i * size + size)
     );
@@ -187,18 +204,39 @@ const CardDetails = () => {
                       <Reservas property={property} />
                     </div>
                     <div>
-                    {property.Ratings &&
-                      chunk(property.Ratings, 2).map((group, index) => (
-                        <div key={index} className="flex justify-center mb-4 mt-5" >
-                          {group.map((rating: number, i: number) => (
-                            <React.Fragment key={i}>
-                              <Review rating={rating} />
-                              {i !== group.length - 1 && <div className="w-10" />} {/* Agregar espacio en blanco */}
-                            </React.Fragment>
-                          ))}
-                        </div>
-                      ))}
-                  </div>
+                {property.Ratings &&
+                  chunk(property.Ratings, 2).map((group, index) => (
+                    <div key={index} className="flex justify-center mb-4 mt-5">
+                      {group.map((rating: any, i: number) => {
+                        const isReportable =
+                          isAuthenticated &&
+                          property.id_user === currentUser.id_user;
+
+                        return (
+                          <div key={i} className="relative">
+                            {isReportable && (
+                              <button
+                                onClick={() => 
+                                  {console.log("SelectedRatingId:", rating.id);
+                                  openModal(rating.id)}}
+                                
+                                className="text-argentina absolute -top-1 right-0"
+                              >
+                                Reportar
+                              </button>
+                            )}
+                            <Review rating={rating} />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ))}
+              </div>
+              <Report
+                isOpen={isOpen && selectedRatingId !== null}
+                setIsOpen={closeModal}
+                SelectedRatingId={selectedRatingId}
+              />
                   </div>
                 </div>
               </div>
