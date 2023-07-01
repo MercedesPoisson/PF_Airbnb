@@ -22,7 +22,7 @@ const userNavBar = () => {
       <header className="w-full flex justify-between items-center px-4 md:px-12 h-20 bg-white z-99">
         <a href="#" onClick={handleNavigateToHome}>
           <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
-          <span className="text-argentina font-comfortaa text-xl">argentina</span>
+          <span className="text-argentina font-comfortaa text-xl">airebnb</span>
         </a>
         <nav className="font-cairo text-sm">
           <button className="md:hidden">

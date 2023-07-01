@@ -11,7 +11,7 @@ export default function SideBar() {
         <div className="flex flex-col bg-segundo w-60 p-3 text-white font-cairo">
             <div className="flex items-center gap-2 px-1 py-3">
                 <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
-                <span className="ml-1 text-argentina font-comfortaa text-lg">argentina</span>
+                <span className="ml-1 text-argentina font-comfortaa text-lg">airebnb</span>
                 </div>
                 <div className=" py-8 flex flex-1 flex-col gap-0.5">
         {DASHBOARD_SIDEBAR_LINKS.map((item) => (
