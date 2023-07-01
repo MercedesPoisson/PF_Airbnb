@@ -133,7 +133,9 @@ const userNavBar = () => {
                   ? "border-b-2 border-argentina"
                   : "hover:border-b-2 hover:border-argentina"
               }`}
-              onClick={() => handleItemClick("Mensajes")}
+              onClick={() => {
+                handleItemClick("Mensajes")
+                navigate('/usuario/mensajes')}}
             >
               <a href="#">Mensajes</a>
             </li>
