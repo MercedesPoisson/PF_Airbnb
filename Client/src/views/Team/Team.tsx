@@ -30,7 +30,7 @@ const Team = () => {
           </div>
         </div>
       </div> */}
-      <div className="font-Poppins bg-dark_purple text-white ">
+      <div className="font-Poppins bg-dark_purple text-white items-center h-screen ">
         <div className="text-center py-10">
             <h5 className="text-4xl w-96 mx-auto leading-normal font-bold mb-12">El Equipo</h5>
             
