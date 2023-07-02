@@ -452,12 +452,14 @@ const Anuncio = () => {
                 {group.map((rating: any, i: number) => (
                   <div key={i} className="relative">
                     <Review rating={rating} />
-                    <button
-                      onClick={() => reportReview(rating.rating_id)}
-                      className="text-argentina absolute -top-1 right-0"
-                    >
-                      Reportar
-                    </button>
+                    {!rating.is_active && ( // Verificar si el rating no ha sido reportado
+                      <button
+                        onClick={() => reportReview(rating.rating_id)}
+                        className="text-argentina absolute -top-1 right-0"
+                      >
+                        Reportar
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>
