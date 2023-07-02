@@ -2,6 +2,7 @@ import Stack from "./Stack";
 import Glaciares from "./glaciares.jpg";
 import Norte from "./norte.jpg";
 import Salinas from "./salinas.jpg";
+import Perito from "./perito.jpg"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Estilos.css";
@@ -100,7 +101,7 @@ const Proyecto = () => {
         <button onClick={handlePlay}>
           <div className="relative">
             <img
-              src={Glaciares}
+              src={Perito}
               alt="Glaciares"
               className="w-72 h-52 object-cover shadow-md rounded-xl"
             />
