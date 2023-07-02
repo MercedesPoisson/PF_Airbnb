@@ -27,8 +27,6 @@ const Anuncio = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   
-  
-
   const translatedPropertyType = propertyTypeMapping[property?.property_type];
 
   useEffect(() => {
@@ -61,10 +59,6 @@ const [monthlyDiscount, setMonthlyDiscount] = useState(property.monthly_discount
 console.log(weeklyDiscount);
 console.log(monthlyDiscount);
 console.log(allow_pets);
-
-
-
-
 
 const handleServiceChange = async (e) => {
     const selectedServiceId = e.target.value;
@@ -100,7 +94,6 @@ const handleServiceChange = async (e) => {
         services: servicios || property.Services?.map((service:any)=> service.name)
     }
 
-    
     await dispatch(updateProperty(updatedProperty))
     await dispatch(getPropertyDetail(id));
     setIsEditing(false);
@@ -139,7 +132,7 @@ const handleServiceChange = async (e) => {
   return (
     <div>
       {/* <UserNavBar /> */}
-      <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto mt-20">
+      <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto mt-10">
         <div>
           <div className="text-2xl">Revisá y editá tu anuncio</div>
           <p>
@@ -311,7 +304,7 @@ const handleServiceChange = async (e) => {
               ))
             ) : (
               property.Services &&
-              property.Services.map((service, index) => (
+              property.Services.map((service:any, index:number) => (
                 <div key={index} className="flex items-center">
                   <i className={`${service.icon} mr-2`}></i>
                   <span>{service.name}</span>
@@ -381,13 +374,13 @@ const handleServiceChange = async (e) => {
             ))}
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex gap-4 ">
           {isEditing ? (
             <>
               <button className="bg-argentina text-white py-2 px-4 rounded" onClick={handleSaveClick}>
                 Guardar Cambios
               </button>
-              <button className="bg-red-500 text-white py-2 px-4 rounded" onClick={() => setIsEditing(false)}>
+              <button className="bg-argentina text-white py-2 px-4 rounded" onClick={() => setIsEditing(false)}>
                 Cancelar
               </button>
             </>
