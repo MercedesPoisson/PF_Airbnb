@@ -2,18 +2,21 @@ import Stack from "./Stack";
 import Glaciares from "./glaciares.jpg";
 import Norte from "./norte.jpg";
 import Salinas from "./salinas.jpg";
+import Perito from "./perito.jpg"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Estilos.css";
+import { BsSun } from 'react-icons/bs';
 
 const Proyecto = () => {
     const navigate = useNavigate();
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentSubtitleIndex, setCurrentSubtitleIndex] = useState(0);
-    const textToRead =
-      "Bienvenidos a Aire benebe. Una aplicación pensada para conectar dueños de propiedades a lo largo de Argentina con personas que desean alojarse en distintos puntos del país con el objetivo de viajar sintiéndose como en casa. Con unos pocos clicks podrán encontrar el alojamiento perfecto para su siguiente estadía, reservarla, abonarla y comunicarse con el propietario en caso de necesitarlo. Al finalizar su estadía tendrán la posibilidad de brindar su opinión para que otros usuarios puedan tener una referencia al momento de decidirse por una propiedad. Los propietarios podrán fácilmente publicar sus propiedades, gestionando las reservas, la disponibilidad y los pagos. Asimismo, tendrán la posibilidad de realizar modificaciones sobre la información publicada. Atender las consultas de los inquilinos y reportar opiniones fuera de lugar. Una de sus grandes fortalezas, es la de realizar transacciones en nuestra moneda local. De esta manera tanto el huésped como el propietario saben exactamente cuál es el monto que se va a debitar de la transacción y cuál es el pago que van a recibir.";
     const [showIcons, setShowIcons] = useState(false);
     const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
     const [currentSubtitle, setCurrentSubtitle] = useState<string>('');
+    const textToRead =
+      "Bienvenidos a Aire benebe. Una aplicación pensada para conectar dueños de propiedades a lo largo de Argentina con personas que desean alojarse en distintos puntos del país con el objetivo de viajar sintiéndose como en casa. Con unos pocos clicks podrán encontrar el alojamiento perfecto para su siguiente estadía, reservarla, abonarla y comunicarse con el propietario en caso de necesitarlo. Al finalizar su estadía tendrán la posibilidad de brindar su opinión para que otros usuarios puedan tener una referencia al momento de decidirse por una propiedad. Los propietarios podrán fácilmente publicar sus propiedades, gestionando las reservas, la disponibilidad y los pagos. Asimismo, tendrán la posibilidad de realizar modificaciones sobre la información publicada. Atender las consultas de los inquilinos y reportar opiniones fuera de lugar. Una de sus grandes fortalezas, es la de realizar transacciones en nuestra moneda local. De esta manera tanto el huésped como el propietario saben exactamente cuál es el monto que se va a debitar de la transacción y cuál es el pago que van a recibir.";
   
     useEffect(() => {
       const handleVoicesChanged = () => {
@@ -80,7 +83,15 @@ const Proyecto = () => {
   
 
   return (
-    <div className="flex flex-col items-center h-screen bg-dark_purple font-Poppins tracking-[5px]">
+    <div className="animation-area flex flex-col items-center h-screen bg-dark_purple font-Poppins tracking-[5px]">
+      <ul className="box-area">
+        <li><BsSun className="text-7xl text-tercero text-opacity-10"/></li>
+        <li><BsSun className="text-3xl text-tercero text-opacity-20"/></li>
+        <li><BsSun className="text-5xl text-tercero text-opacity-10"/></li>
+        <li><BsSun className="text-9xl text-tercero text-opacity-10"/></li>
+        <li><BsSun className="text-5xl text-tercero text-opacity-10"/></li>
+        <li><BsSun className="text-9xl text-tercero text-opacity-10"/></li>
+      </ul>
       <div className="relative w-full max-w-lg">
         <div className="absolute top-28 -left-36 w-80 h-80 bg-tercero rounded-full filter blur-2xl opacity-50 animate-blob"></div>
         <div className="absolute top-28 -right-14 w-80 h-80 bg-tercero rounded-full filter blur-2xl opacity-50 animate-blob animation-delay-2000 "></div>
@@ -90,7 +101,7 @@ const Proyecto = () => {
         <button onClick={handlePlay}>
           <div className="relative">
             <img
-              src={Glaciares}
+              src={Perito}
               alt="Glaciares"
               className="w-72 h-52 object-cover shadow-md rounded-xl"
             />
@@ -123,7 +134,7 @@ const Proyecto = () => {
           </div>
         </div>
       </div>
-      <div className="flex font-Poppins uppercase tracking-[5px] bg-dark_purple text-4xl text-argentina px-[35px] py-[20px] h-[80px] shadow-xl mt-4">
+      <div className="animation-area flex font-Poppins uppercase tracking-[5px] bg-dark_purple text-4xl text-argentina px-[35px] py-[20px] h-[80px] shadow-xl mt-4">
         <p className="font-bold">Aire</p>
         <div className="grid ml-[8px] animate scroll overflow-hidden">
           <span className="animate-scroll font-bold">bnb</span>
@@ -144,7 +155,7 @@ const Proyecto = () => {
           </div>
         )}
       </div>
-      <div className="mt-10 subtitles justify-center items-center left-1/2 text-argentina text-lg w-full max-w-5xl mx-auto">
+      <div className="mt-10 subtitles justify-center items-center left-1/2 text-argentina text-lg w-full max-w-4xl mx-auto">
       {isPlaying && (
           <p>{currentSubtitle}</p>
         )}
