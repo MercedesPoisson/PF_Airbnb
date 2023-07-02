@@ -38,7 +38,7 @@ module.exports = {
         // tercero: "#E96479"
         primero: "#E96479",
         segundo: "#ADE4DB",
-        tercero: "#146C94"
+        tercero: "#3AA6B9"
       },
       fontFamily: {
         comfortaa: ['Comfortaa', 'cursive'],

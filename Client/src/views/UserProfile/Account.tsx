@@ -48,8 +48,8 @@ const Account = () => {
       {/* <UserNavBar /> */}
 
       <div className="flex justify-center mt-20" style={{ zIndex: "0" }}>
-        <div className="row-span-2 border hover:border-segundo hover:animate-lightup w-[450px] ml-10 mb-10">
-          <h5 className="flex items-center justify-between uppercase font-bold bg-segundo text-white px-2 py-2">
+        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10">
+          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
             PERFIL <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
           <div className="grid grid-cols-2 w-1/4">
@@ -81,10 +81,10 @@ const Account = () => {
         </div>
 
         <div
-          className="row-span-2 border hover:border-primero hover:animate-lightup w-[450px] ml-10 mb-10"
+          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10"
           onClick={handleNavigateToVacaciones}
         >
-          <h5 className="flex items-center justify-between uppercase font-bold bg-primero text-white px-2 py-2">
+          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
             MIS VIAJES <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
           <div className="h-40 overflow-hidden">
@@ -131,10 +131,10 @@ const Account = () => {
         </div>
 
         <div
-          className="row-span-2 border hover:border-primero hover:animate-lightup w-[450px] ml-10 mb-10"
+          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10"
           onClick={handleNavigateToReservas}
         >
-          <h5 className="flex items-center justify-between uppercase font-bold bg-primero text-white px-2 py-2">
+          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
             RESERVARON MI PROPIEDAD{" "}
             <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
@@ -152,8 +152,8 @@ const Account = () => {
           </div>
         </div>
 
-        <div className="row-span-2 border hover:border-segundo hover:animate-lightup w-[450px] ml-10 mb-10">
-          <h5 className="flex items-center justify-between uppercase font-bold bg-segundo text-white px-2 py-2">
+        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10">
+          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
             PAGOS Y COBROS{" "}
             <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
