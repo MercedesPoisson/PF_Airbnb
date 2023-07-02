@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import UserNavBar from "./UserNavBar";
+// import UserNavBar from "./UserNavBar";
 import { useDispatch, useSelector } from "react-redux";
 import getFavorites from "../../redux/actions/getFavorites";
 import { useAuth0 } from "@auth0/auth0-react";
 import { AnyAction } from "redux";
-import CardsContainer from "../../components/cardContainer/cardContainer";
+import Card from "../../components/card/card";
 
 const Favoritos = () => {
     const {id_user} = useSelector((state:any)=> state.user )
@@ -23,11 +23,24 @@ const Favoritos = () => {
     return(
         isAuthenticated && 
         <div>
-            <UserNavBar />   
+            {/* <UserNavBar />    */}
             <div className="mt-20 ml-10 font-cairo font-bold">
                 MIS FAVORITOS
                 </div>   
-            <CardsContainer properties={favorites} />
+            {favorites.map((favorite: any) => {
+                return (
+                    <Card
+                id_property={favorite.Property.id_property}
+                title={favorite.Property.title}
+                location={favorite.Property.location}
+                province={favorite.Property.province}
+                price_per_night={favorite.Property.price_per_night}
+                rating={favorite.Property.rating}
+                images={favorite.Property.images}
+              />
+                )
+            })}
+            
         </div>
     )
 }

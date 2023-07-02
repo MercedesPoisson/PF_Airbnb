@@ -174,7 +174,7 @@ const Form = () => {
             >
               <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
               <span className="ml-1 text-argentina font-comfortaa text-lg">
-                argentina
+                airebnb
               </span>
             </div>
           </div>
@@ -224,6 +224,7 @@ const Form = () => {
             roomsNumber={formData.rooms_number}
             bedsNumber={formData.beds_number}
             bathroomsNumber={formData.bathrooms_number}
+            setFormData={setFormData}
           />
         )}
 

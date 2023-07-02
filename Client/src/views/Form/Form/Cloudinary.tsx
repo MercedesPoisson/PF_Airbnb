@@ -122,7 +122,7 @@ const Cloudinary = (props) => {
             />
             {errors.image5 && <p className="text-red-500">{errors.image5}</p>}
           </div>
-          <div className="relative">
+          {/* <div className="relative">
             <input
               className="pl-8 w-96 h-10 border rounded-md mb-2"
               type="file"
@@ -143,7 +143,7 @@ const Cloudinary = (props) => {
               onChange={handleInputChange}
               multiple={false}
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="col-span-1 font-cairo-play flex justify-start ml-10">

@@ -7,7 +7,7 @@ const getFavorites = (id: any) => {
     return async (dispatch: Dispatch<AnyAction>) => {
         if (id !== undefined) {
             const data = await axios.get(`http://localhost:3001/users/${id}/favorites`);
-            const properties = data.data;
+            const properties = data.data.Favorites;
             dispatch({ type: GET_FAVORITES, payload: properties });
         } else {
 

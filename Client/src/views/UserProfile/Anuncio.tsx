@@ -1,14 +1,17 @@
-import UserNavBar from "./UserNavBar";
+// import UserNavBar from "./UserNavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import getPropertyDetail from "../../redux/actions/getPropertyDetail";
 import updateProperty from "../../redux/actions/updateProperty";
+import updatePropertyStatus from "../../redux/actions/updatePropertStatus";
+import getProperties from "../../redux/actions/getProperties";
+
 
 const propertyTypeMapping = {
-  House: "Casa",
-  Apartment: "Departamento",
-  Room: "Habitación",
+  House: "House",
+  Apartment: "Apartment",
+  Room: "Room",
 };
 
 interface Service {
@@ -22,15 +25,22 @@ const Anuncio = () => {
   const services: Service[] = useSelector((state: any) => state.services);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate = useNavigate();
+  
+  
 
   const translatedPropertyType = propertyTypeMapping[property?.property_type];
 
   useEffect(() => {
-    console.log(id);
-    dispatch(getPropertyDetail(id));
+    const dispatchfunction = async()=>{
+      await dispatch(getPropertyDetail(id));
+    }
+    dispatchfunction()
   }, [dispatch, id]);
 
-  const [title, setTitle] = useState(property.title || "");
+const [property_id, setPropId] =useState(property.property_id)
+const [user_id, setUserId] = useState(property.user_id)
+const [title, setTitle] = useState(property.title || "");
 const [address, setAddress] = useState(property.address || "");
 const [description, setDescription] = useState(property.description || "");
 const [type, setType] = useState(translatedPropertyType);
@@ -39,17 +49,24 @@ const [rooms, setRooms] = useState(property.rooms_number || 1);
 const [beds, setBeds] = useState(property.beds_number || 1);
 const [bath, setBath] = useState(property.bathrooms_number || 1);
 const [price, setPrice] = useState(property.price_per_night || 1);
-const [servicios, setServicios] = useState(property.services || "");
+const [servicios, setServicios] = useState(property.Services?.map((service:any)=> service.name) || "");
 const [startDate, setStartDate] = useState(property.start_date || "");
 const [endDate, setEndDate] = useState(property.end_date || "");
 const [images, setImages] = useState([]);
 const [isEditing, setIsEditing] = useState(false);
-const [propertyState, setPropertyState] = useState(property);
-const [isCheckboxVisible, setIsCheckboxVisible] = useState(property.allow_pets);
+const [allow_pets, setAllowPets] = useState(property.allow_pets);
 const [weeklyDiscount, setWeeklyDiscount] = useState(property.weekly_discount || 1);
 const [monthlyDiscount, setMonthlyDiscount] = useState(property.monthly_discount || 1);
 
-const handleServiceChange = (e) => {
+console.log(weeklyDiscount);
+console.log(monthlyDiscount);
+console.log(allow_pets);
+
+
+
+
+
+const handleServiceChange = async (e) => {
     const selectedServiceId = e.target.value;
     const isChecked = e.target.checked;
   
@@ -57,60 +74,71 @@ const handleServiceChange = (e) => {
       ? [...servicios, selectedServiceId]
       : servicios.filter((serviceId) => serviceId !== selectedServiceId);
   
-    setServicios(updatedServicios);
+    await setServicios(updatedServicios);
   };
 
-  const handleEditClick = () => {
-    setIsEditing(true);
-    // setIsPetsAllowed(property.allow_pets || false);
-    // setIsCheckboxVisible(true);
-    // setWeeklyDiscount(property.weekly_discount);
-    // setMonthlyDiscount(property.monthly_discount);
+  const handleEditClick = async() => {
+    await dispatch(getProperties());
+    await setIsEditing(true);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async() => {
     const updatedProperty = {
-        id_property: property.id_property,
-        id_user: property.id_user,
+        id_property: property?.id_property,
+        id_user: property?.id_user,
         title: title || property.title,
-        address: address || property.address,
-        // zip_code: zip_code || property.zip_code,
         property_type: type || property.property_type,
         description: description || property.description,
-        price_per_night: price || property.price_per_night, 
-        images: images.length > 0 ? images : property.images,
-        start_date: startDate || property.start_date,
-        end_date: endDate || property.end_date,
+        price_per_night: price || property.price_per_night,
         rooms_number: rooms || property.rooms_number,
         bathrooms_number: bath || property.bathroms_number,
         beds_number: beds || property.beds_number,
         max_guests: guests || property.max_guests,
-        allow_pets: propertyState.allowPets || property.allow_pets,
-        weekly_discount: weeklyDiscount || property.weekly_discount,
-        monthly_discount: monthlyDiscount || property.monthly_discount,
-        isEditing: isEditing || false,
-        propertyState: propertyState || property,
-        isCheckboxVisible: isCheckboxVisible || property.allow_pets,
-        weeklyDiscount: weeklyDiscount || property.weekly_discount,
-        monthlyDiscount: monthlyDiscount || property.monthly_discount,
-        // min_nights,
-        // accessibility
+        allow_pets: allow_pets,
+        weekly_discount: weeklyDiscount,
+        monthly_discount: monthlyDiscount,
+        services: servicios || property.Services?.map((service:any)=> service.name)
     }
-    dispatch(updateProperty(updatedProperty))
-    .then(() => {
-      // Después de la actualización, obtén los datos actualizados llamando a getPropertyDetail
-      dispatch(getPropertyDetail(id));
-      setIsEditing(false);
-    })
-    .catch((error) => {
-      // Manejar el error en caso de que ocurra
-      console.log("Error updating property:", error);
-    });
-  };
 
+    
+    await dispatch(updateProperty(updatedProperty))
+    await dispatch(getPropertyDetail(id));
+    setIsEditing(false);
+    }
+
+    const handleDelete = async()=>{
+      await dispatch(updatePropertyStatus(property))
+      navigate("/usuario/anuncios#");
+    }
+
+    useEffect(() => {
+      setPropId(property.property_id);
+      setUserId(property.user_id);
+      setTitle(property.title || "");
+      setAddress(property.address || "");
+      setDescription(property.description || "");
+      setType(translatedPropertyType);
+      setGuests(property.max_guests || 1);
+      setRooms(property.rooms_number || 1);
+      setBeds(property.beds_number || 1);
+      setBath(property.bathrooms_number || 1);
+      setPrice(property.price_per_night || 1);
+      setServicios(
+        property.Services?.map((service: any) => service.name) || ""
+      );
+      setStartDate(property.start_date || "");
+      setEndDate(property.end_date || "");
+      setImages([]);
+      setIsEditing(false);
+      setAllowPets(property.allow_pets);
+      setWeeklyDiscount(property.weekly_discount || 1);
+      setMonthlyDiscount(property.monthly_discount || 1);
+    }, [property]);
+    
+    
   return (
     <div>
-      <UserNavBar />
+      {/* <UserNavBar /> */}
       <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto mt-20">
         <div>
           <div className="text-2xl">Revisá y editá tu anuncio</div>
@@ -119,7 +147,7 @@ const handleServiceChange = (e) => {
             <i className="fa-solid fa-pen-to-square text-argentina ml-2" onClick={() => setIsEditing(true)}></i>
           </p>
           <p>
-            Hacé click acá si querés borrar tu propiedad <i className="fa-solid fa-eraser text-argentina"></i>
+            Hacé click acá si querés borrar tu propiedad <i onClick={()=> handleDelete()} className="fa-solid fa-eraser text-argentina"></i>
           </p>
         </div>
         <div>
@@ -134,11 +162,7 @@ const handleServiceChange = (e) => {
 
           <h1 className="flex ">
             <p className="mr-2">Dirección:</p>
-            {isEditing ? (
-              <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="border w-w350" />
-            ) : (
-              <span onClick={() => setIsEditing(true)}>{property.address}</span>
-            )}
+              <span onClick={() => setIsEditing(true)}>{property.address}</span>            
           </h1>
 
           <h5>{property.location}</h5>
@@ -276,9 +300,9 @@ const handleServiceChange = (e) => {
                   <label>
                     <input
                       type="checkbox"
-                      value={service.service_id}
-                      checked={servicios && servicios.includes(service.service_id)}
-                      onChange={handleServiceChange}
+                      value={service.name}
+                      defaultChecked={servicios && servicios.includes(service.name)}
+                      onClick={handleServiceChange}
                     />
                     <i className={`${service.icon} mr-2 ml-3`}></i>
                     <span>{service.name}</span>
@@ -300,8 +324,8 @@ const handleServiceChange = (e) => {
             <div className="flex items-center">
               <input
                 type="checkbox"
-                checked={propertyState.allow_pets}
-                onChange={() => setPropertyState({ ...propertyState, allow_pets: !propertyState.allow_pets })}
+                checked={allow_pets}
+                onChange={() => setAllowPets(!allow_pets)}
                 className="mr-2"
               />
               <h3 className="font-semibold">

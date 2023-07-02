@@ -20,11 +20,15 @@ const UserMenu = () => {
   };
 
   const handleNavigateToAccount = () => {
-    navigate("/usuario/perfil");
+    navigate("/usuario");
   };
 
   const handleNavigateToAnuncios = () => {
     navigate("/usuario/anuncios");
+  };
+
+  const handleNavigateToMensajes = () => {
+    navigate("/usuario/mensajes");
   };
 
   const handleLogout = () => {
@@ -36,7 +40,7 @@ const UserMenu = () => {
   }
 
   return (
-    <div style={{ position: "relative" }}>
+    <div >
       {isAuthenticated ? (
         <UserNavLoged
           handleUserMenu={handleUserMenu}
@@ -46,6 +50,7 @@ const UserMenu = () => {
           handleNavigateToTeam={handleNavigateToTeam}
           handleNavigateToAnuncios={handleNavigateToAnuncios}
           handleNavigateToFavoritos={handleNavigateToFavoritos}
+          handleNavigateToMensajes={handleNavigateToMensajes}
         />
       ) : (
         <UserBar

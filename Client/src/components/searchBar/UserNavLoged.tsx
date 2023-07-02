@@ -9,9 +9,10 @@ interface UserNavProps {
   handleNavigateToTeam: () => void;
   handleNavigateToAnuncios: () => void;
   handleNavigateToFavoritos: () => void;
+  handleNavigateToMensajes: () => void;
 }
 
-const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam, handleNavigateToAnuncios, handleNavigateToFavoritos }: UserNavProps) => {
+const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam, handleNavigateToAnuncios, handleNavigateToFavoritos, handleNavigateToMensajes}: UserNavProps) => {
   const [showUserBar, setShowUserBar] = useState(false);
  
   const { logout } = useAuth0();
@@ -45,7 +46,8 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam, handleNav
           }}
         >
           <li style={{ padding: "0.5rem 0" }}>
-            <a href="#">Mensajes</a>
+            <a href="#"
+            onClick={handleNavigateToMensajes}>Mensajes</a>
           </li>
           <li style={{ padding: "0.5rem 0" }}>
             <a href="#">Viajes</a>
@@ -65,7 +67,7 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam, handleNav
             <a href="#" onClick={handleNavigateToTeam}>Ayuda</a>
           </li>
           <li style={{ padding: "0.5rem 0" }}>
-            <a onClick={() => logout({ returnTo: "http://localhost:5173" })}>
+            <a onClick={() => logout({ returnTo: "https://proyectofinalairbnb.vercel.app/" })}>
               Cerrar Sesión
             </a>
           </li>

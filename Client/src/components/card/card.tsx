@@ -7,6 +7,7 @@ import postFavorites from '../../redux/actions/postFavorites';
 import { AnyAction } from 'redux';
 import deleteFavorites from '../../redux/actions/deleteFavorites';
 import getFavorites from '../../redux/actions/getFavorites';
+import getUser from '../../redux/actions/getUser';
 import { useAuth0 } from '@auth0/auth0-react';
 
 interface CardProps {
@@ -43,6 +44,7 @@ function Card({ id_property, title, location, province, price_per_night, rating,
       await SetIsSaved(!isSaved)
       if(!isSaved){
         await dispatch(postFavorites(id_user,id_property)as unknown as AnyAction)
+        await dispatch(getFavorites(id_user)as unknown as AnyAction)
       }
       else{
         await dispatch(deleteFavorites(id_user,id_property)as unknown as AnyAction)

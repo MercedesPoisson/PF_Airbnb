@@ -35,7 +35,7 @@ const UserBar = ({ handleNavigateToTeam }: UserBarProps) => {
 
       {showUserBar && (
         <ul
-          className="user-menu"
+          
           style={{
             position: "absolute",
             top: "100%",

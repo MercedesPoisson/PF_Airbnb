@@ -28,13 +28,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        argentina: "#E96479",
+        // argentina: "#E96479",
+        argentina: "#0081B4",
         dark_purple: "#0B2447",
         btn_primary: "#576CBC",
         heading_color: "#abd9d9",
-        primero: "#7DB9B6",
-        segundo: "#4D455D",
-        tercero: "#E96479"
+        // primero: "#7DB9B6",
+        // segundo: "#4D455D",
+        // tercero: "#E96479"
+        primero: "#E96479",
+        segundo: "#ADE4DB",
+        tercero: "#146C94"
       },
       fontFamily: {
         comfortaa: ['Comfortaa', 'cursive'],
@@ -86,7 +90,10 @@ module.exports = {
       },
       animation: {
         scroll: "scroll 8s infinite"
-      }
+      },
+      darkMode: [
+        "className", "[data-mode='dark']"
+      ],
     }
   },
   plugins: [Myclass],
