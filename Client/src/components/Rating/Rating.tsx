@@ -92,10 +92,12 @@ const Rating = (props: RatingProps) => {
         setError(true);
         return;
       }
+
       const response = await axios.post(
         "http://localhost:3001/rating",
         ratings
       );
+
       dispatch(getUser(id_user) as unknown as AnyAction);
       console.log(response.data);
 

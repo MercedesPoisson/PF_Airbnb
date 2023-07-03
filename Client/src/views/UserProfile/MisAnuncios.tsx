@@ -8,6 +8,7 @@ const MisAnuncios = () => {
   const [properties, setProperties] = useState([]);
   console.log(properties);
 
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -24,6 +25,7 @@ const MisAnuncios = () => {
       );
     } catch (error) {
       console.log(error);
+
     }
   }
 
