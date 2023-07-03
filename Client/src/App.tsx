@@ -24,6 +24,8 @@ import Privacidad from './components/Footer/Privacidad';
 import Terminos from './components/Footer/Terminos';
 import LayoutUser from './views/UserProfile/LayoutUser';
 import Mensajes from './views/UserProfile/mensajes';
+import Project from './views/MiniProyecto/Project';
+import Pro from './views/MiniProyecto/Pro';
 // import DashLogin from './views/DashBoard/DashLogin';
 
 
@@ -51,6 +53,7 @@ function App() {
           </Route>        
         
         <Route path="/proyecto" element={<Proyecto />} />
+        <Route path="/project" element={<Project />} />
         <Route path="/privacidad" element={<Privacidad />} />
         <Route path="/terminos" element={<Terminos />} />
 

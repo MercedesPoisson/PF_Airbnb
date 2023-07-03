@@ -45,6 +45,7 @@ module.exports = {
         'cairo-play': ['Cairo Play', 'sans-serif'],
         cairo: ['Cairo', 'sans-serif'],
         Poppins: ["Poppins", "sans-serif"],
+        Rubik: ["Rubik", "sans-serif"]
       },
       borderRadius: {
         "r-30": "30px",
