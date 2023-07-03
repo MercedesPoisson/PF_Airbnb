@@ -6,7 +6,7 @@ import axios from "axios";
 
 const postServices = (formData: FormData) => {
     return async (dispatch: Dispatch<AnyAction>) => {
-        await axios.post("https://pfback-production-a519.up.railway.app/property/", formData, {
+        await axios.post("http://localhost:3001/property/", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
