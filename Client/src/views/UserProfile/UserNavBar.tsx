@@ -140,7 +140,7 @@ const userNavBar = () => {
               <a href="#">Mensajes</a>
             </li> */}
 
-            <li
+            {/* <li
               className={`cursor-pointer ${
                 selectedItem === "Mensajes"
                   ? "border-b-2 border-argentina"
@@ -151,7 +151,7 @@ const userNavBar = () => {
                 navigate('/usuario/mensajes')}}
             >
               <a href="#">Mensajes</a>
-            </li>
+            </li> */}
 
             <li
               className={`cursor-pointer ${
