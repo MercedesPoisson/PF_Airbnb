@@ -16,7 +16,7 @@ const MisAnuncios = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        `http://localhost:3001/users/${user.id_user}`
+        `https://pf-airbnb.vercel.app/?users/${user.id_user}`
       );
       setProperties(
         response.data.properties.filter(
