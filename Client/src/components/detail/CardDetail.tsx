@@ -205,36 +205,41 @@ const CardDetails = () => {
                       <Reservas property={property} />
                     </div>
                     <div>
-                {property.Ratings &&
-                  chunk(property.Ratings, 2).map((group, index) => (
-                    <div key={index} className="flex justify-center mb-4 mt-5">
-                      {group.map((rating: any, i: number) => {
-                        const isReportable =
-                          isAuthenticated &&
-                          property.id_user === currentUser.id_user;
+                      {property.Ratings &&
+                        chunk(property.Ratings, 2).map((group, index) => (
+                          <div
+                            key={index}
+                            className="flex justify-center mb-4 mt-5"
+                          >
+                            {group.map((rating: any, i: number) => {
+                              const isReportable =
+                                isAuthenticated &&
+                                property.id_user === currentUser.id_user;
 
-                        return (
-                          <div key={i} className="relative">
-                            {isReportable && (
-                              <button
-                              onClick={() => openModal(rating.rating_id)}
-                              className="text-argentina absolute -top-1 right-0"
-                            >
-                              Reportar
-                            </button>
-                            )}
-                            <Review rating={rating} />
+                              return (
+                                <div key={i} className="relative">
+                                  {isReportable && (
+                                    <button
+                                      onClick={() =>
+                                        openModal(rating.rating_id)
+                                      }
+                                      className="text-argentina absolute -top-1 right-0"
+                                    >
+                                      Reportar
+                                    </button>
+                                  )}
+                                  <Review rating={rating} />
+                                </div>
+                              );
+                            })}
                           </div>
-                        );
-                      })}
+                        ))}
                     </div>
-                  ))}
-              </div>
-              <Report
-                isOpen={isOpen && selectedRating  !== null}
-                setIsOpen={closeModal}
-                SelectedRating={selectedRating}
-              />
+                    <Report
+                      isOpen={isOpen && selectedRating !== null}
+                      setIsOpen={closeModal}
+                      SelectedRating={selectedRating}
+                    />
                   </div>
                 </div>
               </div>
