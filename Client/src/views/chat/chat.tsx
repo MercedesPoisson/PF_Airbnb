@@ -6,7 +6,7 @@ const socket = io('http://localhost:3000')
 
 const Chat = () => {
 
-    const {name} = useSelector(state => state.user)
+    const {name} = useSelector((state: any)=> state.user)
     
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([{
