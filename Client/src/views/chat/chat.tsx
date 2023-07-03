@@ -1,10 +1,13 @@
 import {io} from 'socket.io-client'
 import { useState, useEffect } from "react"
+import { useSelector } from "react-redux"
 
 const socket = io('http://localhost:3000')
 
-const Chat = (props: any) => {
+const Chat = () => {
 
+    const {name} = useSelector((state: any)=> state.user)
+    
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([{
         body: '',
@@ -13,7 +16,7 @@ const Chat = (props: any) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        socket.emit('message', message, props)
+        socket.emit('message', message, name)
         
         const newMessage = {
             body: message,
@@ -36,23 +39,32 @@ const Chat = (props: any) => {
 
     return (
         <div>
-            <h1>Hello World</h1>
-            <div className="text-white flex item-center justify-center">
-                <form onSubmit={handleSubmit} className="bg-zinc-900 p-10">
-                    <ul className="h-80 overflow-y-auto">
-                    {messages.map((message, i) => (
-                        <li key= {i} 
-                        className={`my-2 p-2 table text-sm rounded-md ${message.from === 'Me' ? "bg-sky-700 ml-auto": "bg-black"}`}>
-                            <p>{message.from}: {message.body}</p>
-                        </li>
-                    ))} 
-                    </ul>
-                    <input type="text" onChange={e => setMessage(e.target.value)}
-                    value={message}
-                    className="border 2 border-zinc-500 p-2 text-black w-full"/>
-                    <button className="bg-blue-500">Send</button>
-                </form>
-            </div>
+            <div className="h-screen bg-white text-black flex items-center justify-center font-cairo ">
+            <form onSubmit={handleSubmit} className="bg-white p-20 border">
+                <h1 className="text-2xl font-bold my-2">Chat airebnb</h1>
+                <input
+                name="message"
+                type="text"
+                placeholder="Escribe aquí tu mensaje..."
+                onChange={(e) => setMessage(e.target.value)}
+                className="border border-zinc-500 p-2 w-96 text-black"
+                value={message}
+                autoFocus
+                />
+
+                <ul className="h-80 overflow-y-auto">
+                {messages.map((message, index) => (
+                <li
+                key={index}
+                className={`font-cairo my-2 p-2 table text-sm ${message.from === "Yo" ? "bg-primero ml-auto text-white" : "bg-tercero text-white"
+                }`}
+                >
+            <b>{message.from}: </b>{message.body}
+            </li>
+        ))}
+        </ul>
+      </form>
+    </div>
         </div> 
     )
 }
