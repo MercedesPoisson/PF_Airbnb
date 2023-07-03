@@ -23,19 +23,21 @@ const Favoritos = () => {
     isAuthenticated && (
       <div>
         <div className="mt-10 ml-10 font-cairo font-bold">MIS FAVORITOS</div>
-        {favorites.map((favorite: any) => {
-          return (
-            <Card
-              id_property={favorite.Property.id_property}
-              title={favorite.Property.title}
-              location={favorite.Property.location}
-              province={favorite.Property.province}
-              price_per_night={favorite.Property.price_per_night}
-              rating={favorite.Property.rating}
-              images={favorite.Property.images}
-            />
-          );
-        })}
+        <div className="flex flex-wrap -mx-2">
+          {favorites.map((favorite: any) => (
+            <div className="mx-2" key={favorite.Property.id_property}>
+              <Card
+                id_property={favorite.Property.id_property}
+                title={favorite.Property.title}
+                location={favorite.Property.location}
+                province={favorite.Property.province}
+                price_per_night={favorite.Property.price_per_night}
+                rating={favorite.Property.rating}
+                images={favorite.Property.images}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     )
   );
