@@ -38,13 +38,16 @@ module.exports = {
         // tercero: "#E96479"
         primero: "#E96479",
         segundo: "#ADE4DB",
-        tercero: "#3AA6B9"
+        tercero: "#3AA6B9",
+        sidebar: "#4D455D",
+        texto: "#E96479"
       },
       fontFamily: {
         comfortaa: ['Comfortaa', 'cursive'],
         'cairo-play': ['Cairo Play', 'sans-serif'],
         cairo: ['Cairo', 'sans-serif'],
         Poppins: ["Poppins", "sans-serif"],
+        Rubik: ["Rubik", "sans-serif"]
       },
       borderRadius: {
         "r-30": "30px",
