@@ -6,7 +6,7 @@ import axios from "axios";
 const getPropertyDetail = (id: any) => {
   return async (dispatch: Dispatch<AnyAction>) => {
     if (id !== undefined) {
-      const data = await axios.get(`http://localhost:3001/property/${id}`);
+      const data = await axios.get(`https://pfback-production-a519.up.railway.app/property/${id}`);
       const detail = data.data;
       dispatch({ type: GET_PROPERTY_DETAIL, payload: detail });
     } else {
@@ -27,7 +27,7 @@ export default getPropertyDetail;
 
 // const getPropertyDetail=(id:any)=>{
 //     return async (dispatch: Dispatch<AnyAction>) => {
-//         const data = await axios.get(`http://localhost:3001/property/${id}`)
+//         const data = await axios.get(`https://pfback-production-a519.up.railway.app/property/${id}`)
 //         const detail = data.data
 //         dispatch({ type: GET_PROPERTY_DETAIL, payload: detail });
 //     }

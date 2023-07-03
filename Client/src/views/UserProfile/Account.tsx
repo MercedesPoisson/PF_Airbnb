@@ -17,7 +17,7 @@ const Account = () => {
   useEffect(() => {
     async function fetchProperties() {
       try {
-        const response = await axios.get("http://localhost:3001/property/all"); // Ajusta la URL de la solicitud según corresponda
+        const response = await axios.get("https://pfback-production-a519.up.railway.app/property/all"); // Ajusta la URL de la solicitud según corresponda
         setProperties(response.data);
       } catch (error) {
         console.error(error);

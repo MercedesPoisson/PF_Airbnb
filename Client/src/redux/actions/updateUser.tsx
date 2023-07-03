@@ -18,7 +18,7 @@ const updateUser = (user: any) => {
         ...(gender && { gender }),
       };
 
-      await axios.put(`http://localhost:3001/users/update/${id_user}`, updatedUser);
+      await axios.put(`https://pfback-production-a519.up.railway.app/users/update/${id_user}`, updatedUser);
       dispatch({ type: PUT_USER, payload: updatedUser });
     } catch (error) {
       console.log("Error al actualizar el usuario:", error);
@@ -37,7 +37,7 @@ export default updateUser;
 //   return async (dispatch: Dispatch<AnyAction>) => {
 //     try {
 //       const { id_user } = user;
-//       await axios.post(`http://localhost:3001/users/update/${id_user}`, user);
+//       await axios.post(`https://pfback-production-a519.up.railway.app/users/update/${id_user}`, user);
 //       dispatch({ type: PUT_USER, payload: user });
 //     } catch (error) {
 //       console.log("Error al actualizar el usuario:", error);

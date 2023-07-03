@@ -16,7 +16,7 @@ ReactDOM.render(
         domain={domain}
         clientId={clientId}
         authorizationParams={{
-          redirect_uri: "http://localhost:5173/?page=0"
+          redirect_uri: "https://pf-airbnb.vercel.app/?page=0"
         }}
     >
         <Provider store={store}>
