@@ -1,6 +1,7 @@
 import Perfil from "./perfil.png";
 import Perfil1 from "./Perfil1.jpeg";
 import Perfil2 from "./perfil2.png";
+import Perfil3 from "./perfil3.png"
 import { Link } from 'react-router-dom';
 
 const Team = () => {
@@ -34,7 +35,7 @@ const Team = () => {
                 </div>
             
                 <div className="bg-white/10 w-64 duration-500 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 p-8 rounded-xl mix-blend-luminosity">
-                <img src={Perfil} className="h-20 mx-auto rounded-full" />
+                <img src={Perfil3} className="h-20 mx-auto rounded-full" />
                 <h4 className="uppercase text-xl font-bold">Augusto Orsi</h4>
                 <p className="text-sm leading-7 my-3 font-light opacity-50 mt-10">Full Stack Developer</p>
                     <div className="mt-10">
