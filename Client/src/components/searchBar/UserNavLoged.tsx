@@ -9,6 +9,7 @@ interface UserNavProps {
   handleNavigateToTeam: () => void;
   handleNavigateToAnuncios: () => void;
   handleNavigateToFavoritos: () => void;
+  handleNavigateToMensajes: () => void;
 }
 
 const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam, handleNavigateToAnuncios, handleNavigateToFavoritos, handleNavigateToMensajes}: UserNavProps) => {
@@ -44,6 +45,10 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam, handleNav
             minWidth: "200px",
           }}
         >
+          <li style={{ padding: "0.5rem 0" }}>
+            <a href="#"
+            onClick={handleNavigateToMensajes}>Mensajes</a>
+          </li>
           <li style={{ padding: "0.5rem 0" }}>
             <a href="#">Viajes</a>
           </li>

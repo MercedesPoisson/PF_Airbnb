@@ -35,22 +35,22 @@ function Card({ id_property, title, location, province, price_per_night, rating,
   
   console.log(isAuthenticated);
   
-  const isSaved = false
-  // const [ isSaved, SetIsSaved ] = useState(favorites?.some((property:any)=> property.id_property === id_property));
+
+  const [ isSaved, SetIsSaved ] = useState(favorites.some((property:any)=> property.id_property === id_property));
   console.log(favorites);
 
   const handleSaveClick = async() => {
-    // if(isAuthenticated){
-    //   await SetIsSaved(!isSaved)
-    //   if(!isSaved){
-    //     await dispatch(postFavorites(user.id_user,id_property)as unknown as AnyAction)
-    //     await dispatch(getFavorites(user.id_user)as unknown as AnyAction)
-    //   }
-    //   else{
-    //     await dispatch(deleteFavorites(user.id_user,id_property)as unknown as AnyAction)
-    //     await dispatch(getFavorites(user.id_user)as unknown as AnyAction)
-    //   }
-    // }    
+    if(isAuthenticated){
+      await SetIsSaved(!isSaved)
+      if(!isSaved){
+        await dispatch(postFavorites(user.id_user,id_property)as unknown as AnyAction)
+        await dispatch(getFavorites(user.id_user)as unknown as AnyAction)
+      }
+      else{
+        await dispatch(deleteFavorites(user.id_user,id_property)as unknown as AnyAction)
+        await dispatch(getFavorites(user.id_user)as unknown as AnyAction)
+      }
+    }    
   }
 
   
@@ -96,9 +96,9 @@ function Card({ id_property, title, location, province, price_per_night, rating,
   }
 
   useEffect(() => {
-    // if (isAuthenticated) {
-    //   SetIsSaved(favorites.some((property: any) => property.id_property === id_property));
-    // }
+    if (isAuthenticated) {
+      SetIsSaved(favorites.some((property: any) => property.id_property === id_property));
+    }
   }, [isAuthenticated, favorites, id_property]);
 
   return (

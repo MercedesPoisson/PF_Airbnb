@@ -38,12 +38,9 @@ const Vacaciones = () => {
                 <th>Localidad</th>
                 <th>Provincia</th>
                 <th>Propiedad</th>
-                <th>Contacto</th>
                 <th>Estado</th>
                 <th>Conta tu experiencia</th>
-                <th>Chat</th>
                 <th>Visitar</th>
-
               </tr>
             </thead>
             <tbody className="leading-loose">
@@ -51,7 +48,7 @@ const Vacaciones = () => {
                 user.Rents.map((rent: any, index: number) => {
                   const isSelected = selectedRentId === rent.rent_id;
                   const enableRating = rent.review_status === false;
-                  const contact = `https://api.whatsapp.com/send?phone=${rent.Property.User.number}`
+
                   return (
                     <tr key={rent.id} className="text-center border-b">
                       <td>#{index + 1}</td>
@@ -69,7 +66,6 @@ const Vacaciones = () => {
                       <td>{rent.Property.location}</td>
                       <td>{rent.Property.province}</td>
                       <td>{rent.Property.title}</td>
-                      <td><a href={contact}>Contacta con el Propietario</a></td>
                       <td>
                         {rent.active
                           ? "Tu viaje esta por empezar"
