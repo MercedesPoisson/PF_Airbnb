@@ -22,13 +22,13 @@ const Vacaciones = () => {
   }
 
   return (
-    <div>
-      <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1 mt-10 font-cairo">
-        <strong className="text-gray-700 uppercase font-bold">
+    <div className="flex justify-center items-start mt-10">
+      <div className="px-4 pt-3 pb-4 rounded-sm flex-1 font-cairo w-full max-w-7xl">
+        <div className="text-white uppercase font-bold bg-tercero w-full h-10">
           Mis Viajes
-        </strong>
+        </div>
         <div className="border-x border-gray-200 rounded-sm mt-3">
-          <table className="w-full text-gray-700">
+          <table className="w-full max-w-7xl text-gray-700 mx-auto">
             <thead>
               <tr>
                 <th>Reserva</th>
@@ -42,19 +42,27 @@ const Vacaciones = () => {
                 <th>Estado</th>
                 <th>Conta tu experiencia</th>
                 <th>Chat</th>
+                <th>Visitar</th>
+
               </tr>
             </thead>
-            <tbody>
+            <tbody className="leading-loose">
               {user.Rents &&
                 user.Rents.map((rent: any, index: number) => {
                   const isSelected = selectedRentId === rent.rent_id;
                   const enableRating = rent.review_status === false;
                   const contact = `https://api.whatsapp.com/send?phone=${rent.Property.User.number}`
                   return (
-                    <tr key={rent.id} className="text-center">
+                    <tr key={rent.id} className="text-center border-b">
                       <td>#{index + 1}</td>
                       <td>
-                        {rent.start_date} - {rent.end_date}
+                        <div>
+                          {rent.start_date}
+                        </div>
+                        <div>
+                          {rent.end_date}
+                        </div>
+                         
                       </td>
                       <td>${rent.amount}</td>
                       <td>{rent.Property.address}</td>
@@ -96,6 +104,9 @@ const Vacaciones = () => {
                           </div>
                         )}
                       </td>
+                      <td><a href={`/propiedad/${rent.id_property}`}>
+                          <i className="fa-solid fa-magnifying-glass text-tercero"></i>
+                        </a></td>
                     </tr>
                   );
                 })}

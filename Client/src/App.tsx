@@ -25,6 +25,7 @@ import Terminos from './components/Footer/Terminos';
 import LayoutUser from './views/UserProfile/LayoutUser';
 import Mensajes from './views/UserProfile/mensajes';
 import Project from './views/MiniProyecto/Project';
+import AllReviews from "./views/UserProfile/AllReviews"
 import Pro from './views/MiniProyecto/Pro';
 // import DashLogin from './views/DashBoard/DashLogin';
 
@@ -42,6 +43,7 @@ function App() {
         <Route path="/ayuda" element={<Team />} />
         <Route path="/chat" element={<Mensajes />} />
 
+
         <Route path="usuario/*" element={<LayoutUser />}>
           <Route index element={<Account />} />
           <Route path="profile" element={<Profile />} />
@@ -49,6 +51,7 @@ function App() {
           <Route path="anuncio/:id" element={<Anuncio />} />
           <Route path="favoritos" element={<Favoritos />} />
           <Route path="reservas" element={<Rent />} />
+          <Route path="reviews" element={<AllReviews />} />
           <Route path="viajes" element={<Vacaciones />} />
           </Route>        
         
