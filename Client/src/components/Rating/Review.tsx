@@ -1,6 +1,6 @@
 const Review = ({ rating }) => {
   
-  const renderStars = (ratingValue) => {
+  const renderStars = (ratingValue:any) => {
     const fullStars = ratingValue >= 1 && ratingValue <= 5 ? Math.floor(ratingValue) : 0;
     const halfStar = ratingValue % 1 !== 0;
     const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
@@ -14,7 +14,7 @@ const Review = ({ rating }) => {
       );
     }
 
-    // renderizado media estrella
+    // renderizado media estrella - no tengo esta opcion pero por las dudas
     if (halfStar) {
       stars.push(
         <i key="half-star" className="fa-solid fa-star-half text-argentina mr-2"></i>
@@ -32,7 +32,7 @@ const Review = ({ rating }) => {
   };
 
   return (
-    <section className="flex justify-start items-center gap-x-16 text-white mt-10 mb-10">
+    <section className="flex justify-start items-center gap-x-16 text-white mt-4">
       <div className="w-[420px] h-[150px] bg-white border cursor-pointer group perspective overflow-hidden">
         <div className="relative preserve-3d group-hover:my-rotate-y-180 w-full h-full duration-1000">
           <div className="absolute backface-hidden flex items-start justify-center p-2 overflow-hidden">

@@ -20,6 +20,12 @@ import Favoritos from "./views/UserProfile/favoritos";
 import Rent from './views/UserProfile/Rent';
 import Vacaciones from './views/UserProfile/Vacaciones';
 import Proyecto from './views/MiniProyecto/Proyecto';
+import Privacidad from './components/Footer/Privacidad';
+import Terminos from './components/Footer/Terminos';
+import LayoutUser from './views/UserProfile/LayoutUser';
+import Mensajes from './views/UserProfile/mensajes';
+import Project from './views/MiniProyecto/Project';
+import Pro from './views/MiniProyecto/Pro';
 // import DashLogin from './views/DashBoard/DashLogin';
 
 
@@ -33,16 +39,23 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/propiedad/:id" element={<Details />} />
         <Route path="/formulario" element={<Form/>} />
-        <Route path="/usuario/perfil" element={<Account />} />
         <Route path="/ayuda" element={<Team />} />
-        <Route path="/usuario/profile" element={<Profile />} />
-        <Route path="/usuario/anuncios" element={<MisAnuncios />} />
-        <Route path="/usuario/anuncio/:id" element={<Anuncio />} />
-        <Route path="/usuario/favoritos" element={<Favoritos />} />
-        <Route path="/usuario/reservas" element={<Rent />} />
-        <Route path="/usuario/viajes" element={<Vacaciones />} />
-        <Route path="/proyecto" element={<Proyecto />} />
 
+        <Route path="usuario/*" element={<LayoutUser />}>
+          <Route index element={<Account />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="anuncios" element={<MisAnuncios />} />
+          <Route path="anuncio/:id" element={<Anuncio />} />
+          <Route path="favoritos" element={<Favoritos />} />
+          <Route path="reservas" element={<Rent />} />
+          <Route path="viajes" element={<Vacaciones />} />
+          <Route path='mensajes' element={<Mensajes />} />
+          </Route>        
+        
+        <Route path="/proyecto" element={<Proyecto />} />
+        <Route path="/project" element={<Project />} />
+        <Route path="/privacidad" element={<Privacidad />} />
+        <Route path="/terminos" element={<Terminos />} />
 
 
         <Route path="/dashboard/*" element={<Layout />}>

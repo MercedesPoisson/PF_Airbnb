@@ -7,6 +7,7 @@ import postFavorites from '../../redux/actions/postFavorites';
 import { AnyAction } from 'redux';
 import deleteFavorites from '../../redux/actions/deleteFavorites';
 import getFavorites from '../../redux/actions/getFavorites';
+import getUser from '../../redux/actions/getUser';
 import { useAuth0 } from '@auth0/auth0-react';
 
 interface CardProps {
@@ -28,7 +29,7 @@ function Card({ id_property, title, location, province, price_per_night, rating,
     return text;
   }
   const {isAuthenticated} = useAuth0()
-  const {id_user} = useSelector((state:any)=> state.user )
+  const user = useSelector((state:any)=> state.user )
   const favorites = useSelector((state:any)=> state.favorites)
   const dispatch = useDispatch()
   
@@ -42,11 +43,12 @@ function Card({ id_property, title, location, province, price_per_night, rating,
     if(isAuthenticated){
       await SetIsSaved(!isSaved)
       if(!isSaved){
-        await dispatch(postFavorites(id_user,id_property)as unknown as AnyAction)
+        await dispatch(postFavorites(user.id_user,id_property)as unknown as AnyAction)
+        await dispatch(getFavorites(user.id_user)as unknown as AnyAction)
       }
       else{
-        await dispatch(deleteFavorites(id_user,id_property)as unknown as AnyAction)
-        await dispatch(getFavorites(id_user)as unknown as AnyAction)
+        await dispatch(deleteFavorites(user.id_user,id_property)as unknown as AnyAction)
+        await dispatch(getFavorites(user.id_user)as unknown as AnyAction)
       }
     }    
   }
@@ -86,10 +88,10 @@ function Card({ id_property, title, location, province, price_per_night, rating,
   const isHomePage = window.location.pathname === "/";
 
   const getLinkPath = () => {
-    if(isHomePage) {
-      return `/propiedad/${id_property}`;
-    } else {
+    if(user.properties?.some((prop: any) => prop.id_property === id_property)) {
       return `/usuario/anuncio/${id_property}`
+    } else {
+      return `/propiedad/${id_property}`;
     }
   }
 
