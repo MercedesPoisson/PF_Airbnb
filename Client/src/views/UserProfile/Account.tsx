@@ -15,8 +15,8 @@ const Account = () => {
   const navigate = useNavigate();
 
   const reservedProperties =
-  properties &&
-  properties.filter((property: any) => property.id_user === user.id_user);
+    properties &&
+    properties.filter((property: any) => property.id_user === user.id_user);
 
   useEffect(() => {
     async function fetchProperties() {
@@ -110,9 +110,9 @@ const Account = () => {
           <div className="h-40 overflow-hidden">
             {favorites &&
               favorites.map((property: any, index: number) => (
-                <p key={property.id_property}>{`${index + 1}) ${property.Property.title}, ${
-                  property.Property.location
-                }`}</p>
+                <p key={property.id_property}>{`${index + 1}) ${
+                  property.Property.title
+                }, ${property.Property.location}`}</p>
               ))}
           </div>
         </div>
@@ -143,15 +143,17 @@ const Account = () => {
             <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
           <div className="h-40 overflow-hidden">
-          {user.properties &&
-  user.properties.map((property: any) => {
-    if (property.rents && property.rents.length > 0) {
-      return property.rents.map((rent: any, index: number) => (
-        <p key={rent.id}>{`${index + 1}) Reservada desde el ${rent.start_date} hasta el ${rent.end_date}`}</p>
-      ));
-    }
-    return null;
-  })}
+            {user.properties &&
+              user.properties.map((property: any) => {
+                if (property.rents && property.rents.length > 0) {
+                  return property.rents.map((rent: any, index: number) => (
+                    <p key={rent.id}>{`${index + 1}) Reservada desde el ${
+                      rent.start_date
+                    } hasta el ${rent.end_date}`}</p>
+                  ));
+                }
+                return null;
+              })}
           </div>
         </div>
 
@@ -171,7 +173,6 @@ const Account = () => {
 };
 
 export default Account;
-
 
 {
   /* <div className="grid grid-cols-3 grid-rows-6 gap-3 w-4/5 mx-auto font-cairo mt-20">
