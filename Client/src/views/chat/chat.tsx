@@ -1,10 +1,13 @@
 import {io} from 'socket.io-client'
 import { useState, useEffect } from "react"
+import { useSelector } from "react-redux"
 
 const socket = io('http://localhost:3000')
 
-const Chat = (props: any) => {
+const Chat = () => {
 
+    const {name} = useSelector(state => state.user)
+    
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([{
         body: '',
@@ -13,7 +16,7 @@ const Chat = (props: any) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        socket.emit('message', message, props)
+        socket.emit('message', message, name)
         
         const newMessage = {
             body: message,
