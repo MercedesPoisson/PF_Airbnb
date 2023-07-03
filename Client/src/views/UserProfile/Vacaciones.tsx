@@ -40,7 +40,7 @@ const Vacaciones = () => {
                 <th>Propiedad</th>
                 <th>Estado</th>
                 <th>Conta tu experiencia</th>
-                <th>Chat</th>
+                <th>Contacto</th>
               </tr>
             </thead>
             <tbody>

@@ -10,6 +10,7 @@ const Footer = () => {
                     <li className="cursor-pointer"><Link to="/terminos">Términos</Link></li>
                     <li className="cursor-pointer"><Link to="/ayuda">Ayuda</Link></li>
 
+                    <li className="cursor-pointer"><Link to="/chat">Chat</Link></li>
                 </ul>
             </footer>
             
