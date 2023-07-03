@@ -15,10 +15,6 @@ const UserMenu = () => {
     setShowUserMenu((prevShowUserMenu) => !prevShowUserMenu);
   };
 
-  const handleNavigateToTeam = () => {
-    navigate("/ayuda");
-  };
-
   const handleNavigateToAccount = () => {
     navigate("/usuario");
   };
@@ -38,6 +34,9 @@ const UserMenu = () => {
   const handleNavigateToFavoritos = () => {
     navigate("/usuario/favoritos");
   }
+  const handleNavigateToViajes = () => {
+    navigate("/usuario/viajes");
+  }
 
   return (
     <div >
@@ -47,16 +46,14 @@ const UserMenu = () => {
           showUserMenu={showUserMenu}
           handleNavigateToAccount={handleNavigateToAccount}
           handleLogout={handleLogout}
-          handleNavigateToTeam={handleNavigateToTeam}
           handleNavigateToAnuncios={handleNavigateToAnuncios}
-          handleNavigateToFavoritos={handleNavigateToFavoritos}
-          handleNavigateToMensajes={handleNavigateToMensajes}
+          handleNavigateToFavoritos={handleNavigateToFavoritos}          
+          handleNavigateToViajes={handleNavigateToViajes}
         />
       ) : (
         <UserBar
           handleUserMenu={handleUserMenu}
           showUserMenu={showUserMenu}
-          handleNavigateToTeam={handleNavigateToTeam}
         />
       )}
     </div>

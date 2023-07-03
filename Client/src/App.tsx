@@ -41,7 +41,8 @@ function App() {
         <Route path="/propiedad/:id" element={<Details />} />
         <Route path="/formulario" element={<Form/>} />
         <Route path="/ayuda" element={<Team />} />
-  
+        <Route path='/chat' element={<Mensajes />} />
+
 
         <Route path="usuario/*" element={<LayoutUser />}>
           <Route index element={<Account />} />
