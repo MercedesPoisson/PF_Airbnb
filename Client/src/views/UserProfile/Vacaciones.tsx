@@ -41,6 +41,7 @@ const Vacaciones = () => {
                 <th>Contacto</th>
                 <th>Estado</th>
                 <th>Conta tu experiencia</th>
+                <th>Chat</th>
               </tr>
             </thead>
             <tbody>
