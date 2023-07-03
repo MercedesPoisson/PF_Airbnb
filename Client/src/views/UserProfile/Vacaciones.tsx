@@ -81,7 +81,7 @@ const Vacaciones = () => {
                         ) : (
                           <div className="relative">
                             <button
-                              className={`border border-red-500 px-4 rounded-md rating-button ${
+                              className={`border border-tercero px-4 rounded-md rating-button ${
                                 isSelected ? "selected" : ""
                               }`}
                               onClick={() => {
