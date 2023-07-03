@@ -118,5 +118,4 @@ const Vacaciones = () => {
     </div>
   );
 };
-
 export default Vacaciones;
