@@ -127,6 +127,19 @@ const userNavBar = () => {
               <a href="#">Transacciones</a>
             </li>
 
+            {/* <li
+              className={`cursor-pointer ${
+                selectedItem === "Mensajes"
+                  ? "border-b-2 border-argentina"
+                  : "hover:border-b-2 hover:border-argentina"
+              }`}
+              onClick={() => {
+                handleItemClick("Mensajes")
+                navigate('/usuario/mensajes')}}
+            >
+              <a href="#">Mensajes</a>
+            </li> */}
+
             <li
               className={`cursor-pointer ${
                 selectedItem === "Mi Cuenta"
