@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 const Rent = () => {
   const user = useSelector((state: any) => state.user);
@@ -25,18 +24,17 @@ const Rent = () => {
                 <th>Reserva</th>
                 <th>Desde - Hasta</th>
                 <th>Precio</th>
-                <th>
-                  <div>Numero de</div>
-                  <div>Huéspedes</div>
-                </th>
+                <th><div>Numero de
+                  </div> 
+                  <div>Huéspedes</div></th>
                 <th>Estado del Pago</th>
-
+                
                 <th>Estado</th>
                 {user.properties &&
                   user.properties.length > 0 &&
-                  user.properties[0].rents.some(
-                    (rent: any) => rent.review_status
-                  ) && <th>Valoración</th>}
+                  user.properties[0].rents.some((rent: any) => rent.review_status) && (
+                    <th>Valoración</th>
+                  )}
               </tr>
             </thead>
             <tbody className="leading-loose">
@@ -44,8 +42,7 @@ const Rent = () => {
                 user.properties.map((property: any) => {
                   if (property.rents && property.rents.length > 0) {
                     return property.rents.map((rent: any, index: number) => {
-                      const isActive =
-                        rent.active && new Date(rent.end_date) >= currentDate;
+                      const isActive = rent.active && new Date(rent.end_date) >= currentDate;
                       return (
                         <tr key={rent.rent_id} className="text-center border-b">
                           <td>#{index + 1}</td>
@@ -55,18 +52,12 @@ const Rent = () => {
                           </td>
                           <td>${rent.amount}</td>
                           <td>{rent.guests_number}</td>
-                          <td>
-                            {rent.payment_status
-                              ? "Pagado"
-                              : "Pendiente de pago"}
-                          </td>
-
+                          <td>{rent.payment_status ? "Pagado" : "Pendiente de pago"}</td>
+                          
                           <td>{isActive ? "Activo" : "Inactivo"}</td>
                           {rent.review_status ? (
                             <td>
-                              <Link to={`/usuario/reviews/${rent.id_property}`}>
-                                <i className="fa-solid fa-magnifying-glass text-tercero"></i>
-                              </Link>
+                              <i className="fa-solid fa-magnifying-glass text-tercero"></i>
                             </td>
                           ) : null}
                         </tr>
