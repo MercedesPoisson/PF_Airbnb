@@ -94,14 +94,14 @@ const Rating = (props: RatingProps) => {
       }
 
       const response = await axios.post(
-        "http://localhost:3001/rating",
+        "https://pf-airbnb.vercel.app/?rating",
         ratings
       );
 
       dispatch(getUser(id_user) as unknown as AnyAction);
       console.log(response.data);
 
-      await axios.put(`http://localhost:3001/rent/${rent_id}/review-status`);
+      await axios.put(`https://pf-airbnb.vercel.app/?rent/${rent_id}/review-status`);
     } catch (error) {
       console.log(error);
     }
