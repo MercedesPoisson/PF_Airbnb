@@ -8,6 +8,7 @@ import updatePropertyStatus from "../../redux/actions/updatePropertStatus";
 import getProperties from "../../redux/actions/getProperties";
 import Review from "../../components/Rating/Review";
 import Report from "../../components/detail/Report";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const propertyTypeMapping = {
   House: "House",
@@ -24,9 +25,20 @@ interface Service {
 const Anuncio = () => {
   const property = useSelector((state: any) => state.detail);
   const services: Service[] = useSelector((state: any) => state.services);
+  const user = useSelector((state: any) => state.user)
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
+  const { isAuthenticated, isLoading: auth0IsLoading, loginWithRedirect } = useAuth0();
+  const [isAuthorized, setIsAuthorized] = useState(false)
+
+  useEffect(() => {
+    if (!auth0IsLoading && isAuthenticated && user && property) {
+      if (user.id_user === property.id_user) {
+        setIsAuthorized(true);
+      }
+    }
+  }, [auth0IsLoading, isAuthenticated, user, property]);
 
   const translatedPropertyType = propertyTypeMapping[property?.property_type];
 
@@ -154,7 +166,7 @@ const Anuncio = () => {
   return (
     <div>
       {/* <UserNavBar /> */}
-      <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto mt-10">
+      { isAuthorized ? <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto mt-10">
         <div>
           <div className="text-2xl">Revisá y editá tu anuncio</div>
           <p>
@@ -470,7 +482,7 @@ const Anuncio = () => {
           setIsOpen={closeModal}
           SelectedRating={selectedRating}
         />
-      </div>
+      </div> : <div>No tienes permisos para modificar esta propiedad</div>}
     </div>
   );
 };
