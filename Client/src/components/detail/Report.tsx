@@ -20,7 +20,7 @@ const Report = (props: ReviewProps) => {
   const handleReportSubmit = () => {
     console.log("Despachando PUT"); 
     axios
-      .put(`https://pf-airbnb.vercel.app/?rating/${SelectedRating}`, {
+      .put(`http://localhost:3001/rating/${SelectedRating}`, {
         report_reason: reportText,
         is_reported: true,
       })
