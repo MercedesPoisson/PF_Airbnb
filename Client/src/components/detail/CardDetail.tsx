@@ -12,6 +12,7 @@ import Images from "./Images";
 import Review from "../Rating/Review";
 import { useAuth0 } from "@auth0/auth0-react";
 import Report from "./Report";
+import getFavorites from "../../redux/actions/getFavorites";
 // import Rating from "../Rating/Rating";
 
 const CardDetails = () => {
@@ -19,6 +20,7 @@ const CardDetails = () => {
   const { id } = useParams();
   const property = useSelector((state: any) => state.detail);
   const currentUser = useSelector((state: any) => state.user);
+  const favorites = useSelector((state: any) => state.favorites);
   const { isAuthenticated } = useAuth0();
   const [isSaved, SetIsSaved] = useState(false);
   const navigate = useNavigate();
@@ -43,9 +45,17 @@ const CardDetails = () => {
   useEffect(() => {
     console.log(id);
     dispatch(getPropertyDetail(id) as unknown as AnyAction);
-  }, [dispatch, id]);
+    dispatch(getFavorites(currentUser.id_user) as unknown as AnyAction);
+  }, [dispatch, id, currentUser.id_user]);
 
-  console.log(property);
+  useEffect(() => {
+    const isPropertySaved = favorites.some(
+      (favorite) =>
+        favorite.id_user === currentUser.id_user &&
+        favorite.id_property === property.id
+    );
+    SetIsSaved(isPropertySaved);
+  }, [favorites, property.id, currentUser.id_user]);
 
   const handleSaveClick = () => {
     SetIsSaved(!isSaved);
