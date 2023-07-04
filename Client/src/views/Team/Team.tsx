@@ -85,8 +85,10 @@ const Team = () => {
                     <button className="bg-btn_primary py-2.5 px-8 rounded-full"><a href="mailto:bennyreyea@gmail.com">Contactar</a></button>
                 </div>
             </div>
-            <Link to="/proyecto"><i className="fa-solid fa-angles-left mt-10"> Volver</i></Link>
+            <Link to="/project"><i className="fa-solid fa-angles-left mt-10"> Volver</i></Link>
+            <Link to="/" className="ml-10 text-xl">HOME<i className="fa-solid fa-angles-right ml-1"></i></Link>
         </div>
+        
       </div>         
         </div>
     )

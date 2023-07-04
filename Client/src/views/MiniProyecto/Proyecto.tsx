@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Estilos.css";
 import { BsSun } from 'react-icons/bs';
+import Back from "./back.png"
 
 const Proyecto = () => {
     const navigate = useNavigate();
