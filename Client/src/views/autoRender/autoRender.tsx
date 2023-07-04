@@ -12,7 +12,6 @@ function AutoRender(){
     const dispatch = useDispatch()
     const { user, isAuthenticated } = useAuth0();
     const userId = useSelector((state: any) => state.user.id_user)
-    console.log(user)
 
     useEffect(() => {
         if(isAuthenticated) {
