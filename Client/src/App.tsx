@@ -32,8 +32,6 @@ import Pro from './views/MiniProyecto/Pro';
 
 function App() {
   
-  console.log("esto se ve?");
-  
   return (
     <div>
       <Routes>

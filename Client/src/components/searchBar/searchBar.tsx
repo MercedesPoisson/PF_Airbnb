@@ -10,6 +10,7 @@ import LocationSearch from '../locationSearch/locationSearch';
 import UserMenu from './UserMenu';
 import MaxGuestModal from './maxGuestModal';
 import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from 'react-redux';
 
 function SearchBar() {
     const [state, setState] = useState([
@@ -25,12 +26,14 @@ function SearchBar() {
     const [locationText, setlocationText] = useState('¿A dónde vamos?');
     const [buttonText, setButtonText] = useState('¿Cuándo?');
     const [guestText, setGuestText] = useState('¿Cuántos somos?');
+    const [isOpen, setIsOpen] = useState(Boolean);
+    const [isComplete, setIsComplete] = useState(false);
     const [showFiltersModal, setShowFiltersModal] = useState(false); // Estado para controlar la visibilidad de la ventana emergente
     const [showSearchLocation, setShowSearchLocation] = useState(false);
     const [showMaxGuest, setShowMaxGuest] = useState(false)
     const [orderPrice, setOrderPrice] = useState('');
     const { loginWithRedirect, isAuthenticated } = useAuth0();
-
+    const {name, surname, number} = useSelector((state: any) => state.user)
     
     const navigate = useNavigate();
     const location = useLocation();
@@ -56,6 +59,9 @@ function SearchBar() {
       else setGuestText(guests)
       
     }, [location]);
+
+
+    //! HANDLERS --------------------------------------------------------------------------------------------------------------------
     
     const handleOrderClick = (event:any) => {
       console.log("Hace click");
@@ -105,14 +111,28 @@ function SearchBar() {
     const handleMaxGuestToggle = () => {
       setShowMaxGuest(!showMaxGuest)
     }
+
     const handlePostProperty = () => {
-      if(isAuthenticated) {
+      if(isAuthenticated && name && surname && number) {
         navigate("/formulario");
-      } else {
+      } else if(!isAuthenticated) {
         loginWithRedirect();
+      } else if (!name || !surname || !number) {
+        dataMiss()
       }
     };
-  
+
+    const dataMiss = () => {
+      setIsOpen(true)
+      // window.alert(`Faltan Datos de tu Perfil`)
+      return;
+    }
+    const closeModal = () => {
+      setIsOpen(false)
+    }
+
+    //! RENDER --------------------------------------------------------------------------------------------------------------------
+
     return (
       <div className='sticky top-0 z-0'>
         <div className="grid grid-cols-5 gap-3 h-32 mb-1 bg-white">
@@ -167,6 +187,26 @@ function SearchBar() {
             </button>
           </div>
           <div className="flex justify-center items-center col-span-5 -z-1">
+            <Modal
+            isOpen={isOpen}
+            onRequestClose={closeModal}
+            style={{
+              content: {
+                top: "50%",
+                left: "50%",
+                right: "auto",
+                bottom: "auto",
+                marginRight: "-50%",
+                transform: "translate(-50%, -50%)",
+              },
+            }}
+            className="absolute font-cairo m-0 items-center justify-center bg-grey w-80 mt-4 mr-10" >
+          <div>
+            <p>Falta Completar el Perfil</p>
+            <button 
+            onClick={() => {navigate("/usuario/profile")}}>Perfil</button>
+          </div>
+            </Modal>
   
           {/* <div>
             <button>
