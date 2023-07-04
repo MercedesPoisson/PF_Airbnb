@@ -35,22 +35,22 @@ function Card({ id_property, title, location, province, price_per_night, rating,
   
   console.log(isAuthenticated);
   
-  const isSaved = false
-  // const [ isSaved, SetIsSaved ] = useState(favorites?.some((property:any)=> property.id_property === id_property));
+
+  const [ isSaved, SetIsSaved ] = useState(favorites?.some((property:any)=> property.id_property === id_property));
   console.log(favorites);
 
   const handleSaveClick = async() => {
-    // if(isAuthenticated){
-    //   await SetIsSaved(!isSaved)
-    //   if(!isSaved){
-    //     await dispatch(postFavorites(user.id_user,id_property)as unknown as AnyAction)
-    //     await dispatch(getFavorites(user.id_user)as unknown as AnyAction)
-    //   }
-    //   else{
-    //     await dispatch(deleteFavorites(user.id_user,id_property)as unknown as AnyAction)
-    //     await dispatch(getFavorites(user.id_user)as unknown as AnyAction)
-    //   }
-    // }    
+    if(isAuthenticated){
+      await SetIsSaved(!isSaved)
+      if(!isSaved){
+        await dispatch(postFavorites(user.id_user,id_property)as unknown as AnyAction)
+        await dispatch(getFavorites(user.id_user)as unknown as AnyAction)
+      }
+      else{
+        await dispatch(deleteFavorites(user.id_user,id_property)as unknown as AnyAction)
+        await dispatch(getFavorites(user.id_user)as unknown as AnyAction)
+      }
+    }    
   }
 
   
@@ -96,9 +96,9 @@ function Card({ id_property, title, location, province, price_per_night, rating,
   }
 
   useEffect(() => {
-    // if (isAuthenticated) {
-    //   SetIsSaved(favorites.some((property: any) => property.id_property === id_property));
-    // }
+    if (isAuthenticated) {
+      SetIsSaved(favorites?.some((property: any) => property.id_property === id_property));
+    }
   }, [isAuthenticated, favorites, id_property]);
 
   return (
@@ -150,16 +150,16 @@ function Card({ id_property, title, location, province, price_per_night, rating,
 export default Card;
 
 // const renderImages = () => {
-  //   if (Array.isArray(images) && images.length > 0) {
-  //     return (
-  //       <div className="flex items-center justify-center">
-  //         <img
-  //           className="h-60 w-60 rounded-md mr-2 object-cover"
-  //           src={images[0]}
-  //           alt={`Image 0`}
-  //         />
-  //       </div>
-  //     );
-  //   }
-  //   return null;
-  // };
+//     if (Array.isArray(images) && images.length > 0) {
+//       return (
+//         <div className="flex items-center justify-center">
+//           <img
+//             className="h-60 w-60 rounded-md mr-2 object-cover"
+//             src={images[0]}
+//             alt={`Image 0`}
+//           />
+//         </div>
+//       );
+//     }
+//     return null;
+//   };
