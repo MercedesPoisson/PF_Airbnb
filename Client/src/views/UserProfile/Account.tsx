@@ -47,6 +47,10 @@ const Account = () => {
     navigate("/usuario/viajes");
   };
 
+  const handleNavigateToFavoritos = () => {
+    navigate("/usuario/favoritos")
+  }
+
   return (
     <div>
       {/* <UserNavBar /> */}
@@ -103,7 +107,8 @@ const Account = () => {
           </div>
         </div>
 
-        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10">
+        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10"
+        onClick={handleNavigateToFavoritos}>
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
             MIS FAVORITOS <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
