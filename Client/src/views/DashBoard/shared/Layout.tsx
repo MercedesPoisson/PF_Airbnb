@@ -13,7 +13,12 @@ const Layout = () => {
     if (!auth0IsLoading) {
       if (isAuthenticated) {
         const email = user?.email;
-        if (email !== "fjgalliani@hotmail.com") {
+        if (email !== "fjgalliani@hotmail.com" && 
+            email !== "alelopez.13.97@gmail.com" &&
+            email !== "Mercedespoisson@yahoo.com" &&
+            email !== "bennyreyea@gmail.com" &&
+            email !== "augusford@hotmail.com"
+            ) {
           navigate("/");
         } else {
           setIsLoading(false);
