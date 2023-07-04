@@ -8,8 +8,6 @@ const Profile = () => {
   const user = useSelector((state: any) => state.user);
   const provinces = useSelector((state: any) => state.provinces);
 
-  console.log(provinces);
-
   const [name, setName] = useState(user.name);
   const [surname, setSurname] = useState(user.surname);
   const [email, setEmail] = useState(user.email);
@@ -18,11 +16,6 @@ const Profile = () => {
   const [date, setDate] = useState(user.date);
   const [gender, setGender] = useState(user.gender);
   const [isEditing, setIsEditing] = useState(false);
-
-  const handleAddressChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setAddress(event.target.value);
-    console.log(event.target);
-  };
 
   const handleSave = () => {
     const updatedUser = {
@@ -36,7 +29,7 @@ const Profile = () => {
       gender,
     };
 
-    console.log(updatedUser);
+    console.log('UpdateUser: ',updatedUser);
     dispatch(updateUser(updatedUser));
   };
 
@@ -111,12 +104,12 @@ const Profile = () => {
                 value={address}
                 disabled={!isEditing}
                 className="ml-2 border rounded-md w-w250"
+                onChange={e => (setAddress(e.target.value))}
               >
                 {provinces.map((province:any, index:number) => (
                   <option
                     key={index}
                     value={province.nombre}
-                    onChange={handleAddressChange}
                   >
                     {province.nombre}
                   </option>

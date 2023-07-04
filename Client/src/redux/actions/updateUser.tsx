@@ -6,7 +6,8 @@ const updateUser = (user: any) => {
   return async (dispatch: Dispatch<AnyAction>) => {
     try {
       const { id_user, name, surname, email, address, number, date, gender } = user;
-
+      console.log('User 2: ', user);
+      
       const updatedUser = {
         id_user,
         ...(name && { name }),

@@ -73,12 +73,13 @@ const Account = () => {
               onClick={handleNavigateToProfile}
             >
               <p>
+              {console.log('User: ', user)}
                 Nombre y Apellido: {user.name} {user.surname}
               </p>
               <p>E-mail: {user.email}</p>
-              <p>Ubicación: {user.location}</p>
+              <p>Ubicación: {user.address}</p>
               <p>Teléfono: {user.number}</p>
-              <p>Fecha de Nacimiento: {user.Date}</p>
+              <p>Fecha de Nacimiento: {user.date}</p>
               <p>Género: {user.gender}</p>
             </div>
           </div>
