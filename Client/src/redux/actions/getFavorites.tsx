@@ -7,7 +7,7 @@ const getFavorites = (id: any) => {
     return async (dispatch: Dispatch<AnyAction>) => {
         if (id !== undefined) {
 
-            const data = await axios.get(`https://pf-airbnb.vercel.app/?users/${id}/favorites`);
+            const data = await axios.get(`https://airebnb.onrender.com/users/${id}/favorites`);
             const properties = data.data.Favorites;
 
             dispatch({ type: GET_FAVORITES, payload: properties });

@@ -146,7 +146,7 @@ const Reservas = (props: any) => {
                             onSubmit={async (form) =>  {
                                 console.log(form)
                                 return new Promise((resolve, reject) => {
-                                    fetch("http://localhost:3001/process_payment", {
+                                    fetch("https://airebnb.onrender.com/process_payment", {
                                         method: "POST",
                                         headers: {
                                             "Content-Type": "application/json",
@@ -157,7 +157,7 @@ const Reservas = (props: any) => {
                                     .then((response) => {
                                         // recibir el resultado del pago
                                         if(response.status === 'approved' && response.status_detail === 'accredited'){
-                                            axios.post('http://localhost:3001/rent', bookForm)
+                                            axios.post('https://airebnb.onrender.com/rent', bookForm)
                                             .then((response) => {
                                                 console.log(response)
                                                 setBookingSuccess(true);

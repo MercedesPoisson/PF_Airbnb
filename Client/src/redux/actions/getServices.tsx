@@ -5,7 +5,7 @@ import axios from "axios";
 
 const getServices = () => {
   return async (dispatch: Dispatch<AnyAction>) => {
-    const data = await axios.get("http://localhost:3001/services");
+    const data = await axios.get("https://airebnb.onrender.com/services");
     const services = [...data.data];
     dispatch({ type: GET_SERVICES, payload: services });
   };
