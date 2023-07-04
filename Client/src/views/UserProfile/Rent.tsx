@@ -30,13 +30,8 @@ const Rent = () => {
                   <div>Huéspedes</div>
                 </th>
                 <th>Estado del Pago</th>
-
                 <th>Estado</th>
-                {user.properties &&
-                  user.properties.length > 0 &&
-                  user.properties[0].rents.some(
-                    (rent: any) => rent.review_status
-                  ) && <th>Valoración</th>}
+                <th>Valoración</th>
                 <th>Contacto</th>
               </tr>
             </thead>
@@ -47,7 +42,7 @@ const Rent = () => {
                     return property.rents.map((rent: any, index: number) => {
                       const isActive =
                         rent.active && new Date(rent.end_date) >= currentDate;
-                        const contact = `https://api.whatsapp.com/send?phone=${property?.User?.number}`;
+                      const contact = `https://api.whatsapp.com/send?phone=${property?.User?.number}`;
                       return (
                         <tr key={rent.rent_id} className="text-center border-b">
                           <td>#{index + 1}</td>
@@ -62,16 +57,19 @@ const Rent = () => {
                               ? "Pagado"
                               : "Pendiente de pago"}
                           </td>
-
                           <td>{isActive ? "Activo" : "Inactivo"}</td>
-                          {rent.review_status ? (
-                            <td>
-                              <Link to={`/usuario/reviews/${rent.id_property}`}>
-                                <i className="fa-solid fa-magnifying-glass text-tercero"></i>
-                              </Link>
-                            </td>
-                          ) : null}
-                          <td><a href={contact}><i className="fa-brands fa-whatsapp text-tercero text-3xl"></i></a></td>
+                          <td>
+                            <Link
+                              to={`/usuario/reviews/${rent.id_property}`}
+                            >
+                              <i className="fa-solid fa-magnifying-glass text-tercero"></i>
+                            </Link>
+                          </td>
+                          <td>
+                            <a href={contact}>
+                              <i className="fa-brands fa-whatsapp text-tercero text-3xl"></i>
+                            </a>
+                          </td>
                         </tr>
                       );
                     });
