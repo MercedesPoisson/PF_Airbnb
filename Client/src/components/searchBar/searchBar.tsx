@@ -27,7 +27,6 @@ function SearchBar() {
     const [buttonText, setButtonText] = useState('¿Cuándo?');
     const [guestText, setGuestText] = useState('¿Cuántos somos?');
     const [isOpen, setIsOpen] = useState(Boolean);
-    const [isComplete, setIsComplete] = useState(false);
     const [showFiltersModal, setShowFiltersModal] = useState(false); // Estado para controlar la visibilidad de la ventana emergente
     const [showSearchLocation, setShowSearchLocation] = useState(false);
     const [showMaxGuest, setShowMaxGuest] = useState(false)
