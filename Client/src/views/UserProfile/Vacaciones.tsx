@@ -23,12 +23,12 @@ const Vacaciones = () => {
 
   return (
     <div className="flex justify-center items-start mt-10">
-      <div className="px-4 pt-3 pb-4 rounded-sm flex-1 font-cairo w-full max-w-7xl">
+      <div className="px-4 pt-3 pb-4 rounded-sm flex-1 font-cairo w-full max-w-9xl">
         <div className="text-white uppercase font-bold bg-tercero w-full h-10">
           Mis Viajes
         </div>
         <div className="border-x border-gray-200 rounded-sm mt-3">
-          <table className="w-full max-w-7xl text-gray-700 mx-auto">
+          <table className="w-full max-w-9xl text-gray-700 mx-auto">
             <thead>
               <tr>
                 <th>Reserva</th>
@@ -38,12 +38,10 @@ const Vacaciones = () => {
                 <th>Localidad</th>
                 <th>Provincia</th>
                 <th>Propiedad</th>
-                <th>Contacto</th>
                 <th>Estado</th>
                 <th>Conta tu experiencia</th>
-                <th>Chat</th>
+      
                 <th>Visitar</th>
-
               </tr>
             </thead>
             <tbody className="leading-loose">
@@ -69,7 +67,7 @@ const Vacaciones = () => {
                       <td>{rent.Property.location}</td>
                       <td>{rent.Property.province}</td>
                       <td>{rent.Property.title}</td>
-                      <td><a href={contact}>Contacta con el Propietario</a></td>
+                      <td><a href={contact}><i className="fa-brands fa-whatsapp text-tercero text-3xl"></i></a></td>
                       <td>
                         {rent.active
                           ? "Tu viaje esta por empezar"
@@ -81,7 +79,7 @@ const Vacaciones = () => {
                         ) : (
                           <div className="relative">
                             <button
-                              className={`border border-red-500 px-4 rounded-md rating-button ${
+                              className={`border border-tercero px-4 rounded-md rating-button ${
                                 isSelected ? "selected" : ""
                               }`}
                               onClick={() => {
@@ -104,6 +102,7 @@ const Vacaciones = () => {
                           </div>
                         )}
                       </td>
+                     
                       <td><a href={`/propiedad/${rent.id_property}`}>
                           <i className="fa-solid fa-magnifying-glass text-tercero"></i>
                         </a></td>
@@ -117,5 +116,4 @@ const Vacaciones = () => {
     </div>
   );
 };
-
 export default Vacaciones;

@@ -41,7 +41,7 @@ function App() {
         <Route path="/propiedad/:id" element={<Details />} />
         <Route path="/formulario" element={<Form/>} />
         <Route path="/ayuda" element={<Team />} />
-        <Route path="/chat" element={<Mensajes />} />
+        <Route path='/chat' element={<Mensajes />} />
 
 
         <Route path="usuario/*" element={<LayoutUser />}>
@@ -53,6 +53,7 @@ function App() {
           <Route path="reservas" element={<Rent />} />
           <Route path="reviews" element={<AllReviews />} />
           <Route path="viajes" element={<Vacaciones />} />
+          <Route path='mensajes' element={<Mensajes />} />
           </Route>        
         
         <Route path="/proyecto" element={<Proyecto />} />
