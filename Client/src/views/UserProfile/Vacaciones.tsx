@@ -38,6 +38,7 @@ const Vacaciones = () => {
                 <th>Localidad</th>
                 <th>Provincia</th>
                 <th>Propiedad</th>
+                <th>Contactar</th>
                 <th>Estado</th>
                 <th>Conta tu experiencia</th>
       
