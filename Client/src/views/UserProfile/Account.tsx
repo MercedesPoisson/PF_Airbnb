@@ -14,10 +14,14 @@ const Account = () => {
   const favorites = useSelector((state: any) => state.favorites);
   const navigate = useNavigate();
 
+  const reservedProperties =
+    properties &&
+    properties.filter((property: any) => property.id_user === user.id_user);
+
   useEffect(() => {
     async function fetchProperties() {
       try {
-        const response = await axios.get("https://pfback-production-a519.up.railway.app/property/all"); // Ajusta la URL de la solicitud según corresponda
+        const response = await axios.get("http://localhost:3001/property/all"); // Ajusta la URL de la solicitud según corresponda
         setProperties(response.data);
       } catch (error) {
         console.error(error);
@@ -106,9 +110,9 @@ const Account = () => {
           <div className="h-40 overflow-hidden">
             {favorites &&
               favorites.map((property: any, index: number) => (
-                <p key={property.id_property}>{`${index + 1}) ${property.Property.title}, ${
-                  property.Property.location
-                }`}</p>
+                <p key={property.id_property}>{`${index + 1}) ${
+                  property.Property.title
+                }, ${property.Property.location}`}</p>
               ))}
           </div>
         </div>
@@ -139,16 +143,17 @@ const Account = () => {
             <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
           <div className="h-40 overflow-hidden">
-            {userProperties &&
-              userProperties.map(
-                (property: any) =>
-                  property.Rents &&
-                  property.Rents.map((rent: any, index: number) => (
+            {user.properties &&
+              user.properties.map((property: any) => {
+                if (property.rents && property.rents.length > 0) {
+                  return property.rents.map((rent: any, index: number) => (
                     <p key={rent.id}>{`${index + 1}) Reservada desde el ${
                       rent.start_date
                     } hasta el ${rent.end_date}`}</p>
-                  ))
-              )}
+                  ));
+                }
+                return null;
+              })}
           </div>
         </div>
 

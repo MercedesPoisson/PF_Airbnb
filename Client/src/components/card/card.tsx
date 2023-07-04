@@ -36,7 +36,7 @@ function Card({ id_property, title, location, province, price_per_night, rating,
   console.log(isAuthenticated);
   
 
-  const [ isSaved, SetIsSaved ] = useState(favorites.some((property:any)=> property.id_property === id_property));
+  const [ isSaved, SetIsSaved ] = useState(favorites?.some((property:any)=> property.id_property === id_property));
   console.log(favorites);
 
   const handleSaveClick = async() => {
@@ -97,7 +97,7 @@ function Card({ id_property, title, location, province, price_per_night, rating,
 
   useEffect(() => {
     if (isAuthenticated) {
-      SetIsSaved(favorites.some((property: any) => property.id_property === id_property));
+      SetIsSaved(favorites?.some((property: any) => property.id_property === id_property));
     }
   }, [isAuthenticated, favorites, id_property]);
 
@@ -148,7 +148,6 @@ function Card({ id_property, title, location, province, price_per_night, rating,
 }
 
 export default Card;
-
 // const renderImages = () => {
   //   if (Array.isArray(images) && images.length > 0) {
   //     return (

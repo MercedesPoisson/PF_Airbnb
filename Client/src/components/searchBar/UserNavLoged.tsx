@@ -6,13 +6,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 interface UserNavProps {
   handleNavigateToAccount: () => void;
-  handleNavigateToTeam: () => void;
   handleNavigateToAnuncios: () => void;
   handleNavigateToFavoritos: () => void;
-  handleNavigateToMensajes: () => void;
+  handleNavigateToViajes: () => void;
 }
 
-const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam, handleNavigateToAnuncios, handleNavigateToFavoritos, handleNavigateToMensajes}: UserNavProps) => {
+const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToAnuncios, handleNavigateToFavoritos, handleNavigateToViajes}: UserNavProps) => {
   const [showUserBar, setShowUserBar] = useState(false);
  
   const { logout } = useAuth0();
@@ -45,12 +44,12 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam, handleNav
             minWidth: "200px",
           }}
         >
-          <li style={{ padding: "0.5rem 0" }}>
+          {/* <li style={{ padding: "0.5rem 0" }}>
             <a href="#"
             onClick={handleNavigateToMensajes}>Mensajes</a>
-          </li>
+          </li> */}
           <li style={{ padding: "0.5rem 0" }}>
-            <a href="#">Viajes</a>
+            <a href="#" onClick={handleNavigateToViajes}>Viajes</a>
           </li>
           <li style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
             <a href="#" onClick={handleNavigateToFavoritos}>Favoritos</a>
@@ -63,9 +62,9 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToTeam, handleNav
               Cuenta
             </a>
           </li>
-          <li style={{ padding: "0.5rem 0" }}>
+          {/* <li style={{ padding: "0.5rem 0" }}>
             <a href="#" onClick={handleNavigateToTeam}>Ayuda</a>
-          </li>
+          </li> */}
           <li style={{ padding: "0.5rem 0" }}>
             <a onClick={() => logout({ returnTo: "https://proyectofinalairbnb.vercel.app/" })}>
               Cerrar Sesión
