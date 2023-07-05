@@ -19,7 +19,7 @@ const Report = (props: ReviewProps) => {
 
   const handleReportSubmit = () => {
     console.log("Despachando PUT"); 
-    axios.put(`http://localhost:3001/rating/${SelectedRating}`, {
+    axios.put(`https://airebnb.onrender.com/rating/${SelectedRating}`, {
         report_reason: reportText,
         is_reported: true,
       })
