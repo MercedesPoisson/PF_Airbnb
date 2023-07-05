@@ -66,7 +66,7 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToAnuncios, handl
             <a href="#" onClick={handleNavigateToTeam}>Ayuda</a>
           </li> */}
           <li style={{ padding: "0.5rem 0" }}>
-            <a onClick={() => logout({ returnTo: "https://pf-airbnb.vercel.app/?page=0" })}>
+            <a onClick={() => logout({ returnTo: "http://localhost:5173/?page=0" })}>
               Cerrar Sesión
             </a>
           </li>
