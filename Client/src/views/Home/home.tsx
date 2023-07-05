@@ -30,7 +30,7 @@ function Home() {
 
   const fetchData = async () => {
     await dispatch(
-      getProperties(`?${searchParams.toString()}`) as unknown as AnyAction
+      await getProperties(`?${searchParams.toString()}`) as unknown as AnyAction
     );
   };
 
