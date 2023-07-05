@@ -120,7 +120,7 @@ const Profile = () => {
             <p className="mb-2">
               Teléfono:
               <input
-                type="text"
+                type="number"
                 value={number}
                 onChange={(e) => setNumber(e.target.value)}
                 disabled={!isEditing}
@@ -136,7 +136,7 @@ const Profile = () => {
             <p className="mb-2">
               Fecha de Nacimiento:
               <input
-                type="text"
+                type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 disabled={!isEditing}
