@@ -94,14 +94,14 @@ const Rating = (props: RatingProps) => {
       }
 
       const response = await axios.post(
-        "https://airebnb.onrender.com/rating",
+        "http://localhost:3001/rating",
         ratings
       );
 
       dispatch(getUser(id_user) as unknown as AnyAction);
       console.log(response.data);
 
-      await axios.put(`https://airebnb.onrender.com/rent/${rent_id}/review-status`);
+      await axios.put(`http://localhost:3001/rent/${rent_id}/review-status`);
     } catch (error) {
       console.log(error);
     }

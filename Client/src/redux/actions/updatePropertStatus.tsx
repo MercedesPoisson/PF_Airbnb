@@ -6,7 +6,7 @@ const updatePropertyStatus = (property: any) => {
     return async (dispatch:Dispatch<AnyAction>)=>{
         const {id_property}= property
         try {
-            await axios.put(`https://airebnb.onrender.com/property/${id_property}/deactivate`)
+            await axios.put(`http://localhost:3001/property/${id_property}/deactivate`)
             dispatch({type: PUT_PROPERTY_STATUS})
         } catch (error) {
             console.log("Error al actualizar la propiedad:", error)
