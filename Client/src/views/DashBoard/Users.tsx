@@ -20,7 +20,7 @@ const ShowUpdate = ({ user, setOpen }: any) => {
     }
     ////////////////////////////////////////////
     const sendUpdateUser = async () => {
-        await axios.put("http://localhost:3001/users/update/" + user.id_user, updateUser);
+        await axios.put("https://airebnb.onrender.com/users/update/" + user.id_user, updateUser);
         alert("user creado correctamente")
         setOpen(false)
     }
@@ -55,7 +55,7 @@ const DashUsers = () => {
     useEffect(() => {
         async function fetchProperties() {
             try {
-                const response = await axios.get("http://localhost:3001/users/"); // Ajusta la URL de la solicitud según corresponda
+                const response = await axios.get("https://airebnb.onrender.com/users/"); // Ajusta la URL de la solicitud según corresponda
                 setDataUser(response.data);
             } catch (error) {
                 console.error(error);
