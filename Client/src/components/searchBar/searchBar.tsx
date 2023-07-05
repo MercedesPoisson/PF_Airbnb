@@ -298,18 +298,18 @@ function SearchBar() {
           <div onClick={() => handleOrderClick("rating", "asc")} >
             <button className="flex flex-col items-center justify-center bg-transparent w-28">
               <span className="text-center font-cairo">
-                <i className="fa-solid fa-star text-gray-600"></i>
+                <i className="fa-solid fa-star-half-stroke text-gray-600"></i>
               </span>
-              <span className="mt-2 text-center font-cairo">Mayor Rating</span>
+              <span className="mt-2 text-center font-cairo">Menor Rating</span>
             </button>
           </div>
 
           <div onClick={() => handleOrderClick("rating", "des")} >
             <button className="flex flex-col items-center justify-center bg-transparent w-28">
               <span className="text-center font-cairo">
-              <i className="fa-solid fa-star-half-stroke text-gray-600"></i>
+              <i className="fa-solid fa-star text-gray-600"></i>
               </span>
-              <span className="mt-2 text-center font-cairo">Menor Rating</span>
+              <span className="mt-2 text-center font-cairo">Mayor Rating</span>
             </button>
           </div>
 
