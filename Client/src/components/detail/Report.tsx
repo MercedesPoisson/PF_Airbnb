@@ -4,8 +4,8 @@ import axios from "axios";
 
 interface ReviewProps {
   isOpen: boolean;
-  setIsOpen: any;
-  SelectedRating: any;
+  setIsOpen: (isOpen: boolean) => void;
+  SelectedRating: number | null;
   
 }
 

@@ -49,7 +49,7 @@ function App() {
           <Route path="anuncio/:id" element={<Anuncio />} />
           <Route path="favoritos" element={<Favoritos />} />
           <Route path="reservas" element={<Rent />} />
-          <Route path="reviews" element={<AllReviews />} />
+          <Route path="reviews/:propertyId" element={<AllReviews />} />
           <Route path="viajes" element={<Vacaciones />} />
           <Route path='mensajes' element={<Mensajes />} />
           </Route>        
