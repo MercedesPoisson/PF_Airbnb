@@ -17,7 +17,7 @@ const Layout = () => {
             email !== "alelopez.13.97@gmail.com" &&
             email !== "mercedespoisson@yahoo.com" &&
             email !== "bennyreyea@gmail.com" &&
-            email !== "augusford@hotmail.com"
+            email !== "augusford@hotmail.com" 
             ) {
           navigate("/");
         } else {
