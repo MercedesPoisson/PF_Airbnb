@@ -148,6 +148,8 @@ function Card({ id_property, title, location, province, price_per_night, rating,
 }
 
 export default Card;
+
+
 // const renderImages = () => {
 //     if (Array.isArray(images) && images.length > 0) {
 //       return (
