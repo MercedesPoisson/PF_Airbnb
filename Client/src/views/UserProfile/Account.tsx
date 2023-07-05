@@ -10,13 +10,17 @@ const Account = () => {
   // const properties = useSelector((state:any) => state.properties)
   const userProperties =
     properties &&
-    properties.filter((property: any) => property.id_user === user.id_user);
+    properties?.filter((property: any) => property.id_user === user.id_user);
+  const activeUserProperties = userProperties?.filter((property: any) => property.is_active === true)
   const favorites = useSelector((state: any) => state.favorites);
   const navigate = useNavigate();
 
-  const reservedProperties =
-    properties &&
-    properties.filter((property: any) => property.id_user === user.id_user);
+  const rents =  user.properties.filter((property: any) => property.rents.length > 0)
+    
+    
+  console.log(rents);
+  
+    
 
   useEffect(() => {
     async function fetchProperties() {
@@ -60,12 +64,12 @@ const Account = () => {
       {/* <UserNavBar /> */}
 
       <div className="flex justify-center mt-20" style={{ zIndex: "0" }}>
-      <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer" onClick={handleNavigateToProfile}>
-  <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
-    PERFIL <i className="fa-solid fa-circle-plus text-white"></i>
-  </h5>
-  <div >
-    {/* <div className="relative">
+        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer" onClick={handleNavigateToProfile}>
+          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
+            PERFIL <i className="fa-solid fa-circle-plus text-white"></i>
+          </h5>
+          <div >
+            {/* <div className="relative">
       {user.image ? (
         <img
           src={user.image}
@@ -76,18 +80,18 @@ const Account = () => {
         <i className="fa-solid fa-image-portrait text-9xl text-gray-200 mt-2"></i>
       )}
     </div> */}
-    <div className="flex flex-col justify-center px-4 overflow-hidden">
-      <p>
-        Nombre y Apellido: {user.name} {user.surname}
-      </p>
-      <p>E-mail: {user.email}</p>
-      <p>Ubicación: {user.address}</p>
-      <p>Teléfono: {user.number}</p>
-      <p>Fecha de Nacimiento: {user.date}</p>
-      <p>Género: {user.gender}</p>
-    </div>
-  </div>
-</div>
+            <div className="flex flex-col justify-center px-4 overflow-hidden">
+              <p>
+                Nombre y Apellido: {user.name} {user.surname}
+              </p>
+              <p>E-mail: {user.email}</p>
+              <p>Ubicación: {user.address}</p>
+              <p>Teléfono: {user.number}</p>
+              <p>Fecha de Nacimiento: {user.date}</p>
+              <p>Género: {user.gender}</p>
+            </div>
+          </div>
+        </div>
 
         <div
           className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
@@ -99,55 +103,53 @@ const Account = () => {
           <div className="h-40 overflow-hidden">
             {user.Rents &&
               user.Rents.map((rent: any, index: number) => (
-                <p key={rent.id}>{`${
-                  index + 1
-                }) Me voy de vacaciones desde el ${rent.start_date} hasta el ${
-                  rent.end_date
-                }`}</p>
+                <p key={rent.id}>{`${index + 1
+                  }) Me voy de vacaciones desde el ${rent.start_date} hasta el ${rent.end_date
+                  }`}</p>
               ))}
           </div>
         </div>
 
-        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
-        onClick={handleNavigateToFavoritos}>
-          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
-            MIS FAVORITOS <i className="fa-solid fa-circle-plus text-white"></i>
-          </h5>
-          <div className="h-40 overflow-hidden">
-            {favorites &&
-              favorites.map((property: any, index: number) => (
-                <p key={property.id_property}>{`${index + 1}) ${
-                  property.Property.title
-                }, ${property.Property.location}`}</p>
-              ))}
+        {
+          (favorites.length > 0) && <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
+            onClick={handleNavigateToFavoritos}>
+            <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
+              MIS FAVORITOS <i className="fa-solid fa-circle-plus text-white"></i>
+            </h5>
+            <div className="h-40 overflow-hidden">
+              {favorites &&
+                favorites.map((property: any, index: number) => (
+                  <p key={property.id_property}>{`${index + 1}) ${property.Property.title
+                    }, ${property.Property.location}`}</p>
+                ))}
+            </div>
           </div>
-        </div>
+        }
       </div>
 
       <div className="flex justify-center">
-        <div
-          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
-          onClick={handleNavigateToAnuncio}
-        >
-          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
-            MIS ANUNCIOS <i className="fa-solid fa-circle-plus text-white"></i>
-          </h5>
-          <div className="ml-1 overflow-hidden">
-          {userProperties &&
-        userProperties.map((property: any, index: number) => {
-          if (property.is_active) {
-            return <p key={property.id}>{`${index + 1}) ${property.title}`}</p>;
-          } else {
-            return null;
-          }
-        })}
+        {activeUserProperties.length > 0 &&
+          <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
+            onClick={handleNavigateToAnuncio}
+          >
+            <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
+              MIS ANUNCIOS <i className="fa-solid fa-circle-plus text-white"></i>
+            </h5>
+            <div className="ml-1 overflow-hidden">
+              {userProperties &&
+                userProperties.map((property: any, index: number) => {
+                  if (property.is_active) {
+                    return <p key={property.id}>{`${index + 1}) ${property.title}`}</p>;
+                  } else {
+                    return null;
+                  }
+                })}
+            </div>
           </div>
-        </div>
+        }
 
-        <div
-          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
-          onClick={handleNavigateToReservas}
-        >
+        {rents.length > 0 && <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
+        onClick={handleNavigateToReservas}>
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
             RESERVARON MI PROPIEDAD{" "}
             <i className="fa-solid fa-circle-plus text-white"></i>
@@ -157,15 +159,15 @@ const Account = () => {
               user.properties.map((property: any) => {
                 if (property.rents && property.rents.length > 0) {
                   return property.rents.map((rent: any, index: number) => (
-                    <p key={rent.id}>{`${index + 1}) Reservada desde el ${
-                      rent.start_date
+                    <p key={rent.id}>{`${index + 1}) Reservada desde el ${rent.start_date
                     } hasta el ${rent.end_date}`}</p>
-                  ));
-                }
-                return null;
-              })}
+                    ));
+                  }
+                  return null;
+                })}
           </div>
         </div>
+              }
 
         {/* <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer" onClick={handleNavigateToTransacciones}>
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
