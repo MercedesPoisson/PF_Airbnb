@@ -19,7 +19,7 @@ const updateUser = (user: any) => {
         ...(gender && { gender }),
       };
 
-      await axios.put(`https://airebnb.onrender.com/users/update/${id_user}`, updatedUser);
+      await axios.put(`http://localhost:3001/users/update/${id_user}`, updatedUser);
       dispatch({ type: PUT_USER, payload: updatedUser });
     } catch (error) {
       console.log("Error al actualizar el usuario:", error);
