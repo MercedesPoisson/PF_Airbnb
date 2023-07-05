@@ -6,7 +6,6 @@ const getAllUsers = () => {
     return async (dispatch: Dispatch<AnyAction>) => {
         const data = await axios.get(`https://airebnb.onrender.com/users`)
         const payload = data.data;
-        console.log(payload);
         dispatch({ type: GET_ALL_USERS, payload: payload});        
     }
 }

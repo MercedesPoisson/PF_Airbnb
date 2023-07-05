@@ -47,48 +47,53 @@ const Account = () => {
     navigate("/usuario/viajes");
   };
 
+  const handleNavigateToFavoritos = () => {
+    navigate("/usuario/favoritos")
+  }
+
+  const handleNavigateToTransacciones = () => {
+    navigate("/usuario/transacciones")
+  }
+
   return (
     <div>
       {/* <UserNavBar /> */}
 
       <div className="flex justify-center mt-20" style={{ zIndex: "0" }}>
-        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10">
-          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
-            PERFIL <i className="fa-solid fa-circle-plus text-white"></i>
-          </h5>
-          <div className="grid grid-cols-2 w-1/4">
-            <div>
-              {user.image ? (
-                <img
-                  src={user.image}
-                  alt="User Avatar"
-                  className="text-9xl text-gray-200 mt-2"
-                />
-              ) : (
-                <i className="fa-solid fa-image-portrait text-9xl text-gray-200 mt-2"></i>
-              )}
-            </div>
-            <div
-              className="w-72 ml-14 cursor-pointer h-40 overflow-hidden"
-              onClick={handleNavigateToProfile}
-            >
-              <p>
-                Nombre y Apellido: {user.name} {user.surname}
-              </p>
-              <p>E-mail: {user.email}</p>
-              <p>Ubicación: {user.location}</p>
-              <p>Teléfono: {user.number}</p>
-              <p>Fecha de Nacimiento: {user.Date}</p>
-              <p>Género: {user.gender}</p>
-            </div>
-          </div>
-        </div>
+      <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer">
+  <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
+    PERFIL <i className="fa-solid fa-circle-plus text-white"></i>
+  </h5>
+  <div >
+    {/* <div className="relative">
+      {user.image ? (
+        <img
+          src={user.image}
+          alt="User Avatar"
+          className="text-9xl text-gray-200 mt-2"
+        />
+      ) : (
+        <i className="fa-solid fa-image-portrait text-9xl text-gray-200 mt-2"></i>
+      )}
+    </div> */}
+    <div className="flex flex-col justify-center px-4 overflow-hidden">
+      <p>
+        Nombre y Apellido: {user.name} {user.surname}
+      </p>
+      <p>E-mail: {user.email}</p>
+      <p>Ubicación: {user.address}</p>
+      <p>Teléfono: {user.number}</p>
+      <p>Fecha de Nacimiento: {user.date}</p>
+      <p>Género: {user.gender}</p>
+    </div>
+  </div>
+</div>
 
         <div
-          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10"
+          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
           onClick={handleNavigateToVacaciones}
         >
-          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
+          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2 ">
             MIS VIAJES <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
           <div className="h-40 overflow-hidden">
@@ -103,7 +108,8 @@ const Account = () => {
           </div>
         </div>
 
-        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10">
+        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
+        onClick={handleNavigateToFavoritos}>
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
             MIS FAVORITOS <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
@@ -120,7 +126,7 @@ const Account = () => {
 
       <div className="flex justify-center">
         <div
-          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10"
+          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
           onClick={handleNavigateToAnuncio}
         >
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
@@ -135,14 +141,14 @@ const Account = () => {
         </div>
 
         <div
-          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10"
+          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
           onClick={handleNavigateToReservas}
         >
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
             RESERVARON MI PROPIEDAD{" "}
             <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
-          <div className="h-40 overflow-hidden">
+          <div className="h-40 overflow-hidden ">
             {user.properties &&
               user.properties.map((property: any) => {
                 if (property.rents && property.rents.length > 0) {
@@ -157,14 +163,13 @@ const Account = () => {
           </div>
         </div>
 
-        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10">
+        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer" onClick={handleNavigateToTransacciones}>
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
-            PAGOS Y COBROS{" "}
+            TRANSACCIONES{" "}
             <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
-          <div className="h-40  overflow-hidden">
-            Aca va la logica para traer los pagos realizados y los cobros
-            recibidos
+          <div className="h-40  overflow-hidden flex items-center justify-center">
+            Tenés movimientos para revisar
           </div>
         </div>
       </div>
@@ -173,64 +178,3 @@ const Account = () => {
 };
 
 export default Account;
-
-{
-  /* <div className="grid grid-cols-3 grid-rows-6 gap-3 w-4/5 mx-auto font-cairo mt-20">
-        <div className="row-span-2 rounded-xl p-2 border hover:border-argentina hover:animate-lightup">
-          <div className="grid grid-cols-2 w-1/4">
-            <div>
-              {user.image ? (
-                <img src={user.image} alt="User Avatar" className="text-9xl text-gray-200 mt-2" />
-              ) : (
-                <i className="fa-solid fa-image-portrait text-9xl text-gray-200 mt-2"></i>
-              )}
-            </div>
-            <div className="mt-2 w-72 ml-14 cursor-pointer" onClick={handleNavigateToProfile}>
-              <p>
-                Nombre y Apellido: {user.name} {user.surname}
-              </p>
-              <p>E-mail: {user.email}</p>
-              <p>Ubicación: {user.location}</p>
-              <p>Teléfono: {user.number}</p>
-              <p>Fecha de Nacimiento: {user.Date}</p>
-              <p>Género: {user.gender}</p>
-              <h5 className="uppercase font-bold">
-                PERFIL <i className="fa-solid fa-circle-plus text-argentina"></i>
-              </h5>
-            </div>
-            
-          </div>
-        </div>
-        <div className="bg-gray-300 row-span-5 rounded-xl p-2">Favoritos Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem maxime ut nesciunt accusantium. Nihil quo debitis, maxime beatae eos ipsam nostrum similique voluptatibus ab. Corporis aut dolor iusto tenetur sequi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque a quos voluptatibus impedit est consectetur eum, nisi ipsam inventore eos possimus illo, veniam rem unde velit libero sint mollitia aut. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima a esse delectus quod illum quae nisi odio est quaerat velit, sapiente nostrum nam animi deleniti labore exercitationem voluptatum eius omnis.</div>
-        <div className="border hover:border-argentina row-span-2 rounded-xl p-2 cursor-pointer" onClick={handleNavigateToAnuncio}>
-          <h1 className="uppercase font-bold">
-            Anuncios <i className="fa-solid fa-pen-to-square text-argentina"></i>
-          </h1>
-          {userProperties && userProperties.map((properties:any, index:number) => (
-          <p key={properties.id}>{`${index+1}) ${properties.title}`}</p>
-        ))}
-        </div >
-        <div className="border hover:border-argentina row-span-2 rounded-xl p-2 cursor-pointer" onClick={handleNavigateToVacaciones}>
-          <h1 className="uppercase font-bold">Mis viajes <i className="fa-solid fa-plane-departure text-argentina"></i>
-            </h1>
-            {user.Rents && user.Rents.map((rent:any, index: number) => (
-              <p key={rent.id}>{`${index+1}) Me voy de vacaciones desde el ${rent.start_date} hasta el ${rent.end_date}`}</p>
-            ))}
-            </div>
-
-        <div className="bg-gray-300 row-span-1 rounded-xl p-2">Pagos y Cobros</div>
-
-        <div className="border hover:border-argentina row-span-2 rounded-xl p-2 cursor-pointer" onClick={handleNavigateToReservas}>
-  <h1 className="uppercase font-bold">Reservaron mi Propiedad <i className="fa-regular fa-calendar-check text-argentina"></i></h1>
-  {userProperties && userProperties.map((property: any) => (
-    property.Rents && property.Rents.map((rent: any, index: number) => (
-      <p key={rent.id}>{`${index+1}) Reservada desde el ${rent.start_date} hasta el ${rent.end_date}`}</p>
-    ))
-  ))}
-</div>
-        <div className="bg-gray-300 row-span-1 rounded-xl p-2">
-          <h1 className="uppercase font-bold">mensajes</h1>
-          <h3>(no tenes mensajes nuevos)</h3>
-        </div>
-      </div> */
-}

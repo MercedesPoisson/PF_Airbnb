@@ -210,10 +210,10 @@ const Rating = (props: RatingProps) => {
         ></textarea>
       </div>
       {error && (
-        <p className="text-red-500">Debe calificar en todas las categorías</p>
+        <p className="text5-argentina">Debe calificar en todas las categorías</p>
       )}
       <button
-        className="border border-red-500 px-4 rounded-md"
+        className="border border-argentina px-4 rounded-md"
         onClick={handleSendRating}
       >
         Enviar

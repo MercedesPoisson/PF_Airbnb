@@ -107,7 +107,7 @@ const Form = () => {
 
   const closeDialog = () => {
     setIsDialogOpen(false);
-    navigate("/");
+    navigate("/?page=0");
   };
 
   const handlePost = () => {

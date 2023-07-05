@@ -1,5 +1,5 @@
 import DateRangePicker from "./DateRangePicker";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { initMercadoPago, Payment } from "@mercadopago/sdk-react";
 import axios from "axios";
@@ -41,6 +41,8 @@ const Reservas = (props: any) => {
         creation_date: new Date(),
         active: true
     })
+
+    const bookFormRef = useRef(bookForm)
     
     const [discount, setDiscount] = useState({
         monthly: false,
@@ -123,12 +125,17 @@ const Reservas = (props: any) => {
         })
     }
 
-    const guestHandler = (e: any) => {
+    const guestHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setBookForm({
             ...bookForm,
             guests_number: Number(e.target.value)
         })
     }
+
+    useEffect(() => {
+      bookFormRef.current = bookForm
+    }, [bookForm]);
+
 
     const paymentComponent = useMemo(() => {
         if (bookForm.amount > 0) {
@@ -157,17 +164,15 @@ const Reservas = (props: any) => {
                                     .then((response) => {
                                         // recibir el resultado del pago
                                         if(response.status === 'approved' && response.status_detail === 'accredited'){
-                                            axios.post('https://airebnb.onrender.com/rent', bookForm)
+                                            axios.post('http://localhost:3001/rent', bookFormRef.current)
                                             .then((response) => {
                                                 console.log(response)
                                                 setBookingSuccess(true);
                                                 dispatch(getUser(id_user) as unknown as AnyAction)
-                                                // openModal("Reserva realizada con éxito")
                                             })
                                             .catch((error) => {
                                                 console.log(error)
                                                 setBookingError(true);
-                                                // openModal("Error al procesar el pago")
                                             })
                                         }
                                         resolve(form);
@@ -220,12 +225,10 @@ const Reservas = (props: any) => {
             <DateRangePicker handleDateChange={handleDateChange} />
           </div>
           <div>
-            <select className="border h-10 w-80 rounded-xl mt-3" onChange={guestHandler}>
-              <option value={1} selected>
-                Viajeros: 1 huésped
-              </option>
+            <select className="border h-10 w-80 rounded-xel mt-3" value={bookForm.guests_number} onChange={guestHandler}>
+              <option value={1}>Viajeros: 1 huésped</option>
               {maxGuest.map((guest: number) => (
-                <option value={guest}>{`Viajeros: ${guest} huéspedes`}</option>
+                <option key={guest} value={guest}>{`Viajeros: ${guest} huéspedes`}</option>
               ))}
             </select>
             <div>

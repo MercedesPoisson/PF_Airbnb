@@ -148,17 +148,19 @@ function Card({ id_property, title, location, province, price_per_night, rating,
 }
 
 export default Card;
+
+
 // const renderImages = () => {
-  //   if (Array.isArray(images) && images.length > 0) {
-  //     return (
-  //       <div className="flex items-center justify-center">
-  //         <img
-  //           className="h-60 w-60 rounded-md mr-2 object-cover"
-  //           src={images[0]}
-  //           alt={`Image 0`}
-  //         />
-  //       </div>
-  //     );
-  //   }
-  //   return null;
-  // };
+//     if (Array.isArray(images) && images.length > 0) {
+//       return (
+//         <div className="flex items-center justify-center">
+//           <img
+//             className="h-60 w-60 rounded-md mr-2 object-cover"
+//             src={images[0]}
+//             alt={`Image 0`}
+//           />
+//         </div>
+//       );
+//     }
+//     return null;
+//   };
