@@ -28,7 +28,7 @@ const UserMenu = () => {
   };
 
   const handleLogout = () => {
-    logout({ returnTo: window.location.origin });
+    logout({ returnTo: "https://pf-airbnb.vercel.app/?page=0" });
   };
 
   const handleNavigateToFavoritos = () => {
