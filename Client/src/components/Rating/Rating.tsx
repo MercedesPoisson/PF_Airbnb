@@ -34,6 +34,7 @@ const Rating = (props: RatingProps) => {
   });
 
   const [error, setError] = useState(false);
+  const [isRatingSent, setIsRatingSent] = useState(false);
 
   const handleStarClick = (category: any, starIndex: any) => {
     setRatings((prevRatings) => ({
@@ -68,7 +69,6 @@ const Rating = (props: RatingProps) => {
             veracity_rating) /
           4
         ).toFixed(2)
-        // le agregue el toFixed para que permita dos decimales
       );
     setRatings((prevRatings) => ({
       ...prevRatings,
@@ -82,6 +82,10 @@ const Rating = (props: RatingProps) => {
   ]);
 
   const handleSendRating = async () => {
+    if (isRatingSent){
+      return;
+    }
+
     try {
       if (
         ratings.cleaning_rating === 0 ||
@@ -92,14 +96,12 @@ const Rating = (props: RatingProps) => {
         setError(true);
         return;
       }
-
-      const response = await axios.post(
-        "http://localhost:3001/rating",
-        ratings
-      );
-
+      
+      const response = await axios.post("http://localhost:3001/rating", ratings);
+      setIsRatingSent(true);
       dispatch(getUser(id_user) as unknown as AnyAction);
       console.log(response.data);
+      
 
       await axios.put(`http://localhost:3001/rent/${rent_id}/review-status`);
     } catch (error) {
@@ -224,5 +226,3 @@ const Rating = (props: RatingProps) => {
 
 export default Rating;
 
-// <i class="fa-solid fa-star"></i>
-//<i class="fa-regular fa-star"></i>
