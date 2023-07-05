@@ -15,6 +15,8 @@ const UserNavLoged = ({ handleNavigateToAccount, handleNavigateToAnuncios, handl
   const [showUserBar, setShowUserBar] = useState(false);
  
   const { logout } = useAuth0();
+  // console.log(logout);
+  
 
   const handleUserLoged = () => {
     setShowUserBar((prevShowUserBar) => !prevShowUserBar);
