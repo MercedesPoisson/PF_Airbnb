@@ -51,49 +51,49 @@ const Account = () => {
     navigate("/usuario/favoritos")
   }
 
+  const handleNavigateToTransacciones = () => {
+    navigate("/usuario/transacciones")
+  }
+
   return (
     <div>
       {/* <UserNavBar /> */}
 
       <div className="flex justify-center mt-20" style={{ zIndex: "0" }}>
-        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10">
-          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
-            PERFIL <i className="fa-solid fa-circle-plus text-white"></i>
-          </h5>
-          <div className="grid grid-cols-2 w-1/4">
-            <div>
-              {user.image ? (
-                <img
-                  src={user.image}
-                  alt="User Avatar"
-                  className="text-9xl text-gray-200 mt-2"
-                />
-              ) : (
-                <i className="fa-solid fa-image-portrait text-9xl text-gray-200 mt-2"></i>
-              )}
-            </div>
-            <div
-              className="w-72 ml-14 cursor-pointer h-40 overflow-hidden"
-              onClick={handleNavigateToProfile}
-            >
-              <p>
-              {console.log('User: ', user)}
-                Nombre y Apellido: {user.name} {user.surname}
-              </p>
-              <p>E-mail: {user.email}</p>
-              <p>Ubicación: {user.address}</p>
-              <p>Teléfono: {user.number}</p>
-              <p>Fecha de Nacimiento: {user.date}</p>
-              <p>Género: {user.gender}</p>
-            </div>
-          </div>
-        </div>
+      <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer">
+  <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
+    PERFIL <i className="fa-solid fa-circle-plus text-white"></i>
+  </h5>
+  <div >
+    {/* <div className="relative">
+      {user.image ? (
+        <img
+          src={user.image}
+          alt="User Avatar"
+          className="text-9xl text-gray-200 mt-2"
+        />
+      ) : (
+        <i className="fa-solid fa-image-portrait text-9xl text-gray-200 mt-2"></i>
+      )}
+    </div> */}
+    <div className="flex flex-col justify-center px-4 overflow-hidden">
+      <p>
+        Nombre y Apellido: {user.name} {user.surname}
+      </p>
+      <p>E-mail: {user.email}</p>
+      <p>Ubicación: {user.address}</p>
+      <p>Teléfono: {user.number}</p>
+      <p>Fecha de Nacimiento: {user.date}</p>
+      <p>Género: {user.gender}</p>
+    </div>
+  </div>
+</div>
 
         <div
-          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10"
+          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
           onClick={handleNavigateToVacaciones}
         >
-          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
+          <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2 ">
             MIS VIAJES <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
           <div className="h-40 overflow-hidden">
@@ -108,7 +108,7 @@ const Account = () => {
           </div>
         </div>
 
-        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10"
+        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
         onClick={handleNavigateToFavoritos}>
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
             MIS FAVORITOS <i className="fa-solid fa-circle-plus text-white"></i>
@@ -126,7 +126,7 @@ const Account = () => {
 
       <div className="flex justify-center">
         <div
-          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10"
+          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
           onClick={handleNavigateToAnuncio}
         >
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
@@ -141,14 +141,14 @@ const Account = () => {
         </div>
 
         <div
-          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10"
+          className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer"
           onClick={handleNavigateToReservas}
         >
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
             RESERVARON MI PROPIEDAD{" "}
             <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
-          <div className="h-40 overflow-hidden">
+          <div className="h-40 overflow-hidden ">
             {user.properties &&
               user.properties.map((property: any) => {
                 if (property.rents && property.rents.length > 0) {
@@ -163,14 +163,13 @@ const Account = () => {
           </div>
         </div>
 
-        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10">
+        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer" onClick={handleNavigateToTransacciones}>
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
-            PAGOS Y COBROS{" "}
+            TRANSACCIONES{" "}
             <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
-          <div className="h-40  overflow-hidden">
-            Aca va la logica para traer los pagos realizados y los cobros
-            recibidos
+          <div className="h-40  overflow-hidden flex items-center justify-center">
+            Tenés movimientos para revisar
           </div>
         </div>
       </div>

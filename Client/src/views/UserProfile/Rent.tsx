@@ -1,14 +1,21 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+// import AllReviews from "./AllReviews";
 import { Link } from "react-router-dom";
 
 const Rent = () => {
+  // const navigate = useNavigate();
   const user = useSelector((state: any) => state.user);
+  const property = useSelector((state: any) => state.properties);
   const [properties, setProperties] = useState([]);
 
-  const reservedProperties =
-    properties &&
-    properties.filter((property: any) => property.id_user === user.id_user);
+  // const reservedProperties =
+  //   properties &&
+  //   properties.filter((property: any) => property.id_user === user.id_user);
+  //   console.log("propiedad reservad", reservedProperties);
+  //   const handleReviewsClick = (propertyId) => {
+  //     navigate(`/usuario/reviews/${propertyId}`)
+  // };
 
   const currentDate = new Date();
 
@@ -60,7 +67,7 @@ const Rent = () => {
                           <td>{isActive ? "Activo" : "Inactivo"}</td>
                           <td>
                             <Link
-                              to={`/usuario/reviews/${rent.id_property}`}
+                              to={`/usuario/reviews/${property.id_property}`}
                             >
                               <i className="fa-solid fa-magnifying-glass text-tercero"></i>
                             </Link>
@@ -78,6 +85,10 @@ const Rent = () => {
             </tbody>
           </table>
         </div>
+        {/* <AllReviews propertyId={property.id_property} /> */}
+        {/* {reservedProperties.map((property: any) => (
+          
+        ))} */}
       </div>
     </div>
   );

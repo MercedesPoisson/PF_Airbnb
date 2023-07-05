@@ -27,6 +27,7 @@ import Mensajes from './views/UserProfile/mensajes';
 import Project from './views/MiniProyecto/Project';
 import AllReviews from "./views/UserProfile/AllReviews"
 import Pro from './views/MiniProyecto/Pro';
+import Transacciones from './views/UserProfile/Transacciones';
 // import DashLogin from './views/DashBoard/DashLogin';
 
 
@@ -49,9 +50,10 @@ function App() {
           <Route path="anuncio/:id" element={<Anuncio />} />
           <Route path="favoritos" element={<Favoritos />} />
           <Route path="reservas" element={<Rent />} />
-          <Route path="reviews" element={<AllReviews />} />
+          <Route path="reviews/:propertyId" element={<AllReviews />} />
           <Route path="viajes" element={<Vacaciones />} />
           <Route path='mensajes' element={<Mensajes />} />
+          <Route path='transacciones' element={<Transacciones />} />
           </Route>        
         
         <Route path="/proyecto" element={<Proyecto />} />
