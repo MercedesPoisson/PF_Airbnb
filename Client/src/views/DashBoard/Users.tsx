@@ -216,4 +216,4 @@ const DashUsers = () => {
         </div>
     );
 }
-export default DashUsers;
+export default DashUsers

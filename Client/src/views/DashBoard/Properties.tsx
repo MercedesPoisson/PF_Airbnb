@@ -186,7 +186,7 @@ const DashProperties = () => {
             <tr>
               <th>Number</th>
               <th>ID</th>
-              <th>User ID</th>
+              {/* <th>User ID</th> */}
               <th>Is Active</th>
               <th>Province</th>
               <th>Location</th>
@@ -207,7 +207,7 @@ const DashProperties = () => {
               <tr key={property.id_property} className="text-center">
                 <td >#{index + 1}</td>
                 <td >{property.id_property}</td>
-                <td>{property.id_user}</td>
+                {/* <td>{property.id_user}</td> */}
                 <td>{property.is_active ? "True" : "False"}</td>
                 <td>{property.province}</td>
                 <td>{property.location}</td>
