@@ -30,7 +30,6 @@ function SearchBar() {
     const [showFiltersModal, setShowFiltersModal] = useState(false); // Estado para controlar la visibilidad de la ventana emergente
     const [showSearchLocation, setShowSearchLocation] = useState(false);
     const [showMaxGuest, setShowMaxGuest] = useState(false)
-    const [orderPrice, setOrderPrice] = useState('');
     const { loginWithRedirect, isAuthenticated } = useAuth0();
     const {name, surname, number} = useSelector((state: any) => state.user)
     
@@ -63,13 +62,56 @@ function SearchBar() {
     //! HANDLERS --------------------------------------------------------------------------------------------------------------------
     
     const handleOrderClick = (event:any) => {
-      console.log("Hace click");
-      
-      const value = event.target.value;
+      const value = event
       if (value !== undefined) {
-        setOrderPrice(value);
-        urlSearchParams.set('order_price', value);
-        navigate(`?${urlSearchParams.toString()}`);
+        // Verificar si el parámetro está presente en la query
+        const currentSearchParams = new URLSearchParams(window.location.search);
+        const currentType = currentSearchParams.get('order_price');
+        
+        if (currentType === value) {
+          // Eliminar el parámetro de la URL
+          currentSearchParams.delete('order_price');
+        } else {
+          // Establecer el nuevo valor en el parámetro
+          currentSearchParams.set('order_price', value);
+        }
+    
+        navigate(`?${currentSearchParams.toString()}`);
+      }
+    };
+
+    const handleTypeClick = (event: any) => {
+      const value = event
+      if (value !== undefined) {
+        // Verificar si el parámetro está presente en la query
+        const currentSearchParams = new URLSearchParams(window.location.search);
+        const currentType = currentSearchParams.get('property_type');
+        
+        if (currentType === value) {
+          // Eliminar el parámetro de la URL
+          currentSearchParams.delete('property_type');
+        } else {
+          // Establecer el nuevo valor en el parámetro
+          currentSearchParams.set('property_type', value);
+        }
+    
+        navigate(`?${currentSearchParams.toString()}`);
+      }
+    };
+    
+
+    const handlePetsClick = (event: any) => {
+      const value = event
+      if (value !== undefined) {
+        urlSearchParams.set('allow_pets', value);
+        // Verificar si el parámetro está presente en la query
+        const currentSearchParams = new URLSearchParams(window.location.search);
+        if (currentSearchParams.has('allow_pets')) {
+          currentSearchParams.delete('allow_pets');
+          navigate(`?${currentSearchParams.toString()}`);
+        } else {
+          navigate(`?${urlSearchParams.toString()}`);
+        }
       }
     };
 
@@ -213,8 +255,8 @@ function SearchBar() {
             </button>
           </div> */}
 
-          <div>
-              <button onClick={(event) => handleOrderClick(event)} value="asc" className="flex flex-col items-center justify-center bg-transparent ml-10 w-28">
+          <div onClick={() => handleOrderClick("asc")}>
+              <button className="flex flex-col items-center justify-center bg-transparent ml-10 w-28">
                 <span  className="mb-2">
                 <i className="fa-solid fa-arrow-down-short-wide text-gray-600"></i>
                 </span>
@@ -225,8 +267,8 @@ function SearchBar() {
             
           </div>
 
-          <div>
-            <button onClick={(event) => handleOrderClick(event)} value="des" className="flex flex-col items-center justify-center bg-transparent w-28">
+          <div onClick={() => handleOrderClick("des")} >
+            <button className="flex flex-col items-center justify-center bg-transparent w-28">
               <span className="text-center font-cairo">
             <i className="fa-solid fa-arrow-down-wide-short text-gray-600"></i>
             </span>
@@ -234,7 +276,7 @@ function SearchBar() {
             </button>
             </div>       
 
-          <div>
+          <div onClick={() => handleTypeClick("House")}>
             <button className="flex flex-col items-center justify-center bg-transparent w-28">
               <span className="mb-2">
                 <i className="fa-solid fa-house text-gray-600"></i>
@@ -243,8 +285,8 @@ function SearchBar() {
             </button>
           </div>
 
-          <div>
-          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+          <div onClick={() => handleTypeClick("Apartment")}>
+          <button  className="flex flex-col items-center justify-center bg-transparent w-28">
               <span className="mb-2">
                 <i className="fa-solid fa-building text-gray-600"></i>
               </span>
@@ -252,8 +294,8 @@ function SearchBar() {
             </button>
           </div>
 
-          <div>
-          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+          <div onClick={() => handleTypeClick("Room")}>
+          <button  className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
                         <i className="fa-solid fa-bed text-gray-600"></i>
                       </span>
@@ -284,8 +326,8 @@ function SearchBar() {
                       <span className="text-center font-cairo">Lago</span>
                     </button>
           </div> */}
-          <div>
-          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+          {/* <div>
+          <button onClick={(event) => handleOrderClick(event)} value="Pileta" className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
                       <i className="fa-solid fa-person-swimming text-gray-600"></i>
                       </span>
@@ -300,7 +342,7 @@ function SearchBar() {
                       </span>
                       <span className="text-center font-cairo">Cocina</span>
                     </button>
-          </div>
+          </div> */}
           {/* <div>
           <button className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
@@ -309,8 +351,8 @@ function SearchBar() {
                       <span className="text-center font-cairo">Accesibilidad</span>
                     </button>
           </div> */}
-          <div>
-          <button className="flex flex-col items-center justify-center bg-transparent w-28">
+          <div onClick={() => handlePetsClick("true")}  >
+          <button  className="flex flex-col items-center justify-center bg-transparent w-28">
                       <span className="mb-2">
                       <i className="fa-solid fa-paw text-gray-600"></i>
                       </span>
