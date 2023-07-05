@@ -27,7 +27,7 @@ export default getPropertyDetail;
 
 // const getPropertyDetail=(id:any)=>{
 //     return async (dispatch: Dispatch<AnyAction>) => {
-//         const data = await axios.get(`https://airebnb.onrender.com/property/${id}`)
+//         const data = await axios.get(`http://localhost:3001/property/${id}`)
 //         const detail = data.data
 //         dispatch({ type: GET_PROPERTY_DETAIL, payload: detail });
 //     }

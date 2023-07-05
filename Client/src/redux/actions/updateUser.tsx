@@ -38,7 +38,7 @@ export default updateUser;
 //   return async (dispatch: Dispatch<AnyAction>) => {
 //     try {
 //       const { id_user } = user;
-//       await axios.post(`https://airebnb.onrender.com/users/update/${id_user}`, user);
+//       await axios.post(`http://localhost:3001/users/update/${id_user}`, user);
 //       dispatch({ type: PUT_USER, payload: user });
 //     } catch (error) {
 //       console.log("Error al actualizar el usuario:", error);

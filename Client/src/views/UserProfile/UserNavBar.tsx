@@ -116,7 +116,7 @@ const userNavBar = () => {
               <a href="#">Reservas</a>
             </li>
 
-            <li
+            {/* <li
               className={`cursor-pointer ${
                 selectedItem === "Transacciones"
                   ? "border-b-2 border-argentina"
@@ -128,7 +128,7 @@ const userNavBar = () => {
             }}
             >
               <a href="#">Transacciones</a>
-            </li>
+            </li> */}
 
             {/* <li
               className={`cursor-pointer ${
