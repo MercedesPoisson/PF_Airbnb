@@ -133,10 +133,14 @@ const Account = () => {
             MIS ANUNCIOS <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
           <div className="ml-1 overflow-hidden">
-            {userProperties &&
-              userProperties.map((properties: any, index: number) => (
-                <p key={properties.id}>{`${index + 1}) ${properties.title}`}</p>
-              ))}
+          {userProperties &&
+        userProperties.map((property: any, index: number) => {
+          if (property.is_active) {
+            return <p key={property.id}>{`${index + 1}) ${property.title}`}</p>;
+          } else {
+            return null;
+          }
+        })}
           </div>
         </div>
 
