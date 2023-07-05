@@ -102,6 +102,7 @@ const Rating = (props: RatingProps) => {
       dispatch(getUser(id_user) as unknown as AnyAction);
       console.log(response.data);
       
+
       await axios.put(`http://localhost:3001/rent/${rent_id}/review-status`);
     } catch (error) {
       console.log(error);
