@@ -164,7 +164,7 @@ const Reservas = (props: any) => {
                                     .then((response) => {
                                         // recibir el resultado del pago
                                         if(response.status === 'approved' && response.status_detail === 'accredited'){
-                                            axios.post('http://localhost:3001/rent', bookFormRef.current)
+                                            axios.post('https://airebnb.onrender.com/rent', bookFormRef.current)
                                             .then((response) => {
                                                 console.log(response)
                                                 setBookingSuccess(true);
