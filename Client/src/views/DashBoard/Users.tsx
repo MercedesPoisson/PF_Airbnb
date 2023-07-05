@@ -97,11 +97,8 @@ const ShowUpdate = ({ user, setOpen }: any) => {
     })
     ///////////////////////////////////////////////
 
-
-    console.log(user)
     const handlerOnchange = (e: any) => {
         const { value, name } = e.target;
-        console.log(value)
         setUpdateUser({
             ...updateUser,
             [name]: value
@@ -110,7 +107,7 @@ const ShowUpdate = ({ user, setOpen }: any) => {
     ////////////////////////////////////////////
     const sendUpdateUser = async () => {
         await axios.put("http://localhost:3001/users/update/" + user.id_user, updateUser);
-        alert("user creado correctamente")
+        alert("User Editado Correctamente")
         setOpen(false)
     }
 
@@ -127,25 +124,26 @@ const ShowUpdate = ({ user, setOpen }: any) => {
             <button style={style.close} onClick={() => setOpen(false)}>X</button>
             <h1 style={style.title}>User - {user.name}</h1>
             <div>
-                <p style={style.inputsName}>name: </p>
+                <p style={style.inputsName}>Name: </p>
                 <input style={style.inputs} type="text" name="name" value={updateUser.name} onChange={(e) => handlerOnchange(e)} />
 
-                <p style={style.inputsName}>surname:  </p>
+                <p style={style.inputsName}>Surname:  </p>
                 <input style={style.inputs} type="text" name="surname" value={updateUser.surname} onChange={(e) => handlerOnchange(e)} />
+                {/* <div style={style.flex}> */}
+
+                <p style={style.inputsName}>Email:  </p>
+                <input style={style.inputs} type="text" name="email" value={updateUser.email} onChange={(e) => handlerOnchange(e)} />
                 <div style={style.flex}>
+                    
                     <button style={style.btn} onClick={()=> activeOrDisactive()} >
-                        {
-                            updateUser.is_active == true ? "Unplug" : "plugIn"
-                        }
+                        {updateUser.is_active == true ? "Unplug" : "plugIn"}
                     </button>
                     <p>
-                        {
-                            updateUser.is_active == true ? <i className="fa-solid fa-plug-circle-check fa-xl"></i> : <i className="fa-solid fa-plug-circle-xmark fa-xl"></i>
-                        }
+                        {updateUser.is_active == true ? <i className="fa-solid fa-plug-circle-check fa-xl"></i> : <i className="fa-solid fa-plug-circle-xmark fa-xl"></i>}
                     </p>
                 </div>
             </div>
-            <button style={style.update} onClick={() => sendUpdateUser()}>Update   <i className="fa-regular fa-pen-to-square"></i></button>
+            <button style={style.update} onClick={() => sendUpdateUser()}>Update<i className="fa-regular fa-pen-to-square"></i></button>
         </div>
     )
 }
@@ -189,10 +187,10 @@ const DashUsers = () => {
                             <th>Number</th>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>surname</th>
-                            <th>email</th>
-                            <th>is_active</th>
-                            <th>edit</th>
+                            <th>Surname</th>
+                            <th>Email</th>
+                            <th>Is Active</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
