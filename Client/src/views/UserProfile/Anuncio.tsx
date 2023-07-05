@@ -9,6 +9,7 @@ import getProperties from "../../redux/actions/getProperties";
 import Review from "../../components/Rating/Review";
 import Report from "../../components/detail/Report";
 import { useAuth0 } from "@auth0/auth0-react";
+import Modal from "react-modal";
 
 const propertyTypeMapping = {
   House: "House",
@@ -25,12 +26,16 @@ interface Service {
 const Anuncio = () => {
   const property = useSelector((state: any) => state.detail);
   const services: Service[] = useSelector((state: any) => state.services);
-  const user = useSelector((state: any) => state.user)
+  const user = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isAuthenticated, isLoading: auth0IsLoading, loginWithRedirect } = useAuth0();
-  const [isAuthorized, setIsAuthorized] = useState(false)
+  const {
+    isAuthenticated,
+    isLoading: auth0IsLoading,
+    loginWithRedirect,
+  } = useAuth0();
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
     if (!auth0IsLoading && isAuthenticated && user && property) {
@@ -131,8 +136,22 @@ const Anuncio = () => {
     setIsEditing(false);
   };
 
-  const handleDelete = async () => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [propertyToDelete, setPropertyToDelete] = useState(null);
+
+  const handleDelete = (property) => {
+    setPropertyToDelete(property);
+    setShowDeleteModal(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false);
+    setPropertyToDelete(null);
+  };
+
+  const handleConfirmDelete = async (property) => {
     await dispatch(updatePropertyStatus(property));
+    handleCloseDeleteModal();
     navigate("/usuario/anuncios#");
   };
 
@@ -166,323 +185,354 @@ const Anuncio = () => {
   return (
     <div>
       {/* <UserNavBar /> */}
-      { isAuthorized ? <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto mt-10">
-        <div>
-          <div className="text-2xl">Revisá y editá tu anuncio</div>
-          <p>
-            Desde acá podés editar tu propiedad
-            <i
-              className="fa-solid fa-pen-to-square text-argentina ml-2"
-              onClick={() => setIsEditing(true)}
-            ></i>
-          </p>
-          <p>
-            Hacé click acá si querés borrar tu propiedad{" "}
-            <i
-              onClick={() => handleDelete()}
-              className="fa-solid fa-eraser text-argentina"
-            ></i>
-          </p>
-        </div>
-        <div>
-          <h1 className="font-bold font-cairo-play flex ">
-            <p className="mr-2">Título:</p>
-            {isEditing ? (
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="border w-w350"
-              />
-            ) : (
-              <span onClick={() => setIsEditing(true)}>{property.title}</span>
-            )}
-          </h1>
-
-          <h1 className="flex ">
-            <p className="mr-2">Dirección:</p>
-            <span onClick={() => setIsEditing(true)}>{property.address}</span>
-          </h1>
-
-          <h5>{property.location}</h5>
-          <h5>{property.province}</h5>
-
-          <h3 className="flex ">
-            <p className="mr-2">Descripción:</p>
-            {isEditing ? (
-              <textarea
-                type="textarea"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="border w-w350 h-36"
-              />
-            ) : (
-              <span onClick={() => setIsEditing(true)}>
-                {property.description}
-              </span>
-            )}
-          </h3>
-
-          <h3>
-            Tipo de Propiedad:
-            {isEditing ? (
-              <>
-                <label className="mr-2">
-                  <input
-                    type="checkbox"
-                    value="House"
-                    checked={type === "House"}
-                    onChange={() => setType("House")}
-                    className="mr-2 ml-2"
-                  />
-                  Casa
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    value="Apartment"
-                    checked={type === "Apartment"}
-                    onChange={() => setType("Apartment")}
-                    className="mr-2 ml-2"
-                  />
-                  Departamento
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    value="Room"
-                    checked={type === "Room"}
-                    onChange={() => setType("Room")}
-                    className="mr-2 ml-2"
-                  />
-                  Habitación
-                </label>
-              </>
-            ) : (
-              translatedPropertyType
-            )}
-          </h3>
-
-          <h2>
-            Cantidad de Huespedes:
-            {isEditing ? (
-              <input
-                type="number"
-                value={guests}
-                onChange={(e) => setGuests(Number(e.target.value))}
-                className="border w-16"
-              />
-            ) : (
-              property.max_guests
-            )}
-          </h2>
-
-          <h2>
-            Cantidad Dormitorios:
-            {isEditing ? (
-              <input
-                type="number"
-                value={rooms}
-                onChange={(e) => setRooms(Number(e.target.value))}
-                className="border w-16"
-              />
-            ) : (
-              property.rooms_number
-            )}
-          </h2>
-
-          <h2>
-            Cantidad de Camas:
-            {isEditing ? (
-              <input
-                type="number"
-                value={beds}
-                onChange={(e) => setBeds(Number(e.target.value))}
-                className="border w-16"
-              />
-            ) : (
-              property.beds_number
-            )}
-          </h2>
-
-          <h2>
-            Cantidad de Baños:
-            {isEditing ? (
-              <input
-                type="number"
-                value={bath}
-                onChange={(e) => setBath(Number(e.target.value))}
-                className="border w-16"
-              />
-            ) : (
-              property.bathrooms_number
-            )}
-          </h2>
-
-          <h4 className="font-bold">
-            Precio por Noche: ${" "}
-            {isEditing ? (
-              <input
-                type="number"
-                value={price}
-                onChange={(e) => setPrice(Number(e.target.value))}
-                className="border w-16"
-              />
-            ) : (
-              property.price_per_night
-            )}
-          </h4>
-
-          <div className="grid grid-cols-3 gap-4 mb-2 mt-2">
-            <p>Servicios Incluidos:</p>
-            {isEditing
-              ? services.map((service) => (
-                  <div key={service.service_id} className="flex items-center">
-                    <label>
-                      <input
-                        type="checkbox"
-                        value={service.name}
-                        defaultChecked={
-                          servicios && servicios.includes(service.name)
-                        }
-                        onClick={handleServiceChange}
-                      />
-                      <i className={`${service.icon} mr-2 ml-3`}></i>
-                      <span>{service.name}</span>
-                    </label>
-                  </div>
-                ))
-              : property.Services &&
-                property.Services.map((service: any, index: number) => (
-                  <div key={index} className="flex items-center">
-                    <i className={`${service.icon} mr-2`}></i>
-                    <span>{service.name}</span>
-                  </div>
-                ))}
+      {isAuthorized ? (
+        <div className="grid grid-cols-1 font-cairo gap-2 w-3/4 mx-auto mt-10">
+          <div>
+            <div className="text-2xl">Revisá y editá tu anuncio</div>
+            <p>
+              Desde acá podés editar tu propiedad
+              <i
+                className="fa-solid fa-pen-to-square text-argentina ml-2"
+                onClick={() => setIsEditing(true)}
+              ></i>
+            </p>
+            <p>
+              Hacé click acá si querés borrar tu propiedad{" "}
+              <i
+                onClick={() => handleDelete(property)}
+                className="fa-solid fa-eraser text-argentina"
+              ></i>
+            </p>
+            <Modal
+              isOpen={showDeleteModal}
+              style={{
+                content: {
+                  top: "50%",
+                  left: "50%",
+                  right: "auto",
+                  bottom: "auto",
+                  marginRight: "-50%",
+                  transform: "translate(-50%, -50%)",
+                },
+              }}
+            >
+              <h2>¿Estás seguro que deseas borrar esta propiedad?</h2>
+              <button
+                onClick={() => handleConfirmDelete(propertyToDelete)}
+                className="border border-argentina px-4 rounded-md mr-2 mt-2"
+              >
+                Borrar
+              </button>
+              <button
+                onClick={handleCloseDeleteModal}
+                className="border border-argentina px-4 rounded-md mt-2"
+              >
+                Volver
+              </button>
+            </Modal>
           </div>
+          <div>
+            <h1 className="font-bold font-cairo-play flex ">
+              <p className="mr-2">Título:</p>
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="border w-w350"
+                />
+              ) : (
+                <span onClick={() => setIsEditing(true)}>{property.title}</span>
+              )}
+            </h1>
 
-          {isEditing && (
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                checked={allow_pets}
-                onChange={() => setAllowPets(!allow_pets)}
-                className="mr-2"
-              />
+            <h1 className="flex ">
+              <p className="mr-2">Dirección:</p>
+              <span onClick={() => setIsEditing(true)}>{property.address}</span>
+            </h1>
+
+            <h5>{property.location}</h5>
+            <h5>{property.province}</h5>
+
+            <h3 className="flex ">
+              <p className="mr-2">Descripción:</p>
+              {isEditing ? (
+                <textarea
+                  type="textarea"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="border w-w350 h-36"
+                />
+              ) : (
+                <span onClick={() => setIsEditing(true)}>
+                  {property.description}
+                </span>
+              )}
+            </h3>
+
+            <h3>
+              Tipo de Propiedad:
+              {isEditing ? (
+                <>
+                  <label className="mr-2">
+                    <input
+                      type="checkbox"
+                      value="House"
+                      checked={type === "House"}
+                      onChange={() => setType("House")}
+                      className="mr-2 ml-2"
+                    />
+                    Casa
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      value="Apartment"
+                      checked={type === "Apartment"}
+                      onChange={() => setType("Apartment")}
+                      className="mr-2 ml-2"
+                    />
+                    Departamento
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      value="Room"
+                      checked={type === "Room"}
+                      onChange={() => setType("Room")}
+                      className="mr-2 ml-2"
+                    />
+                    Habitación
+                  </label>
+                </>
+              ) : (
+                translatedPropertyType
+              )}
+            </h3>
+
+            <h2>
+              Cantidad de Huespedes:
+              {isEditing ? (
+                <input
+                  type="number"
+                  value={guests}
+                  onChange={(e) => setGuests(Number(e.target.value))}
+                  className="border w-16"
+                />
+              ) : (
+                property.max_guests
+              )}
+            </h2>
+
+            <h2>
+              Cantidad Dormitorios:
+              {isEditing ? (
+                <input
+                  type="number"
+                  value={rooms}
+                  onChange={(e) => setRooms(Number(e.target.value))}
+                  className="border w-16"
+                />
+              ) : (
+                property.rooms_number
+              )}
+            </h2>
+
+            <h2>
+              Cantidad de Camas:
+              {isEditing ? (
+                <input
+                  type="number"
+                  value={beds}
+                  onChange={(e) => setBeds(Number(e.target.value))}
+                  className="border w-16"
+                />
+              ) : (
+                property.beds_number
+              )}
+            </h2>
+
+            <h2>
+              Cantidad de Baños:
+              {isEditing ? (
+                <input
+                  type="number"
+                  value={bath}
+                  onChange={(e) => setBath(Number(e.target.value))}
+                  className="border w-16"
+                />
+              ) : (
+                property.bathrooms_number
+              )}
+            </h2>
+
+            <h4 className="font-bold">
+              Precio por Noche: ${" "}
+              {isEditing ? (
+                <input
+                  type="number"
+                  value={price}
+                  onChange={(e) => setPrice(Number(e.target.value))}
+                  className="border w-16"
+                />
+              ) : (
+                property.price_per_night
+              )}
+            </h4>
+
+            <div className="grid grid-cols-3 gap-4 mb-2 mt-2">
+              <p>Servicios Incluidos:</p>
+              {isEditing
+                ? services.map((service) => (
+                    <div key={service.service_id} className="flex items-center">
+                      <label>
+                        <input
+                          type="checkbox"
+                          value={service.name}
+                          defaultChecked={
+                            servicios && servicios.includes(service.name)
+                          }
+                          onClick={handleServiceChange}
+                        />
+                        <i className={`${service.icon} mr-2 ml-3`}></i>
+                        <span>{service.name}</span>
+                      </label>
+                    </div>
+                  ))
+                : property.Services &&
+                  property.Services.map((service: any, index: number) => (
+                    <div key={index} className="flex items-center">
+                      <i className={`${service.icon} mr-2`}></i>
+                      <span>{service.name}</span>
+                    </div>
+                  ))}
+            </div>
+
+            {isEditing && (
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={allow_pets}
+                  onChange={() => setAllowPets(!allow_pets)}
+                  className="mr-2"
+                />
+                <h3 className="font-semibold">
+                  Podes venir a disfrutar con tu mascota{" "}
+                  <i className="fa-solid fa-paw ml-2 text-argentina"></i>
+                </h3>
+              </div>
+            )}
+
+            {!isEditing && property.allow_pets && (
               <h3 className="font-semibold">
                 Podes venir a disfrutar con tu mascota{" "}
                 <i className="fa-solid fa-paw ml-2 text-argentina"></i>
               </h3>
-            </div>
-          )}
-
-          {!isEditing && property.allow_pets && (
-            <h3 className="font-semibold">
-              Podes venir a disfrutar con tu mascota{" "}
-              <i className="fa-solid fa-paw ml-2 text-argentina"></i>
-            </h3>
-          )}
-
-          <h3>
-            Esta propiedad se encuentra disponible desde: {property.start_date}{" "}
-            hasta {property.end_date}
-          </h3>
-
-          {(property.weekly_discount || property.monthly_discount) &&
-            !isEditing && (
-              <h4 className="font-bold font-cairo-play">
-                Esta propiedad ofrece descuentos!
-              </h4>
             )}
 
-          {isEditing && (
-            <div className="flex items-center">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={weeklyDiscount}
-                  onChange={() => setWeeklyDiscount(!weeklyDiscount)}
-                  className=" mr-2"
-                />
-                Ofrece descuentos semanales
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={monthlyDiscount}
-                  onChange={() => setMonthlyDiscount(!monthlyDiscount)}
-                  className="ml-2 mr-2"
-                />
-                Ofrece descuentos mensuales
-              </label>
-            </div>
-          )}
-        </div>
+            <h3>
+              Esta propiedad se encuentra disponible desde:{" "}
+              {property.start_date} hasta {property.end_date}
+            </h3>
 
-        <div className="flex space-x-4">
-          {property.images &&
-            property.images.map((imageUrl: string, index: number) => (
-              <img
-                className="h-60"
-                key={index}
-                src={imageUrl}
-                alt={`Property Image ${index}`}
-              />
-            ))}
-        </div>
+            {(property.weekly_discount || property.monthly_discount) &&
+              !isEditing && (
+                <h4 className="font-bold font-cairo-play">
+                  Esta propiedad ofrece descuentos!
+                </h4>
+              )}
 
-        <div className="flex gap-4 ">
-          {isEditing ? (
-            <>
-              <button
-                className="bg-argentina text-white py-2 px-4 rounded"
-                onClick={handleSaveClick}
-              >
-                Guardar Cambios
-              </button>
-              <button
-                className="bg-argentina text-white py-2 px-4 rounded"
-                onClick={() => setIsEditing(false)}
-              >
-                Cancelar
-              </button>
-            </>
-          ) : (
-            <button
-              className="bg-argentina text-white py-2 px-4 rounded"
-              onClick={handleEditClick}
-            >
-              Editar
-            </button>
-          )}
-        </div>
-        <div>
-          {property.Ratings &&
-            property.Ratings.length > 0 &&
-            chunk(property.Ratings, 2).map((group, index) => (
-              <div key={index} className="flex mb-4 mt-5">
-                {group.map((rating: any, i: number) => (
-                  <div key={i} className="relative">
-                    <Review rating={rating} />
-                    {!rating.is_active && ( // Verificar si el rating no ha sido reportado
-                      <button
-                        onClick={() => reportReview(rating.rating_id)}
-                        className="text-argentina absolute -top-1 right-0"
-                      >
-                        Reportar
-                      </button>
-                    )}
-                  </div>
-                ))}
+            {isEditing && (
+              <div className="flex items-center">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={weeklyDiscount}
+                    onChange={() => setWeeklyDiscount(!weeklyDiscount)}
+                    className=" mr-2"
+                  />
+                  Ofrece descuentos semanales
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={monthlyDiscount}
+                    onChange={() => setMonthlyDiscount(!monthlyDiscount)}
+                    className="ml-2 mr-2"
+                  />
+                  Ofrece descuentos mensuales
+                </label>
               </div>
-            ))}
+            )}
+          </div>
+
+          <div className="flex space-x-4">
+            {property.images &&
+              property.images.map((imageUrl: string, index: number) => (
+                <img
+                  className="h-60"
+                  key={index}
+                  src={imageUrl}
+                  alt={`Property Image ${index}`}
+                />
+              ))}
+          </div>
+
+          <div className="flex gap-4 ">
+            {isEditing ? (
+              <>
+                <button
+                  className="bg-argentina text-white py-2 px-4 rounded"
+                  onClick={handleSaveClick}
+                >
+                  Guardar Cambios
+                </button>
+                <button
+                  className="bg-argentina text-white py-2 px-4 rounded"
+                  onClick={() => setIsEditing(false)}
+                >
+                  Cancelar
+                </button>
+              </>
+            ) : (
+              <button
+                className="bg-argentina text-white py-2 px-4 rounded"
+                onClick={handleEditClick}
+              >
+                Editar
+              </button>
+            )}
+          </div>
+          <div>
+            {property.Ratings &&
+              property.Ratings.length > 0 &&
+              chunk(property.Ratings, 2).map((group, index) => (
+                <div key={index} className="flex mb-4 mt-5">
+                  {group.map((rating: any, i: number) => (
+                    <div key={i} className="relative">
+                      <Review rating={rating} />
+                      {!rating.is_active && ( // Verificar si el rating no ha sido reportado
+                        <button
+                          onClick={() => reportReview(rating.rating_id)}
+                          className="text-argentina absolute -top-1 right-0"
+                        >
+                          Reportar
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+          </div>
+          <Report
+            isOpen={isOpen && selectedRating !== null}
+            setIsOpen={closeModal}
+            SelectedRating={selectedRating}
+          />
         </div>
-        <Report
-          isOpen={isOpen && selectedRating !== null}
-          setIsOpen={closeModal}
-          SelectedRating={selectedRating}
-        />
-      </div> : <div>No tienes permisos para modificar esta propiedad</div>}
+      ) : (
+        <div>No tienes permisos para modificar esta propiedad</div>
+      )}
     </div>
   );
 };

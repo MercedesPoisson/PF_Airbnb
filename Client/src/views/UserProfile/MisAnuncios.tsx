@@ -16,7 +16,7 @@ const MisAnuncios = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        `https://airebnb.onrender.com/users/${user.id_user}`
+        `http://localhost:3001/users/${user.id_user}`
       );
       setProperties(
         response.data.properties.filter(

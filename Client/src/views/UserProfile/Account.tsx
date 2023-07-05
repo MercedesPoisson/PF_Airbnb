@@ -21,7 +21,7 @@ const Account = () => {
   useEffect(() => {
     async function fetchProperties() {
       try {
-        const response = await axios.get("https://airebnb.onrender.com/property/all"); // Ajusta la URL de la solicitud según corresponda
+        const response = await axios.get("http://localhost:3001/property/all"); // Ajusta la URL de la solicitud según corresponda
         setProperties(response.data);
       } catch (error) {
         console.error(error);
@@ -60,7 +60,7 @@ const Account = () => {
       {/* <UserNavBar /> */}
 
       <div className="flex justify-center mt-20" style={{ zIndex: "0" }}>
-      <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer">
+      <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer" onClick={handleNavigateToProfile}>
   <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
     PERFIL <i className="fa-solid fa-circle-plus text-white"></i>
   </h5>
@@ -133,10 +133,14 @@ const Account = () => {
             MIS ANUNCIOS <i className="fa-solid fa-circle-plus text-white"></i>
           </h5>
           <div className="ml-1 overflow-hidden">
-            {userProperties &&
-              userProperties.map((properties: any, index: number) => (
-                <p key={properties.id}>{`${index + 1}) ${properties.title}`}</p>
-              ))}
+          {userProperties &&
+        userProperties.map((property: any, index: number) => {
+          if (property.is_active) {
+            return <p key={property.id}>{`${index + 1}) ${property.title}`}</p>;
+          } else {
+            return null;
+          }
+        })}
           </div>
         </div>
 
@@ -163,7 +167,7 @@ const Account = () => {
           </div>
         </div>
 
-        <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer" onClick={handleNavigateToTransacciones}>
+        {/* <div className="row-span-2 border hover:border-tercero hover:animate-lightup w-[450px] ml-10 mb-10 cursor-pointer" onClick={handleNavigateToTransacciones}>
           <h5 className="flex items-center justify-between uppercase font-bold bg-tercero text-white px-2 py-2">
             TRANSACCIONES{" "}
             <i className="fa-solid fa-circle-plus text-white"></i>
@@ -171,7 +175,7 @@ const Account = () => {
           <div className="h-40  overflow-hidden flex items-center justify-center">
             Tenés movimientos para revisar
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -3,13 +3,102 @@ import { useEffect, useState } from "react";
 
 /////////////////////esta componente deberia estar en otro lado/////////
 /////*********************************//////////////////////////////////
+
+const style: any = {
+    contain: {
+        width: "600px",
+        height: "600px",
+        position: "absolute",
+        backgroundColor: "#fefefe",
+        padding: "10px",
+        boxShadow: "0px 0px 10px #c2c2c2",
+        borderRadius: "10px",
+        top: "20%",
+        left: "calc(50% - 180px)"
+    },
+    title: {
+        minWidth: "40%",
+        textAlign: "center",
+        fontSize: "35px",
+        borderBottom: "2px solid black",
+        display: "inline-block",
+        position: "relative",
+        left: "calc(50% - 20%)",
+        padding: "10px"
+
+    },
+    inputs: {
+        fontSize: "20px",
+        width: "90%",
+        height: "50px",
+        padding: "10px",
+        margin: "5px",
+        boxShadow: "0px 0px 5px #222",
+        position: "relative",
+        left: "calc(50% - 45%)",
+        borderRadius: "5px"
+
+    },
+
+    inputsName: {
+        fontSize: "25px",
+        margin: "10px 0px"
+    },
+    close: {
+        fontSize: "30px",
+        position: "relative",
+        left: "96%",
+        top: "-25px",
+        color: "red"
+
+    },
+
+    update: {
+        fontSize: "18px",
+        padding: "10px",
+        width: "30%",
+        height: "40px",
+        backgroundColor: "#efefe",
+        boxShadow: "0px 0px 5px #333",
+        borderRadius: "5px",
+        position: "absolute",
+        left: "calc(50% - 15%)",
+        bottom: "15px"
+    },
+    flex: {
+        display: "flex",
+        gap: "15px",
+        alignItems: "center",
+        padding: "0px 6%",
+        margin: "20px 0"
+    },
+    btn: {
+        fontSize: "20px",
+        borderRadius: "5px",
+        boxShadow: "0px 0px 5px #c2c2c2",
+        padding: "10px 0"
+    }
+
+
+}
+
+
+
+
+///////////////////////////////////////////////////////////
+
+
 const ShowUpdate = ({ user, setOpen }: any) => {
     const [updateUser, setUpdateUser]: any = useState({
         name: user.name,
         surname: user.surname,
-        isactive: user.isactive
+        is_active: user.is_active
+
     })
-///////////////////////////////////////////////
+    ///////////////////////////////////////////////
+
+
+    console.log(user)
     const handlerOnchange = (e: any) => {
         const { value, name } = e.target;
         console.log(value)
@@ -20,23 +109,43 @@ const ShowUpdate = ({ user, setOpen }: any) => {
     }
     ////////////////////////////////////////////
     const sendUpdateUser = async () => {
-        await axios.put("https://airebnb.onrender.com/users/update/" + user.id_user, updateUser);
+        await axios.put("http://localhost:3001/users/update/" + user.id_user, updateUser);
         alert("user creado correctamente")
         setOpen(false)
     }
+
+
+    const activeOrDisactive = () =>{
+        setUpdateUser({
+            ...updateUser,
+            is_active: !updateUser.is_active
+        })
+    }
     //////////////////////////////////////////
     return (
-        <div>
-            <button onClick={() => setOpen(false)}>X</button>
-            <h1>User edit</h1>
+        <div style={style.contain}>
+            <button style={style.close} onClick={() => setOpen(false)}>X</button>
+            <h1 style={style.title}>User - {user.name}</h1>
             <div>
-                <span>name: </span>
-                <input type="text" name="name" value={updateUser.name} onChange={(e) => handlerOnchange(e)} />
-                <span>surname:  </span>
-                <input type="text" name="surname" value={updateUser.surname} onChange={(e) => handlerOnchange(e)} />
-                <input type="checkbox" checked={true} />
+                <p style={style.inputsName}>name: </p>
+                <input style={style.inputs} type="text" name="name" value={updateUser.name} onChange={(e) => handlerOnchange(e)} />
+
+                <p style={style.inputsName}>surname:  </p>
+                <input style={style.inputs} type="text" name="surname" value={updateUser.surname} onChange={(e) => handlerOnchange(e)} />
+                <div style={style.flex}>
+                    <button style={style.btn} onClick={()=> activeOrDisactive()} >
+                        {
+                            updateUser.is_active == true ? "Unplug" : "plugIn"
+                        }
+                    </button>
+                    <p>
+                        {
+                            updateUser.is_active == true ? <i className="fa-solid fa-plug-circle-check fa-xl"></i> : <i className="fa-solid fa-plug-circle-xmark fa-xl"></i>
+                        }
+                    </p>
+                </div>
             </div>
-            <button onClick={() => sendUpdateUser()}>Update</button>
+            <button style={style.update} onClick={() => sendUpdateUser()}>Update   <i className="fa-regular fa-pen-to-square"></i></button>
         </div>
     )
 }
@@ -55,7 +164,7 @@ const DashUsers = () => {
     useEffect(() => {
         async function fetchProperties() {
             try {
-                const response = await axios.get("https://airebnb.onrender.com/users/"); // Ajusta la URL de la solicitud según corresponda
+                const response = await axios.get("http://localhost:3001/users/"); // Ajusta la URL de la solicitud según corresponda
                 setDataUser(response.data);
             } catch (error) {
                 console.error(error);
@@ -94,8 +203,8 @@ const DashUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.surname}</td>
                                 <td>{user.email}</td>
-                                <td>{user.is_active ? "True" : "False"}</td>
-                                <td><button onClick={(e) => handlerTest(e, user)}>O</button></td>
+                                <td>{user.is_active ? <i className="fa-solid fa-plug-circle-check fa-lg"></i>  : <i className="fa-solid fa-plug-circle-xmark fa-lg"></i>}</td>
+                                <td><button onClick={(e) => handlerTest(e, user)}><i className="fa-regular fa-pen-to-square"></i></button></td>
                             </tr>
                         ))}
                     </tbody>
@@ -107,4 +216,4 @@ const DashUsers = () => {
         </div>
     );
 }
-export default DashUsers;
+export default DashUsers

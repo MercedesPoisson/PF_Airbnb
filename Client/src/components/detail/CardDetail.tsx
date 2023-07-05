@@ -13,6 +13,8 @@ import Review from "../Rating/Review";
 import { useAuth0 } from "@auth0/auth0-react";
 import Report from "./Report";
 import getFavorites from "../../redux/actions/getFavorites";
+import postFavorites from "../../redux/actions/postFavorites";
+import deleteFavorites from "../../redux/actions/deleteFavorites";
 // import Rating from "../Rating/Rating";
 
 const CardDetails = () => {
@@ -22,13 +24,16 @@ const CardDetails = () => {
   const currentUser = useSelector((state: any) => state.user);
   const favorites = useSelector((state: any) => state.favorites);
   const { isAuthenticated } = useAuth0();
-  const [isSaved, SetIsSaved] = useState(false);
+  const [isSaved, SetIsSaved] = useState(favorites?.some((favorite:any)=> favorite?.id_property === Number(id)));
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedRating, setSelectedRating] = useState(null);
+  console.log(id);
+  console.log(favorites);
+  
+  
 
   function openModal(ratingId) {
-    console.log("SelectedRatingId:", ratingId);
     setSelectedRating(ratingId);
     setIsOpen(true);
   }
@@ -42,35 +47,35 @@ const CardDetails = () => {
     navigate("/");
   };
 
+  
+  
+  const handleSaveClick = async() => {
+    if(isAuthenticated){
+      await SetIsSaved(!isSaved)
+      if(!isSaved){
+        await dispatch(postFavorites(currentUser.id_user,Number(id))as unknown as AnyAction)
+        await dispatch(getFavorites(currentUser.id_user)as unknown as AnyAction)
+      }
+      else{
+        await dispatch(deleteFavorites(currentUser.id_user,Number(id))as unknown as AnyAction)
+        await dispatch(getFavorites(currentUser.id_user)as unknown as AnyAction)
+      }
+    }   
+  };
+  
+  
+  const chunk = (arr: any, size: any) =>
+  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+  arr.slice(i * size, i * size + size)
+  );
+
   useEffect(() => {
-    console.log(id);
     dispatch(getPropertyDetail(id) as unknown as AnyAction);
     dispatch(getFavorites(currentUser.id_user) as unknown as AnyAction);
-  }, [dispatch, id, currentUser.id_user]);
-
-  useEffect(() => {
-    const isPropertySaved = favorites.some(
-      (favorite) =>
-        favorite.id_user === currentUser.id_user &&
-        favorite.id_property === property.id
-    );
-    SetIsSaved(isPropertySaved);
-  }, [favorites, property.id, currentUser.id_user]);
-
-  const handleSaveClick = () => {
-    SetIsSaved(!isSaved);
-  };
-
-  console.log("Location:", property.location);
-  console.log("Province:", property.province);
-
-  const chunk = (arr: any, size: any) =>
-    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-      arr.slice(i * size, i * size + size)
-    );
-
-  return (
-    <div>
+}, [dispatch, id, currentUser.id_user]);
+  
+      return (
+        <div>
       <div className="sticky top-0">
         <div className="grid grid-cols-2 gap-3 h-16 mb-1 bg-white">
           <div className="col-span-1 flex items-center justify-start">

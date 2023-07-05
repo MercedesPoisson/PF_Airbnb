@@ -36,7 +36,7 @@ function Card({ id_property, title, location, province, price_per_night, rating,
   console.log(isAuthenticated);
   
 
-  const [ isSaved, SetIsSaved ] = useState(favorites?.some((property:any)=> property.id_property === id_property));
+  const [ isSaved, SetIsSaved ] = useState(favorites?.some((property:any)=> property?.id_property === id_property));
   console.log(favorites);
 
   const handleSaveClick = async() => {

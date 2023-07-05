@@ -110,7 +110,7 @@ const Form = () => {
     navigate("/?page=0");
   };
 
-  const handlePost = () => {
+  const handlePost = async() => {
 
     const newForm = new FormData()
     newForm.append('id_user', formData.id_user)
@@ -141,7 +141,7 @@ const Form = () => {
     newForm.append('is_active', formData.is_active)
 
     
-    dispatch(postServices(newForm));
+    await dispatch(postServices(newForm));
     console.log("Datos enviados a la base de datos", formData);   
     openDialog();
   };
