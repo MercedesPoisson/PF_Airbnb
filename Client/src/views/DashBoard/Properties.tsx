@@ -22,8 +22,7 @@ const style: any = {
     textAlign: "center",
     fontSize: "20px",
     position: "relative",
-    padding: "5px"
-
+  
   },
   inputs: {
     fontSize: "20px",
@@ -74,22 +73,21 @@ const style: any = {
     padding: "10px 0"
   }
 
-
 }
 
-
 //////////////////////////
-
 
 const ShowUpdate = ({ property, setOpen }: any) => {
   const [updateProperty, setUpdateProperty]: any = useState({
     province: property.province,
     location: property.location,
+    price_per_night: property.price_per_night,
+    rooms_number: property.rooms_number,
+    beds_number: property.beds_number,    
     is_active: property.is_active
 
   })
   ///////////////////////////////////////////////
-
 
 
   const handlerOnchange = (e: any) => {
@@ -102,11 +100,10 @@ const ShowUpdate = ({ property, setOpen }: any) => {
   }
   ////////////////////////////////////////////
   const sendUpdateProperty = async () => {
-    await axios.put("http://localhost:3001/property/update/" + property.id_property, updateProperty);
+    await axios.put("https://airebnb.onrender.com/property/update/" + property.id_property, updateProperty);
     alert("property updated!")
     setOpen(false)
   }
-
 
   const activeOrDisactive = () => {
     setUpdateProperty({
@@ -123,7 +120,7 @@ const ShowUpdate = ({ property, setOpen }: any) => {
       <h1 style={style.title}>{property.title}</h1>
       <h1 style={style.title}>user ID:{property.id_user}</h1>
       <div>
-        <div style={style.flex}>
+        <div style={{ ...style.flex, lineHeight: "1" }}>
           <p style={style.inputsName}>Province: </p>
           <input
             className="border"
@@ -134,7 +131,7 @@ const ShowUpdate = ({ property, setOpen }: any) => {
             onChange={(e) => handlerOnchange(e)}
           />
         </div>
-        <div style={style.flex}>
+        <div style={{ ...style.flex, lineHeight: "1" }}>
           <p style={style.inputsName}>Location: </p>
           <input
             className="border"
@@ -145,7 +142,41 @@ const ShowUpdate = ({ property, setOpen }: any) => {
             onChange={(e) => handlerOnchange(e)}
           />
         </div>
-        <div style={style.flex}>
+        <div style={{ ...style.flex, lineHeight: "1" }}>
+          <p style={style.inputsName}>Price: </p>
+          <input
+            className="border"
+            style={style.inputs}
+            type="number"
+            name="price_per_night"
+            value={updateProperty.price_per_night}
+            onChange={(e) => handlerOnchange(e)}
+          />
+        </div>
+        <div style={{ ...style.flex, lineHeight: "1" }}>
+          <p style={style.inputsName}>Rooms #: </p>
+          <input
+            className="border"
+            style={style.inputs}
+            type="number"
+            name="rooms_number"
+            value={updateProperty.rooms_number}
+            onChange={(e) => handlerOnchange(e)}
+          />
+        </div>
+        <div style={{ ...style.flex, lineHeight: "1" }}>
+          <p style={style.inputsName}>Beds #: </p>
+          <input
+            className="border"
+            style={style.inputs}
+            type="number"
+            name="beds>_number"
+            value={updateProperty.beds_number}
+            onChange={(e) => handlerOnchange(e)}
+          />
+        </div>
+
+        <div style={{ ...style.flex, lineHeight: "1" }}>
           <button style={style.btn} onClick={() => activeOrDisactive()}>
             {updateProperty.is_active ? "Active" : "Inactive"}
           </button>
@@ -168,6 +199,7 @@ const ShowUpdate = ({ property, setOpen }: any) => {
     </div>
   );
 };
+
 
 //////////////////////////////////////////////
 

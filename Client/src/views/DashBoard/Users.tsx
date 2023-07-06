@@ -77,90 +77,105 @@ const style: any = {
 ///////////////////////////////////////////////////////////
 
 const ShowUpdate = ({ user, setOpen }: any) => {
-  const [updateUser, setUpdateUser]: any = useState({
-    name: user.name,
-    surname: user.surname,
-    is_active: user.is_active,
-  });
-  ///////////////////////////////////////////////
-
-  console.log(user);
-  const handlerOnchange = (e: any) => {
-    const { value, name } = e.target;
-    console.log(value);
-    setUpdateUser({
-      ...updateUser,
-      [name]: value,
+    const [updateUser, setUpdateUser]: any = useState({
+      name: user.name,
+      surname: user.surname,
+      number: user.number,
+      is_active: user.is_active,
     });
-  };
-  ////////////////////////////////////////////
-  const sendUpdateUser = async () => {
-    await axios.put(
-      "https://airebnb.onrender.com/users/update/" + user.id_user,
-      updateUser
-    );
-    alert("user creado correctamente");
-    setOpen(false);
-  };
-
-  const activeOrDisactive = () => {
-    setUpdateUser({
-      ...updateUser,
-      is_active: !updateUser.is_active,
-    });
-  };
-  //////////////////////////////////////////
-  return (
-    <div style={style.contain}>
-      <button style={style.close} onClick={() => setOpen(false)}>
-        <i className="fa-solid fa-xmark text-sidebar"></i>
-      </button>
-      <h1 style={style.title}>
-        User - {user.name} {user.surname}
-      </h1>
-      <div>
-        <div style={style.flex}>
-          <p style={style.inputsName}>Name: </p>
-          <input
-            className="border"
-            style={style.inputs}
-            type="text"
-            name="name"
-            value={updateUser.name}
-            onChange={(e) => handlerOnchange(e)}
-          />
+    ///////////////////////////////////////////////
+  
+    console.log(user);
+    const handlerOnchange = (e: any) => {
+      const { value, name } = e.target;
+      console.log(value);
+      setUpdateUser({
+        ...updateUser,
+        [name]: value,
+      });
+    };
+    ////////////////////////////////////////////
+    const sendUpdateUser = async () => {
+      await axios.put(
+        " https://airebnb.onrender.com/users/update/" + user.id_user,
+        updateUser
+      );
+      alert("user creado correctamente");
+      setOpen(false);
+    };
+  
+    const activeOrDisactive = () => {
+      setUpdateUser({
+        ...updateUser,
+        is_active: !updateUser.is_active,
+      });
+    };
+    //////////////////////////////////////////
+    return (
+      <div style={style.contain}>
+        <button style={style.close} onClick={() => setOpen(false)}>
+          <i className="fa-solid fa-xmark text-sidebar"></i>
+        </button>
+        <h1 style={style.title}>
+          User - {user.name} {user.surname}
+        </h1>
+        <div>
+          <div style={style.flex}>
+            <p style={style.inputsName}>Name: </p>
+            <input
+              className="border"
+              style={style.inputs}
+              type="text"
+              name="name"
+              value={updateUser.name}
+              onChange={(e) => handlerOnchange(e)}
+            />
+            </div>
+            
+          <div style={style.flex}>
+            <p style={style.inputsName}>Surname: </p>
+            <input
+              className="border"
+              style={style.inputs}S
+              type="text"
+              name="surname"
+              value={updateUser.surname}
+              onChange={(e) => handlerOnchange(e)}
+            />
+          </div>
+          
+          <div style={style.flex}>
+            <p style={style.inputsName}>Phone: </p>
+            <input
+              className="border"
+              style={style.inputs}
+              type="text"
+              name="number"
+              value={updateUser.number}
+              onChange={(e) => handlerOnchange(e)}
+            />
+          </div>
+  
+          <div style={style.flex}>
+            <button style={style.btn} onClick={() => activeOrDisactive()}>
+              {updateUser.is_active == true ? "Active" : "Inactive"}
+            </button>
+            <p>
+              {updateUser.is_active == true ? (
+                <i className="fa-solid fa-plug-circle-check fa-xl text-sidebar"></i>
+              ) : (
+                <i className="fa-solid fa-plug-circle-xmark fa-xl text-sidebar"></i>
+              )}
+            </p>
+          </div>
         </div>
-        <div style={style.flex}>
-          <p style={style.inputsName}>Surname: </p>
-          <input
-            className="border"
-            style={style.inputs}
-            type="text"
-            name="surname"
-            value={updateUser.surname}
-            onChange={(e) => handlerOnchange(e)}
-          />
-        </div>
-
-        <div style={style.flex}>
-          <button style={style.btn} onClick={() => activeOrDisactive()}>
-            {updateUser.is_active == true ? "Active" : "Inactive"}
-          </button>
-          <p>
-            {updateUser.is_active == true ? (
-              <i className="fa-solid fa-plug-circle-check fa-xl text-sidebar"></i>
-            ) : (
-              <i className="fa-solid fa-plug-circle-xmark fa-xl text-sidebar"></i>
-            )}
-          </p>
-        </div>
+        <button className="border border-sidebar px-4 rounded-md" style={style.update} onClick={() => sendUpdateUser()}>
+          Update <i className="fa-regular fa-pen-to-square"></i>
+        </button>
       </div>
-      <button className="border border-sidebar px-4 rounded-md" style={style.update} onClick={() => sendUpdateUser()}>
-        Update <i className="fa-regular fa-pen-to-square"></i>
-      </button>
-    </div>
-  );
-};
+    );
+  };
+  
 
 /////////*******************************************////////////////////
 ////////////////////////////////////////////////////////////////////////
