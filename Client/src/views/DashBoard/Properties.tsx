@@ -20,17 +20,21 @@ const style: any = {
   title: {
 
     textAlign: "center",
+
     fontSize: "18px",
+
     position: "relative",
 
   },
   inputs: {
     fontSize: "20px",
+
     width: "90%",
     height: "30px",
     padding: "10px",
+
     margin: "5px",
-    boxShadow: "0px 0px 5px #222",
+   
     position: "relative",
     left: "calc(50% - 45%)",
     borderRadius: "5px"
@@ -41,6 +45,7 @@ const style: any = {
     fontSize: "20px",
     margin: "10px 0px"
   },
+
   close: {
     fontSize: "30px",
     position: "relative",
@@ -48,15 +53,18 @@ const style: any = {
     top: "-18px",
     color: "#28B7D1"
 
-  },
+
+  // },
 
   update: {
+
     fontSize: "15px",
     padding: "5px",
     width: "22%",
     height: "30px",
     backgroundColor: "#efefe",
     boxShadow: "0px 0px 5px #333",
+
     borderRadius: "5px",
     position: "absolute",
     left: "calc(50% - 11%)",
@@ -72,7 +80,6 @@ const style: any = {
   btn: {
     fontSize: "15px",
     borderRadius: "5px",
-    boxShadow: "0px 0px 5px #c2c2c2",
     padding: "10px 0"
   }
 
@@ -124,9 +131,13 @@ const ShowUpdate = ({ property, setOpen }: any) => {
 
   return (
     <div style={style.contain}>
-      <button style={style.close} onClick={() => setOpen(false)}>X</button>
-      <h1 style={style.title}>{property.id_user}</h1>
+      <button onClick={() => setOpen(false)}>
+        <i className="fa-solid fa-xmark text-sidebar"></i>
+      </button>
+      <h1 style={style.title}>{property.title}</h1>
+      <h1 style={style.title}>user ID:{property.id_user}</h1>
       <div>
+
         <p style={style.inputsName}>province: </p>
         <input style={style.inputs} type="text" name="province" value={updateProperty.province} onChange={(e) => handlerOnchange(e)} />
 
@@ -140,24 +151,52 @@ const ShowUpdate = ({ property, setOpen }: any) => {
         <p style={style.inputsName}>beds  </p>
         <input style={style.inputs} type="number" name="beds_number" value={updateProperty.beds_number} onChange={(e) => handlerOnchange(e)} />
 
+
         <div style={style.flex}>
-          <button style={style.btn} onClick={() => activeOrDisactive()} >
-            {
-              updateProperty.is_active == true ? "Unplug" : "plugIn"
-            }
+          <p style={style.inputsName}>Province: </p>
+          <input
+            className="border"
+            style={style.inputs}
+            type="text"
+            name="province"
+            value={updateProperty.province}
+            onChange={(e) => handlerOnchange(e)}
+          />
+        </div>
+        <div style={style.flex}>
+          <p style={style.inputsName}>Location: </p>
+          <input
+            className="border"
+            style={style.inputs}
+            type="text"
+            name="location"
+            value={updateProperty.location}
+            onChange={(e) => handlerOnchange(e)}
+          />
+        </div>
+        <div style={style.flex}>
+          <button style={style.btn} onClick={() => activeOrDisactive()}>
+            {updateProperty.is_active ? "Active" : "Inactive"}
           </button>
           <p>
-            {
-              updateProperty.is_active == true ? <i className="fa-solid fa-plug-circle-check fa-xl"></i> : <i className="fa-solid fa-plug-circle-xmark fa-xl"></i>
-            }
+            {updateProperty.is_active ? (
+              <i className="fa-solid fa-plug-circle-check fa-xl text-sidebar"></i>
+            ) : (
+              <i className="fa-solid fa-plug-circle-xmark fa-xl text-sidebar"></i>
+            )}
           </p>
         </div>
       </div>
-      <button style={style.update} onClick={() => sendUpdateProperty()}>Update   <i className="fa-regular fa-pen-to-square"></i></button>
+      <button
+        className="border border-sidebar px-4 rounded-md"
+        style={style.update}
+        onClick={() => sendUpdateProperty()}
+      >
+        Update
+      </button>
     </div>
-  )
-
-}
+  );
+};
 
 //////////////////////////////////////////////
 
@@ -232,7 +271,7 @@ const DashProperties = () => {
                 <td>{property.bathrooms_number}</td>
                 <td>{property.max_guests}</td>
                 <td>{property.allow_pts ? "True" : "False"}</td>
-                <td onClick={(e) => handlerTest(e, property)}><button><i className="fa-regular fa-pen-to-square"></i></button></td>
+                <td onClick={(e) => handlerTest(e, property)}><button ><i className="fa-regular fa-pen-to-square"></i></button></td>
               </tr>
             ))}
           </tbody>

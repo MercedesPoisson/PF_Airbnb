@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 /////*********************************//////////////////////////////////
 
 const style: any = {
+
     contain: {
         width: "600px",
         height: "600px",
@@ -84,10 +85,11 @@ const style: any = {
 
 
 
+
 ///////////////////////////////////////////////////////////
 
-
 const ShowUpdate = ({ user, setOpen }: any) => {
+
     const [updateUser, setUpdateUser]: any = useState({
         name: user.name,
         surname: user.surname,
@@ -148,38 +150,34 @@ const ShowUpdate = ({ user, setOpen }: any) => {
                 </div>
             </div>
             <button style={style.update} onClick={() => sendUpdateUser()}>Update   <i className="fa-regular fa-pen-to-square"></i></button>
+
         </div>
-    )
-}
+      </div>
+      <button className="border border-sidebar px-4 rounded-md" style={style.update} onClick={() => sendUpdateUser()}>
+        Update <i className="fa-regular fa-pen-to-square"></i>
+      </button>
+    </div>
+  );
+};
 
 /////////*******************************************////////////////////
 ////////////////////////////////////////////////////////////////////////
 
-
-
 const DashUsers = () => {
+  const [dataUser, setDataUser] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [dataUpdate, setDataUpdat] = useState();
 
-    const [dataUser, setDataUser] = useState([]);
-    const [open, setOpen] = useState(false)
-    const [dataUpdate, setDataUpdat] = useState()
-
-    useEffect(() => {
-        async function fetchProperties() {
-            try {
-                const response = await axios.get("http://localhost:3001/users/"); // Ajusta la URL de la solicitud según corresponda
-                setDataUser(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchProperties();
-    }, [open]);
-
-    const handlerTest = (e: any, user: any) => {
-        e.preventDefault()
-        setOpen((s) => !s)
-        setDataUpdat(user)
+  useEffect(() => {
+    async function fetchProperties() {
+      try {
+        const response = await axios.get("http://localhost:3001/users/"); // Ajusta la URL de la solicitud según corresponda
+        setDataUser(response.data);
+      } catch (error) {
+        console.error(error);
+      }
     }
+
 
 
 

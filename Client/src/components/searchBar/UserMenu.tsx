@@ -15,16 +15,16 @@ const UserMenu = () => {
     setShowUserMenu((prevShowUserMenu) => !prevShowUserMenu);
   };
 
-  const handleNavigateToTeam = () => {
-    navigate("/ayuda");
-  };
-
   const handleNavigateToAccount = () => {
-    navigate("/usuario/perfil");
+    navigate("/usuario");
   };
 
   const handleNavigateToAnuncios = () => {
     navigate("/usuario/anuncios");
+  };
+
+  const handleNavigateToMensajes = () => {
+    navigate("/usuario/mensajes");
   };
 
   const handleLogout = () => {
@@ -34,24 +34,26 @@ const UserMenu = () => {
   const handleNavigateToFavoritos = () => {
     navigate("/usuario/favoritos");
   }
+  const handleNavigateToViajes = () => {
+    navigate("/usuario/viajes");
+  }
 
   return (
-    <div style={{ position: "relative" }}>
+    <div >
       {isAuthenticated ? (
         <UserNavLoged
           handleUserMenu={handleUserMenu}
           showUserMenu={showUserMenu}
           handleNavigateToAccount={handleNavigateToAccount}
           handleLogout={handleLogout}
-          handleNavigateToTeam={handleNavigateToTeam}
           handleNavigateToAnuncios={handleNavigateToAnuncios}
-          handleNavigateToFavoritos={handleNavigateToFavoritos}
+          handleNavigateToFavoritos={handleNavigateToFavoritos}          
+          handleNavigateToViajes={handleNavigateToViajes}
         />
       ) : (
         <UserBar
           handleUserMenu={handleUserMenu}
           showUserMenu={showUserMenu}
-          handleNavigateToTeam={handleNavigateToTeam}
         />
       )}
     </div>

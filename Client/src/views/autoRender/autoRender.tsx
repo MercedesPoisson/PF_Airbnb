@@ -8,12 +8,10 @@ import getUser from "../../redux/actions/getUser";
 import createUser from "../../redux/actions/createUser";
 import getFavorites from "../../redux/actions/getFavorites";
 
-
 function AutoRender(){
     const dispatch = useDispatch()
     const { user, isAuthenticated } = useAuth0();
     const userId = useSelector((state: any) => state.user.id_user)
-    console.log(user)
 
     useEffect(() => {
         if(isAuthenticated) {

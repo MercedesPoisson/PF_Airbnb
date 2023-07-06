@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Card from "../Card/card";
+import Card from "../card/card";
 import { useDispatch, useSelector } from "react-redux";
 import getFavorites from "../../redux/actions/getFavorites";
 import { AnyAction } from "redux";

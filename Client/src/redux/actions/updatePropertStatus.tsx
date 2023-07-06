@@ -2,7 +2,7 @@ import { Dispatch, AnyAction } from "redux";
 import { PUT_PROPERTY_STATUS } from "./actionsType";
 import axios from "axios";
 
-const updateProperty = (property: any) => {
+const updatePropertyStatus = (property: any) => {
     return async (dispatch:Dispatch<AnyAction>)=>{
         const {id_property}= property
         try {
@@ -13,3 +13,6 @@ const updateProperty = (property: any) => {
         }
     }
 }
+
+export default updatePropertyStatus
+

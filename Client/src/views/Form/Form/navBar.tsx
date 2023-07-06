@@ -13,7 +13,7 @@ function NavBar() {
             <div className="col-span-1 flex items-center justify-start">
               <div className="flex items-center cursor-pointer" onClick={handleNavigateToHome}>
                 <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
-                <span className="ml-1 text-argentina font-comfortaa text-lg">argentina</span>
+                <span className="ml-1 text-argentina font-comfortaa text-lg">airebnb</span>
               </div>
             </div>
             <div className="col-span-1 font-cairo-play flex items-center justify-end mr-10">

@@ -16,6 +16,7 @@ import Cloudinary from "./Cloudinary";
 import AvailableDates from "./AvailableDates";
 import Pets from "./Pets";
 import UserMenu from "../../../components/searchBar/UserMenu";
+// import { Dialog } from '@headlessui/react';
 
 interface FormData {
   [x: string]: any;
@@ -47,7 +48,7 @@ interface FormData {
 const Form = () => {
   const navigate = useNavigate();
   const userId = useSelector((state:any) => state.user.id_user);
-
+  
   const [formData, setFormData] = useState<FormData>({
     step: 1,
     id_user: userId,
@@ -99,7 +100,17 @@ const Form = () => {
 
   const dispatch = useDispatch();
 
-  const handlePost = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const openDialog = () => {
+    setIsDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+    navigate("/?page=0");
+  };
+
+  const handlePost = async() => {
 
     const newForm = new FormData()
     newForm.append('id_user', formData.id_user)
@@ -130,9 +141,9 @@ const Form = () => {
     newForm.append('is_active', formData.is_active)
 
     
-    dispatch(postServices(newForm));
+    await dispatch(postServices(newForm));
     console.log("Datos enviados a la base de datos", formData);   
-    alert("Propiedad Creada");
+    openDialog();
   };
 
   useEffect(() => {
@@ -150,6 +161,8 @@ const Form = () => {
     navigate("/");
   };
 
+  
+
   return (
     <>
       <div className="sticky top-0">
@@ -161,7 +174,7 @@ const Form = () => {
             >
               <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
               <span className="ml-1 text-argentina font-comfortaa text-lg">
-                argentina
+                airebnb
               </span>
             </div>
           </div>
@@ -211,6 +224,7 @@ const Form = () => {
             roomsNumber={formData.rooms_number}
             bedsNumber={formData.beds_number}
             bathroomsNumber={formData.bathrooms_number}
+            setFormData={setFormData}
           />
         )}
 
@@ -285,6 +299,8 @@ const Form = () => {
           setFormData={setFormData}
           start_date={formData.start_date} 
           end_date={formData.end_date} 
+          isDialogOpen={isDialogOpen}
+          closeDialog={closeDialog}
         />
         )}
 

@@ -8,10 +8,10 @@ const linkClasses = 'flex items-center gap-2 font-light px-3 py-2 hover:bg-neutr
 
 export default function SideBar() {
     return(
-        <div className="flex flex-col bg-segundo w-60 p-3 text-white font-cairo">
+        <div className="flex flex-col bg-sidebar w-60 p-3 text-white font-cairo">
             <div className="flex items-center gap-2 px-1 py-3">
-                <i className="fa fa-sun text-argentina ml-4 text-2xl"></i>
-                <span className="ml-1 text-argentina font-comfortaa text-lg">argentina</span>
+                <i className="fa fa-sun text-texto ml-4 text-2xl"></i>
+                <span className="ml-1 text-texto font-comfortaa text-lg">airebnb</span>
                 </div>
                 <div className=" py-8 flex flex-1 flex-col gap-0.5">
         {DASHBOARD_SIDEBAR_LINKS.map((item) => (
@@ -24,7 +24,7 @@ export default function SideBar() {
             )))}
             <div 
             
-            className={classNames( "text-argentina cursor-pointer", linkClasses) }>
+            className={classNames( "text-texto cursor-pointer", linkClasses) }>
                 <span className="text-xl"><HiOutlineLogout /></span>
                 Logout
             </div>
@@ -36,7 +36,7 @@ export default function SideBar() {
 function SideBarLink({ item }) {
     const { pathname } = useLocation()
     return (
-      <Link to={item.path} className={classNames(pathname === item.path ? "text-argentina " : "" , linkClasses) }>
+      <Link to={item.path} className={classNames(pathname === item.path ? "text-texto " : "" , linkClasses) }>
         <span className="text-xl">{item.icon}</span>
         <span>{item.label}</span>
       </Link>

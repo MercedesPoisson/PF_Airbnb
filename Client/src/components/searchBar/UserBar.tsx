@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-interface UserBarProps {
-  handleNavigateToTeam: () => void;
-}
+// interface UserBarProps {
+//   handleNavigateToTeam: () => void;
+// }
 
-const UserBar = ({ handleNavigateToTeam }: UserBarProps) => {
+const UserBar = () => {
   const navigate = useNavigate();
   const { loginWithRedirect, isAuthenticated } = useAuth0();
   const [showUserBar, setShowUserBar] = useState(false);
@@ -35,7 +35,7 @@ const UserBar = ({ handleNavigateToTeam }: UserBarProps) => {
 
       {showUserBar && (
         <ul
-          className="user-menu"
+          
           style={{
             position: "absolute",
             top: "100%",
@@ -56,11 +56,11 @@ const UserBar = ({ handleNavigateToTeam }: UserBarProps) => {
             <a href="#" onClick={handlePostProperty}>Publicá tu Propiedad</a>
           </li>
 
-          <li style={{ padding: "0.5rem 0" }}>
+          {/* <li style={{ padding: "0.5rem 0" }}>
             <a href="#" onClick={handleNavigateToTeam}>
               Ayuda
             </a>
-          </li>
+          </li> */}
         </ul>
       )}
     </div>

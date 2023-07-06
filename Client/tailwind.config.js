@@ -28,19 +28,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        argentina: "#E96479",
+        // argentina: "#E96479",
+        argentina: "#0081B4",
         dark_purple: "#0B2447",
         btn_primary: "#576CBC",
         heading_color: "#abd9d9",
-        primero: "#7DB9B6",
-        segundo: "#4D455D",
-        tercero: "#E96479"
+        // primero: "#7DB9B6",
+        // segundo: "#4D455D",
+        // tercero: "#E96479"
+        primero: "#E96479",
+        segundo: "#ADE4DB",
+        tercero: "#3AA6B9",
+        sidebar: "#4D455D",
+        texto: "#E96479"
       },
       fontFamily: {
         comfortaa: ['Comfortaa', 'cursive'],
         'cairo-play': ['Cairo Play', 'sans-serif'],
         cairo: ['Cairo', 'sans-serif'],
         Poppins: ["Poppins", "sans-serif"],
+        Rubik: ["Rubik", "sans-serif"]
       },
       borderRadius: {
         "r-30": "30px",
@@ -82,11 +89,29 @@ module.exports = {
           "100%": {
             transform: "translateY(-404%)"
           }
+        },
+        blob: {
+          "0%": {
+            transform: "translate(0px, 0px) scale(1)"
+          },
+          "33%": {
+            transform: "translate(30px, -50px) scale(1.1)"
+          },
+          "66%": {
+            transform: "translate(-20px, 20px)scale(0.9)"
+          },
+          "100%": {
+            transform: "translate(0px, 0px) scale(1)"
+          }
         }
       },
       animation: {
-        scroll: "scroll 8s infinite"
-      }
+        scroll: "scroll 7s infinite",
+        blob: "blob 8s infinite"
+      },
+      darkMode: [
+        "className", "[data-mode='dark']"
+      ],
     }
   },
   plugins: [Myclass],
