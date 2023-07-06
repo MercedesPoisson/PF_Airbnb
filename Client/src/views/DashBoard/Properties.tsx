@@ -20,16 +20,19 @@ const style: any = {
   title: {
 
     textAlign: "center",
-    fontSize: "20px",
+
+    fontSize: "18px",
+
     position: "relative",
-    padding: "5px"
 
   },
   inputs: {
     fontSize: "20px",
-    width: "60%",
-    height: "50px",
-    
+
+    width: "90%",
+    height: "30px",
+    padding: "10px",
+
     margin: "5px",
    
     position: "relative",
@@ -42,23 +45,29 @@ const style: any = {
     fontSize: "20px",
     margin: "10px 0px"
   },
-  // close: {
-  //   fontSize: "30px",
-  //   position: "relative",
-  //   left: "96%",
-  //   top: "-18px",
-  //   color: "red"
+
+  close: {
+    fontSize: "30px",
+    position: "relative",
+    left: "96%",
+    top: "-18px",
+    color: "#28B7D1"
+
 
   // },
 
   update: {
-    fontSize: "18px",
-    padding: "10px",
-    width: "30%",
-    height: "40px",  
+
+    fontSize: "15px",
+    padding: "5px",
+    width: "22%",
+    height: "30px",
+    backgroundColor: "#efefe",
+    boxShadow: "0px 0px 5px #333",
+
     borderRadius: "5px",
     position: "absolute",
-    left: "calc(50% - 15%)",
+    left: "calc(50% - 11%)",
     bottom: "15px"
   },
   flex: {
@@ -69,7 +78,7 @@ const style: any = {
     margin: "20px 0"
   },
   btn: {
-    fontSize: "20px",
+    fontSize: "15px",
     borderRadius: "5px",
     padding: "10px 0"
   }
@@ -85,6 +94,9 @@ const ShowUpdate = ({ property, setOpen }: any) => {
   const [updateProperty, setUpdateProperty]: any = useState({
     province: property.province,
     location: property.location,
+    price_per_night: property.price_per_night,
+    rooms_number: property.rooms_number,
+    beds_number: property.beds_number,
     is_active: property.is_active
 
   })
@@ -115,6 +127,8 @@ const ShowUpdate = ({ property, setOpen }: any) => {
     })
   }
 
+
+
   return (
     <div style={style.contain}>
       <button onClick={() => setOpen(false)}>
@@ -123,6 +137,21 @@ const ShowUpdate = ({ property, setOpen }: any) => {
       <h1 style={style.title}>{property.title}</h1>
       <h1 style={style.title}>user ID:{property.id_user}</h1>
       <div>
+
+        <p style={style.inputsName}>province: </p>
+        <input style={style.inputs} type="text" name="province" value={updateProperty.province} onChange={(e) => handlerOnchange(e)} />
+
+        <p style={style.inputsName}>location:  </p>
+        <input style={style.inputs} type="text" name="location" value={updateProperty.location} onChange={(e) => handlerOnchange(e)} />
+        <p style={style.inputsName}>price_per_night:  </p>
+        <input style={style.inputs} type="number" name="price_per_night" value={updateProperty.price_per_night} onChange={(e) => handlerOnchange(e)} />
+
+        <p style={style.inputsName}>rooms:  </p>
+        <input style={style.inputs} type="number" name="rooms_number" value={updateProperty.rooms_number} onChange={(e) => handlerOnchange(e)} />
+        <p style={style.inputsName}>beds  </p>
+        <input style={style.inputs} type="number" name="beds_number" value={updateProperty.beds_number} onChange={(e) => handlerOnchange(e)} />
+
+
         <div style={style.flex}>
           <p style={style.inputsName}>Province: </p>
           <input
