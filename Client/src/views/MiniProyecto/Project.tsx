@@ -134,7 +134,7 @@ const Project = () => {
               className="fa-solid fa-arrow-right text-btn-primary cursor-pointer"
               onClick={() => navigate("/")}
             ></i>
-            <div className="absolute mt-20">
+            {/* <div className="absolute mt-20">
               <div className="ml-2">
                 <button onClick={handlePlay}>
                   <i className="fa-regular fa-circle-play text-argentina text-4xl mr-4"></i>
@@ -147,7 +147,7 @@ const Project = () => {
               <div className="mt-10 subtitles justify-center items-center left-1/2 text-argentina text-lg w-full max-w-4xl mx-auto">
                 {isPlaying && <p>{currentSubtitle}</p>}
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="flex justify-center items-center mt-auto mb-10">
             <Stack isClicked={isStackClicked} />
