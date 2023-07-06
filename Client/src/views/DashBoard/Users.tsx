@@ -19,8 +19,7 @@ const style: any = {
     title: {
         minWidth: "40%",
         textAlign: "center",
-        fontSize: "35px",
-        borderBottom: "2px solid black",
+        fontSize: "25px",
         display: "inline-block",
         position: "relative",
         left: "calc(50% - 20%)",
@@ -49,7 +48,7 @@ const style: any = {
         position: "relative",
         left: "96%",
         top: "-25px",
-        color: "red"
+        color: "#28B7D1"
 
     },
 
@@ -92,6 +91,7 @@ const ShowUpdate = ({ user, setOpen }: any) => {
     const [updateUser, setUpdateUser]: any = useState({
         name: user.name,
         surname: user.surname,
+        number: user.number,
         is_active: user.is_active
 
     })
@@ -115,7 +115,7 @@ const ShowUpdate = ({ user, setOpen }: any) => {
     }
 
 
-    const activeOrDisactive = () =>{
+    const activeOrDisactive = () => {
         setUpdateUser({
             ...updateUser,
             is_active: !updateUser.is_active
@@ -125,15 +125,17 @@ const ShowUpdate = ({ user, setOpen }: any) => {
     return (
         <div style={style.contain}>
             <button style={style.close} onClick={() => setOpen(false)}>X</button>
-            <h1 style={style.title}>User - {user.name}</h1>
+            <h1 style={style.title}>{user.name}</h1>
             <div>
                 <p style={style.inputsName}>name: </p>
                 <input style={style.inputs} type="text" name="name" value={updateUser.name} onChange={(e) => handlerOnchange(e)} />
 
                 <p style={style.inputsName}>surname:  </p>
-                <input style={style.inputs} type="text" name="surname" value={updateUser.surname} onChange={(e) => handlerOnchange(e)} />
+                <input style={style.inputs} type="txt" name="surname" value={updateUser.surname} onChange={(e) => handlerOnchange(e)} />
+                <p style={style.inputsName}>phone: </p>
+                <input style={style.inputs} type="text" name="number" value={updateUser.number} onChange={(e) => handlerOnchange(e)} />
                 <div style={style.flex}>
-                    <button style={style.btn} onClick={()=> activeOrDisactive()} >
+                    <button style={style.btn} onClick={() => activeOrDisactive()} >
                         {
                             updateUser.is_active == true ? "Unplug" : "plugIn"
                         }
@@ -179,6 +181,8 @@ const DashUsers = () => {
         setDataUpdat(user)
     }
 
+
+
     return (
         <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
             <strong className="text-gray-700 font-medium">Users</strong>
@@ -189,9 +193,10 @@ const DashUsers = () => {
                             <th>Number</th>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>surname</th>
+                            <th>Surname</th>
+                            <th>Number</th>
                             <th>email</th>
-                            <th>is_active</th>
+                            <th>Is_active</th>
                             <th>edit</th>
                         </tr>
                     </thead>
@@ -202,8 +207,9 @@ const DashUsers = () => {
                                 <td >{user.id_user}</td>
                                 <td>{user.name}</td>
                                 <td>{user.surname}</td>
+                                <td>{user.number}</td>
                                 <td>{user.email}</td>
-                                <td>{user.is_active ? <i className="fa-solid fa-plug-circle-check fa-lg"></i>  : <i className="fa-solid fa-plug-circle-xmark fa-lg"></i>}</td>
+                                <td>{user.is_active ? <i className="fa-solid fa-plug-circle-check fa-lg"></i> : <i className="fa-solid fa-plug-circle-xmark fa-lg"></i>}</td>
                                 <td><button onClick={(e) => handlerTest(e, user)}><i className="fa-regular fa-pen-to-square"></i></button></td>
                             </tr>
                         ))}
@@ -216,4 +222,4 @@ const DashUsers = () => {
         </div>
     );
 }
-export default DashUsers
+export default DashUsers;

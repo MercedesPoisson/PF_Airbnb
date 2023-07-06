@@ -20,15 +20,14 @@ const style: any = {
   title: {
 
     textAlign: "center",
-    fontSize: "35px",
+    fontSize: "18px",
     position: "relative",
-    padding: "5px"
 
   },
   inputs: {
     fontSize: "20px",
     width: "90%",
-    height: "50px",
+    height: "30px",
     padding: "10px",
     margin: "5px",
     boxShadow: "0px 0px 5px #222",
@@ -39,7 +38,7 @@ const style: any = {
   },
 
   inputsName: {
-    fontSize: "25px",
+    fontSize: "20px",
     margin: "10px 0px"
   },
   close: {
@@ -47,20 +46,20 @@ const style: any = {
     position: "relative",
     left: "96%",
     top: "-18px",
-    color: "red"
+    color: "#28B7D1"
 
   },
 
   update: {
-    fontSize: "18px",
-    padding: "10px",
-    width: "30%",
-    height: "40px",
+    fontSize: "15px",
+    padding: "5px",
+    width: "22%",
+    height: "30px",
     backgroundColor: "#efefe",
     boxShadow: "0px 0px 5px #333",
     borderRadius: "5px",
     position: "absolute",
-    left: "calc(50% - 15%)",
+    left: "calc(50% - 11%)",
     bottom: "15px"
   },
   flex: {
@@ -71,7 +70,7 @@ const style: any = {
     margin: "20px 0"
   },
   btn: {
-    fontSize: "20px",
+    fontSize: "15px",
     borderRadius: "5px",
     boxShadow: "0px 0px 5px #c2c2c2",
     padding: "10px 0"
@@ -88,6 +87,9 @@ const ShowUpdate = ({ property, setOpen }: any) => {
   const [updateProperty, setUpdateProperty]: any = useState({
     province: property.province,
     location: property.location,
+    price_per_night: property.price_per_night,
+    rooms_number: property.rooms_number,
+    beds_number: property.beds_number,
     is_active: property.is_active
 
   })
@@ -118,6 +120,8 @@ const ShowUpdate = ({ property, setOpen }: any) => {
     })
   }
 
+
+
   return (
     <div style={style.contain}>
       <button style={style.close} onClick={() => setOpen(false)}>X</button>
@@ -128,6 +132,14 @@ const ShowUpdate = ({ property, setOpen }: any) => {
 
         <p style={style.inputsName}>location:  </p>
         <input style={style.inputs} type="text" name="location" value={updateProperty.location} onChange={(e) => handlerOnchange(e)} />
+        <p style={style.inputsName}>price_per_night:  </p>
+        <input style={style.inputs} type="number" name="price_per_night" value={updateProperty.price_per_night} onChange={(e) => handlerOnchange(e)} />
+
+        <p style={style.inputsName}>rooms:  </p>
+        <input style={style.inputs} type="number" name="rooms_number" value={updateProperty.rooms_number} onChange={(e) => handlerOnchange(e)} />
+        <p style={style.inputsName}>beds  </p>
+        <input style={style.inputs} type="number" name="beds_number" value={updateProperty.beds_number} onChange={(e) => handlerOnchange(e)} />
+
         <div style={style.flex}>
           <button style={style.btn} onClick={() => activeOrDisactive()} >
             {
