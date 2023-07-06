@@ -96,7 +96,7 @@ const ShowUpdate = ({ user, setOpen }: any) => {
   ////////////////////////////////////////////
   const sendUpdateUser = async () => {
     await axios.put(
-      "http://localhost:3001/users/update/" + user.id_user,
+      "https://airebnb.onrender.com/users/update/" + user.id_user,
       updateUser
     );
     alert("user creado correctamente");
