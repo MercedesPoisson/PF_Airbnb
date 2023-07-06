@@ -20,18 +20,18 @@ const style: any = {
   title: {
 
     textAlign: "center",
-    fontSize: "35px",
+    fontSize: "20px",
     position: "relative",
     padding: "5px"
 
   },
   inputs: {
     fontSize: "20px",
-    width: "90%",
+    width: "60%",
     height: "50px",
-    padding: "10px",
+    
     margin: "5px",
-    boxShadow: "0px 0px 5px #222",
+   
     position: "relative",
     left: "calc(50% - 45%)",
     borderRadius: "5px"
@@ -39,25 +39,23 @@ const style: any = {
   },
 
   inputsName: {
-    fontSize: "25px",
+    fontSize: "20px",
     margin: "10px 0px"
   },
-  close: {
-    fontSize: "30px",
-    position: "relative",
-    left: "96%",
-    top: "-18px",
-    color: "red"
+  // close: {
+  //   fontSize: "30px",
+  //   position: "relative",
+  //   left: "96%",
+  //   top: "-18px",
+  //   color: "red"
 
-  },
+  // },
 
   update: {
     fontSize: "18px",
     padding: "10px",
     width: "30%",
-    height: "40px",
-    backgroundColor: "#efefe",
-    boxShadow: "0px 0px 5px #333",
+    height: "40px",  
     borderRadius: "5px",
     position: "absolute",
     left: "calc(50% - 15%)",
@@ -73,7 +71,6 @@ const style: any = {
   btn: {
     fontSize: "20px",
     borderRadius: "5px",
-    boxShadow: "0px 0px 5px #c2c2c2",
     padding: "10px 0"
   }
 
@@ -105,7 +102,7 @@ const ShowUpdate = ({ property, setOpen }: any) => {
   }
   ////////////////////////////////////////////
   const sendUpdateProperty = async () => {
-    await axios.put("https://airebnb.onrender.com/property/update/" + property.id_property, updateProperty);
+    await axios.put("http://localhost:3001/property/update/" + property.id_property, updateProperty);
     alert("property updated!")
     setOpen(false)
   }
@@ -120,32 +117,57 @@ const ShowUpdate = ({ property, setOpen }: any) => {
 
   return (
     <div style={style.contain}>
-      <button style={style.close} onClick={() => setOpen(false)}>X</button>
-      <h1 style={style.title}>{property.id_user}</h1>
+      <button onClick={() => setOpen(false)}>
+        <i className="fa-solid fa-xmark text-sidebar"></i>
+      </button>
+      <h1 style={style.title}>{property.title}</h1>
+      <h1 style={style.title}>user ID:{property.id_user}</h1>
       <div>
-        <p style={style.inputsName}>province: </p>
-        <input style={style.inputs} type="text" name="province" value={updateProperty.province} onChange={(e) => handlerOnchange(e)} />
-
-        <p style={style.inputsName}>location:  </p>
-        <input style={style.inputs} type="text" name="location" value={updateProperty.location} onChange={(e) => handlerOnchange(e)} />
         <div style={style.flex}>
-          <button style={style.btn} onClick={() => activeOrDisactive()} >
-            {
-              updateProperty.is_active == true ? "Unplug" : "plugIn"
-            }
+          <p style={style.inputsName}>Province: </p>
+          <input
+            className="border"
+            style={style.inputs}
+            type="text"
+            name="province"
+            value={updateProperty.province}
+            onChange={(e) => handlerOnchange(e)}
+          />
+        </div>
+        <div style={style.flex}>
+          <p style={style.inputsName}>Location: </p>
+          <input
+            className="border"
+            style={style.inputs}
+            type="text"
+            name="location"
+            value={updateProperty.location}
+            onChange={(e) => handlerOnchange(e)}
+          />
+        </div>
+        <div style={style.flex}>
+          <button style={style.btn} onClick={() => activeOrDisactive()}>
+            {updateProperty.is_active ? "Active" : "Inactive"}
           </button>
           <p>
-            {
-              updateProperty.is_active == true ? <i className="fa-solid fa-plug-circle-check fa-xl"></i> : <i className="fa-solid fa-plug-circle-xmark fa-xl"></i>
-            }
+            {updateProperty.is_active ? (
+              <i className="fa-solid fa-plug-circle-check fa-xl text-sidebar"></i>
+            ) : (
+              <i className="fa-solid fa-plug-circle-xmark fa-xl text-sidebar"></i>
+            )}
           </p>
         </div>
       </div>
-      <button style={style.update} onClick={() => sendUpdateProperty()}>Update   <i className="fa-regular fa-pen-to-square"></i></button>
+      <button
+        className="border border-sidebar px-4 rounded-md"
+        style={style.update}
+        onClick={() => sendUpdateProperty()}
+      >
+        Update
+      </button>
     </div>
-  )
-
-}
+  );
+};
 
 //////////////////////////////////////////////
 
@@ -158,7 +180,7 @@ const DashProperties = () => {
   useEffect(() => {
     async function fetchProperties() {
       try {
-        const response = await axios.get("https://airebnb.onrender.com/property/all"); // Ajusta la URL de la solicitud según corresponda
+        const response = await axios.get("http://localhost:3001/property/all"); // Ajusta la URL de la solicitud según corresponda
         setProperties(response.data);
       } catch (error) {
         console.error(error);
@@ -220,7 +242,7 @@ const DashProperties = () => {
                 <td>{property.bathrooms_number}</td>
                 <td>{property.max_guests}</td>
                 <td>{property.allow_pts ? "True" : "False"}</td>
-                <td onClick={(e) => handlerTest(e, property)}><button><i className="fa-regular fa-pen-to-square"></i></button></td>
+                <td onClick={(e) => handlerTest(e, property)}><button ><i className="fa-regular fa-pen-to-square"></i></button></td>
               </tr>
             ))}
           </tbody>
